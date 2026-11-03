@@ -216,10 +216,15 @@ async function statusPage(env) {
 <p>Paste your <b>bot token</b> from BotFather here, just once. The token
 stays safe inside your own Cloudflare account.</p>
 <form method="POST" action="/setup">
-<input name="token" type="password" placeholder="Paste bot token here"
- style="width:100%; padding:12px; font-size:16px;" required>
-<button style="width:100%; padding:12px; margin-top:10px; font-size:16px;">
-Start the Bot</button></form>`;
+<input name="token" type="text" placeholder="Paste bot token here"
+ autocomplete="off" autocapitalize="off" spellcheck="false"
+ style="width:100%; padding:12px; font-size:16px;">
+<p style="color:#555">After pasting, you should <b>see</b> the token in the box
+above — it starts with about 10 numbers, then a <b>:</b>, then a long line of
+letters and numbers. If the box looks empty, the paste did not happen —
+long-press the box and tap <b>Paste</b> again.</p>
+<button style="width:100%; padding:14px; margin-top:6px; font-size:17px;">
+▶ Start the Bot</button></form>`;
   }
   return `<h2>✅ RADEQuiz Bot is Running</h2>
 <p>Bot: <b>@${cfg.username}</b></p>
