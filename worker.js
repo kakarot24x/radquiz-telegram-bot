@@ -315,7 +315,7 @@ long-press the box and tap <b>Paste</b> again.</p>
 ▶ Start the Bot</button></form>`;
   }
   return `<h2>✅ RADEQuiz Bot is Running</h2>
-<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b></p>
+<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-03 v4</b></p>
 <p>Now open your Telegram group <b>RADEQuiz</b> and type <b>/quiz</b> —
 choose a topic, the number of questions and the timer, and the quiz starts.
 Everything is controlled from Telegram itself.</p>
@@ -511,7 +511,7 @@ export class QuizRoom {
       } else if (sender && await this.isAdmin(chatId, sender)) {
         await this.startFlow(chatId, sender);
       } else {
-        await this.send(chatId, "Quiz sirf group admin start kar sakta hai.");
+        await this.send(chatId, "Only a group admin can start a quiz.");
       }
     } else if (text === "/stop") {
       const session = await this.state.storage.get("session");
@@ -520,7 +520,7 @@ export class QuizRoom {
         await this.state.storage.put("session", session);
         await this.send(chatId, "🛑 Stopping the quiz after this question…");
       } else if (session) {
-        await this.send(chatId, "Quiz sirf group admin stop kar sakta hai.");
+        await this.send(chatId, "Only a group admin can stop the quiz.");
       }
     } else if (text === "/score") {
       const totals = (await this.state.storage.get("scores")) || {};
@@ -529,14 +529,14 @@ export class QuizRoom {
         const ranked = vals
           .sort((a, b) => (ptsOf(b, true) - ptsOf(a, true)) || ((a[4] || 0) - (b[4] || 0)))
           .slice(0, 10);
-        const lines = ["🏆 All-time Ranking (bot me saved):"];
+        const lines = ["🏆 All-time Ranking (saved by the bot):"];
         ranked.forEach((t, i) => lines.push(`${i + 1}. ${t[0]} — ${fmtPts(t, true)} pts · ✓${t[1] || 0} ✗${t[3] || 0} · ⏱ ${fmtTime(t[4] || 0)}`));
         await this.send(chatId, lines.join("\n"));
       } else {
-        await this.send(chatId, "Abhi tak koi score save nahi hua.");
+        await this.send(chatId, "No scores saved yet.");
       }
     } else if (text === "/settings") {
-      await this.send(chatId, "⚙️ Auto quiz hata diya gaya hai — ab quiz sirf /quiz se chalega, jab tum chaho.");
+      await this.send(chatId, "⚙️ Auto quiz has been removed — a quiz now starts only with /quiz, whenever you want.");
     }
   }
 
@@ -591,7 +591,7 @@ export class QuizRoom {
       owner: userId, step: "subjects", messageId: null,
       subject: null, chapter: null, page: 0, count: null, seconds: null,
     };
-    const sent = await this.send(chatId, "📚 Quiz Setup — pehle Subject chuno:",
+    const sent = await this.send(chatId, "📚 Quiz Setup — first choose a Subject:",
       await this.subjectsKeyboardFull(meta, index));
     flow.messageId = sent.message_id;
     await this.state.storage.put("flow", flow);
@@ -604,28 +604,28 @@ export class QuizRoom {
     const meta = (await this.state.storage.get("meta")) || {};
     const mid = flow.messageId;
     if (flow.step === "subjects") {
-      await this.edit(chatId, mid, "📚 Quiz Setup — pehle Subject chuno:",
+      await this.edit(chatId, mid, "📚 Quiz Setup — first choose a Subject:",
         await this.subjectsKeyboardFull(meta, index));
     } else if (flow.step === "chapters") {
       const s = index.subjects[flow.subject];
-      await this.edit(chatId, mid, `${s.icon || "📚"} ${s.name} — ab Topic chuno:`,
+      await this.edit(chatId, mid, `${s.icon || "📚"} ${s.name} — now choose a Topic:`,
         this.chaptersKeyboard(index, flow));
       await this.state.storage.put("flow", flow); // page clamp saved
     } else if (flow.step === "count") {
       const label = labelFor(index, flow.subject, flow.chapter);
       const rows = COUNT_CHOICES.map((n) => [this.btn(`${n} Questions`, `cnt:${n}`)]);
       rows.push([this.btn("⬅️ Back", "back:chapters"), this.btn("❌ Cancel", "cancel")]);
-      await this.edit(chatId, mid, `✅ Topic: ${label}\nAb kitne questions?`, rows);
+      await this.edit(chatId, mid, `✅ Topic: ${label}\nHow many questions?`, rows);
     } else if (flow.step === "seconds") {
       const rows = SECOND_CHOICES.map((n) => [this.btn(`${n} seconds / question`, `sec:${n}`)]);
       rows.push([this.btn("⬅️ Back", "back:count"), this.btn("❌ Cancel", "cancel")]);
-      await this.edit(chatId, mid, "⏱️ Har question ke liye kitna time?", rows);
+      await this.edit(chatId, mid, "⏱️ How much time per question?", rows);
     } else if (flow.step === "confirm") {
       const label = labelFor(index, flow.subject, flow.chapter);
       const cand = candidateParts(index, flow.subject, flow.chapter);
       const poolSize = cand.reduce((s2, p) => s2 + p.size, 0);
       const count = Math.min(flow.count, poolSize);
-      const text = `🚀 Quiz taiyaar hai:\n📚 ${label}\n📌 ${count} questions (pool: ${poolSize})\n⏱️ ${flow.seconds} seconds per question\n\nStart karu?`;
+      const text = `🚀 Quiz is ready:\n📚 ${label}\n📌 ${count} questions (pool: ${poolSize})\n⏱️ ${flow.seconds} seconds per question\n\nStart the quiz?`;
       await this.edit(chatId, mid, text,
         [[this.btn("▶️ START QUIZ", "start"), this.btn("❌ Cancel", "cancel")]]);
     }
@@ -642,14 +642,14 @@ export class QuizRoom {
       return;
     }
     if (userId !== flow.owner) {
-      await this.answerCb(cq.id, "Ye selection sirf quiz start karne wale admin ke liye hai.");
+      await this.answerCb(cq.id, "This selection is only for the admin who started the setup.");
       return;
     }
     const index = await loadIndex();
 
     if (data === "cancel") {
       await this.state.storage.delete("flow");
-      await this.edit(chatId, flow.messageId, "❌ Quiz setup band kar diya.");
+      await this.edit(chatId, flow.messageId, "❌ Quiz setup cancelled.");
       await this.answerCb(cq.id);
       return;
     }
@@ -679,7 +679,7 @@ export class QuizRoom {
       };
       await this.state.storage.put("meta", meta);
       await this.state.storage.delete("flow");
-      await this.edit(chatId, flow.messageId, `▶️ Quiz chalu ho raha hai — ${label}`);
+      await this.edit(chatId, flow.messageId, `▶️ Starting the quiz — ${label}`);
       await this.answerCb(cq.id);
       await this.startSession(chatId, label, flow.subject, flow.chapter, flow.count, flow.seconds);
       return;
@@ -726,7 +726,7 @@ export class QuizRoom {
       payloads.push(built);
     }
     if (!payloads.length) {
-      await this.send(chatId, "⚠️ Is topic me quiz ke layak sawal nahi mile.");
+      await this.send(chatId, "⚠️ No quiz-worthy questions found in this topic.");
       return;
     }
     const session = {
@@ -786,7 +786,7 @@ export class QuizRoom {
         .sort((a, b) => (ptsOf(b) - ptsOf(a)) || ((a[3] || 0) - (b[3] || 0)))
         .slice(0, 10);
       const medals = ["🥇", "🥈", "🥉"];
-      const lines = ["🏆 Ranking (score • time liya):"];
+      const lines = ["🏆 Ranking (score • time taken):"];
       ranked.forEach((e, i) => {
         lines.push(`${i < 3 ? medals[i] : `${i + 1}.`} ${e[0]} — ${fmtPts(e)} pts · ✓${e[1] || 0} ✗${e[2] || 0} · ⏱ ${fmtTime(e[3] || 0)}`);
       });

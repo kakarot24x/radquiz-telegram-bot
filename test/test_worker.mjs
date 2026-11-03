@@ -137,7 +137,7 @@ let flowMid = lastCall("sendMessage") ? midSeq : 0;
 // non-owner tap must be refused
 await hook(cb("sub:0", flowMid, PLAYER), cfg.secret);
 check("non-owner tap refused",
-  lastCall("answerCallbackQuery")?.params.text?.includes("sirf quiz start"));
+  lastCall("answerCallbackQuery")?.params.text?.includes("only for the admin who started"));
 
 // 4. chapters -> pick first topic
 await hook(cb("sub:0", flowMid), cfg.secret);
@@ -148,13 +148,13 @@ const room = getRoom(CHAT);
 
 // 5. topic -> count -> seconds -> confirm -> start
 await hook(cb(topBtn.callback_data, flowMid), cfg.secret);
-check("count step", lastCall("editMessageText")?.params.text.includes("kitne questions"));
+check("count step", lastCall("editMessageText")?.params.text.includes("How many questions"));
 await hook(cb("cnt:10", flowMid), cfg.secret);
-check("seconds step", lastCall("editMessageText")?.params.text.includes("kitna time"));
+check("seconds step", lastCall("editMessageText")?.params.text.includes("How much time per question"));
 const secKb = lastCall("editMessageText")?.params.reply_markup?.inline_keyboard || [];
 check("15 seconds option present", secKb.flat().some((b) => b.callback_data === "sec:15"));
 await hook(cb("sec:10", flowMid), cfg.secret);
-check("confirm step", lastCall("editMessageText")?.params.text.includes("Start karu"));
+check("confirm step", lastCall("editMessageText")?.params.text.includes("Start the quiz?"));
 await hook(cb("start", flowMid), cfg.secret);
 check("intro sent", calls.some((c) => c.method === "sendMessage" && c.params.text.includes("RADEQuiz —")));
 let pollCall = lastCall("sendPoll");
@@ -203,7 +203,7 @@ check("stop finishes session with stopped header",
 // 9. non-admin /quiz refused
 await hook(msg("/quiz", PLAYER), cfg.secret);
 check("non-admin /quiz refused",
-  lastCall("sendMessage")?.params.text.includes("sirf group admin"));
+  lastCall("sendMessage")?.params.text.includes("Only a group admin"));
 
 console.log(failures === 0 ? "\nALL TESTS PASSED" : `\n${failures} FAILURES`);
 process.exit(failures ? 1 : 0);
