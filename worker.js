@@ -564,7 +564,9 @@ export class QuizRoom {
 
   chaptersKeyboard(index, flow) {
     const s = index.subjects[flow.subject];
-    const chapters = s.chapters;
+    // Hide chapters with 0 questions (section/divider chapters in the bank,
+    // mostly in Appendix 3 and Archive) — they can never start a quiz.
+    const chapters = s.chapters.filter((ci) => (index.chapter_counts[ci] || 0) > 0);
     const pages = Math.max(1, Math.ceil(chapters.length / PAGE_SIZE));
     flow.page = Math.min(flow.page || 0, pages - 1);
     const rows = [[this.btn(`🎲 All Topics of ${s.name} (Random)`, "top:all")]];
