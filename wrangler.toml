@@ -6,7 +6,7 @@ compatibility_date = "2025-01-01"
 # (ya khud bana dega). ID milne par neeche wali line update ho jayegi.
 [[kv_namespaces]]
 binding = "KV"
-id = "REPLACE_WITH_KV_NAMESPACE_ID"
+id = "5d8d96db72f74b19a5376f25700c5a0c"
 
 [[durable_objects.bindings]]
 name = "QUIZ"
