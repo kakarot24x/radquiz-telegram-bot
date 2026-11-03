@@ -246,7 +246,11 @@ Change Token</button></form>`;
 
 async function handleSetup(request, env, origin) {
   const form = await request.formData();
-  const token = String(form.get("token") || "").replace(/\s+/g, "");
+  const rawPaste = String(form.get("token") || "");
+  // If the whole BotFather message was pasted by mistake, pull the
+  // token itself out of it automatically.
+  const found = rawPaste.match(/\d{6,}:[A-Za-z0-9_-]{30,}/);
+  const token = found ? found[0] : rawPaste.replace(/\s+/g, "");
   if (!token) {
     return `❌ The token box was empty. Please go back and paste the token.`;
   }
