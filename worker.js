@@ -15,7 +15,7 @@
 const BANK_BASE =
   "https://raw.githubusercontent.com/kakarot24x/radquiz-telegram-bot/main/bank";
 const COUNT_CHOICES = [10, 20, 30, 50, 100];
-const SECOND_CHOICES = [10, 20, 30, 45, 60];
+const SECOND_CHOICES = [10, 15, 20, 30, 45, 60];
 const PAGE_SIZE = 8;
 const Q_LIMIT = 300, OPT_LIMIT = 100, EXPL_LIMIT = 200;
 const MAX_PARTS_PER_QUIZ = 12;
@@ -51,6 +51,21 @@ async function tg(token, method, params = {}) {
     throw new Error(`${method} failed: ${detail}`);
   }
   return out.result;
+}
+
+// Appendix 3A marking: +1 correct, -1/3 wrong, 0 skipped.
+// Session entry: [name, correct, wrong, timeSec]; totals: [name, correct, answered, wrong, timeSec].
+function ptsOf(e, isTotals) {
+  const wrong = isTotals ? (e[3] || 0) : (e[2] || 0);
+  return (e[1] || 0) - wrong / 3;
+}
+function fmtPts(e, isTotals) {
+  const v = Math.round(ptsOf(e, isTotals) * 100) / 100;
+  return Object.is(v, -0) ? "0" : String(v);
+}
+function fmtTime(sec) {
+  sec = Math.max(0, Math.round(sec || 0));
+  return `${Math.floor(sec / 60)}:${String(sec % 60).padStart(2, "0")}`;
 }
 
 // ------------------------------------------------------------------ bank
@@ -511,9 +526,11 @@ export class QuizRoom {
       const totals = (await this.state.storage.get("scores")) || {};
       const vals = Object.values(totals);
       if (vals.length) {
-        const ranked = vals.sort((a, b) => b[1] - a[1]).slice(0, 10);
+        const ranked = vals
+          .sort((a, b) => (ptsOf(b, true) - ptsOf(a, true)) || ((a[4] || 0) - (b[4] || 0)))
+          .slice(0, 10);
         const lines = ["🏆 All-time Ranking (bot me saved):"];
-        ranked.forEach((t, i) => lines.push(`${i + 1}. ${t[0]} — ${t[1]} sahi jawab`));
+        ranked.forEach((t, i) => lines.push(`${i + 1}. ${t[0]} — ${fmtPts(t, true)} pts · ✓${t[1] || 0} ✗${t[3] || 0} · ⏱ ${fmtTime(t[4] || 0)}`));
         await this.send(chatId, lines.join("\n"));
       } else {
         await this.send(chatId, "Abhi tak koi score save nahi hua.");
@@ -712,11 +729,12 @@ export class QuizRoom {
     }
     const session = {
       chatId, label, seconds, items: payloads, idx: 0,
-      scores: {}, pollMap: {}, stop: false, asked: 0,
+      scores: {}, pollMap: {}, pollSentAt: {}, answered: {},
+      stop: false, asked: 0,
     };
     await this.state.storage.put("session", session);
     await this.send(chatId,
-      `🚂 RADEQuiz — ${label}\n📌 ${payloads.length} questions • ⏱️ ${seconds} seconds each\n🏆 Ranking at the end. All the best!`);
+      `🚂 RADEQuiz — ${label}\n📌 ${payloads.length} questions • ⏱️ ${seconds} seconds each\n📝 Marking (Appendix 3A): +1 correct • −⅓ wrong • 0 skipped\n🏆 Ranking at the end. All the best!`);
     await this.sendCurrent(session);
   }
 
@@ -729,6 +747,7 @@ export class QuizRoom {
       chat_id: session.chatId, ...built.poll,
     });
     session.pollMap[sent.poll.id] = built.poll.correct_option_id;
+    (session.pollSentAt ||= {})[sent.poll.id] = Date.now();
     session.asked += 1;
     session.idx += 1;
     await this.state.storage.put("session", session);
@@ -761,11 +780,13 @@ export class QuizRoom {
     const entries = Object.values(session.scores);
     let resultText;
     if (entries.length) {
-      const ranked = entries.sort((a, b) => b[1] - a[1]).slice(0, 10);
+      const ranked = entries
+        .sort((a, b) => (ptsOf(b) - ptsOf(a)) || ((a[3] || 0) - (b[3] || 0)))
+        .slice(0, 10);
       const medals = ["🥇", "🥈", "🥉"];
-      const lines = ["🏆 Ranking:"];
+      const lines = ["🏆 Ranking (score • time liya):"];
       ranked.forEach((e, i) => {
-        lines.push(`${i < 3 ? medals[i] : `${i + 1}.`} ${e[0]} — ${e[1]}/${session.asked}`);
+        lines.push(`${i < 3 ? medals[i] : `${i + 1}.`} ${e[0]} — ${fmtPts(e)} pts · ✓${e[1] || 0} ✗${e[2] || 0} · ⏱ ${fmtTime(e[3] || 0)}`);
       });
       resultText = lines.join("\n");
     } else {
@@ -780,17 +801,37 @@ export class QuizRoom {
     if (!session) return;
     const correct = session.pollMap[pa.poll_id];
     if (correct === undefined) return;
+    if (!pa.option_ids || !pa.option_ids.length) return; // vote retract: ignore
     const user = pa.user;
-    const entry = session.scores[user.id] ||
-      (session.scores[user.id] = [user.first_name || "Player", 0]);
+    session.answered ||= {};
+    const akey = `${pa.poll_id}:${user.id}`;
+    if (session.answered[akey]) return; // first answer only (exam rule)
+    session.answered[akey] = 1;
+    const sentAt = (session.pollSentAt || {})[pa.poll_id];
+    let elapsed = sentAt ? Math.round((Date.now() - sentAt) / 1000) : 0;
+    if (elapsed < 0) elapsed = 0;
+    if (elapsed > session.seconds) elapsed = session.seconds;
+    // entry/totals format: [name, correct, wrong, timeSec] (totals: [name, correct, answered, wrong, timeSec])
+    let entry = session.scores[user.id];
+    if (!entry || entry.length < 4) {
+      entry = session.scores[user.id] =
+        [user.first_name || "Player", (entry && entry[1]) || 0, 0, 0];
+    }
+    entry[0] = user.first_name || entry[0];
     const totals = (await this.state.storage.get("scores")) || {};
-    const tot = totals[user.id] ||
-      (totals[user.id] = [user.first_name || "Player", 0, 0]);
+    let tot = totals[user.id];
+    if (!tot || tot.length < 5) {
+      tot = totals[user.id] =
+        [user.first_name || "Player", (tot && tot[1]) || 0, (tot && tot[2]) || 0, 0, 0];
+    }
+    tot[0] = user.first_name || tot[0];
     tot[2] += 1;
     if (JSON.stringify(pa.option_ids) === JSON.stringify([correct])) {
-      entry[1] += 1;
-      tot[1] += 1;
+      entry[1] += 1; tot[1] += 1;
+    } else {
+      entry[2] += 1; tot[3] += 1;
     }
+    entry[3] += elapsed; tot[4] += elapsed;
     await this.state.storage.put("session", session);
     await this.state.storage.put("scores", totals);
   }
