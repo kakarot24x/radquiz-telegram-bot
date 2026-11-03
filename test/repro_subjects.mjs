@@ -85,6 +85,7 @@ for (const subI of [0, 4, 5]) {
   const topBtn = topics.find((b) => b.callback_data !== "top:all") || topics[0];
   if (!topBtn) { console.log(`sub:${subI} — NO TOPIC BUTTONS`); continue; }
   await hook(cb(topBtn.callback_data, mid), cfg.secret);
+  await hook(cb("mode:all", mid), cfg.secret);
   await hook(cb("cnt:10", mid), cfg.secret);
   const secKb = kbOf("editMessageText").map((b) => b.callback_data);
   await hook(cb("sec:15", mid), cfg.secret);

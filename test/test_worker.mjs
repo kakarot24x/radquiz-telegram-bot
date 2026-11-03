@@ -148,6 +148,11 @@ const room = getRoom(CHAT);
 
 // 5. topic -> count -> seconds -> confirm -> start
 await hook(cb(topBtn.callback_data, flowMid), cfg.secret);
+check("mode step after topic", lastCall("editMessageText")?.params.text.includes("Which questions"));
+const modeKb = lastCall("editMessageText").params.reply_markup.inline_keyboard;
+check("mode buttons with counts", modeKb.flat().some((b) => b.callback_data === "mode:new") &&
+  modeKb.flat().some((b) => b.text.includes("New Questions (20 left)")));
+await hook(cb("mode:all", flowMid), cfg.secret);
 check("count step", lastCall("editMessageText")?.params.text.includes("How many questions"));
 await hook(cb("cnt:10", flowMid), cfg.secret);
 check("seconds step", lastCall("editMessageText")?.params.text.includes("How much time per question"));
@@ -238,6 +243,73 @@ check("anonymous tap works on admin-started setup",
   !!lastCall("editMessageText") &&
   !lastCall("answerCallbackQuery")?.params.text?.includes("only for the admin"));
 await hook(cb("cancel", flowMid, ANON), cfg.secret);
+
+// 11. New / Completed modes + per-topic done data
+const countsNow = () => room.state.storage.m.get("askedCounts") || {};
+const done0 = () => countsNow()[0] || 0;
+const base = done0();
+check("asked questions tracked from earlier quizzes", base >= 10);
+async function finishSession() {
+  for (let i = 0; i < 16 && room.state.storage.m.get("session"); i++) {
+    const s = room.state.storage.m.get("session");
+    for (const [pid, qi] of Object.entries(s.pollMap)) {
+      if (s.answered[pid]) continue;
+      await hook({ poll_answer: { poll_id: pid, user: { id: PLAYER, first_name: "Ram" }, option_ids: [s.items[qi].poll.correct_option_id] } }, cfg.secret);
+    }
+    await room.alarm();
+  }
+}
+async function openFlowToTopic() {
+  await hook(msg("/quiz"), cfg.secret);
+  const mid = midSeq;
+  await hook(cb("sub:0", mid), cfg.secret);
+  const kb2 = lastCall("editMessageText").params.reply_markup.inline_keyboard;
+  const tb = kb2.flat().find((b) => b.callback_data === "top:0");
+  return { mid, tb };
+}
+async function runQuizFromFlow(mid, mode, count) {
+  await hook(cb("top:0", mid), cfg.secret);
+  const modeKb = lastCall("editMessageText").params.reply_markup.inline_keyboard;
+  await hook(cb(`mode:${mode}`, mid), cfg.secret);
+  await hook(cb(`cnt:${count}`, mid), cfg.secret);
+  await hook(cb("sec:10", mid), cfg.secret);
+  const confirmText = lastCall("editMessageText").params.text;
+  await hook(cb("start", mid), cfg.secret);
+  return { modeKb, confirmText };
+}
+{
+  const { mid, tb } = await openFlowToTopic();
+  check("topic button shows done count", !!tb && tb.text.includes(`✓${base} done`));
+  await hook(cb("cancel", mid), cfg.secret);
+}
+{
+  const o = await openFlowToTopic();
+  const r = await runQuizFromFlow(o.mid, "done", 10);
+  check("done-mode pool equals completed count", r.confirmText.includes(`(pool: ${base})`));
+  const s = room.state.storage.m.get("session");
+  check("revision quiz runs completed questions", !!s && s.items.length === Math.min(10, base));
+  await finishSession();
+  check("revision adds no new done", done0() === base);
+}
+{
+  const o = await openFlowToTopic();
+  const r = await runQuizFromFlow(o.mid, "new", 10);
+  check("mode step shows left count", r.modeKb.flat().some((b) =>
+    b.callback_data === "mode:new" && b.text.includes(`(${20 - base} left)`)));
+  await finishSession();
+  check("new mode completes the topic", done0() === 20);
+}
+{
+  const o = await openFlowToTopic();
+  await hook(cb("top:0", o.mid), cfg.secret);
+  await hook(cb("mode:new", o.mid), cfg.secret);
+  await hook(cb("cnt:10", o.mid), cfg.secret);
+  await hook(cb("sec:10", o.mid), cfg.secret);
+  await hook(cb("start", o.mid), cfg.secret);
+  check("new mode exhausted message", calls.some((c) => c.method === "sendMessage" &&
+    (c.params.text || "").includes("No new questions left")));
+  check("no session when nothing new", !room.state.storage.m.get("session"));
+}
 
 console.log(failures === 0 ? "\nALL TESTS PASSED" : `\n${failures} FAILURES`);
 process.exit(failures ? 1 : 0);

@@ -117,12 +117,29 @@ function candidateParts(index, subjectI, chapterI) {
 }
 
 // Fetch a bounded random subset of parts big enough for `count` questions.
-async function fetchPool(index, subjectI, chapterI, count) {
+// mode: "all" | "new" (never asked) | "done" (already asked, for revision).
+// askedOf(partName) -> Promise<Set of asked indices within that part>.
+// Every returned item is tagged with _k = "<part>#<index>" and _ci (chapter).
+async function fetchPool(index, subjectI, chapterI, count, mode = "all", askedOf = null) {
   const cand = candidateParts(index, subjectI, chapterI);
   const totalQ = cand.reduce((s, p) => s + p.size, 0);
   const want = Math.max(300, count * 3);
   let chosen = cand;
-  if (totalQ > want) {
+  if (mode === "done" && askedOf) {
+    const withDone = [];
+    for (const p of cand) {
+      const set = await askedOf(p.name);
+      if (set && set.size) withDone.push({ p, n: set.size });
+    }
+    withDone.sort((a, b) => b.n - a.n);
+    chosen = [];
+    let acc = 0;
+    for (const { p, n } of withDone) {
+      if (chosen.length >= 30 || acc >= want) break;
+      chosen.push(p);
+      acc += n;
+    }
+  } else if (totalQ > want) {
     chosen = [];
     let acc = 0;
     for (const p of shuffle([...cand])) {
@@ -134,7 +151,15 @@ async function fetchPool(index, subjectI, chapterI, count) {
   const items = [];
   for (const p of chosen) {
     const qs = await fetchPart(p.name);
-    for (const q of qs) items.push(q);
+    const asked = (mode !== "all" && askedOf) ? await askedOf(p.name) : null;
+    qs.forEach((q, i) => {
+      const isDone = asked ? asked.has(i) : false;
+      if (mode === "new" && isDone) return;
+      if (mode === "done" && !isDone) return;
+      q._k = `${p.name}#${i}`;
+      q._ci = parseInt(p.name.split("-")[1], 10);
+      items.push(q);
+    });
   }
   return items;
 }
@@ -326,7 +351,7 @@ long-press the box and tap <b>Paste</b> again.</p>
 ▶ Start the Bot</button></form>`;
   }
   return `<h2>✅ RADEQuiz Bot is Running</h2>
-<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-03 v7</b></p>
+<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-03 v8</b></p>
 <p>Now open your Telegram group <b>RADEQuiz</b> and type <b>/quiz</b> —
 choose a topic, the number of questions and the timer, and the quiz starts.
 Everything is controlled from Telegram itself.</p>
@@ -574,7 +599,7 @@ export class QuizRoom {
     return rows;
   }
 
-  chaptersKeyboard(index, flow) {
+  chaptersKeyboard(index, flow, counts = {}) {
     const s = index.subjects[flow.subject];
     // Hide chapters with 0 questions (section/divider chapters in the bank,
     // mostly in Appendix 3 and Archive) — they can never start a quiz.
@@ -585,7 +610,8 @@ export class QuizRoom {
     for (const ci of chapters.slice(flow.page * PAGE_SIZE, (flow.page + 1) * PAGE_SIZE)) {
       let t = index.chapter_titles[ci];
       if (t.length > 32) t = t.slice(0, 31) + "…";
-      rows.push([this.btn(`${t} (${index.chapter_counts[ci]} Q)`, `top:${ci}`)]);
+      const done = counts[ci] || 0;
+      rows.push([this.btn(`${t} (${index.chapter_counts[ci]} Q${done ? ` · ✓${done} done` : ""})`, `top:${ci}`)]);
     }
     const nav = [];
     if (flow.page > 0) nav.push(this.btn("⬅️ Prev", `page:${flow.page - 1}`));
@@ -596,12 +622,49 @@ export class QuizRoom {
     return rows;
   }
 
+  // --------------------------------------- asked-question tracking (per group)
+  async askedSet(partName) {
+    const arr = await this.state.storage.get(`asked:${partName}`);
+    return new Set(arr || []);
+  }
+
+  // Record questions a started quiz actually used. `pairs`: [{part, idx, ci}].
+  async recordAsked(pairs) {
+    const byPart = new Map();
+    for (const { part, idx, ci } of pairs) {
+      if (!byPart.has(part)) {
+        byPart.set(part, { set: await this.askedSet(part), ci, added: 0 });
+      }
+      const e = byPart.get(part);
+      if (!e.set.has(idx)) { e.set.add(idx); e.added += 1; }
+    }
+    const counts = (await this.state.storage.get("askedCounts")) || {};
+    for (const [part, e] of byPart) {
+      if (!e.added) continue;
+      await this.state.storage.put(`asked:${part}`,
+        [...e.set].sort((a, b) => a - b));
+      counts[e.ci] = (counts[e.ci] || 0) + e.added;
+    }
+    await this.state.storage.put("askedCounts", counts);
+  }
+
+  async doneInScope(index, subjectI, chapterI) {
+    const counts = (await this.state.storage.get("askedCounts")) || {};
+    if (chapterI !== null && chapterI !== undefined) return counts[chapterI] || 0;
+    if (subjectI !== null && subjectI !== undefined) {
+      return index.subjects[subjectI].chapters
+        .reduce((s, ci) => s + (counts[ci] || 0), 0);
+    }
+    return Object.values(counts).reduce((s, n) => s + n, 0);
+  }
+
   async startFlow(chatId, userId) {
     const index = await loadIndex();
     const meta = (await this.state.storage.get("meta")) || {};
     const flow = {
       owner: userId, step: "subjects", messageId: null,
       subject: null, chapter: null, page: 0, count: null, seconds: null,
+      mode: null,
     };
     const sent = await this.send(chatId, "📚 Quiz Setup — first choose a Subject:",
       await this.subjectsKeyboardFull(meta, index));
@@ -620,13 +683,27 @@ export class QuizRoom {
         await this.subjectsKeyboardFull(meta, index));
     } else if (flow.step === "chapters") {
       const s = index.subjects[flow.subject];
+      const counts = (await this.state.storage.get("askedCounts")) || {};
       await this.edit(chatId, mid, `${s.icon || "📚"} ${s.name} — now choose a Topic:`,
-        this.chaptersKeyboard(index, flow));
+        this.chaptersKeyboard(index, flow, counts));
       await this.state.storage.put("flow", flow); // page clamp saved
+    } else if (flow.step === "mode") {
+      const label = labelFor(index, flow.subject, flow.chapter);
+      const cand = candidateParts(index, flow.subject, flow.chapter);
+      const total = cand.reduce((s2, p) => s2 + p.size, 0);
+      const done = await this.doneInScope(index, flow.subject, flow.chapter);
+      const rows = [
+        [this.btn(`🆕 New Questions (${total - done} left)`, "mode:new")],
+        [this.btn(`🔁 Completed Questions (${done} done)`, "mode:done")],
+        [this.btn(`🎲 All Questions (${total})`, "mode:all")],
+        [this.btn("⬅️ Back", "back:chapters"), this.btn("❌ Cancel", "cancel")],
+      ];
+      await this.edit(chatId, mid,
+        `✅ Topic: ${label}\nWhich questions should the quiz use?`, rows);
     } else if (flow.step === "count") {
       const label = labelFor(index, flow.subject, flow.chapter);
       const rows = COUNT_CHOICES.map((n) => [this.btn(`${n} Questions`, `cnt:${n}`)]);
-      rows.push([this.btn("⬅️ Back", "back:chapters"), this.btn("❌ Cancel", "cancel")]);
+      rows.push([this.btn("⬅️ Back", "back:mode"), this.btn("❌ Cancel", "cancel")]);
       await this.edit(chatId, mid, `✅ Topic: ${label}\nHow many questions?`, rows);
     } else if (flow.step === "seconds") {
       const rows = SECOND_CHOICES.map((n) => [this.btn(`${n} seconds / question`, `sec:${n}`)]);
@@ -635,9 +712,15 @@ export class QuizRoom {
     } else if (flow.step === "confirm") {
       const label = labelFor(index, flow.subject, flow.chapter);
       const cand = candidateParts(index, flow.subject, flow.chapter);
-      const poolSize = cand.reduce((s2, p) => s2 + p.size, 0);
+      const total = cand.reduce((s2, p) => s2 + p.size, 0);
+      let poolSize = total;
+      if (flow.mode === "new" || flow.mode === "done") {
+        const done = await this.doneInScope(index, flow.subject, flow.chapter);
+        poolSize = flow.mode === "new" ? total - done : done;
+      }
       const count = Math.min(flow.count, poolSize);
-      const text = `🚀 Quiz is ready:\n📚 ${label}\n📌 ${count} questions (pool: ${poolSize})\n⏱️ ${flow.seconds} seconds per question\n\nStart the quiz?`;
+      const modeName = { new: "🆕 New Questions", done: "🔁 Completed Questions", all: "🎲 All Questions" }[flow.mode || "all"];
+      const text = `🚀 Quiz is ready:\n📚 ${label}\n🎯 ${modeName}\n📌 ${count} questions (pool: ${poolSize})\n⏱️ ${flow.seconds} seconds per question\n\nStart the quiz?`;
       await this.edit(chatId, mid, text,
         [[this.btn("▶️ START QUIZ", "start"), this.btn("❌ Cancel", "cancel")]]);
     }
@@ -681,7 +764,7 @@ export class QuizRoom {
         const l = meta.lastSelection;
         await this.edit(chatId, flow.messageId, "🔁 Starting the last quiz again…");
         await this.answerCb(cq.id);
-        await this.startSession(chatId, l.label, l.subject, l.chapter, l.count, l.seconds);
+        await this.startSession(chatId, l.label, l.subject, l.chapter, l.count, l.seconds, l.mode || "all");
       } else if (data === "default") {
         await this.edit(chatId, flow.messageId, "⚡ Starting the default quiz…");
         await this.answerCb(cq.id);
@@ -697,12 +780,13 @@ export class QuizRoom {
       meta.lastSelection = {
         subject: flow.subject, chapter: flow.chapter,
         count: flow.count, seconds: flow.seconds, label,
+        mode: flow.mode || "all",
       };
       await this.state.storage.put("meta", meta);
       await this.state.storage.delete("flow");
       await this.edit(chatId, flow.messageId, `▶️ Starting the quiz — ${label}`);
       await this.answerCb(cq.id);
-      await this.startSession(chatId, label, flow.subject, flow.chapter, flow.count, flow.seconds);
+      await this.startSession(chatId, label, flow.subject, flow.chapter, flow.count, flow.seconds, flow.mode || "all");
       return;
     }
     if (data.startsWith("sub:")) {
@@ -713,6 +797,9 @@ export class QuizRoom {
     } else if (data.startsWith("top:")) {
       const v = data.slice(4);
       flow.chapter = v === "all" ? null : parseInt(v, 10);
+      flow.step = "mode";
+    } else if (data.startsWith("mode:")) {
+      flow.mode = data.slice(5);
       flow.step = "count";
     } else if (data.startsWith("cnt:")) {
       flow.count = parseInt(data.slice(4), 10);
@@ -726,6 +813,8 @@ export class QuizRoom {
       flow.step = "chapters";
     } else if (data === "back:count") {
       flow.step = "count";
+    } else if (data === "back:mode") {
+      flow.step = "mode";
     } else {
       await this.answerCb(cq.id);
       return;
@@ -736,28 +825,43 @@ export class QuizRoom {
   }
 
   // ------------------------------------------------------------ session
-  async startSession(chatId, label, subjectI, chapterI, count, seconds) {
+  async startSession(chatId, label, subjectI, chapterI, count, seconds, mode = "all") {
     const index = await loadIndex();
-    const items = shuffle(await fetchPool(index, subjectI, chapterI, count));
+    const askedOf = (name) => this.askedSet(name);
+    const pool = await fetchPool(index, subjectI, chapterI, count, mode, askedOf);
+    const items = shuffle(pool);
     const payloads = [];
+    const usedKeys = [];
     for (const item of items) {
       if (payloads.length >= count) break;
       const built = buildPollPayload(item, payloads.length + 1, seconds);
       if (built.skip) continue;
       payloads.push(built);
+      if (item._k) {
+        const [part, idx] = item._k.split("#");
+        usedKeys.push({ part, idx: parseInt(idx, 10), ci: item._ci });
+      }
     }
     if (!payloads.length) {
-      await this.send(chatId, "⚠️ No quiz-worthy questions found in this topic.");
+      const msg = mode === "new"
+        ? "✅ No new questions left here — every question is already completed. Try Completed Questions or All Questions."
+        : mode === "done"
+          ? "No completed questions here yet — run a New Questions quiz first."
+          : "⚠️ No quiz-worthy questions found in this topic.";
+      await this.send(chatId, msg);
       return;
     }
+    if (usedKeys.length) await this.recordAsked(usedKeys);
     const session = {
       chatId, label, seconds, items: payloads, idx: 0,
       scores: {}, pollMap: {}, pollSentAt: {}, answered: {},
       stop: false, asked: 0,
     };
     await this.state.storage.put("session", session);
+    const modeLine = mode === "new" ? "\n🎯 Mode: 🆕 New questions only"
+      : mode === "done" ? "\n🎯 Mode: 🔁 Completed questions (revision)" : "";
     await this.send(chatId,
-      `🚂 RADEQuiz — ${label}\n📌 ${payloads.length} questions • ⏱️ ${seconds} seconds each\n📝 Marking (Appendix 3A): +1 correct • −⅓ wrong • 0 skipped\n🏆 Ranking at the end. All the best!`);
+      `🚂 RADEQuiz — ${label}\n📌 ${payloads.length} questions • ⏱️ ${seconds} seconds each${modeLine}\n📝 Marking (Appendix 3A): +1 correct • −⅓ wrong • 0 skipped\n🏆 Ranking at the end. All the best!`);
     await this.sendCurrent(session);
   }
 
