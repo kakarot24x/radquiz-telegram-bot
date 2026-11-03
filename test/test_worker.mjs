@@ -205,5 +205,22 @@ await hook(msg("/quiz", PLAYER), cfg.secret);
 check("non-admin /quiz refused",
   lastCall("sendMessage")?.params.text.includes("Only a group admin"));
 
+// 10. anonymous admin (Remain anonymous ON) can run the bot
+const ANON = 1087968824;
+const anonMsg = (text) => ({
+  message: { message_id: 1, chat: { id: CHAT, type: "supergroup" },
+             from: { id: ANON, first_name: "Group" },
+             sender_chat: { id: CHAT, type: "supergroup" }, text },
+});
+await hook(anonMsg("/quiz"), cfg.secret);
+check("anonymous admin /quiz opens setup",
+  room.state.storage.m.get("flow")?.owner === ANON);
+flowMid = midSeq;
+await hook(cb("sub:0", flowMid, ANON), cfg.secret);
+check("anonymous admin tap works (not refused)",
+  !!lastCall("editMessageText") &&
+  !lastCall("answerCallbackQuery")?.params.text?.includes("only for the admin"));
+await hook(cb("cancel", flowMid, ANON), cfg.secret);
+
 console.log(failures === 0 ? "\nALL TESTS PASSED" : `\n${failures} FAILURES`);
 process.exit(failures ? 1 : 0);

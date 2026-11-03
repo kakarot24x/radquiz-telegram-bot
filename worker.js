@@ -53,6 +53,17 @@ async function tg(token, method, params = {}) {
   return out.result;
 }
 
+// Anonymous admins act through the GroupAnonymousBot account. A group
+// message whose sender_chat is the group itself comes from an anonymous
+// admin of that group — treat it as the admin, not as a stranger.
+const ANON_ADMIN_ID = 1087968824;
+function effectiveSenderId(msg) {
+  if (msg?.sender_chat && msg.chat && msg.sender_chat.id === msg.chat.id) {
+    return ANON_ADMIN_ID;
+  }
+  return msg?.from?.id;
+}
+
 // Appendix 3A marking: +1 correct, -1/3 wrong, 0 skipped.
 // Session entry: [name, correct, wrong, timeSec]; totals: [name, correct, answered, wrong, timeSec].
 function ptsOf(e, isTotals) {
@@ -315,7 +326,7 @@ long-press the box and tap <b>Paste</b> again.</p>
 ▶ Start the Bot</button></form>`;
   }
   return `<h2>✅ RADEQuiz Bot is Running</h2>
-<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-03 v5</b></p>
+<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-03 v6</b></p>
 <p>Now open your Telegram group <b>RADEQuiz</b> and type <b>/quiz</b> —
 choose a topic, the number of questions and the timer, and the quiz starts.
 Everything is controlled from Telegram itself.</p>
@@ -472,6 +483,7 @@ export class QuizRoom {
   }
 
   async isAdmin(chatId, userId) {
+    if (userId === ANON_ADMIN_ID) return true; // anonymous admin of this chat
     const key = `admin:${userId}`;
     const cached = await this.state.storage.get(key);
     if (cached && Date.now() - cached[1] < 10 * 60 * 1000) return cached[0];
@@ -503,7 +515,7 @@ export class QuizRoom {
   async onMessage(msg) {
     const chatId = msg.chat.id;
     const text = (msg.text || "").split("@")[0].trim();
-    const sender = msg.from?.id;
+    const sender = effectiveSenderId(msg);
     if (text === "/quiz") {
       const session = await this.state.storage.get("session");
       if (session) {
@@ -638,7 +650,7 @@ export class QuizRoom {
     const userId = cq.from?.id;
     let flow = await this.state.storage.get("flow");
     if (!flow) {
-      await this.answerCb(cq.id, "No quiz setup is open. /quiz likho.");
+      await this.answerCb(cq.id, "No quiz setup is open. Type /quiz to start one.");
       return;
     }
     if (userId !== flow.owner) {
