@@ -183,6 +183,9 @@ export default {
       if (url.pathname === "/setup" && request.method === "POST") {
         return htmlPage(await handleSetup(request, env, url.origin));
       }
+      if (url.pathname === "/activate" && request.method === "GET") {
+        return htmlPage(await handleActivate(env, url.origin));
+      }
       if (url.pathname === "/hook" && request.method === "POST") {
         return await handleHook(request, env, ctx);
       }
@@ -209,8 +212,78 @@ async function getConfig(env) {
   return raw ? JSON.parse(raw) : null;
 }
 
+// The bot token can also arrive as a Worker secret named BOT_TOKEN
+// (added from the Cloudflare dashboard). That path avoids the setup
+// form entirely; the webhook secret is then derived from the token.
+const _derivedSecrets = new Map();
+async function deriveSecret(token) {
+  if (_derivedSecrets.has(token)) return _derivedSecrets.get(token);
+  const buf = await crypto.subtle.digest(
+    "SHA-256", new TextEncoder().encode(token));
+  const hex = [...new Uint8Array(buf)]
+    .map((b) => b.toString(16).padStart(2, "0")).join("");
+  const secret = hex.slice(0, 40);
+  _derivedSecrets.set(token, secret);
+  return secret;
+}
+
+async function resolveConfig(env) {
+  if (env.BOT_TOKEN) {
+    const rawPaste = String(env.BOT_TOKEN);
+    const found = rawPaste.match(/\d{6,}:[A-Za-z0-9_-]{30,}/);
+    const token = found ? found[0] : rawPaste.trim();
+    const kvCfg = await getConfig(env).catch(() => null);
+    return {
+      token, secret: await deriveSecret(token),
+      username: kvCfg ? kvCfg.username : null, viaEnv: true,
+    };
+  }
+  return getConfig(env);
+}
+
+async function handleActivate(env, origin) {
+  const cfg = await resolveConfig(env);
+  if (!cfg) {
+    return `<h2>❌ No token found yet</h2>
+<p>First add the bot token in the Cloudflare dashboard:
+<b>Workers &amp; Pages → radquiz-bot → Settings → Variables and Secrets →
+Add → Secret</b>, name it <b>BOT_TOKEN</b> and paste the BotFather token
+as its value. Then open this page again.</p>`;
+  }
+  try {
+    const me = await tg(cfg.token, "getMe");
+    await tg(cfg.token, "setWebhook", {
+      url: `${origin}/hook`,
+      secret_token: cfg.secret,
+      drop_pending_updates: true,
+      allowed_updates: ["message", "callback_query", "poll_answer"],
+    });
+    await env.KV.put("config", JSON.stringify({
+      token: cfg.token, secret: cfg.secret, username: me.username,
+    }));
+    return `<h2>✅ Bot is Live!</h2>
+<p>Bot <b>@${me.username}</b> is now connected to Telegram.</p>
+<p>Open the <b>RADEQuiz</b> group and type <b>/ping</b> — the bot will reply.
+Then start a quiz with <b>/quiz</b>.</p>`;
+  } catch (e) {
+    return `<h2>❌ Activation failed</h2>
+<p>Telegram did not accept the token stored in BOT_TOKEN.</p>
+<p>Check in BotFather (BotFather → /mybots → your bot → API Token) that the
+token there matches the BOT_TOKEN value exactly, then open this page again.</p>
+<small style="color:#555">Details: ${e.message}</small>`;
+  }
+}
+
 async function statusPage(env) {
-  const cfg = await getConfig(env);
+  const cfg = await resolveConfig(env);
+  if (cfg && cfg.viaEnv && !cfg.username) {
+    return `<h2>🚂 RADEQuiz Bot — One Last Tap</h2>
+<p>Your bot token was found. ✅</p>
+<p>Tap the button below to connect the bot to Telegram:</p>
+<p><a href="/activate" style="display:block; text-align:center;
+background:#2f7cf6; color:#fff; padding:14px; border-radius:8px;
+font-size:17px; text-decoration:none;">▶ Activate the Bot</a></p>`;
+  }
   if (!cfg) {
     return `<h2>🚂 RADEQuiz Bot — First-time Setup</h2>
 <p>Paste your <b>bot token</b> from BotFather here, just once. The token
@@ -227,7 +300,7 @@ long-press the box and tap <b>Paste</b> again.</p>
 ▶ Start the Bot</button></form>`;
   }
   return `<h2>✅ RADEQuiz Bot is Running</h2>
-<p>Bot: <b>@${cfg.username}</b></p>
+<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b></p>
 <p>Now open your Telegram group <b>RADEQuiz</b> and type <b>/quiz</b> —
 choose a topic, the number of questions and the timer, and the quiz starts.
 Everything is controlled from Telegram itself.</p>
@@ -295,7 +368,7 @@ the bot is set up from here.</p>`;
 }
 
 async function handleHook(request, env, ctx) {
-  const cfg = await getConfig(env);
+  const cfg = await resolveConfig(env);
   if (!cfg) return new Response("ok");
   const secret = request.headers.get("x-telegram-bot-api-secret-token");
   if (secret !== cfg.secret) return new Response("forbidden", { status: 403 });
@@ -350,7 +423,8 @@ export class QuizRoom {
 
   async token() {
     if (!this._token) {
-      const cfg = await getConfig(this.env);
+      const cfg = await resolveConfig(this.env);
+      if (!cfg) throw new Error("bot is not configured yet");
       this._token = cfg.token;
     }
     return this._token;
