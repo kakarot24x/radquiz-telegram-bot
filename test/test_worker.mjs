@@ -311,5 +311,44 @@ async function runQuizFromFlow(mid, mode, count) {
   check("no session when nothing new", !room.state.storage.m.get("session"));
 }
 
+// 12. Private (DM) setup: pick the group in DM, quiz starts inside the group
+const dmMsg = (text, from = ADMIN) => ({
+  message: { message_id: 9, chat: { id: from, type: "private" },
+             from: { id: from, first_name: "Boss" }, text },
+});
+const dmCb = (data, mid, from = ADMIN) => ({
+  callback_query: { id: "cb" + Math.random(), data, from: { id: from },
+                    message: { message_id: mid, chat: { id: from, type: "private" } } },
+});
+await hook(dmMsg("/quiz", PLAYER), cfg.secret);
+check("DM non-admin sees no groups",
+  (lastCall("sendMessage")?.params.text || "").includes("No group found yet"));
+await hook(dmMsg("/quiz"), cfg.secret);
+const dmMid = midSeq;
+const grpKb = lastCall("sendMessage").params.reply_markup.inline_keyboard;
+check("DM group picker shows the group",
+  grpKb.flat().some((b) => b.callback_data === `grp:${CHAT}`));
+await hook(dmCb(`grp:${CHAT}`, dmMid), cfg.secret);
+check("DM subjects after group pick",
+  (lastCall("editMessageText")?.params.text || "").includes("choose a Subject"));
+await hook(dmCb("sub:0", dmMid), cfg.secret);
+await hook(dmCb("top:0", dmMid), cfg.secret);
+await hook(dmCb("mode:all", dmMid), cfg.secret);
+await hook(dmCb("cnt:10", dmMid), cfg.secret);
+await hook(dmCb("sec:10", dmMid), cfg.secret);
+await hook(dmCb("start", dmMid), cfg.secret);
+const gRoom = getRoom(CHAT);
+check("quiz session started inside the group room",
+  !!gRoom.state.storage.m.get("session"));
+check("DM told the quiz started",
+  (lastCall("editMessageText")?.params.text || "").includes("Quiz started in"));
+check("poll sent to the group chat",
+  calls.some((c) => c.method === "sendPoll" && c.params.chat_id === CHAT));
+check("group lastSelection saved from DM start",
+  gRoom.state.storage.m.get("meta")?.lastSelection?.count === 10);
+for (let i = 0; i < 16 && gRoom.state.storage.m.get("session"); i++) {
+  await gRoom.alarm();
+}
+
 console.log(failures === 0 ? "\nALL TESTS PASSED" : `\n${failures} FAILURES`);
 process.exit(failures ? 1 : 0);

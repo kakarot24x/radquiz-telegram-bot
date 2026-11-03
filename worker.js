@@ -359,7 +359,7 @@ long-press the box and tap <b>Paste</b> again.</p>
 ▶ Start the Bot</button></form>`;
   }
   return `<h2>✅ RADEQuiz Bot is Running</h2>
-<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-04 v9</b></p>
+<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-04 v10</b></p>
 <p>Now open your Telegram group <b>RADEQuiz</b> and type <b>/quiz</b> —
 choose a topic, the number of questions and the timer, and the quiz starts.
 Everything is controlled from Telegram itself.</p>
@@ -445,6 +445,10 @@ async function handleHook(request, env, ctx) {
   }
   if (update.callback_query) {
     const chatId = update.callback_query.message?.chat?.id;
+    const cchat = update.callback_query.message?.chat;
+    if (cchat && ["group", "supergroup"].includes(cchat.type)) {
+      ctx.waitUntil(registerGroup(env, cchat));
+    }
     if (chatId) {
       const stub = env.QUIZ.get(env.QUIZ.idFromName(String(chatId)));
       ctx.waitUntil(stub.fetch("https://do/callback", {
@@ -455,6 +459,7 @@ async function handleHook(request, env, ctx) {
   }
   const msg = update.message;
   if (msg && msg.chat && ["group", "supergroup"].includes(msg.chat.type)) {
+    ctx.waitUntil(registerGroup(env, msg.chat));
     const text = (msg.text || "").split("@")[0].trim();
     if (text === "/ping") {
       ctx.waitUntil(tg(cfg.token, "sendMessage", {
@@ -468,8 +473,39 @@ async function handleHook(request, env, ctx) {
         method: "POST", body: JSON.stringify(msg),
       }));
     }
+  } else if (msg && msg.chat && msg.chat.type === "private") {
+    // Private chat: the admin runs the quiz setup here, hidden from members.
+    const text = (msg.text || "").split("@")[0].trim();
+    if (text === "/ping") {
+      ctx.waitUntil(tg(cfg.token, "sendMessage", {
+        chat_id: msg.chat.id, text: "✅ RADEQuiz bot is live!",
+      }).catch(() => {}));
+      return new Response("ok");
+    }
+    if (["/quiz", "/start", "/stop", "/score"].includes(text)) {
+      const stub = env.QUIZ.get(env.QUIZ.idFromName(String(msg.chat.id)));
+      ctx.waitUntil(stub.fetch("https://do/message", {
+        method: "POST", body: JSON.stringify(msg),
+      }));
+    }
   }
   return new Response("ok");
+}
+
+// Remember groups the bot serves, so the private (DM) setup can offer them
+// as targets. Throttled: writes only on first sight, title change, or daily.
+async function registerGroup(env, chat) {
+  try {
+    const raw = await env.KV.get("groups");
+    const groups = raw ? JSON.parse(raw) : {};
+    const cur = groups[chat.id];
+    const now = Date.now();
+    if (!cur || cur.title !== (chat.title || "") ||
+        now - (cur.at || 0) > 24 * 3600 * 1000) {
+      groups[chat.id] = { title: chat.title || "", at: now };
+      await env.KV.put("groups", JSON.stringify(groups));
+    }
+  } catch (e) { /* registry is best-effort */ }
 }
 
 // ============================================================ Durable Object
@@ -539,16 +575,117 @@ export class QuizRoom {
       if (path === "/message") await this.onMessage(body);
       else if (path === "/callback") await this.onCallback(body);
       else if (path === "/poll_answer") await this.onPollAnswer(body);
+      else if (path === "/state") {
+        return Response.json({
+          askedCounts: (await this.state.storage.get("askedCounts")) || {},
+          lastSelection: ((await this.state.storage.get("meta")) || {})
+            .lastSelection || null,
+        });
+      } else if (path === "/start") {
+        return Response.json(await this.remoteStart(body));
+      }
     } catch (e) {
       console.log("room error:", e.message);
     }
     return new Response("ok");
   }
 
+  // Call another chat's room (used by the private DM setup to read a group's
+  // state and to start a quiz inside that group).
+  async roomCall(chatId, path, payload) {
+    const stub = this.env.QUIZ.get(this.env.QUIZ.idFromName(String(chatId)));
+    const r = await stub.fetch(`https://do${path}`, {
+      method: "POST", body: JSON.stringify(payload || {}),
+    });
+    return r.json().catch(() => ({}));
+  }
+
+  // Start a quiz in THIS room's chat on behalf of the private DM setup.
+  async remoteStart(p) {
+    const session = await this.state.storage.get("session");
+    if (session) return { ok: false, reason: "running" };
+    if (p.saveLast) {
+      const meta = (await this.state.storage.get("meta")) || {};
+      meta.lastSelection = {
+        subject: p.subject, chapter: p.chapter, count: p.count,
+        seconds: p.seconds, label: p.label, mode: p.mode || "all",
+      };
+      await this.state.storage.put("meta", meta);
+    }
+    await this.startSession(p.chatId, p.label, p.subject, p.chapter,
+      p.count, p.seconds, p.mode || "all");
+    const now = await this.state.storage.get("session");
+    return { ok: !!now, reason: now ? "" : "empty" };
+  }
+
+  // DM setup: launch the chosen quiz inside the target group and report back.
+  async dmLaunch(chatId, flow, sel) {
+    const res = await this.roomCall(flow.targetChatId, "/start", {
+      chatId: flow.targetChatId, label: sel.label, subject: sel.subject,
+      chapter: sel.chapter, count: sel.count, seconds: sel.seconds,
+      mode: sel.mode || "all", saveLast: true,
+    });
+    await this.state.storage.delete("flow");
+    if (res.ok) {
+      await this.edit(chatId, flow.messageId,
+        `✅ Quiz started in 👥 ${flow.targetTitle} — ${sel.label}\nThe questions are now running in the group.`);
+    } else if (res.reason === "running") {
+      await this.edit(chatId, flow.messageId,
+        "⏳ A quiz is already running in that group. Wait for it to finish, or stop it with /stop inside the group.");
+    } else {
+      await this.edit(chatId, flow.messageId,
+        "⚠️ No questions available for this selection.");
+    }
+    return res;
+  }
+
+  async knownGroupsFor(userId) {
+    let groups = {};
+    try {
+      groups = JSON.parse((await this.env.KV.get("groups")) || "{}");
+    } catch (e) { /* no registry yet */ }
+    const out = [];
+    for (const [id, g] of Object.entries(groups)) {
+      if (await this.isAdmin(Number(id), userId)) {
+        out.push({ id: Number(id), title: g.title || "" });
+      }
+    }
+    return out;
+  }
+
+  async startDmFlow(chatId, userId) {
+    const groups = await this.knownGroupsFor(userId);
+    if (!groups.length) {
+      await this.send(chatId,
+        "No group found yet.\n1) Make @RADEQuizbot an admin in your group.\n2) Send /ping once inside the group.\n3) Then send /quiz here again.");
+      return;
+    }
+    const flow = {
+      owner: userId, step: "groups", messageId: null, dm: true,
+      targetChatId: null, targetTitle: "", targetState: null,
+      subject: null, chapter: null, page: 0, count: null, seconds: null,
+      mode: null,
+    };
+    const rows = groups.map((g) => [this.btn(`👥 ${g.title || g.id}`, `grp:${g.id}`)]);
+    rows.push([this.btn("❌ Cancel", "cancel")]);
+    const sent = await this.send(chatId,
+      "🔒 Private Quiz Setup\nFirst choose the group for this quiz:", rows);
+    flow.messageId = sent.message_id;
+    await this.state.storage.put("flow", flow);
+  }
+
   async onMessage(msg) {
     const chatId = msg.chat.id;
     const text = (msg.text || "").split("@")[0].trim();
     const sender = effectiveSenderId(msg);
+    if (msg.chat.type === "private") {
+      if ((text === "/quiz" || text === "/start") && sender) {
+        await this.startDmFlow(chatId, sender);
+      } else if (text === "/stop" || text === "/score") {
+        await this.send(chatId, "ℹ️ Please use this command inside the group.");
+      }
+      return;
+    }
     if (text === "/quiz") {
       const session = await this.state.storage.get("session");
       if (session) {
@@ -656,8 +793,9 @@ export class QuizRoom {
     await this.state.storage.put("askedCounts", counts);
   }
 
-  async doneInScope(index, subjectI, chapterI) {
-    const counts = (await this.state.storage.get("askedCounts")) || {};
+  async doneInScope(index, subjectI, chapterI, countsOverride = null) {
+    const counts = countsOverride ||
+      (await this.state.storage.get("askedCounts")) || {};
     if (chapterI !== null && chapterI !== undefined) return counts[chapterI] || 0;
     if (subjectI !== null && subjectI !== undefined) {
       return index.subjects[subjectI].chapters
@@ -686,12 +824,24 @@ export class QuizRoom {
     const index = await loadIndex();
     const meta = (await this.state.storage.get("meta")) || {};
     const mid = flow.messageId;
-    if (flow.step === "subjects") {
-      await this.edit(chatId, mid, "📚 Quiz Setup — first choose a Subject:",
-        await this.subjectsKeyboardFull(meta, index));
+    if (flow.step === "groups") {
+      const groups = await this.knownGroupsFor(flow.owner);
+      const rows = groups.map((g) => [this.btn(`👥 ${g.title || g.id}`, `grp:${g.id}`)]);
+      rows.push([this.btn("❌ Cancel", "cancel")]);
+      await this.edit(chatId, mid,
+        "🔒 Private Quiz Setup\nFirst choose the group for this quiz:", rows);
+    } else if (flow.step === "subjects") {
+      const meta2 = flow.dm
+        ? { lastSelection: flow.targetState?.lastSelection || null } : meta;
+      const head = flow.dm
+        ? `📚 Quiz Setup for 👥 ${flow.targetTitle}\nFirst choose a Subject:`
+        : "📚 Quiz Setup — first choose a Subject:";
+      await this.edit(chatId, mid, head,
+        await this.subjectsKeyboardFull(meta2, index));
     } else if (flow.step === "chapters") {
       const s = index.subjects[flow.subject];
-      const counts = (await this.state.storage.get("askedCounts")) || {};
+      const counts = flow.dm ? (flow.targetState?.askedCounts || {})
+        : (await this.state.storage.get("askedCounts")) || {};
       await this.edit(chatId, mid, `${s.icon || "📚"} ${s.name} — now choose a Topic:`,
         this.chaptersKeyboard(index, flow, counts));
       await this.state.storage.put("flow", flow); // page clamp saved
@@ -699,7 +849,8 @@ export class QuizRoom {
       const label = labelFor(index, flow.subject, flow.chapter);
       const cand = candidateParts(index, flow.subject, flow.chapter);
       const total = cand.reduce((s2, p) => s2 + p.size, 0);
-      const done = await this.doneInScope(index, flow.subject, flow.chapter);
+      const done = await this.doneInScope(index, flow.subject, flow.chapter,
+        flow.dm ? (flow.targetState?.askedCounts || {}) : null);
       const rows = [
         [this.btn(`🆕 New Questions (${total - done} left)`, "mode:new")],
         [this.btn(`🔁 Completed Questions (${done} done)`, "mode:done")],
@@ -723,7 +874,8 @@ export class QuizRoom {
       const total = cand.reduce((s2, p) => s2 + p.size, 0);
       let poolSize = total;
       if (flow.mode === "new" || flow.mode === "done") {
-        const done = await this.doneInScope(index, flow.subject, flow.chapter);
+        const done = await this.doneInScope(index, flow.subject, flow.chapter,
+          flow.dm ? (flow.targetState?.askedCounts || {}) : null);
         poolSize = flow.mode === "new" ? total - done : done;
       }
       const count = Math.min(flow.count, poolSize);
@@ -765,7 +917,39 @@ export class QuizRoom {
       await this.answerCb(cq.id);
       return;
     }
+    if (data.startsWith("grp:")) {
+      const target = parseInt(data.slice(4), 10);
+      if (!(await this.isAdmin(target, flow.owner))) {
+        await this.answerCb(cq.id, "You are not an admin of that group.");
+        return;
+      }
+      flow.targetChatId = target;
+      let groups = {};
+      try {
+        groups = JSON.parse((await this.env.KV.get("groups")) || "{}");
+      } catch (e) { /* title falls back below */ }
+      flow.targetTitle = groups[target]?.title || "the group";
+      flow.targetState = await this.roomCall(target, "/state");
+      flow.step = "subjects";
+      await this.state.storage.put("flow", flow);
+      await this.answerCb(cq.id);
+      await this.showStep(chatId);
+      return;
+    }
     if (data === "repeat" || data === "default") {
+      if (flow.dm && flow.targetChatId) {
+        const l = data === "repeat" ? flow.targetState?.lastSelection : {
+          label: "🎲 Full Bank (Random)", subject: null, chapter: null,
+          count: DEFAULT_COUNT, seconds: DEFAULT_SECONDS, mode: "all",
+        };
+        if (!l) {
+          await this.answerCb(cq.id, "No previous quiz found for that group.");
+          return;
+        }
+        await this.dmLaunch(chatId, flow, l);
+        await this.answerCb(cq.id);
+        return;
+      }
       const meta = (await this.state.storage.get("meta")) || {};
       await this.state.storage.delete("flow");
       if (data === "repeat" && meta.lastSelection) {
@@ -784,6 +968,14 @@ export class QuizRoom {
     }
     if (data === "start") {
       const label = labelFor(index, flow.subject, flow.chapter);
+      if (flow.dm && flow.targetChatId) {
+        await this.dmLaunch(chatId, flow, {
+          label, subject: flow.subject, chapter: flow.chapter,
+          count: flow.count, seconds: flow.seconds, mode: flow.mode || "all",
+        });
+        await this.answerCb(cq.id);
+        return;
+      }
       const meta = (await this.state.storage.get("meta")) || {};
       meta.lastSelection = {
         subject: flow.subject, chapter: flow.chapter,
