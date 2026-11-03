@@ -212,44 +212,61 @@ async function getConfig(env) {
 async function statusPage(env) {
   const cfg = await getConfig(env);
   if (!cfg) {
-    return `<h2>🚂 RADEQuiz Bot — pehli setup</h2>
-<p>BotFather se mila hua <b>bot token</b> yahan ek baar bharo. Token tumhare
-apne Cloudflare account me hi surakshit rahega.</p>
+    return `<h2>🚂 RADEQuiz Bot — First-time Setup</h2>
+<p>Paste your <b>bot token</b> from BotFather here, just once. The token
+stays safe inside your own Cloudflare account.</p>
 <form method="POST" action="/setup">
-<input name="token" type="password" placeholder="Bot token yahan paste karo"
+<input name="token" type="password" placeholder="Paste bot token here"
  style="width:100%; padding:12px; font-size:16px;" required>
 <button style="width:100%; padding:12px; margin-top:10px; font-size:16px;">
-Bot chalu karo</button></form>`;
+Start the Bot</button></form>`;
   }
-  return `<h2>✅ RADEQuiz Bot chalu hai</h2>
+  return `<h2>✅ RADEQuiz Bot is Running</h2>
 <p>Bot: <b>@${cfg.username}</b></p>
-<p>Ab Telegram group <b>RADEQuiz</b> me jao aur <b>/quiz</b> likho —
-topic, sawalo ki ginati aur timer chunkar quiz start ho jayega.
-Sab control Telegram se hi hoga.</p>
+<p>Now open your Telegram group <b>RADEQuiz</b> and type <b>/quiz</b> —
+choose a topic, the number of questions and the timer, and the quiz starts.
+Everything is controlled from Telegram itself.</p>
 <hr>
-<p style="color:#555">Token badalna ho to: BotFather se naya token lo,
-neeche purane token ke <b>aakhri 6 akshar</b> code me bharo aur naya token do.</p>
+<p style="color:#555">To change the token: get a new token from BotFather,
+enter the <b>last 6 characters of the current token</b> as the code below,
+then paste the new token.</p>
 <form method="POST" action="/setup">
-<input name="code" placeholder="Purane token ke aakhri 6 akshar"
+<input name="code" placeholder="Last 6 characters of current token"
  style="width:100%; padding:10px; font-size:15px;">
-<input name="token" type="password" placeholder="Naya bot token"
+<input name="token" type="password" placeholder="New bot token"
  style="width:100%; padding:10px; font-size:15px; margin-top:8px;">
 <button style="width:100%; padding:11px; margin-top:10px; font-size:15px;">
-Token badlo</button></form>`;
+Change Token</button></form>`;
 }
 
 async function handleSetup(request, env, origin) {
   const form = await request.formData();
-  const token = String(form.get("token") || "").trim();
-  if (!token) return "❌ Token khaali hai. Wapas jaakar token bharo.";
+  const token = String(form.get("token") || "").replace(/\s+/g, "");
+  if (!token) {
+    return `❌ The token box was empty. Please go back and paste the token.`;
+  }
+  if (!/^\d+:[A-Za-z0-9_-]+$/.test(token)) {
+    return `❌ This does not look like a bot token. A bot token looks like
+<code>123456789:AAE...</code> — a number, then a colon (:), then letters.
+Please copy it again from BotFather (BotFather → /mybots → your bot →
+API Token) and paste it carefully.`;
+  }
   const existing = await getConfig(env);
   if (existing) {
     const code = String(form.get("code") || "").trim();
     if (code !== existing.token.slice(-6)) {
-      return "❌ Code galat hai — purane token ke aakhri 6 akshar chahiye. Token nahi badla.";
+      return "❌ Wrong code — the last 6 characters of the current token are needed. The token was not changed.";
     }
   }
-  const me = await tg(token, "getMe");
+  let me;
+  try {
+    me = await tg(token, "getMe");
+  } catch (e) {
+    return `❌ Telegram did not accept this token.<br>
+Please open BotFather → /mybots → your RADEQuiz bot → <b>API Token</b>,
+copy the token shown there exactly, and try again.<br>
+<small style="color:#555">Details: ${e.message}</small>`;
+  }
   const secret = [...crypto.getRandomValues(new Uint8Array(18))]
     .map((b) => b.toString(16).padStart(2, "0")).join("");
   const cfg = { token, secret, username: me.username };
@@ -260,12 +277,12 @@ async function handleSetup(request, env, origin) {
     drop_pending_updates: true,
     allowed_updates: ["message", "callback_query", "poll_answer"],
   });
-  return `<h2>✅ Ho gaya!</h2>
-<p>Bot <b>@${me.username}</b> ab chalu hai aur Telegram se jud gaya hai.</p>
-<p>Ab group <b>RADEQuiz</b> me <b>/ping</b> likh kar dekho — bot jawab dega.
-Phir <b>/quiz</b> se pehla quiz chalao.</p>
-<p style="color:#555">Is page ka address (URL) kisi ke saath share mat karna —
-yahi se bot ki setup hoti hai.</p>`;
+  return `<h2>✅ Done!</h2>
+<p>Bot <b>@${me.username}</b> is now running and connected to Telegram.</p>
+<p>Now type <b>/ping</b> in the <b>RADEQuiz</b> group — the bot will reply.
+Then start your first quiz with <b>/quiz</b>.</p>
+<p style="color:#555">Do not share this page's address (URL) with anyone —
+the bot is set up from here.</p>`;
 }
 
 async function handleHook(request, env, ctx) {
