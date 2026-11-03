@@ -315,7 +315,7 @@ long-press the box and tap <b>Paste</b> again.</p>
 ▶ Start the Bot</button></form>`;
   }
   return `<h2>✅ RADEQuiz Bot is Running</h2>
-<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-03 v4</b></p>
+<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-03 v5</b></p>
 <p>Now open your Telegram group <b>RADEQuiz</b> and type <b>/quiz</b> —
 choose a topic, the number of questions and the timer, and the quiz starts.
 Everything is controlled from Telegram itself.</p>
@@ -658,11 +658,11 @@ export class QuizRoom {
       await this.state.storage.delete("flow");
       if (data === "repeat" && meta.lastSelection) {
         const l = meta.lastSelection;
-        await this.edit(chatId, flow.messageId, "🔁 Last quiz dobara chalu…");
+        await this.edit(chatId, flow.messageId, "🔁 Starting the last quiz again…");
         await this.answerCb(cq.id);
         await this.startSession(chatId, l.label, l.subject, l.chapter, l.count, l.seconds);
       } else if (data === "default") {
-        await this.edit(chatId, flow.messageId, "⚡ Default quiz chalu…");
+        await this.edit(chatId, flow.messageId, "⚡ Starting the default quiz…");
         await this.answerCb(cq.id);
         await this.startSession(chatId, "🎲 Full Bank (Random)", null, null, DEFAULT_COUNT, DEFAULT_SECONDS);
       } else {
