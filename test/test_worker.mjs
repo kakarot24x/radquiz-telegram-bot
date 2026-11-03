@@ -222,5 +222,22 @@ check("anonymous admin tap works (not refused)",
   !lastCall("answerCallbackQuery")?.params.text?.includes("only for the admin"));
 await hook(cb("cancel", flowMid, ANON), cfg.secret);
 
+// 10b. mixed identities: anonymous-started setup tapped by the real admin,
+// and admin-started setup tapped anonymously — both must work.
+await hook(anonMsg("/quiz"), cfg.secret);
+flowMid = midSeq;
+await hook(cb("sub:0", flowMid, ADMIN), cfg.secret);
+check("real admin can operate anonymous-started setup",
+  !!lastCall("editMessageText") &&
+  !lastCall("answerCallbackQuery")?.params.text?.includes("only for the admin"));
+await hook(cb("cancel", flowMid, ADMIN), cfg.secret);
+await hook(msg("/quiz"), cfg.secret);
+flowMid = midSeq;
+await hook(cb("sub:0", flowMid, ANON), cfg.secret);
+check("anonymous tap works on admin-started setup",
+  !!lastCall("editMessageText") &&
+  !lastCall("answerCallbackQuery")?.params.text?.includes("only for the admin"));
+await hook(cb("cancel", flowMid, ANON), cfg.secret);
+
 console.log(failures === 0 ? "\nALL TESTS PASSED" : `\n${failures} FAILURES`);
 process.exit(failures ? 1 : 0);

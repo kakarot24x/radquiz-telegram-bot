@@ -326,7 +326,7 @@ long-press the box and tap <b>Paste</b> again.</p>
 ▶ Start the Bot</button></form>`;
   }
   return `<h2>✅ RADEQuiz Bot is Running</h2>
-<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-03 v6</b></p>
+<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-03 v7</b></p>
 <p>Now open your Telegram group <b>RADEQuiz</b> and type <b>/quiz</b> —
 choose a topic, the number of questions and the timer, and the quiz starts.
 Everything is controlled from Telegram itself.</p>
@@ -654,8 +654,17 @@ export class QuizRoom {
       return;
     }
     if (userId !== flow.owner) {
-      await this.answerCb(cq.id, "This selection is only for the admin who started the setup.");
-      return;
+      // Telegram reports an anonymous admin under a different identity for
+      // button taps than for messages, so the same person can mismatch their
+      // own flow. A setup can only be created by an admin anyway — let any
+      // admin operate it; members stay refused.
+      const tapperAdmin = userId && (await this.isAdmin(chatId, userId));
+      const ownerAdmin = flow.owner === ANON_ADMIN_ID ||
+        (flow.owner && (await this.isAdmin(chatId, flow.owner)));
+      if (!(tapperAdmin && ownerAdmin)) {
+        await this.answerCb(cq.id, "This selection is only for the admin who started the setup.");
+        return;
+      }
     }
     const index = await loadIndex();
 
