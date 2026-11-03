@@ -17,10 +17,10 @@ SRC = os.path.join(HERE, "bank-src")
 PART = 100
 
 GROUPS = [
-    (599, "telegram_g1.json", "Appendix 2A/3A LDCE", 6582),
-    (600, "telegram_g2.json", "Railway Departmental Exam for Account", 9034),
-    (601, "telegram_g3.json", "Quizee all times 2026", 5027),
-    (602, "telegram_g4.json", "Utkarsh' 3A Group", 565),
+    (599, "telegram_g1.json", "Accounts Exam 1", 6582),
+    (600, "telegram_g2.json", "Accounts Exam 2", 9034),
+    (601, "telegram_g3.json", "Accounts Exam 3", 5027),
+    (602, "telegram_g4.json", "Accounts Exam 4", 565),
 ]
 
 
