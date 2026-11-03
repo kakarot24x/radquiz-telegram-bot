@@ -81,11 +81,19 @@ function fmtTime(sec) {
 
 // ------------------------------------------------------------------ bank
 let _indexCache = null;
+let _indexCacheAt = 0;
+const INDEX_TTL_MS = 5 * 60 * 1000; // bank updates show up within ~5 minutes
 async function loadIndex() {
-  if (_indexCache) return _indexCache;
+  if (_indexCache && Date.now() - _indexCacheAt < INDEX_TTL_MS) {
+    return _indexCache;
+  }
   const resp = await fetch(`${BANK_BASE}/index.json`);
-  if (!resp.ok) throw new Error("bank index fetch failed");
+  if (!resp.ok) {
+    if (_indexCache) return _indexCache; // serve stale on a transient failure
+    throw new Error("bank index fetch failed");
+  }
   _indexCache = await resp.json();
+  _indexCacheAt = Date.now();
   return _indexCache;
 }
 
@@ -351,7 +359,7 @@ long-press the box and tap <b>Paste</b> again.</p>
 ▶ Start the Bot</button></form>`;
   }
   return `<h2>✅ RADEQuiz Bot is Running</h2>
-<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-03 v8</b></p>
+<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-04 v9</b></p>
 <p>Now open your Telegram group <b>RADEQuiz</b> and type <b>/quiz</b> —
 choose a topic, the number of questions and the timer, and the quiz starts.
 Everything is controlled from Telegram itself.</p>
