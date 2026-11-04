@@ -494,6 +494,74 @@ await hook(msg("/quiz"), cfg.secret);
   check("revert removes the edit", !after.q1xtnaneriym);
 }
 
+// 18. Keyword Quiz: type keywords, counts, completed/pending, combine + start
+{
+  await getRoom(CHAT).state.storage.delete("session");
+  await getRoom(CHAT).state.storage.delete("flow");
+  await hook(msg("/quiz"), cfg.secret);
+  const kb0 = lastCall("sendMessage")?.params.reply_markup?.inline_keyboard || [];
+  check("subjects keyboard has Keyword button",
+    kb0.flat().some((b) => b.callback_data === "kw:open"));
+  const kMid = midSeq;
+  const tap = async (data) => {
+    await hook(cb(data, kMid), cfg.secret);
+    return lastCall("editMessageText")?.params.reply_markup?.inline_keyboard || [];
+  };
+  const lastText = () => lastCall("editMessageText")?.params.text || "";
+  await tap("kw:open");
+  check("keyword home opens", lastText().includes("Keyword Quiz"));
+  await tap("kw:add");
+  check("keyword input prompt", lastText().includes("next message"));
+  await hook(msg("error sheet", PLAYER), cfg.secret);
+  check("member keyword ignored", !lastText().includes("kitne sawal"));
+  await hook(msg("error sheet"), cfg.secret);
+  check("keyword count screen shows pool + completed/pending",
+    lastText().includes("questions mile") && lastText().includes("Completed") &&
+    lastText().includes("Pending"));
+  await tap("kw:cnt:10");
+  check("keyword home total 10", lastText().includes("Total: 10"));
+  await tap("kw:add");
+  await hook(msg("nodal railway"), cfg.secret);
+  await tap("kw:cnt:10");
+  check("keyword home total 20", lastText().includes("Total: 20"));
+  await tap("kw:go");
+  check("keyword mode screen",
+    lastText().includes("Which questions") && lastText().includes("Keywords:"));
+  await tap("mode:all");
+  await tap("sec:10");
+  check("keyword confirm lists both + 20",
+    lastText().includes("error sheet") && lastText().includes("nodal railway") &&
+    lastText().includes("20 questions"));
+  const pollsB = calls.filter((c) => c.method === "sendPoll").length;
+  await tap("start");
+  const ann = calls.filter((c) => c.method === "sendMessage").pop();
+  check("keyword quiz announced with 20 questions",
+    (ann?.params.text || "").includes("20 questions"));
+  check("keyword first poll sent",
+    calls.filter((c) => c.method === "sendPoll").length === pollsB + 1);
+  const sess = getRoom(CHAT).state.storage.m.get("session");
+  const sj = JSON.stringify(sess || {});
+  check("payloads come from both keywords",
+    sj.includes("Error sheet") && sj.includes("Nodal railway"));
+  await getRoom(CHAT).state.storage.delete("session");
+
+  // DM keyword capture (private setup)
+  await hook(dmMsg("/quiz"), cfg.secret);
+  const dMid = midSeq;
+  await hook(dmCb(`grp:${CHAT}`, dMid), cfg.secret);
+  const dKb = lastCall("editMessageText")?.params.reply_markup?.inline_keyboard || [];
+  check("DM subjects show Keyword button",
+    dKb.flat().some((b) => b.callback_data === "kw:open"));
+  await hook(dmCb("kw:open", dMid), cfg.secret);
+  await hook(dmCb("kw:add", dMid), cfg.secret);
+  await hook(dmMsg("pension"), cfg.secret);
+  check("DM keyword count screen",
+    (lastCall("editMessageText")?.params.text || "").includes("questions mile"));
+  await hook(dmCb("kw:cnt:10", dMid), cfg.secret);
+  check("DM keyword home total 10",
+    (lastCall("editMessageText")?.params.text || "").includes("Total: 10"));
+}
+
 // 14. Telegram command menu registered (v12) + no plain tick/cross glyphs left
 const cmdCalls = calls.filter((c) => c.method === "setMyCommands");
 check("setMyCommands registered", cmdCalls.length >= 1 &&

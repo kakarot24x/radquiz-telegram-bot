@@ -53,3 +53,12 @@ me mila kar pipeline chalao, phir bot me `/edits` → Clear kar do.
 4. Worker ke address (URL) ko browser me kholo — wahan bot token
    ek baar bharne ka form milega. Token bharte hi bot Telegram se
    jud jayega aur group me `/quiz` chalne lagega.
+
+## Keyword Quiz (v17)
+/quiz setup me "🔑 Keyword Quiz": admin keyword type karta hai (setup
+message ke baad wala message), bot search.json se matching sawal
+ginata hai — kul/✅ Completed/🆕 Pending ke saath — count chunta hai;
+aise hi aur keyword jod sakta hai. Mode (New/Completed/All) poore
+keyword-mix par lagta hai; sawal har keyword ke matches se uski
+ginati me aakar shuffle hote hain; Repeat Last me bhi rehta hai.
+Group aur DM (private setup) dono me chalta hai.

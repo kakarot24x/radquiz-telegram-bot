@@ -380,6 +380,23 @@ async function runAutoQuizzes(env) {
   }
 }
 
+function planLabel(kind, entries) {
+  const body = (entries || []).map((e) => `${e.label} ×${e.count}`).join(" + ");
+  return kind === "keyword" ? `🔑 Keywords: ${body}` : `🧩 Mix: ${body}`;
+}
+
+// Union of "part#index" keys across keyword entries (overlap-safe).
+function kwUnion(entries) {
+  const seen = new Set();
+  const keys = [];
+  for (const e of entries || []) {
+    for (const k of e.keys || []) {
+      if (!seen.has(k)) { seen.add(k); keys.push(k); }
+    }
+  }
+  return keys;
+}
+
 function mixLabel(mix) {
   return "🧩 Mix: " + mix.map((e) => `${e.label} ×${e.count}`).join(" + ");
 }
@@ -542,7 +559,7 @@ long-press the box and tap <b>Paste</b> again.</p>
 ▶ Start the Bot</button></form>`;
   }
   return `<h2>✅ RADEQuiz Bot is Running</h2>
-<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-05 v16</b></p>
+<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-05 v17</b></p>
 <p>Now open your Telegram group <b>RADEQuiz</b> and type <b>/quiz</b> —
 choose a topic, the number of questions and the timer, and the quiz starts.
 Everything is controlled from Telegram itself.</p>
@@ -680,7 +697,7 @@ async function handleHook(request, env, ctx) {
       return new Response("ok");
     }
     if (["/quiz", "/stop", "/score", "/settings", "/edit", "/edits"].includes(text) ||
-        text.split(" ")[0] === "/autoquiz") {
+        text.split(" ")[0] === "/autoquiz" || !text.startsWith("/")) {
       const stub = env.QUIZ.get(env.QUIZ.idFromName(String(msg.chat.id)));
       ctx.waitUntil(stub.fetch("https://do/message", {
         method: "POST", body: JSON.stringify(msg),
@@ -1138,6 +1155,12 @@ export class QuizRoom {
         });
       } else if (path === "/start") {
         return Response.json(await this.remoteStart(body));
+      } else if (path === "/askedfor") {
+        const out = {};
+        for (const p of body.parts || []) {
+          out[p] = (await this.state.storage.get(`asked:${p}`)) || [];
+        }
+        return Response.json(out);
       } else if (path === "/auto") {
         const cfg = (await this.state.storage.get("autoCfg")) || {};
         const session = await this.state.storage.get("session");
@@ -1246,6 +1269,12 @@ export class QuizRoom {
         await this.editorHandleText(chatId, ef0, text);
         return;
       }
+      const flow0 = await this.state.storage.get("flow");
+      if (flow0 && flow0.step === "kwinput" && sender &&
+          flow0.owner === sender && !text.startsWith("/")) {
+        await this.keywordAccept(chatId, flow0, text);
+        return;
+      }
       if (text === "/edit" && sender) {
         await this.startEditor(chatId, sender);
         return;
@@ -1260,6 +1289,12 @@ export class QuizRoom {
                  text.split(" ")[0] === "/autoquiz") {
         await this.send(chatId, "ℹ️ Please use this command inside the group.");
       }
+      return;
+    }
+    const gflow = await this.state.storage.get("flow");
+    if (gflow && gflow.step === "kwinput" && sender && !text.startsWith("/") &&
+        await this.isAdmin(chatId, sender)) {
+      await this.keywordAccept(chatId, gflow, text);
       return;
     }
     if (text === "/quiz") {
@@ -1358,6 +1393,7 @@ export class QuizRoom {
   async subjectsKeyboardFull(meta, index) {
     const rows = this.subjectsKeyboard(meta);
     rows.push([this.btn("🧩 Mix Quiz — Syllabus-wise (combine topics)", "mx:open")]);
+    rows.push([this.btn("🔑 Keyword Quiz — apne shabd se sawal banao", "kw:open")]);
     index.subjects.forEach((s, i) => {
       rows.push([this.btn(`${s.icon || "📚"} ${s.name} (${s.questions} Q)`, `sub:${i}`)]);
     });
@@ -1386,6 +1422,115 @@ export class QuizRoom {
     rows.push([this.btn("⬅️ Back to Subjects", "back:subjects"),
                this.btn("❌ Cancel", "cancel")]);
     return rows;
+  }
+
+  // --------------------------------------- keyword quiz helpers
+  // Asked sets for a flow: own storage for the group flow, the target
+  // group's storage (one batched /askedfor call, cached on the flow) for DM.
+  async flowAskedSets(flow, parts) {
+    const out = new Map();
+    if (!flow.dm) {
+      for (const p of parts) out.set(p, await this.askedSet(p));
+      return out;
+    }
+    flow._askedCache = flow._askedCache || {};
+    const missing = parts.filter((p) => !(p in flow._askedCache));
+    if (missing.length && flow.targetChatId) {
+      const res = await this.roomCall(flow.targetChatId, "/askedfor",
+        { parts: missing });
+      for (const p of missing) flow._askedCache[p] = res[p] || [];
+    }
+    for (const p of parts) out.set(p, new Set(flow._askedCache[p] || []));
+    return out;
+  }
+
+  async kwDone(flow, entries) {
+    const keys = kwUnion(entries);
+    const parts = [...new Set(keys.map((k) => k.split("#")[0]))];
+    const sets = await this.flowAskedSets(flow, parts);
+    let done = 0;
+    for (const k of keys) {
+      const [p, i] = k.split("#");
+      if (sets.get(p)?.has(parseInt(i, 10))) done++;
+    }
+    return { total: keys.length, done };
+  }
+
+  // Fetch the exact items a keyword matched (by "part#index" keys),
+  // honouring the New/Completed/All mode and saved edits.
+  async fetchByKeys(keys, mode, askedOf, edits) {
+    const byPart = new Map();
+    for (const k of keys) {
+      const hash = k.lastIndexOf("#");
+      const part = k.slice(0, hash);
+      const idx = parseInt(k.slice(hash + 1), 10);
+      if (!byPart.has(part)) byPart.set(part, []);
+      byPart.get(part).push(idx);
+    }
+    const items = [];
+    for (const [part, idxs] of byPart) {
+      const qs = await fetchPart(part);
+      const asked = (mode !== "all" && askedOf) ? await askedOf(part) : null;
+      for (const i of idxs) {
+        const q = qs[i];
+        if (!q) continue;
+        const isDone = asked ? asked.has(i) : false;
+        if (mode === "new" && isDone) continue;
+        if (mode === "done" && !isDone) continue;
+        q._k = `${part}#${i}`;
+        q._ci = parseInt(part.split("-")[1], 10);
+        if (edits && q.i && edits[q.i]) applyEdit(q, edits[q.i]);
+        items.push(q);
+      }
+    }
+    return items;
+  }
+
+  // The admin typed a keyword while the flow waited at step "kwinput".
+  async keywordAccept(chatId, flow, rawText) {
+    const query = rawText.trim();
+    const tokens = query.toLowerCase().replace(/\s+/g, " ")
+      .split(" ").filter(Boolean);
+    if (!tokens.length) return;
+    await this.edit(chatId, flow.messageId, `🔎 Searching for "${query}"…`);
+    let sidx;
+    try {
+      sidx = await loadSearchIndex();
+    } catch (e) {
+      flow.step = "kwhome";
+      await this.state.storage.put("flow", flow);
+      await this.showStep(chatId, flow);
+      return;
+    }
+    const keys = [];
+    for (const e of sidx) {
+      const qn = e[3].toLowerCase().replace(/\s+/g, " ");
+      if (tokens.every((t) => qn.includes(t))) {
+        keys.push(`${e[1]}#${e[2]}`);
+        if (keys.length >= 2000) break;
+      }
+    }
+    if (!keys.length) {
+      flow.step = "kwinput";
+      await this.state.storage.put("flow", flow);
+      await this.edit(chatId, flow.messageId,
+        `🔑 No questions match "${query}".\nType another keyword:`,
+        [[this.btn("⬅️ Back to Keyword Quiz", "kw:home"),
+          this.btn("❌ Cancel", "cancel")]]);
+      return;
+    }
+    flow.pendingKw = { label: query, keys, total: keys.length, done: 0 };
+    const parts = [...new Set(keys.map((k) => k.split("#")[0]))];
+    const sets = await this.flowAskedSets(flow, parts);
+    let done = 0;
+    for (const k of keys) {
+      const [p, i] = k.split("#");
+      if (sets.get(p)?.has(parseInt(i, 10))) done++;
+    }
+    flow.pendingKw.done = done;
+    flow.step = "kwcount";
+    await this.state.storage.put("flow", flow);
+    await this.showStep(chatId, flow);
   }
 
   // --------------------------------------- asked-question tracking (per group)
@@ -1466,6 +1611,35 @@ export class QuizRoom {
       await this.edit(chatId, mid, `${s.icon || "📚"} ${s.name} — now choose a Topic:`,
         this.chaptersKeyboard(index, flow, counts));
       await this.state.storage.put("flow", flow); // page clamp saved
+    } else if (flow.step === "kwhome") {
+      const entries = flow.kwEntries || [];
+      const total = entries.reduce((s, e) => s + e.count, 0);
+      const lines = ["🔑 Keyword Quiz — keyword dalo, uske sawal jodo:"];
+      if (entries.length) {
+        entries.forEach((e, i) =>
+          lines.push(`${i + 1}. "${e.label}" — ${e.count} Q (pool ${e.total})`));
+        lines.push(`📌 Total: ${total} questions`);
+      } else {
+        lines.push("Nothing added yet. Add your first keyword:");
+      }
+      const rows = [[this.btn("⌨️ Add keyword", "kw:add")]];
+      if (entries.length) rows.push([this.btn(`✅ Done — choose Mode (${total} Q)`, "kw:go")]);
+      if (entries.length) rows.push([this.btn("🗑️ Clear all", "kw:clear")]);
+      rows.push([this.btn("⬅️ Back to Subjects", "back:subjects"),
+                 this.btn("❌ Cancel", "cancel")]);
+      await this.edit(chatId, mid, lines.join("\n"), rows);
+    } else if (flow.step === "kwinput") {
+      await this.edit(chatId, mid,
+        "⌨️ Keyword apne next message me likho\n(e.g. pension · error sheet · wharfage · leave rules)",
+        [[this.btn("⬅️ Back", "kw:home"), this.btn("❌ Cancel", "cancel")]]);
+    } else if (flow.step === "kwcount") {
+      const pk = flow.pendingKw || { label: "", total: 0, done: 0 };
+      const rows = MIX_COUNT_CHOICES.map((n) =>
+        [this.btn(`${n} Questions`, `kw:cnt:${n}`)]);
+      rows.push([this.btn("⬅️ Back", "kw:home"),
+                 this.btn("❌ Cancel", "cancel")]);
+      await this.edit(chatId, mid,
+        `🔑 "${pk.label}" — kul ${pk.total} questions mile\n✅ Completed: ${pk.done} · 🆕 Pending: ${pk.total - pk.done}\nIs keyword se kitne sawal rakhu?`, rows);
     } else if (flow.step === "mixhome") {
       const mix = flow.mix || [];
       const total = mix.reduce((s, e) => s + e.count, 0);
@@ -1527,18 +1701,28 @@ export class QuizRoom {
       await this.edit(chatId, mid,
         `➕ Add: ${flow.pendingUnit.label}\nHow many questions from this?`, rows);
     } else if (flow.step === "mode") {
-      if (flow.kind === "mix") {
-        const counts = flow.dm ? (flow.targetState?.askedCounts || {})
-          : (await this.state.storage.get("askedCounts")) || {};
-        const { total, done } = mixTotals(index, flow.mix || [], counts);
+      if (flow.kind === "mix" || flow.kind === "keyword") {
+        let total, done, label, backData;
+        if (flow.kind === "mix") {
+          const counts = flow.dm ? (flow.targetState?.askedCounts || {})
+            : (await this.state.storage.get("askedCounts")) || {};
+          ({ total, done } = mixTotals(index, flow.mix || [], counts));
+          label = mixLabel(flow.mix || []);
+          backData = "mx:home";
+        } else {
+          ({ total, done } = await this.kwDone(flow, flow.kwEntries || []));
+          await this.state.storage.put("flow", flow); // asked-cache saved
+          label = planLabel("keyword", flow.kwEntries || []);
+          backData = "kw:home";
+        }
         const rows = [
           [this.btn(`🆕 New Questions (${total - done} left)`, "mode:new")],
           [this.btn(`🔁 Completed Questions (${done} done)`, "mode:done")],
           [this.btn(`🎲 All Questions (${total})`, "mode:all")],
-          [this.btn("⬅️ Back", "mx:home"), this.btn("❌ Cancel", "cancel")],
+          [this.btn("⬅️ Back", backData), this.btn("❌ Cancel", "cancel")],
         ];
         await this.edit(chatId, mid,
-          `✅ ${mixLabel(flow.mix || [])}\nWhich questions should the quiz use?`, rows);
+          `✅ ${label}\nWhich questions should the quiz use?`, rows);
         return;
       }
       const label = labelFor(index, flow.subject, flow.chapter);
@@ -1561,22 +1745,29 @@ export class QuizRoom {
       await this.edit(chatId, mid, `✅ Topic: ${label}\nHow many questions?`, rows);
     } else if (flow.step === "seconds") {
       const rows = SECOND_CHOICES.map((n) => [this.btn(`${n} seconds / question`, `sec:${n}`)]);
-      rows.push([this.btn("⬅️ Back", flow.kind === "mix" ? "back:mode" : "back:count"),
+      rows.push([this.btn("⬅️ Back", (flow.kind === "mix" || flow.kind === "keyword") ? "back:mode" : "back:count"),
                  this.btn("❌ Cancel", "cancel")]);
       await this.edit(chatId, mid, "⏱️ How much time per question?", rows);
     } else if (flow.step === "confirm") {
-      if (flow.kind === "mix") {
-        const counts = flow.dm ? (flow.targetState?.askedCounts || {})
-          : (await this.state.storage.get("askedCounts")) || {};
-        const { total, done } = mixTotals(index, flow.mix || [], counts);
+      if (flow.kind === "mix" || flow.kind === "keyword") {
+        const entries = flow.kind === "mix" ? (flow.mix || []) : (flow.kwEntries || []);
+        let total, done;
+        if (flow.kind === "mix") {
+          const counts = flow.dm ? (flow.targetState?.askedCounts || {})
+            : (await this.state.storage.get("askedCounts")) || {};
+          ({ total, done } = mixTotals(index, entries, counts));
+        } else {
+          ({ total, done } = await this.kwDone(flow, entries));
+          await this.state.storage.put("flow", flow);
+        }
         let poolSize = total;
         if (flow.mode === "new") poolSize = total - done;
         if (flow.mode === "done") poolSize = done;
-        const asked = (flow.mix || []).reduce((s, e) => s + e.count, 0);
+        const asked = entries.reduce((s, e) => s + e.count, 0);
         const count = Math.min(asked, poolSize);
         const modeName = { new: "🆕 New Questions", done: "🔁 Completed Questions", all: "🎲 All Questions" }[flow.mode || "all"];
-        const lines = ["🚀 Mix Quiz is ready:"];
-        (flow.mix || []).forEach((e, i) => lines.push(`${i + 1}. ${e.label} — ${e.count} Q`));
+        const lines = [flow.kind === "mix" ? "🚀 Mix Quiz is ready:" : "🚀 Keyword Quiz is ready:"];
+        entries.forEach((e, i) => lines.push(`${i + 1}. ${e.label} — ${e.count} Q`));
         lines.push(`🎯 ${modeName}`);
         lines.push(`📌 ${count} questions (pool: ${poolSize})`);
         lines.push(`⏱️ ${flow.seconds} seconds per question`);
@@ -1686,12 +1877,13 @@ export class QuizRoom {
       }
       return;
     }
-    if (data === "start" && flow.kind === "mix") {
-      const label = mixLabel(flow.mix || []);
-      const totalCount = (flow.mix || []).reduce((s, e) => s + e.count, 0);
+    if (data === "start" && (flow.kind === "mix" || flow.kind === "keyword")) {
+      const plan = flow.kind === "mix" ? (flow.mix || []) : (flow.kwEntries || []);
+      const label = flow.kind === "mix" ? mixLabel(plan) : planLabel("keyword", plan);
+      const totalCount = plan.reduce((s, e) => s + e.count, 0);
       const sel = {
         label, subject: null, chapter: null, count: totalCount,
-        seconds: flow.seconds, mode: flow.mode || "all", plan: flow.mix,
+        seconds: flow.seconds, mode: flow.mode || "all", plan,
       };
       if (flow.dm && flow.targetChatId) {
         await this.dmLaunch(chatId, flow, sel);
@@ -1705,7 +1897,7 @@ export class QuizRoom {
       await this.edit(chatId, flow.messageId, `▶️ Starting the quiz — ${label}`);
       await this.answerCb(cq.id);
       await this.startSession(chatId, label, null, null, totalCount,
-        flow.seconds, flow.mode || "all", flow.mix);
+        flow.seconds, flow.mode || "all", plan);
       return;
     }
     if (data === "start") {
@@ -1731,7 +1923,26 @@ export class QuizRoom {
       await this.startSession(chatId, label, flow.subject, flow.chapter, flow.count, flow.seconds, flow.mode || "all");
       return;
     }
-    if (data === "mx:open") {
+    if (data === "kw:open") {
+      flow.kind = "keyword"; flow.kwEntries = flow.kwEntries || [];
+      flow.step = "kwhome";
+    } else if (data === "kw:home") {
+      flow.step = "kwhome";
+    } else if (data === "kw:add") {
+      flow.step = "kwinput";
+    } else if (data.startsWith("kw:cnt:")) {
+      const n = parseInt(data.slice(7), 10);
+      if (flow.pendingKw) {
+        flow.kwEntries = flow.kwEntries || [];
+        flow.kwEntries.push({ ...flow.pendingKw, count: n });
+        flow.pendingKw = null;
+      }
+      flow.step = "kwhome";
+    } else if (data === "kw:clear") {
+      flow.kwEntries = []; flow.step = "kwhome";
+    } else if (data === "kw:go") {
+      flow.step = "mode";
+    } else if (data === "mx:open") {
       flow.kind = "mix"; flow.mix = flow.mix || []; flow.step = "mixhome";
     } else if (data === "mx:home") {
       flow.step = "mixhome";
@@ -1770,7 +1981,7 @@ export class QuizRoom {
     } else if (data === "mx:go") {
       flow.step = "mode";
     } else if (data.startsWith("sub:")) {
-      flow.kind = null; flow.mix = null;
+      flow.kind = null; flow.mix = null; flow.kwEntries = null;
       flow.subject = parseInt(data.slice(4), 10);
       flow.chapter = null; flow.page = 0; flow.step = "chapters";
     } else if (data.startsWith("page:")) {
@@ -1781,7 +1992,7 @@ export class QuizRoom {
       flow.step = "mode";
     } else if (data.startsWith("mode:")) {
       flow.mode = data.slice(5);
-      flow.step = flow.kind === "mix" ? "seconds" : "count";
+      flow.step = (flow.kind === "mix" || flow.kind === "keyword") ? "seconds" : "count";
     } else if (data.startsWith("cnt:")) {
       flow.count = parseInt(data.slice(4), 10);
       flow.step = "seconds";
@@ -1817,8 +2028,10 @@ export class QuizRoom {
       items = [];
       const usedK = new Set();
       for (const e of plan) {
-        const pool = shuffle(await fetchPool(
-          index, null, null, e.count, mode, askedOf, e.cis, edits));
+        const pool = shuffle(e.keys
+          ? await this.fetchByKeys(e.keys, mode, askedOf, edits)
+          : await fetchPool(
+              index, null, null, e.count, mode, askedOf, e.cis, edits));
         let got = 0;
         for (const item of pool) {
           if (got >= e.count) break;
