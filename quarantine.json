@@ -1,0 +1,2200 @@
+[
+ {
+  "ci": 35,
+  "qi": 587,
+  "id": "q26mdxey6ikr",
+  "why": "duplicate-after-truncation",
+  "q": "The pay level for determining the daily allowance entitlement is: ______"
+ },
+ {
+  "ci": 35,
+  "qi": 612,
+  "id": "q1s148u29a8p",
+  "why": "duplicate-after-truncation",
+  "q": "w.e.f. 1.7.2017 the rates of transport allowance are given in the tables below. "
+ },
+ {
+  "ci": 46,
+  "qi": 12,
+  "id": "q35g5p8y3if",
+  "why": "duplicate-after-truncation",
+  "q": "w.e.f. 1.7.2017 the rates of transport allowance are given in the tables below. "
+ },
+ {
+  "ci": 46,
+  "qi": 20,
+  "id": "q73lwuvy9o9",
+  "why": "duplicate-after-truncation",
+  "q": "The pay level for determining the daily allowance entitlement is: ______"
+ },
+ {
+  "ci": 63,
+  "qi": 9,
+  "id": "qt8gob046ci",
+  "why": "duplicate-after-truncation",
+  "q": "Parts and their descriptions in MSOP - Model Schedule Of Powers are ____________"
+ },
+ {
+  "ci": 66,
+  "qi": 105,
+  "id": "q227qn1cdusd",
+  "why": "duplicate-after-truncation",
+  "q": "Which of the following can be encashed from station earnings?"
+ },
+ {
+  "ci": 66,
+  "qi": 107,
+  "id": "qif4587wtox",
+  "why": "duplicate-after-truncation",
+  "q": "At what intervals the Accounts Officer nominated by the Financial Adviser and Ch"
+ },
+ {
+  "ci": 72,
+  "qi": 154,
+  "id": "q16d3eg939ms",
+  "why": "duplicate-after-truncation",
+  "q": "In case of disagreement between accounts officer and executive at divisional lev"
+ },
+ {
+  "ci": 78,
+  "qi": 2,
+  "id": "q2fhovjliaqo",
+  "why": "too-few-options",
+  "q": "What is the% of Direct/Promotional quota of Sr.Clerk?"
+ },
+ {
+  "ci": 78,
+  "qi": 4,
+  "id": "q1m3e2oj1v1l",
+  "why": "too-few-options",
+  "q": "What is the age limit for filling up vacancies for PHP among SC?"
+ },
+ {
+  "ci": 78,
+  "qi": 16,
+  "id": "q2c2tyoez2dt",
+  "why": "too-few-options",
+  "q": "What is the% for promotional quota from Level 1 to Level 3 for Commercial clerk?"
+ },
+ {
+  "ci": 78,
+  "qi": 27,
+  "id": "q10knqhk3cjm",
+  "why": "too-few-options",
+  "q": "How many candidates can be appointed on cultural quota in Gr.'C’ per year per zo"
+ },
+ {
+  "ci": 78,
+  "qi": 28,
+  "id": "q1rk7s4e10rt",
+  "why": "too-few-options",
+  "q": "How many candidates can be appointend on Scouts and Guides quota in Gr. C per ye"
+ },
+ {
+  "ci": 78,
+  "qi": 35,
+  "id": "q24c67q5wthk",
+  "why": "too-few-options",
+  "q": "What is the% for departmental promotion of Chief S&WI Level-7?"
+ },
+ {
+  "ci": 78,
+  "qi": 40,
+  "id": "q28celiqgoc2",
+  "why": "too-few-options",
+  "q": "What is the source of filling up vacancies of ASM?"
+ },
+ {
+  "ci": 78,
+  "qi": 41,
+  "id": "q22zqdinnh3a",
+  "why": "too-few-options",
+  "q": "NTPC Non-technical Popular category NTPC will be filled on which basis.?"
+ },
+ {
+  "ci": 78,
+  "qi": 42,
+  "id": "q2dtmao1h3jk",
+  "why": "too-few-options",
+  "q": "What is the source of filling up vacancies of JE (W)?"
+ },
+ {
+  "ci": 78,
+  "qi": 43,
+  "id": "q1exl1urguvh",
+  "why": "too-few-options",
+  "q": "How is the post of JE (Signal)) filled?"
+ },
+ {
+  "ci": 78,
+  "qi": 45,
+  "id": "q1dd638l81r0",
+  "why": "too-few-options",
+  "q": "How many advance increments can a employee get on completion of Post Graduate, D"
+ },
+ {
+  "ci": 78,
+  "qi": 51,
+  "id": "qf9m8alimt1",
+  "why": "too-few-options",
+  "q": "Is temporary Special Class Railway Apprentice is entitled for HRA under training"
+ },
+ {
+  "ci": 78,
+  "qi": 52,
+  "id": "ql3b50o0bga",
+  "why": "too-few-options",
+  "q": "When will an apprentice permitted to resign between the training period?"
+ },
+ {
+  "ci": 78,
+  "qi": 58,
+  "id": "qp6ni8jyd81",
+  "why": "too-few-options",
+  "q": "What is the Minimum Education qualification for level-2 in S&T Department?"
+ },
+ {
+  "ci": 79,
+  "qi": 3,
+  "id": "q141vdynwam",
+  "why": "too-few-options",
+  "q": "Maximum sanction amount for house builiding is ________."
+ },
+ {
+  "ci": 79,
+  "qi": 8,
+  "id": "qknzl5vkkcz",
+  "why": "too-few-options",
+  "q": "What is the percentage monthly contribution of PF?"
+ },
+ {
+  "ci": 79,
+  "qi": 9,
+  "id": "qvzypx73e71",
+  "why": "too-few-options",
+  "q": "After how many year final withdrawal can be done from PF account."
+ },
+ {
+  "ci": 79,
+  "qi": 10,
+  "id": "q58ra0yoowo",
+  "why": "too-few-options",
+  "q": "What is the total service required for final withdrawal from PF account for repa"
+ },
+ {
+  "ci": 79,
+  "qi": 12,
+  "id": "q1bzo77c99u6",
+  "why": "too-few-options",
+  "q": "What is the% of TA if an employee is out of his headquarters for 12 hours."
+ },
+ {
+  "ci": 79,
+  "qi": 13,
+  "id": "q1jil4zzawhp",
+  "why": "too-few-options",
+  "q": "What is the rate of HRA in metropolitan cities?"
+ },
+ {
+  "ci": 79,
+  "qi": 15,
+  "id": "q10ugia9x6sx",
+  "why": "too-few-options",
+  "q": "What is the% of the salary being paid in the form of NPA to Doctors?"
+ },
+ {
+  "ci": 79,
+  "qi": 17,
+  "id": "q1h7payymx3",
+  "why": "too-few-options",
+  "q": "How much advance can be sanctioned for purchase of scooter?"
+ },
+ {
+  "ci": 79,
+  "qi": 18,
+  "id": "qidtxkeaa1g",
+  "why": "too-few-options",
+  "q": "What is the maximum limit of HBA that can be sanctioned?"
+ },
+ {
+  "ci": 79,
+  "qi": 20,
+  "id": "q26drmszl06j",
+  "why": "too-few-options",
+  "q": "Is HBA admissible for purchasing land?"
+ },
+ {
+  "ci": 79,
+  "qi": 21,
+  "id": "q1r5qmnowdk",
+  "why": "too-few-options",
+  "q": "How much percentage discount is given on the interest of house building advance "
+ },
+ {
+  "ci": 79,
+  "qi": 23,
+  "id": "q1f3q49ai58s",
+  "why": "too-few-options",
+  "q": "What is the interest rate on motor car advances?"
+ },
+ {
+  "ci": 79,
+  "qi": 27,
+  "id": "qhuesjzfbs6",
+  "why": "too-few-options",
+  "q": "The Minimum & Maximum rates of Transport of Personal Effects are"
+ },
+ {
+  "ci": 79,
+  "qi": 35,
+  "id": "q6lbe17v2fc",
+  "why": "too-few-options",
+  "q": "Max DCRG as per 7th CPC?"
+ },
+ {
+  "ci": 80,
+  "qi": 8,
+  "id": "q10cb2plhev8",
+  "why": "too-few-options",
+  "q": "Is travel break allowed within the school account Pass?,"
+ },
+ {
+  "ci": 80,
+  "qi": 15,
+  "id": "q6cm22rugmh",
+  "why": "too-few-options",
+  "q": "Will the legally divorced sister get the pass?"
+ },
+ {
+  "ci": 80,
+  "qi": 24,
+  "id": "q169jk0i0wns",
+  "why": "too-few-options",
+  "q": "The Metal Token/Duty Passes are ________, _______ & ________."
+ },
+ {
+  "ci": 80,
+  "qi": 35,
+  "id": "q1ljxos0b5d6",
+  "why": "too-few-options",
+  "q": "Attendant of Ist class A pass can be travel in ________ class."
+ },
+ {
+  "ci": 80,
+  "qi": 38,
+  "id": "q2bogf9bm9xb",
+  "why": "too-few-options",
+  "q": "Who is entitled for First class pass"
+ },
+ {
+  "ci": 80,
+  "qi": 43,
+  "id": "qj8b5puot4g",
+  "why": "too-few-options",
+  "q": "Can a special pass is given to the employee who has been removed from the servic"
+ },
+ {
+  "ci": 80,
+  "qi": 45,
+  "id": "q2bqu80s5afz",
+  "why": "too-few-options",
+  "q": "Facility of Companion is available on which pass and at what age?"
+ },
+ {
+  "ci": 81,
+  "qi": 14,
+  "id": "qhy8axnqzvm",
+  "why": "too-few-options",
+  "q": "Regional Labour Commissioner is appointed by notification in the -----"
+ },
+ {
+  "ci": 81,
+  "qi": 18,
+  "id": "q1o0l30zkyxn",
+  "why": "too-few-options",
+  "q": "Sustained effort implies _______"
+ },
+ {
+  "ci": 81,
+  "qi": 25,
+  "id": "q1c9tbm2kid2",
+  "why": "too-few-options",
+  "q": "Most suitable method to classify employment of Railway servant as continuous int"
+ },
+ {
+  "ci": 81,
+  "qi": 49,
+  "id": "qndw66juwd6",
+  "why": "too-few-options",
+  "q": "_______ will decidewhether a particular action will be classified as sustained a"
+ },
+ {
+  "ci": 81,
+  "qi": 51,
+  "id": "qumxkd2x86s",
+  "why": "too-few-options",
+  "q": "_______No Railway Servant except _______ are bookedfor more than 14 days continu"
+ },
+ {
+  "ci": 81,
+  "qi": 90,
+  "id": "q2cw73uqhgzz",
+  "why": "too-few-options",
+  "q": "Who was the President of the Tribunal formed for HOER in May 1969 and he was the"
+ },
+ {
+  "ci": 81,
+  "qi": 91,
+  "id": "q1g31uexolqc",
+  "why": "too-few-options",
+  "q": "When did Miyabhai tribunal give its award and when it was effected by the Indian"
+ },
+ {
+  "ci": 81,
+  "qi": 92,
+  "id": "q1bjtjki16ow",
+  "why": "too-few-options",
+  "q": "If rest is suspended temporarily, within how many days the rest in lieu may be g"
+ },
+ {
+  "ci": 81,
+  "qi": 93,
+  "id": "q4q45jvsvmw",
+  "why": "too-few-options",
+  "q": "Name the document showing the hours of a railway servant is expected to be on du"
+ },
+ {
+  "ci": 82,
+  "qi": 69,
+  "id": "q1h3jfq5txl2",
+  "why": "too-few-options",
+  "q": "Which of the following is not included under the definition of wages given under"
+ },
+ {
+  "ci": 83,
+  "qi": 1,
+  "id": "qvbc99r6snh",
+  "why": "too-few-options",
+  "q": "Paternity Leave is granted to _________ employees."
+ },
+ {
+  "ci": 83,
+  "qi": 10,
+  "id": "q1td1llgu48f",
+  "why": "too-few-options",
+  "q": "Casual Leave can be combined with Joining Time."
+ },
+ {
+  "ci": 84,
+  "qi": 0,
+  "id": "qjnajpwcbbl",
+  "why": "too-few-options",
+  "q": "Seniority of a employee will not affect due his own request transfer."
+ },
+ {
+  "ci": 84,
+  "qi": 20,
+  "id": "q1vs6n1qbvuh",
+  "why": "too-few-options",
+  "q": "To what extent relaxation in percentage of marks is given for reserved posts in "
+ },
+ {
+  "ci": 84,
+  "qi": 30,
+  "id": "qvcb788lfja",
+  "why": "too-few-options",
+  "q": "During the declaration of panel for promotion, if the employee, who is selected "
+ },
+ {
+  "ci": 84,
+  "qi": 34,
+  "id": "q1x3nb3ud21x",
+  "why": "too-few-options",
+  "q": "Under which rule seniority of a medically detcategorised employee who met in acc"
+ },
+ {
+  "ci": 84,
+  "qi": 38,
+  "id": "qq0n4v55bx8",
+  "why": "too-few-options",
+  "q": "After declaring the panel, if the procedural irregularity or other errors are fo"
+ },
+ {
+  "ci": 84,
+  "qi": 48,
+  "id": "q1lvwcc3tvjk",
+  "why": "too-few-options",
+  "q": "How will the posting be made to give out standing sportsman an out of turn promo"
+ },
+ {
+  "ci": 84,
+  "qi": 50,
+  "id": "qgdwpu434gt",
+  "why": "too-few-options",
+  "q": "Reservation for SC/ST in Railway Recruitment is _____% & ______% respectively."
+ },
+ {
+  "ci": 84,
+  "qi": 53,
+  "id": "qevrzi5e462",
+  "why": "too-few-options",
+  "q": "Inclusion of SC/ST officer in selection committee is necessary even if only Gene"
+ },
+ {
+  "ci": 84,
+  "qi": 54,
+  "id": "q23gy5wr2rqf",
+  "why": "too-few-options",
+  "q": "When there are only 03 members in a selection committee none of the officer can "
+ },
+ {
+  "ci": 84,
+  "qi": 57,
+  "id": "qn3slw7osdy",
+  "why": "too-few-options",
+  "q": "- Candidates expressing Un-willingness should also be reckoned in the zone of co"
+ },
+ {
+  "ci": 84,
+  "qi": 58,
+  "id": "q1uennsr9w7f",
+  "why": "too-few-options",
+  "q": "-, When candidates under zone of consideration for appearing a selection express"
+ },
+ {
+  "ci": 86,
+  "qi": 4,
+  "id": "qypg0dxmaru",
+  "why": "too-few-options",
+  "q": "Can the removedemployee participate in the meeting of the SBF?,"
+ },
+ {
+  "ci": 86,
+  "qi": 9,
+  "id": "q1x00yq0xd3r",
+  "why": "too-few-options",
+  "q": "Who is the authorised to nominate / select the members of the SBF?"
+ },
+ {
+  "ci": 86,
+  "qi": 18,
+  "id": "qqtqxcgc0eg",
+  "why": "too-few-options",
+  "q": "What is the scholarship amout for higher tech/profession education of female and"
+ },
+ {
+  "ci": 86,
+  "qi": 21,
+  "id": "q181euivyzrn",
+  "why": "too-few-options",
+  "q": "Departmental / workshop Employee Benefit Fund Sub-Committee To whom is the audit"
+ },
+ {
+  "ci": 86,
+  "qi": 23,
+  "id": "q1qtnqwce5l0",
+  "why": "too-few-options",
+  "q": "How much assistance can be approved on SBF per month?"
+ },
+ {
+  "ci": 86,
+  "qi": 47,
+  "id": "q14mrz2zuxqa",
+  "why": "too-few-options",
+  "q": "What is the minimum amount paid to a railway employee who is in railway sick and"
+ },
+ {
+  "ci": 88,
+  "qi": 2,
+  "id": "q1hamnochd2z",
+  "why": "too-few-options",
+  "q": "________ & ________ forms are used for issuing Major & Minor Penalty chargesheet"
+ },
+ {
+  "ci": 88,
+  "qi": 13,
+  "id": "q2eu476b56mu",
+  "why": "too-few-options",
+  "q": "Who is given Subsistence Allowance?"
+ },
+ {
+  "ci": 88,
+  "qi": 14,
+  "id": "q2f68kk01p1q",
+  "why": "too-few-options",
+  "q": "Which deductions are prohibited from Subsistence Allowance?"
+ },
+ {
+  "ci": 88,
+  "qi": 18,
+  "id": "q1jg8rb7cxen",
+  "why": "too-few-options",
+  "q": "What enclosures are mandatory with SF-11"
+ },
+ {
+  "ci": 88,
+  "qi": 20,
+  "id": "q67lb3bwcky",
+  "why": "too-few-options",
+  "q": "What is the time limit under DAR for increasing and decreasing punishment?"
+ },
+ {
+  "ci": 88,
+  "qi": 23,
+  "id": "qnbirh1u0r5",
+  "why": "too-few-options",
+  "q": "When is sealed cover procedure followed?"
+ },
+ {
+  "ci": 88,
+  "qi": 24,
+  "id": "q2e0h7qmk92z",
+  "why": "too-few-options",
+  "q": "Is welfare inspector may be permitted to work as defence lawyer in D&AR case?"
+ },
+ {
+  "ci": 88,
+  "qi": 29,
+  "id": "q5o5ws1zs9h",
+  "why": "too-few-options",
+  "q": "DAR 1968 not applicable to?"
+ },
+ {
+  "ci": 88,
+  "qi": 33,
+  "id": "q1s5up0s8vz3",
+  "why": "too-few-options",
+  "q": "Is an employee eligible for pension when he is compulsorily retired from service"
+ },
+ {
+  "ci": 88,
+  "qi": 43,
+  "id": "q7ueo2c6wp2",
+  "why": "too-few-options",
+  "q": "What is the difference between Removal and Dismissal from Service?"
+ },
+ {
+  "ci": 88,
+  "qi": 44,
+  "id": "q1kg6nx6uvg1",
+  "why": "too-few-options",
+  "q": "Whether the appealate or revisionory authority cand change dismissal / removal f"
+ },
+ {
+  "ci": 88,
+  "qi": 45,
+  "id": "q1mr23miva0b",
+  "why": "too-few-options",
+  "q": "Which kind of penalties a Asst Scale officer can impose and upto which GP of emp"
+ },
+ {
+  "ci": 89,
+  "qi": 12,
+  "id": "q1pm61n97mdc",
+  "why": "too-few-options",
+  "q": "When was NPS introduced?"
+ },
+ {
+  "ci": 89,
+  "qi": 15,
+  "id": "q1nbuf1b73m8",
+  "why": "too-few-options",
+  "q": "? How many digits are there in PPAN number and also explain the digit indication"
+ },
+ {
+  "ci": 89,
+  "qi": 21,
+  "id": "qbs16ccff9j",
+  "why": "too-few-options",
+  "q": "Whether substitute employee regularized after 1.1.2004 come under NPS?"
+ },
+ {
+  "ci": 89,
+  "qi": 34,
+  "id": "qilc5cfigeg",
+  "why": "too-few-options",
+  "q": "Whether dependent parents of bachelor son eligible for family pension?"
+ },
+ {
+  "ci": 89,
+  "qi": 46,
+  "id": "q29h0r5jcsrz",
+  "why": "too-few-options",
+  "q": "What percentage of Pension is enhanced on attaining age of 90 years?"
+ },
+ {
+  "ci": 89,
+  "qi": 51,
+  "id": "qasrvml83u3",
+  "why": "too-few-options",
+  "q": "What is min QS required for Invalid Pension?"
+ },
+ {
+  "ci": 89,
+  "qi": 53,
+  "id": "qjvuzqefurq",
+  "why": "too-few-options",
+  "q": "What was min pension w.e.f 01.01.2006?"
+ },
+ {
+  "ci": 89,
+  "qi": 55,
+  "id": "q17k989vdyqo",
+  "why": "too-few-options",
+  "q": "Under which Rule of the pension manual ‘Pension subject to future good conduct"
+ },
+ {
+  "ci": 89,
+  "qi": 58,
+  "id": "q1n2yrrbymbi",
+  "why": "too-few-options",
+  "q": "What is min QS for grant of Compassionate Allowance?"
+ },
+ {
+  "ci": 89,
+  "qi": 59,
+  "id": "qz1w9tyiqtr",
+  "why": "too-few-options",
+  "q": "What is percentage of additional quantum of pension for 94 years old pensioner?"
+ },
+ {
+  "ci": 89,
+  "qi": 61,
+  "id": "q1bwcu0gr0p6",
+  "why": "too-few-options",
+  "q": "To whom is the service gratuity applicable?"
+ },
+ {
+  "ci": 90,
+  "qi": 8,
+  "id": "q206dwqkg7sb",
+  "why": "too-few-options",
+  "q": "Whether priority 2 is followed for compassionate ground appointment for on duty "
+ },
+ {
+  "ci": 91,
+  "qi": 2,
+  "id": "qmk1twgemor",
+  "why": "too-few-options",
+  "q": "What is the earliar name of PREM?"
+ },
+ {
+  "ci": 91,
+  "qi": 4,
+  "id": "qo7vhl076wp",
+  "why": "too-few-options",
+  "q": "Who is the secretary of PREM meeting at Railway Board level?"
+ },
+ {
+  "ci": 91,
+  "qi": 33,
+  "id": "qpcetwov2ek",
+  "why": "too-few-options",
+  "q": "If there is no place in rest room for office bearers for PNM then on what rate r"
+ },
+ {
+  "ci": 91,
+  "qi": 35,
+  "id": "q23qm7x84uoc",
+  "why": "too-few-options",
+  "q": "How many persons participates in Adhoc Tribunal?"
+ },
+ {
+  "ci": 91,
+  "qi": 37,
+  "id": "qpp8p51qsrk",
+  "why": "too-few-options",
+  "q": "Which unions are recognised at Railway Board’s level?"
+ },
+ {
+  "ci": 91,
+  "qi": 38,
+  "id": "q28nw96cnaf0",
+  "why": "too-few-options",
+  "q": "By which labour organization NFIR is related?"
+ },
+ {
+  "ci": 91,
+  "qi": 41,
+  "id": "q8j3wmxs3g4",
+  "why": "too-few-options",
+  "q": "On which issues departmental council can not argue?"
+ },
+ {
+  "ci": 91,
+  "qi": 42,
+  "id": "qd652nixxfk",
+  "why": "too-few-options",
+  "q": "Who is the President of JCM?"
+ },
+ {
+  "ci": 91,
+  "qi": 43,
+  "id": "q26rtdy0omgn",
+  "why": "too-few-options",
+  "q": "How many members represent from Government & Employees in departmental council?"
+ },
+ {
+  "ci": 91,
+  "qi": 47,
+  "id": "q1x5mea7qcmn",
+  "why": "too-few-options",
+  "q": "Is decision of Board of Arbitration are binding on both sides?"
+ },
+ {
+  "ci": 91,
+  "qi": 49,
+  "id": "qt6ssfeedv9",
+  "why": "too-few-options",
+  "q": "Name of the two associations of Gazetted officers in Indian Railways?"
+ },
+ {
+  "ci": 91,
+  "qi": 51,
+  "id": "q1mm3qkghean",
+  "why": "too-few-options",
+  "q": "Is minutes to be issued for conversations with All India SC/ST Employees’s Assoc"
+ },
+ {
+  "ci": 91,
+  "qi": 53,
+  "id": "q9t6h2mhe8r",
+  "why": "too-few-options",
+  "q": "If there is dispute on transfer of office bearers of a recognised union between "
+ },
+ {
+  "ci": 91,
+  "qi": 54,
+  "id": "qfywejbno1s",
+  "why": "too-few-options",
+  "q": "How many persons can be travel together by card pass which is issued for 4 offic"
+ },
+ {
+  "ci": 91,
+  "qi": 55,
+  "id": "q1v2vhkw0jn7",
+  "why": "too-few-options",
+  "q": "What is the rate of fare for Railway telephone which are available in houses of "
+ },
+ {
+  "ci": 91,
+  "qi": 56,
+  "id": "q2fge25mps80",
+  "why": "too-few-options",
+  "q": "Is retired or out sider persons may be the office bearers?"
+ },
+ {
+  "ci": 91,
+  "qi": 57,
+  "id": "qyacqr8ywx7",
+  "why": "too-few-options",
+  "q": "Is branch of Union may be opened where staff is below 500 employees in a unit"
+ },
+ {
+  "ci": 91,
+  "qi": 59,
+  "id": "q1de58jpcfp4",
+  "why": "too-few-options",
+  "q": "Is Special CL may be granted to the employees who are participating in working c"
+ },
+ {
+  "ci": 91,
+  "qi": 60,
+  "id": "qsmuacjqqpn",
+  "why": "too-few-options",
+  "q": "What is the rent to be deposited to Railway,for the building which is being used"
+ },
+ {
+  "ci": 91,
+  "qi": 61,
+  "id": "q1eumtueabjx",
+  "why": "too-few-options",
+  "q": "How many days travel / daily allowance granted for Indian Scout Guide Activities"
+ },
+ {
+  "ci": 91,
+  "qi": 62,
+  "id": "qpwat598cru",
+  "why": "too-few-options",
+  "q": "Is Special pass is applicable for participation in the meeting of management com"
+ },
+ {
+  "ci": 91,
+  "qi": 63,
+  "id": "quiimplu5o4",
+  "why": "too-few-options",
+  "q": "________ _________ is the Chairman of PNM at Railway Board level."
+ },
+ {
+  "ci": 91,
+  "qi": 67,
+  "id": "q1kc3v268q36",
+  "why": "too-few-options",
+  "q": "Who is the Chairman of JCM at national level _________."
+ },
+ {
+  "ci": 91,
+  "qi": 70,
+  "id": "qa06tf6c3vf",
+  "why": "too-few-options",
+  "q": "Full form of AISCSTREA"
+ },
+ {
+  "ci": 91,
+  "qi": 71,
+  "id": "q1uw0po58oaj",
+  "why": "too-few-options",
+  "q": "How many special casual leave can be granted for a branch on Divisional level to"
+ },
+ {
+  "ci": 93,
+  "qi": 2,
+  "id": "q1xmc6drafsa",
+  "why": "too-few-options",
+  "q": "What is thebasic object of the Right to Information Act"
+ },
+ {
+  "ci": 93,
+  "qi": 3,
+  "id": "qyy0such3d8",
+  "why": "too-few-options",
+  "q": "What is full form of CIC"
+ },
+ {
+  "ci": 93,
+  "qi": 4,
+  "id": "q1j6ckbs7cz5",
+  "why": "too-few-options",
+  "q": "What is the time limit for replying to the request of life or liberty ofany pers"
+ },
+ {
+  "ci": 93,
+  "qi": 6,
+  "id": "q19d942yuy4d",
+  "why": "too-few-options",
+  "q": "For seeking information what is fee & in which format it should pay."
+ },
+ {
+  "ci": 93,
+  "qi": 7,
+  "id": "q2er8qutug13",
+  "why": "too-few-options",
+  "q": "Who is 2 appellate authority?"
+ },
+ {
+  "ci": 93,
+  "qi": 8,
+  "id": "qre4h5cfuib",
+  "why": "too-few-options",
+  "q": "2 What is section 2"
+ },
+ {
+  "ci": 93,
+  "qi": 9,
+  "id": "qfm3es1av8h",
+  "why": "too-few-options",
+  "q": "What is defined in section 4?"
+ },
+ {
+  "ci": 93,
+  "qi": 10,
+  "id": "q2cyzw4uo9uu",
+  "why": "too-few-options",
+  "q": "What is section 6?"
+ },
+ {
+  "ci": 93,
+  "qi": 11,
+  "id": "q1w9yrqvmy07",
+  "why": "too-few-options",
+  "q": "What is mentioned in section 8?"
+ },
+ {
+  "ci": 93,
+  "qi": 12,
+  "id": "qtwmks17z0g",
+  "why": "too-few-options",
+  "q": "State any four Central Intelligence & security agencies specified in the second "
+ },
+ {
+  "ci": 93,
+  "qi": 13,
+  "id": "q1r9kgkc0lwe",
+  "why": "too-few-options",
+  "q": "Which bodies are not within the RTI Act’s Ambit directly?"
+ },
+ {
+  "ci": 95,
+  "qi": 2,
+  "id": "q1yq1h9t31u8",
+  "why": "too-few-options",
+  "q": "Is compassionate ground appointment may be applicable to the family of dead temp"
+ },
+ {
+  "ci": 95,
+  "qi": 4,
+  "id": "q20dnjzumet5",
+  "why": "too-few-options",
+  "q": "Those casual labour who have not governed with minimum wages act, are they eligi"
+ },
+ {
+  "ci": 95,
+  "qi": 7,
+  "id": "q1nzcwf6f1f3",
+  "why": "too-few-options",
+  "q": "Till how many days a panel after screening of casual labour is valid?"
+ },
+ {
+  "ci": 95,
+  "qi": 9,
+  "id": "q1wm0a8neowb",
+  "why": "too-few-options",
+  "q": "After completion of how many days casual labours are entitled for pay hike?"
+ },
+ {
+  "ci": 96,
+  "qi": 4,
+  "id": "q1wpoudb34dk",
+  "why": "too-few-options",
+  "q": "How will the difference of OT (difference) be due to the result of the upgrade?"
+ },
+ {
+  "ci": 96,
+  "qi": 20,
+  "id": "qbrj3nt0mmo",
+  "why": "too-few-options",
+  "q": "Which level officer can take the facility of Bangla peon?"
+ },
+ {
+  "ci": 97,
+  "qi": 1,
+  "id": "qmjy980zhnx",
+  "why": "too-few-options",
+  "q": "Which allowances shall be paid when a running staff are engaged on non-runningdu"
+ },
+ {
+  "ci": 97,
+  "qi": 4,
+  "id": "q1vlyoakevcl",
+  "why": "too-few-options",
+  "q": "Which type of allowance shall be admissible to running staff who are detailed fo"
+ },
+ {
+  "ci": 97,
+  "qi": 5,
+  "id": "qa5hgu5fki3",
+  "why": "too-few-options",
+  "q": "How much officiating allowance shall be paid when a running staff put to officia"
+ },
+ {
+  "ci": 97,
+  "qi": 6,
+  "id": "q1manj15k2x0",
+  "why": "too-few-options",
+  "q": "Shall 30% of the basic pay of running staff be reckoned as a pay for entitlement"
+ },
+ {
+  "ci": 97,
+  "qi": 9,
+  "id": "q10zybzdx0n2",
+  "why": "too-few-options",
+  "q": "Howto calculate encashment of leave of a running staff."
+ },
+ {
+  "ci": 97,
+  "qi": 10,
+  "id": "q1qey06qvmq3",
+  "why": "too-few-options",
+  "q": "Shall 30% of the basic pay of running staff be reckoned as a pay for granting Tr"
+ },
+ {
+  "ci": 97,
+  "qi": 12,
+  "id": "q233xudyqdo4",
+  "why": "too-few-options",
+  "q": "How much percentage on Running Allowances per month shall be exempted for the pu"
+ },
+ {
+  "ci": 97,
+  "qi": 13,
+  "id": "q22mt508mgk3",
+  "why": "too-few-options",
+  "q": "How to rounding of to the nearest kilometers of the total kilometerage earned by"
+ },
+ {
+  "ci": 97,
+  "qi": 25,
+  "id": "q1h02241ef3x",
+  "why": "too-few-options",
+  "q": "What is pay factor of 7 PC for Running Staff.?"
+ },
+ {
+  "ci": 97,
+  "qi": 28,
+  "id": "q1kffxekfqnp",
+  "why": "too-few-options",
+  "q": "For the Purpose of allotment of quarter Running Staff are classified.?"
+ },
+ {
+  "ci": 109,
+  "qi": 733,
+  "id": "q1lmorlpj86m",
+  "why": "too-few-options",
+  "q": "What is the% of Direct/Promotional quota of Sr.Clerk?"
+ },
+ {
+  "ci": 109,
+  "qi": 735,
+  "id": "q1feepzwff1",
+  "why": "too-few-options",
+  "q": "What is the age limit for filling up vacancies for PHP among SC?"
+ },
+ {
+  "ci": 109,
+  "qi": 747,
+  "id": "qk68ebv6j8w",
+  "why": "too-few-options",
+  "q": "What is the% for promotional quota from Level 1 to Level 3 for Commercial clerk?"
+ },
+ {
+  "ci": 109,
+  "qi": 758,
+  "id": "qgjwulfugrr",
+  "why": "too-few-options",
+  "q": "How many candidates can be appointed on cultural quota in Gr.'C’ per year per zo"
+ },
+ {
+  "ci": 109,
+  "qi": 759,
+  "id": "qyyeu2clm6b",
+  "why": "too-few-options",
+  "q": "How many candidates can be appointend on Scouts and Guides quota in Gr. C per ye"
+ },
+ {
+  "ci": 109,
+  "qi": 766,
+  "id": "qg5z1hcezrv",
+  "why": "too-few-options",
+  "q": "What is the% for departmental promotion of Chief S&WI Level-7?"
+ },
+ {
+  "ci": 109,
+  "qi": 771,
+  "id": "q1zdv66jeaq0",
+  "why": "too-few-options",
+  "q": "What is the source of filling up vacancies of ASM?"
+ },
+ {
+  "ci": 109,
+  "qi": 772,
+  "id": "q25npj79zuia",
+  "why": "too-few-options",
+  "q": "NTPC Non-technical Popular category NTPC will be filled on which basis.?"
+ },
+ {
+  "ci": 109,
+  "qi": 773,
+  "id": "q263t4qbt8k5",
+  "why": "too-few-options",
+  "q": "What is the source of filling up vacancies of JE (W)?"
+ },
+ {
+  "ci": 109,
+  "qi": 774,
+  "id": "q21jlwch3u6r",
+  "why": "too-few-options",
+  "q": "How is the post of JE (Signal)) filled?"
+ },
+ {
+  "ci": 109,
+  "qi": 776,
+  "id": "q1jos4qkezfe",
+  "why": "too-few-options",
+  "q": "How many advance increments can a employee get on completion of Post Graduate, D"
+ },
+ {
+  "ci": 109,
+  "qi": 782,
+  "id": "q23jai6wy0u",
+  "why": "too-few-options",
+  "q": "? Is temporary Special Class Railway Apprentice is entitled for HRA under traini"
+ },
+ {
+  "ci": 109,
+  "qi": 783,
+  "id": "qtrbaoj1c0z",
+  "why": "too-few-options",
+  "q": "When will an apprentice permitted to resign between the training period?"
+ },
+ {
+  "ci": 109,
+  "qi": 789,
+  "id": "q171dvjdcbd8",
+  "why": "too-few-options",
+  "q": "What is the Minimum Education qualification for level-2 in S&T Department?"
+ },
+ {
+  "ci": 109,
+  "qi": 797,
+  "id": "qpr1nv51155",
+  "why": "too-few-options",
+  "q": "Interest on House building advance up to 5 lakhs is _______."
+ },
+ {
+  "ci": 109,
+  "qi": 801,
+  "id": "q3xj262aetn",
+  "why": "too-few-options",
+  "q": "Rate per month for Hostel subsidy is ________."
+ },
+ {
+  "ci": 109,
+  "qi": 806,
+  "id": "q149zkycxpv4",
+  "why": "too-few-options",
+  "q": "Is PCPO authorized to approve dual charge of a JAG officer upto 3 months?"
+ },
+ {
+  "ci": 109,
+  "qi": 808,
+  "id": "q2ekbgc111ye",
+  "why": "too-few-options",
+  "q": "What is the percentage monthly contribution of PF?"
+ },
+ {
+  "ci": 109,
+  "qi": 810,
+  "id": "q20h51e1wyok",
+  "why": "too-few-options",
+  "q": "After how many year final withdrawal can be done from PF account."
+ },
+ {
+  "ci": 109,
+  "qi": 811,
+  "id": "q9l89kk9zug",
+  "why": "too-few-options",
+  "q": "How many months salary is allowed to be finally withdrawn from PF account in cas"
+ },
+ {
+  "ci": 109,
+  "qi": 812,
+  "id": "qppolhosfyc",
+  "why": "too-few-options",
+  "q": "What is the total service required for final withdrawal from PF account for repa"
+ },
+ {
+  "ci": 109,
+  "qi": 815,
+  "id": "q15tuf2yx87j",
+  "why": "too-few-options",
+  "q": "What is the% of TA if an employee is out of his headquarters for 12 hours."
+ },
+ {
+  "ci": 109,
+  "qi": 816,
+  "id": "q1627xqsm19q",
+  "why": "too-few-options",
+  "q": "TA is divided in how many parts?"
+ },
+ {
+  "ci": 109,
+  "qi": 817,
+  "id": "q10svh24w2ml",
+  "why": "too-few-options",
+  "q": "What is the rate of HRA in metropolitan cities?"
+ },
+ {
+  "ci": 109,
+  "qi": 818,
+  "id": "q22y6zt5jw5a",
+  "why": "too-few-options",
+  "q": "What is the rate of HRA in Delhi?"
+ },
+ {
+  "ci": 109,
+  "qi": 820,
+  "id": "q23l4qe1ikc4",
+  "why": "too-few-options",
+  "q": "What is the% of the salary being paid in the form of NPA to Doctors?"
+ },
+ {
+  "ci": 109,
+  "qi": 822,
+  "id": "q144xmxwb9l8",
+  "why": "too-few-options",
+  "q": "How much advance can be sanctioned for purchase of scooter?"
+ },
+ {
+  "ci": 109,
+  "qi": 823,
+  "id": "quq8ae4gflj",
+  "why": "too-few-options",
+  "q": "What is the maximum limit of HBA that can be sanctioned?"
+ },
+ {
+  "ci": 109,
+  "qi": 824,
+  "id": "q25fpdmxvotj",
+  "why": "too-few-options",
+  "q": "Is HBA admissible for purchasing land?"
+ },
+ {
+  "ci": 109,
+  "qi": 827,
+  "id": "q29z1yoffype",
+  "why": "too-few-options",
+  "q": "What is the interest rate on motor car advances?"
+ },
+ {
+  "ci": 109,
+  "qi": 831,
+  "id": "qodvp4nd44y",
+  "why": "too-few-options",
+  "q": "The Minimum & Maximum rates of Transport of Personal Effects are"
+ },
+ {
+  "ci": 109,
+  "qi": 836,
+  "id": "q239jug9viw5",
+  "why": "too-few-options",
+  "q": "How much Allowance is paid to Train Controllers as per 7th CPC?"
+ },
+ {
+  "ci": 109,
+  "qi": 837,
+  "id": "qw8m8tzpjjg",
+  "why": "too-few-options",
+  "q": "How many Pay Matrix L evels as per 7th CPC?"
+ },
+ {
+  "ci": 109,
+  "qi": 839,
+  "id": "q27q9rsib442",
+  "why": "too-few-options",
+  "q": "Max DCRG as per 7th CPC?"
+ },
+ {
+  "ci": 109,
+  "qi": 852,
+  "id": "qup3rqr6pes",
+  "why": "too-few-options",
+  "q": "Is travel break allowed within the school account Pass?,"
+ },
+ {
+  "ci": 109,
+  "qi": 857,
+  "id": "qq2f0xnh2u4",
+  "why": "too-few-options",
+  "q": "Can privilege pass be issued in favour of legally divorced wife of a railway emp"
+ },
+ {
+  "ci": 109,
+  "qi": 868,
+  "id": "q11gu46ud4q",
+  "why": "too-few-options",
+  "q": "_________, _________ ________ The Metal Token/Duty Passes are ________, _______ "
+ },
+ {
+  "ci": 109,
+  "qi": 877,
+  "id": "q2du73oq50s9",
+  "why": "too-few-options",
+  "q": "Attendant of Ist class A pass can be travel in ________ class."
+ },
+ {
+  "ci": 109,
+  "qi": 879,
+  "id": "q22sl9j2fe5r",
+  "why": "too-few-options",
+  "q": "Types of Passes issued to Railway Servant and his bonafide dependants"
+ },
+ {
+  "ci": 109,
+  "qi": 880,
+  "id": "q23tgcaqq66h",
+  "why": "too-few-options",
+  "q": "Who is entitled for First class pass"
+ },
+ {
+  "ci": 109,
+  "qi": 883,
+  "id": "q2en6uuqh33w",
+  "why": "too-few-options",
+  "q": "Total Privilege Passes issued to a non-gazzetted employee in a year"
+ },
+ {
+  "ci": 109,
+  "qi": 885,
+  "id": "q1lu2po61q6w",
+  "why": "too-few-options",
+  "q": "Can the school Account passes be issued without any school certificate"
+ },
+ {
+  "ci": 109,
+  "qi": 887,
+  "id": "q1ky31la5q0t",
+  "why": "too-few-options",
+  "q": "Residential card Pass will be issued of which category?"
+ },
+ {
+  "ci": 109,
+  "qi": 888,
+  "id": "q1h8go8m5ijg",
+  "why": "too-few-options",
+  "q": "Can a special pass is given to the employee who has been removed from the servic"
+ },
+ {
+  "ci": 109,
+  "qi": 889,
+  "id": "q2b5rj8zjemn",
+  "why": "too-few-options",
+  "q": "How many sets of passes are payable to the employees working in the cooperative "
+ },
+ {
+  "ci": 109,
+  "qi": 893,
+  "id": "qp6ykgnjwxb",
+  "why": "too-few-options",
+  "q": "Paternity Leave is granted to _________ employees."
+ },
+ {
+  "ci": 109,
+  "qi": 900,
+  "id": "q2c6mmbichxx",
+  "why": "too-few-options",
+  "q": "Casual Leave can be combined with Joining Time."
+ },
+ {
+  "ci": 109,
+  "qi": 925,
+  "id": "q1buyu8q90pg",
+  "why": "too-few-options",
+  "q": "According to which paragraph of IREC VOL-I, no leave will be payable if there is"
+ },
+ {
+  "ci": 109,
+  "qi": 975,
+  "id": "q1d226vr80zl",
+  "why": "too-few-options",
+  "q": "Seniority of a employee will not affect due his own request transfer."
+ },
+ {
+  "ci": 109,
+  "qi": 990,
+  "id": "q2fi375796kr",
+  "why": "too-few-options",
+  "q": "How many opportunities will be given again when the SC / ST trainee /Apprantice "
+ },
+ {
+  "ci": 109,
+  "qi": 991,
+  "id": "q1hp4k3v21vr",
+  "why": "too-few-options",
+  "q": "To what extent relaxation in percentage of marks is given for reserved posts in "
+ },
+ {
+  "ci": 109,
+  "qi": 997,
+  "id": "qnfv3ml44bo",
+  "why": "too-few-options",
+  "q": "Under which rule is the salary fixation on promotion?"
+ },
+ {
+  "ci": 109,
+  "qi": 999,
+  "id": "q9kwi7wrtrk",
+  "why": "too-few-options",
+  "q": "Under which rule of the IREM, the wrong assessment and wrong promotions can be c"
+ },
+ {
+  "ci": 109,
+  "qi": 1001,
+  "id": "q1vll0ho94o",
+  "why": "too-few-options",
+  "q": "During the declaration of panel for promotion, if the employee, who is selected "
+ },
+ {
+  "ci": 109,
+  "qi": 1006,
+  "id": "q24vpwe0drjb",
+  "why": "too-few-options",
+  "q": "Under which rule seniority of a medically detcategorised employee who met in acc"
+ },
+ {
+  "ci": 109,
+  "qi": 1011,
+  "id": "q1g4bc34lp0q",
+  "why": "too-few-options",
+  "q": "After declaring the panel, if the procedural irregularity or other errors are fo"
+ },
+ {
+  "ci": 109,
+  "qi": 1016,
+  "id": "q1uj0c8x6i4x",
+  "why": "too-few-options",
+  "q": "Is there a provision of written examination for selection of Passenger Guard or "
+ },
+ {
+  "ci": 109,
+  "qi": 1022,
+  "id": "q1j1652zaeua",
+  "why": "too-few-options",
+  "q": "The training period prior to the appointment is to be counted for which purposes"
+ },
+ {
+  "ci": 109,
+  "qi": 1023,
+  "id": "q14wtyrckp25",
+  "why": "too-few-options",
+  "q": "How will the posting be made to give out standing sportsman an out of turn promo"
+ },
+ {
+  "ci": 109,
+  "qi": 1029,
+  "id": "q2dyy4kuyx0j",
+  "why": "too-few-options",
+  "q": "Inclusion of SC/ST officer in selection committee is necessary even if only Gene"
+ },
+ {
+  "ci": 109,
+  "qi": 1032,
+  "id": "qszy3iw52xq",
+  "why": "too-few-options",
+  "q": "- Candidates expressing Un-willingness should also be reckoned in the zone of co"
+ },
+ {
+  "ci": 109,
+  "qi": 1033,
+  "id": "qjso7lxdvrs",
+  "why": "too-few-options",
+  "q": "-, When candidates under zone of consideration for appearing a selection express"
+ },
+ {
+  "ci": 109,
+  "qi": 1041,
+  "id": "q29esjil3ro6",
+  "why": "too-few-options",
+  "q": "When a selection is notified for only UR vacancies, the relaxation in Passing ma"
+ },
+ {
+  "ci": 109,
+  "qi": 1059,
+  "id": "q12zym8qtth3",
+  "why": "too-few-options",
+  "q": "________ APAR stands for ________"
+ },
+ {
+  "ci": 109,
+  "qi": 1094,
+  "id": "q1l26g8yexr",
+  "why": "too-few-options",
+  "q": "Who is given Subsistence Allowance?"
+ },
+ {
+  "ci": 109,
+  "qi": 1102,
+  "id": "qq9smkfzq7n",
+  "why": "too-few-options",
+  "q": "When is sealed cover procedure followed?"
+ },
+ {
+  "ci": 109,
+  "qi": 1103,
+  "id": "q1f77s3u6kw9",
+  "why": "too-few-options",
+  "q": "Is welfare inspector may be permitted to work as defence lawyer in D&AR case?"
+ },
+ {
+  "ci": 109,
+  "qi": 1108,
+  "id": "q1hxbduzlisy",
+  "why": "too-few-options",
+  "q": "DAR 1968 not applicable to?"
+ },
+ {
+  "ci": 109,
+  "qi": 1115,
+  "id": "q23su8xso5cl",
+  "why": "too-few-options",
+  "q": "To whom will an appeal made when the post of Appellate Authority falls vacant?"
+ },
+ {
+  "ci": 109,
+  "qi": 1122,
+  "id": "q22ektgjb1p6",
+  "why": "too-few-options",
+  "q": "What is the difference between Removal and Dismissal from Service?"
+ },
+ {
+  "ci": 109,
+  "qi": 1123,
+  "id": "qm04egqbeqa",
+  "why": "too-few-options",
+  "q": "Whether the appealate or revisionory authority cand change dismissal / removal f"
+ },
+ {
+  "ci": 109,
+  "qi": 1133,
+  "id": "qpga7ip3qmi",
+  "why": "too-few-options",
+  "q": "Whether priority 2 is followed for compassionate ground appointment for on duty "
+ },
+ {
+  "ci": 109,
+  "qi": 1195,
+  "id": "q1e4646krbxk",
+  "why": "too-few-options",
+  "q": "How will the difference of OT (difference) be due to the result of the upgrade?"
+ },
+ {
+  "ci": 109,
+  "qi": 1200,
+  "id": "qurfpy7enwd",
+  "why": "too-few-options",
+  "q": "Who is the Chairman of the employee welfare fund SBF at the Divisional level?"
+ },
+ {
+  "ci": 109,
+  "qi": 1207,
+  "id": "q1t1ueka261p",
+  "why": "too-few-options",
+  "q": "What is the transfer of quota on the request of the person, i.e. direct recruitm"
+ },
+ {
+  "ci": 109,
+  "qi": 1216,
+  "id": "qgn9nser91g",
+  "why": "too-few-options",
+  "q": "Which level officer can take the facility of Bangla peon?"
+ },
+ {
+  "ci": 109,
+  "qi": 1217,
+  "id": "q1d67hwpx9ei",
+  "why": "too-few-options",
+  "q": "What is the salary given to the bungalow peon?"
+ },
+ {
+  "ci": 109,
+  "qi": 1223,
+  "id": "qic0gd13xcy",
+  "why": "too-few-options",
+  "q": "Which allowances shall be paid when a running staff are engaged on non-runningdu"
+ },
+ {
+  "ci": 109,
+  "qi": 1225,
+  "id": "qukyghqa1ki",
+  "why": "too-few-options",
+  "q": "Which type of allowance shall be admissible to running staff who are detailed fo"
+ },
+ {
+  "ci": 109,
+  "qi": 1226,
+  "id": "qqllk36q7yi",
+  "why": "too-few-options",
+  "q": "30 How much officiating allowance shall be paid when a running staff put to offi"
+ },
+ {
+  "ci": 109,
+  "qi": 1227,
+  "id": "q18dcvxubsop",
+  "why": "too-few-options",
+  "q": "Shall 30% of the basic pay of running staff be reckoned as a pay for entitlement"
+ },
+ {
+  "ci": 109,
+  "qi": 1232,
+  "id": "q26aq7k0ynrf",
+  "why": "too-few-options",
+  "q": "Howto calculate encashment of leave of a running staff."
+ },
+ {
+  "ci": 109,
+  "qi": 1233,
+  "id": "q2bzm65bzu69",
+  "why": "too-few-options",
+  "q": "Shall 30% of the basic pay of running staff be reckoned as a pay for granting Tr"
+ },
+ {
+  "ci": 109,
+  "qi": 1234,
+  "id": "q119w97yjdw9",
+  "why": "too-few-options",
+  "q": "How much percentage on Running Allowances per month shall be exempted for the pu"
+ },
+ {
+  "ci": 109,
+  "qi": 1235,
+  "id": "q25fj0yo7k8a",
+  "why": "too-few-options",
+  "q": "How to rounding of to the nearest kilometers of the total kilometerage earned by"
+ },
+ {
+  "ci": 109,
+  "qi": 1236,
+  "id": "q253wrm5m344",
+  "why": "too-few-options",
+  "q": "What is the level in the Pay Matrix in the seventh Pay Commission of Loco Pilot "
+ },
+ {
+  "ci": 109,
+  "qi": 1250,
+  "id": "q26hl26xtqjp",
+  "why": "too-few-options",
+  "q": "What is pay factor of 7 PC for Running Staff.?"
+ },
+ {
+  "ci": 109,
+  "qi": 1254,
+  "id": "q1s9tkfzj79p",
+  "why": "too-few-options",
+  "q": "For the Purpose of allotment of quarter Running Staff are classified.?"
+ },
+ {
+  "ci": 109,
+  "qi": 1292,
+  "id": "qi8ak1oadk",
+  "why": "too-few-options",
+  "q": "Whether unmarried daughter above the age of 25 yrs is eligible for family pensio"
+ },
+ {
+  "ci": 109,
+  "qi": 1294,
+  "id": "qb58lb727y",
+  "why": "too-few-options",
+  "q": "When was NPS introduced?"
+ },
+ {
+  "ci": 109,
+  "qi": 1297,
+  "id": "q1zq7pbhflbo",
+  "why": "too-few-options",
+  "q": "? How many digits are there in PPAN number and also explain the digit indication"
+ },
+ {
+  "ci": 109,
+  "qi": 1303,
+  "id": "q2f8njbd92ln",
+  "why": "too-few-options",
+  "q": "Whether substitute employee regularized after 1.1.2004 come under NPS?"
+ },
+ {
+  "ci": 109,
+  "qi": 1319,
+  "id": "q1rxc6q1zzpm",
+  "why": "too-few-options",
+  "q": "Whether dependent parents of bachelor son eligible for family pension?"
+ },
+ {
+  "ci": 109,
+  "qi": 1320,
+  "id": "q1qvdttbbz6h",
+  "why": "too-few-options",
+  "q": "For how much monthly income does Son/daughter, parents are not eligible for fami"
+ },
+ {
+  "ci": 109,
+  "qi": 1332,
+  "id": "q10y5cnmay8y",
+  "why": "too-few-options",
+  "q": "Is Widow of casual labour attaining temporary status eligible for pension?"
+ },
+ {
+  "ci": 109,
+  "qi": 1336,
+  "id": "q6b3ok6pmu6",
+  "why": "too-few-options",
+  "q": "What percentage of Pension is enhanced on attaining age of 90 years?"
+ },
+ {
+  "ci": 109,
+  "qi": 1341,
+  "id": "q1wk486ekkac",
+  "why": "too-few-options",
+  "q": "What was min pension w.e.f 01.01.2006?"
+ },
+ {
+  "ci": 109,
+  "qi": 1344,
+  "id": "q1n3wvtiasjp",
+  "why": "too-few-options",
+  "q": "What is min QS for grant of Compassionate Allowance?"
+ },
+ {
+  "ci": 109,
+  "qi": 1345,
+  "id": "q228kfx3aa8e",
+  "why": "too-few-options",
+  "q": "What is percentage of additional quantum of pension for 94 years old pensioner?"
+ },
+ {
+  "ci": 109,
+  "qi": 1433,
+  "id": "q1y2mxdse9ve",
+  "why": "too-few-options",
+  "q": "What is the main motive of meeting of PREM?"
+ },
+ {
+  "ci": 109,
+  "qi": 1435,
+  "id": "q1dxjg3ub7ss",
+  "why": "too-few-options",
+  "q": "Who is the secretary of PREM meeting at Railway Board level?"
+ },
+ {
+  "ci": 109,
+  "qi": 1456,
+  "id": "q2b8b5zaz39j",
+  "why": "too-few-options",
+  "q": "If there is no place in rest room for office bearers for PNM then on what rate r"
+ },
+ {
+  "ci": 109,
+  "qi": 1458,
+  "id": "q8kksceqa0i",
+  "why": "too-few-options",
+  "q": "How many persons participates in Adhoc Tribunal?"
+ },
+ {
+  "ci": 109,
+  "qi": 1461,
+  "id": "q1mi53dqvzk2",
+  "why": "too-few-options",
+  "q": "Which unions are recognised at Railway Board’s level?"
+ },
+ {
+  "ci": 109,
+  "qi": 1462,
+  "id": "q26gkxs946bf",
+  "why": "too-few-options",
+  "q": "By which labour organization AIRF is related?"
+ },
+ {
+  "ci": 109,
+  "qi": 1463,
+  "id": "qzimwxdiyyk",
+  "why": "too-few-options",
+  "q": "By which labour organization NFIR is related?"
+ },
+ {
+  "ci": 109,
+  "qi": 1466,
+  "id": "q1mtp81ksi6d",
+  "why": "too-few-options",
+  "q": "When Board of Arbitration should be referenced?"
+ },
+ {
+  "ci": 109,
+  "qi": 1467,
+  "id": "qae8wxbmzwp",
+  "why": "too-few-options",
+  "q": "On which issues departmental council can not argue?"
+ },
+ {
+  "ci": 109,
+  "qi": 1468,
+  "id": "q52lkstr7ds",
+  "why": "too-few-options",
+  "q": "How many members participate from Government and Employees JCM?"
+ },
+ {
+  "ci": 109,
+  "qi": 1469,
+  "id": "q1m8746ckuxg",
+  "why": "too-few-options",
+  "q": "Who is the President of JCM?"
+ },
+ {
+  "ci": 109,
+  "qi": 1470,
+  "id": "q15089lce4bz",
+  "why": "too-few-options",
+  "q": "How many times JCM meetings organized in a year?"
+ },
+ {
+  "ci": 109,
+  "qi": 1471,
+  "id": "q6cto65ks43",
+  "why": "too-few-options",
+  "q": "How many members represent from Government & Employees in departmental council?"
+ },
+ {
+  "ci": 109,
+  "qi": 1474,
+  "id": "q1q0ja0yrdh1",
+  "why": "too-few-options",
+  "q": "when there is a dispute between National/departmentalcouncil and government, the"
+ },
+ {
+  "ci": 109,
+  "qi": 1476,
+  "id": "qix2ryjtem6",
+  "why": "too-few-options",
+  "q": "How many members exist in Board of Arbitration?"
+ },
+ {
+  "ci": 109,
+  "qi": 1477,
+  "id": "qlttgdiblvq",
+  "why": "too-few-options",
+  "q": "Is decision of Board of Arbitration are binding on both sides?"
+ },
+ {
+  "ci": 109,
+  "qi": 1478,
+  "id": "qqimohjg75o",
+  "why": "too-few-options",
+  "q": "Can the decision of Board of Arbitration change on dispute of National Council?"
+ },
+ {
+  "ci": 109,
+  "qi": 1480,
+  "id": "q28u7o7izufu",
+  "why": "too-few-options",
+  "q": "What is a recognised labour union and by which act it should be registered?"
+ },
+ {
+  "ci": 109,
+  "qi": 1481,
+  "id": "q1fh57jj6fw7",
+  "why": "too-few-options",
+  "q": "Name of the two associations of Gazetted officers in Indian Railways?"
+ },
+ {
+  "ci": 109,
+  "qi": 1482,
+  "id": "q14j3yt956gw",
+  "why": "too-few-options",
+  "q": "Is reply and action is compulsory for the complain of non recognised union?"
+ },
+ {
+  "ci": 109,
+  "qi": 1485,
+  "id": "q240oo73hbtn",
+  "why": "too-few-options",
+  "q": "Is minutes to be issued for conversations with All India SC/ST Employees’s Assoc"
+ },
+ {
+  "ci": 109,
+  "qi": 1487,
+  "id": "q1gkhrw6izao",
+  "why": "too-few-options",
+  "q": "If there is dispute on transfer of office bearers of a recognised union between "
+ },
+ {
+  "ci": 109,
+  "qi": 1488,
+  "id": "q762dq6ztia",
+  "why": "too-few-options",
+  "q": "How many check pass and card pass to be issued to office bearers of a union in a"
+ },
+ {
+  "ci": 109,
+  "qi": 1489,
+  "id": "q20jtl7bigtm",
+  "why": "too-few-options",
+  "q": "How many persons can be travel together by card pass which is issued for 4 offic"
+ },
+ {
+  "ci": 109,
+  "qi": 1490,
+  "id": "q2auna0f54hd",
+  "why": "too-few-options",
+  "q": "What is the rate of fare for Railway telephone which are available in houses of "
+ },
+ {
+  "ci": 109,
+  "qi": 1491,
+  "id": "q1nywyddsmx8",
+  "why": "too-few-options",
+  "q": "In how many period election of recognized union should be held?"
+ },
+ {
+  "ci": 109,
+  "qi": 1492,
+  "id": "qosfe2tgahh",
+  "why": "too-few-options",
+  "q": "Is retired or out sider persons may be the office bearers?"
+ },
+ {
+  "ci": 109,
+  "qi": 1493,
+  "id": "q2ggotkq1qop",
+  "why": "too-few-options",
+  "q": "What is the term and conditions for recognisation of unions?"
+ },
+ {
+  "ci": 109,
+  "qi": 1494,
+  "id": "q1e0md6vtg7p",
+  "why": "too-few-options",
+  "q": "Is branch of Union may be opened where staff is below 500 employees in a unit"
+ },
+ {
+  "ci": 109,
+  "qi": 1497,
+  "id": "q1v313qfvan1",
+  "why": "too-few-options",
+  "q": "Is Special CL may be granted to the employees who are participating in working c"
+ },
+ {
+  "ci": 109,
+  "qi": 1498,
+  "id": "q1i3l6levlfe",
+  "why": "too-few-options",
+  "q": "Is non Railway employees may be member of Club and institute?"
+ },
+ {
+  "ci": 109,
+  "qi": 1499,
+  "id": "q1d7fkys7nso",
+  "why": "too-few-options",
+  "q": "What is the rent to be deposited to Railway,for the building which is being used"
+ },
+ {
+  "ci": 109,
+  "qi": 1501,
+  "id": "qglrwfbrlf7",
+  "why": "too-few-options",
+  "q": "How many types coperative societies are in Railways?"
+ },
+ {
+  "ci": 109,
+  "qi": 1502,
+  "id": "q261trtm2x8h",
+  "why": "too-few-options",
+  "q": "Is Special pass is applicable for participation in the meeting of management com"
+ },
+ {
+  "ci": 109,
+  "qi": 1503,
+  "id": "qviavxlhknq",
+  "why": "too-few-options",
+  "q": "Is pass & PTO are applicable for employees of coperative society?"
+ },
+ {
+  "ci": 109,
+  "qi": 1504,
+  "id": "qe1t0sc3glu",
+  "why": "too-few-options",
+  "q": "________ _________ is the Chairman of PNM at Railway Board level."
+ },
+ {
+  "ci": 109,
+  "qi": 1510,
+  "id": "qnjhi39g3rq",
+  "why": "too-few-options",
+  "q": "Who is the Chairman of JCM at national level _________."
+ },
+ {
+  "ci": 109,
+  "qi": 1511,
+  "id": "q22a6tm6ve30",
+  "why": "too-few-options",
+  "q": "What type of leave is granted to recognised union office bearers for attending v"
+ },
+ {
+  "ci": 109,
+  "qi": 1515,
+  "id": "qfcdjiu3odl",
+  "why": "too-few-options",
+  "q": "Full form of AISCSTREA"
+ },
+ {
+  "ci": 109,
+  "qi": 1516,
+  "id": "q1upf5cmm5ed",
+  "why": "too-few-options",
+  "q": "How many special casual leave can be granted for a branch on Divisional level to"
+ },
+ {
+  "ci": 109,
+  "qi": 1529,
+  "id": "q1lmbs8xs25v",
+  "why": "too-few-options",
+  "q": "What are the basic facilities that can be provided in the office accommodation p"
+ },
+ {
+  "ci": 109,
+  "qi": 1531,
+  "id": "q17y3fgp35sh",
+  "why": "too-few-options",
+  "q": "Who can participate in PREM meeting?"
+ },
+ {
+  "ci": 109,
+  "qi": 1535,
+  "id": "q1op3k5kweuf",
+  "why": "too-few-options",
+  "q": "Is compassionate ground appointment may be applicable to the family of dead temp"
+ },
+ {
+  "ci": 109,
+  "qi": 1540,
+  "id": "q29qra1s6oxj",
+  "why": "too-few-options",
+  "q": "How seniority exist for casual labours?? Who is the authorised to grant relaxati"
+ },
+ {
+  "ci": 109,
+  "qi": 1542,
+  "id": "q14bf15d7uhm",
+  "why": "too-few-options",
+  "q": "After completion of how many days casual labours are entitled for pay hike?"
+ },
+ {
+  "ci": 109,
+  "qi": 3958,
+  "id": "q1rkh6yhh4wj",
+  "why": "duplicate-after-truncation",
+  "q": "Which of these is true?"
+ },
+ {
+  "ci": 109,
+  "qi": 4001,
+  "id": "q2apgmnfutt",
+  "why": "duplicate-after-truncation",
+  "q": "Which of the following can be encashed from station earnings?"
+ },
+ {
+  "ci": 109,
+  "qi": 4003,
+  "id": "qyac3brgtmb",
+  "why": "duplicate-after-truncation",
+  "q": "At what intervals the Accounts Officer nominated by the Financial Adviser and Ch"
+ },
+ {
+  "ci": 111,
+  "qi": 961,
+  "id": "q1jdepy1hmsr",
+  "why": "duplicate-after-truncation",
+  "q": "In case of disagreement between accounts officer and executive at divisional lev"
+ },
+ {
+  "ci": 566,
+  "qi": 1286,
+  "id": "q2b84pxqa442",
+  "why": "duplicate-after-truncation",
+  "q": "Which of the following is the correct sequence in the life of a cheque issued by"
+ },
+ {
+  "ci": 566,
+  "qi": 1685,
+  "id": "qwvvbzv0jaj",
+  "why": "duplicate-after-truncation",
+  "q": "In the accounts of a zonal railway, the allocation of a work is written as 'RSF-"
+ },
+ {
+  "ci": 573,
+  "qi": 1270,
+  "id": "qkf32hr9sp6",
+  "why": "duplicate-after-truncation",
+  "q": "Which one of the following statements relating to the reporting and monitoring o"
+ },
+ {
+  "ci": 599,
+  "qi": 824,
+  "id": "TG_Q1143",
+  "why": "duplicate-options",
+  "q": "Taxes that are levied on any Intra-State purchase are? A. IGST B. CGST and SGST "
+ },
+ {
+  "ci": 599,
+  "qi": 2023,
+  "id": "TG_Q2497",
+  "why": "duplicate-options",
+  "q": "NTKM stands for _________________________"
+ },
+ {
+  "ci": 599,
+  "qi": 2174,
+  "id": "TG_Q2679",
+  "why": "duplicate-options",
+  "q": "Journalise: cheque received back for cancellation and no further payment is due"
+ },
+ {
+  "ci": 599,
+  "qi": 4216,
+  "id": "TG_Q5178",
+  "why": "duplicate-options",
+  "q": "IR expenditure on Policy formulation, Direction, Research and Other Miscellaneou"
+ },
+ {
+  "ci": 599,
+  "qi": 4224,
+  "id": "TG_Q5192",
+  "why": "duplicate-options",
+  "q": "Important Ratio worked out to guage the financial health of Zonal Railways and I"
+ },
+ {
+  "ci": 599,
+  "qi": 4225,
+  "id": "TG_Q5194",
+  "why": "duplicate-options",
+  "q": "Grants will be allotted through Budget Orders, after (A) Submission of Demands f"
+ },
+ {
+  "ci": 599,
+  "qi": 4226,
+  "id": "TG_Q5203",
+  "why": "duplicate-options",
+  "q": "As per Art 113 of Constitution of India, Budget estimates are presented to Parli"
+ },
+ {
+  "ci": 599,
+  "qi": 4239,
+  "id": "TG_Q5231",
+  "why": "duplicate-options",
+  "q": "Appropriation Accounts compare the Actual expenditure with the grants (A) Voted "
+ },
+ {
+  "ci": 600,
+  "qi": 37,
+  "id": "TG2_Q0040",
+  "why": "duplicate-options",
+  "q": "E-Recon web is used to carry out which of the following transactions? i. Intra r"
+ },
+ {
+  "ci": 600,
+  "qi": 169,
+  "id": "TG2_Q0201",
+  "why": "duplicate-options",
+  "q": "The injury which incapacitates a workman for all the work he/she was capable of "
+ },
+ {
+  "ci": 600,
+  "qi": 320,
+  "id": "TG2_Q0392",
+  "why": "duplicate-options",
+  "q": "With the merger of Railway Budget with the General Budget, the Demands for Grant"
+ },
+ {
+  "ci": 600,
+  "qi": 610,
+  "id": "TG2_Q0724",
+  "why": "duplicate-options",
+  "q": "Whenever the Contractor (in Services) is rescinded, the failed contractor shall "
+ },
+ {
+  "ci": 600,
+  "qi": 2538,
+  "id": "TG2_Q3103",
+  "why": "duplicate-options",
+  "q": "IR Accounts code part two starts with chapter no... A) XXI B) XXII C) XX D) XXII"
+ },
+ {
+  "ci": 600,
+  "qi": 5199,
+  "id": "TG2_Q6448",
+  "why": "duplicate-options",
+  "q": "NTKM stands for _________________________"
+ },
+ {
+  "ci": 601,
+  "qi": 3482,
+  "id": "TG3_Q4514",
+  "why": "duplicate-options",
+  "q": "Whenever the Contractor (in Services) is rescinded, the failed contractor shall "
+ }
+]

@@ -18,6 +18,21 @@ account** par chalta hai. Na Termux, na PC, na kisi aur ka server.
 - `wrangler.toml` — Cloudflare config (KV + Durable Object bindings).
 - `bank/index.json` + `bank/p-<chapter>-<part>.json` — question bank parts.
 - `split_bank.py` — bank dobara baantne ke liye (app ke questions.json se).
+- `bank_check.py` — **har bank badlav ke baad, push se pehle chalao.**
+  Poora bank check karke `BANK-HEALTH.md` + `quarantine.json` banata hai.
+- `add_ids.py` / `add_explanations.py` / `add_telegram.py` — neeche wali
+  pipeline ke steps.
+
+## Bank pipeline (ek hi asal source — app ka questions.json)
+Parts ko KABHI haath se edit mat karo. Sudhaar hamesha asal source
+(app questions.json / master / TG source) me karo, phir:
+```
+python3 split_bank.py && python3 add_telegram.py && python3 add_ids.py \
+    && python3 add_explanations.py && python3 bank_check.py
+```
+`bank_check.py` ki HARD problems 0 honi chahiye tabhi push karo.
+Har part item me `i` = sawal ki pakki ID hai (main bank = app wala
+qidOf hash; Telegram chapters = asal TG_Q id) — sudhaar ID se khojo.
 
 ## Setup (one-time)
 1. Cloudflare par free account (email se, card nahi).
