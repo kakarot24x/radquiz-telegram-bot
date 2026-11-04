@@ -350,5 +350,13 @@ for (let i = 0; i < 16 && gRoom.state.storage.m.get("session"); i++) {
   await gRoom.alarm();
 }
 
+// 13. Bundled explanations ride inside the polls (<=200 chars, longer than
+// the plain "Correct answer: X. <option>" fallback when a bundled text exists)
+const explLens = calls.filter((c) => c.method === "sendPoll")
+  .map((c) => (c.params.explanation || "").length);
+check("all poll explanations within 200 chars", explLens.every((n) => n <= 200));
+check("some polls carry bundled explanations",
+  explLens.some((n) => n >= 120));
+
 console.log(failures === 0 ? "\nALL TESTS PASSED" : `\n${failures} FAILURES`);
 process.exit(failures ? 1 : 0);

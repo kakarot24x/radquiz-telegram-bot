@@ -202,8 +202,16 @@ function buildPollPayload(item, number, seconds) {
   if (new Set(fixed).size !== fixed.length) {
     return { skip: "duplicate options" };
   }
-  const explanation = `Correct answer: ${item.answer}. ${options[correct]}`
-    .slice(0, EXPL_LIMIT);
+  let explanation = `Correct answer: ${item.answer}. ${options[correct]}`;
+  if (item.e) {
+    // Bundled offline explanation (rides inside the same poll — Telegram
+    // caps it at 200 chars, so it is trimmed at a word boundary).
+    explanation = `Correct answer: ${item.answer}. ${String(item.e).trim()}`;
+  }
+  if (explanation.length > EXPL_LIMIT) {
+    explanation = explanation.slice(0, EXPL_LIMIT - 1)
+      .replace(/\s+\S*$/, "") + "…";
+  }
   let question = `Q${number}. ${qtext}`;
   if (question.length > Q_LIMIT) question = question.slice(0, Q_LIMIT - 1) + "…";
   return {
@@ -359,7 +367,7 @@ long-press the box and tap <b>Paste</b> again.</p>
 ▶ Start the Bot</button></form>`;
   }
   return `<h2>✅ RADEQuiz Bot is Running</h2>
-<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-04 v10</b></p>
+<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-04 v11</b></p>
 <p>Now open your Telegram group <b>RADEQuiz</b> and type <b>/quiz</b> —
 choose a topic, the number of questions and the timer, and the quiz starts.
 Everything is controlled from Telegram itself.</p>
