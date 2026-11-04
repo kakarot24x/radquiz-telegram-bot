@@ -15,6 +15,7 @@
 const BANK_BASE =
   "https://raw.githubusercontent.com/kakarot24x/radquiz-telegram-bot/main/bank";
 const COUNT_CHOICES = [10, 20, 30, 50, 100];
+const MIX_COUNT_CHOICES = [5, 10, 15, 20, 25, 30, 40, 50];
 const SECOND_CHOICES = [10, 15, 20, 30, 45, 60];
 const PAGE_SIZE = 8;
 const Q_LIMIT = 300, OPT_LIMIT = 100, EXPL_LIMIT = 200;
@@ -104,17 +105,20 @@ async function fetchPart(name) {
 }
 
 // candidate parts for a selection, as [{name, size}]
-function candidateParts(index, subjectI, chapterI) {
+function candidateParts(index, subjectI, chapterI, cis = null) {
   const parts = [];
   const addChapter = (ci) => {
     const ch = index.chapters[ci];
+    if (!ch) return;
     for (let k = 0; k < ch.parts; k++) {
       const size = Math.min(index.part_size,
         ch.count - k * index.part_size);
       parts.push({ name: `p-${ci}-${k}.json`, size });
     }
   };
-  if (subjectI === null || subjectI === undefined) {
+  if (cis) {
+    cis.forEach(addChapter);
+  } else if (subjectI === null || subjectI === undefined) {
     index.chapters.forEach((c) => addChapter(c.ci));
   } else if (chapterI === null || chapterI === undefined) {
     index.subjects[subjectI].chapters.forEach(addChapter);
@@ -128,8 +132,8 @@ function candidateParts(index, subjectI, chapterI) {
 // mode: "all" | "new" (never asked) | "done" (already asked, for revision).
 // askedOf(partName) -> Promise<Set of asked indices within that part>.
 // Every returned item is tagged with _k = "<part>#<index>" and _ci (chapter).
-async function fetchPool(index, subjectI, chapterI, count, mode = "all", askedOf = null) {
-  const cand = candidateParts(index, subjectI, chapterI);
+async function fetchPool(index, subjectI, chapterI, count, mode = "all", askedOf = null, cis = null) {
+  const cand = candidateParts(index, subjectI, chapterI, cis);
   const totalQ = cand.reduce((s, p) => s + p.size, 0);
   const want = Math.max(300, count * 3);
   let chosen = cand;
@@ -226,6 +230,62 @@ function buildPollPayload(item, number, seconds) {
       explanation,
     },
   };
+}
+
+// ------------------------------------------------------- syllabus (App. 3A)
+// The bank's Appendix-3 chapters are titled "PAPER-I: EST: Leave Rules" —
+// paper + topic-group code + chapter name. The syllabus view is derived
+// from those titles, so it can never drift away from the bank itself.
+const SYL_GROUP_NAMES = {
+  GRP: "GRP", EST: "Establishment", PPN: "PF, Pension & NPS",
+  LLF: "Labour Laws & Associated Finance", EXP: "Expenditure",
+  BB: "Books & Budget", BK: "Book-Keeping", IR: "Industrial Relations",
+  CLP: "Codal Life & Records",
+  STR: "Stores", WKS: "Workshop", COS: "COS Procedure",
+  WCF: "Workshop Costing & Associated Finance", EX2: "Expenditure",
+  WMS: "WMS", SAC: "Stores Accounts", AUD: "Audit",
+  TAC: "Traffic Accounts", FIN: "Finance",
+  TSC: "Traffic Statistics & Costing", STA: "Station Accounts",
+  INS: "Inspection",
+};
+const SYL_PAPERS = ["PAPER-I", "PAPER-II", "PAPER-III"];
+
+function syllabusMap(index) {
+  const papers = SYL_PAPERS.map((p) => ({ paper: p, groups: [], cis: [], total: 0 }));
+  const byPaper = Object.fromEntries(papers.map((p) => [p.paper, p]));
+  index.chapter_titles.forEach((t, ci) => {
+    const m = /^PAPER-(I|II|III):\s*([A-Z0-9]+):\s*(.+)$/.exec(t || "");
+    if (!m) return;
+    const count = index.chapter_counts[ci] || 0;
+    if (!count) return;
+    const P = byPaper[`PAPER-${m[1]}`];
+    let g = P.groups.find((x) => x.code === m[2]);
+    if (!g) {
+      g = { code: m[2], name: SYL_GROUP_NAMES[m[2]] || m[2], cis: [], total: 0 };
+      P.groups.push(g);
+    }
+    g.cis.push(ci); g.total += count;
+    P.cis.push(ci); P.total += count;
+  });
+  return papers.filter((p) => p.total > 0);
+}
+
+function mixLabel(mix) {
+  return "🧩 Mix: " + mix.map((e) => `${e.label} ×${e.count}`).join(" + ");
+}
+
+function mixTotals(index, mix, counts = {}) {
+  const seen = new Set();
+  let total = 0, done = 0;
+  for (const e of mix) {
+    for (const ci of e.cis) {
+      if (seen.has(ci)) continue;
+      seen.add(ci);
+      total += index.chapter_counts[ci] || 0;
+      done += counts[ci] || 0;
+    }
+  }
+  return { total, done };
 }
 
 function labelFor(index, subjectI, chapterI) {
@@ -367,7 +427,7 @@ long-press the box and tap <b>Paste</b> again.</p>
 ▶ Start the Bot</button></form>`;
   }
   return `<h2>✅ RADEQuiz Bot is Running</h2>
-<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-04 v12</b></p>
+<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-04 v13</b></p>
 <p>Now open your Telegram group <b>RADEQuiz</b> and type <b>/quiz</b> —
 choose a topic, the number of questions and the timer, and the quiz starts.
 Everything is controlled from Telegram itself.</p>
@@ -642,11 +702,12 @@ export class QuizRoom {
       meta.lastSelection = {
         subject: p.subject, chapter: p.chapter, count: p.count,
         seconds: p.seconds, label: p.label, mode: p.mode || "all",
+        plan: p.plan || null,
       };
       await this.state.storage.put("meta", meta);
     }
     await this.startSession(p.chatId, p.label, p.subject, p.chapter,
-      p.count, p.seconds, p.mode || "all");
+      p.count, p.seconds, p.mode || "all", p.plan || null);
     const now = await this.state.storage.get("session");
     return { ok: !!now, reason: now ? "" : "empty" };
   }
@@ -656,7 +717,7 @@ export class QuizRoom {
     const res = await this.roomCall(flow.targetChatId, "/start", {
       chatId: flow.targetChatId, label: sel.label, subject: sel.subject,
       chapter: sel.chapter, count: sel.count, seconds: sel.seconds,
-      mode: sel.mode || "all", saveLast: true,
+      mode: sel.mode || "all", plan: sel.plan || null, saveLast: true,
     });
     await this.state.storage.delete("flow");
     if (res.ok) {
@@ -762,7 +823,8 @@ export class QuizRoom {
     const rows = [];
     if (meta.lastSelection) {
       const l = meta.lastSelection;
-      rows.push([this.btn(`🔁 Repeat Last: ${l.label} • ${l.count}Q • ${l.seconds}s`, "repeat")]);
+      const lbl = l.label.length > 42 ? l.label.slice(0, 41) + "…" : l.label;
+      rows.push([this.btn(`🔁 Repeat Last: ${lbl} • ${l.count}Q • ${l.seconds}s`, "repeat")]);
     }
     rows.push([this.btn(`⚡ Default Quiz — Full Bank Random • ${DEFAULT_COUNT}Q • ${DEFAULT_SECONDS}s`, "default")]);
     return rows;
@@ -770,6 +832,7 @@ export class QuizRoom {
 
   async subjectsKeyboardFull(meta, index) {
     const rows = this.subjectsKeyboard(meta);
+    rows.push([this.btn("🧩 Mix Quiz — Syllabus-wise (combine topics)", "mx:open")]);
     index.subjects.forEach((s, i) => {
       rows.push([this.btn(`${s.icon || "📚"} ${s.name} (${s.questions} Q)`, `sub:${i}`)]);
     });
@@ -878,7 +941,81 @@ export class QuizRoom {
       await this.edit(chatId, mid, `${s.icon || "📚"} ${s.name} — now choose a Topic:`,
         this.chaptersKeyboard(index, flow, counts));
       await this.state.storage.put("flow", flow); // page clamp saved
+    } else if (flow.step === "mixhome") {
+      const mix = flow.mix || [];
+      const total = mix.reduce((s, e) => s + e.count, 0);
+      const lines = ["🧩 Mix Quiz — combine topics, choose how many from each:"];
+      if (mix.length) {
+        mix.forEach((e, i) => lines.push(`${i + 1}. ${e.label} — ${e.count} Q`));
+        lines.push(`📌 Total: ${total} questions`);
+      } else {
+        lines.push("Nothing added yet. Add topics syllabus-wise (Appendix 3A):");
+      }
+      const rows = [[this.btn("📚 Add from Syllabus (Appendix 3A)", "mx:add")]];
+      if (mix.length) rows.push([this.btn(`✅ Done — choose Mode (${total} Q)`, "mx:go")]);
+      if (mix.length) rows.push([this.btn("🗑️ Clear all", "mx:clear")]);
+      rows.push([this.btn("⬅️ Back to Subjects", "back:subjects"),
+                 this.btn("❌ Cancel", "cancel")]);
+      await this.edit(chatId, mid, lines.join("\n"), rows);
+    } else if (flow.step === "sylpapers") {
+      const rows = syllabusMap(index).map((p, i) =>
+        [this.btn(`📖 ${p.paper} (${p.total} Q)`, `mx:paper:${i}`)]);
+      rows.push([this.btn("⬅️ Back to Mix", "mx:home"),
+                 this.btn("❌ Cancel", "cancel")]);
+      await this.edit(chatId, mid, "📚 Appendix 3A Syllabus — choose a Paper:", rows);
+    } else if (flow.step === "sylgroups") {
+      const P = syllabusMap(index)[flow.sylPaper];
+      const rows = [[this.btn(`🎲 Whole ${P.paper} — all topics (${P.total} Q)`, "mx:wholepaper")]];
+      P.groups.forEach((g) =>
+        rows.push([this.btn(`${g.name} (${g.total} Q)`, `mx:group:${g.code}`)]));
+      rows.push([this.btn("⬅️ Back to Papers", "mx:add"),
+                 this.btn("❌ Cancel", "cancel")]);
+      await this.edit(chatId, mid, `📖 ${P.paper} — choose a topic group:`, rows);
+    } else if (flow.step === "sylchapters") {
+      const P = syllabusMap(index)[flow.sylPaper];
+      const g = P.groups.find((x) => x.code === flow.sylGroup);
+      const counts = flow.dm ? (flow.targetState?.askedCounts || {})
+        : (await this.state.storage.get("askedCounts")) || {};
+      const pages = Math.max(1, Math.ceil(g.cis.length / PAGE_SIZE));
+      flow.page = Math.min(flow.page || 0, pages - 1);
+      const rows = [[this.btn(`➕ Whole topic: ${g.name} (${g.total} Q)`, "mx:wholegroup")]];
+      for (const ci of g.cis.slice(flow.page * PAGE_SIZE, (flow.page + 1) * PAGE_SIZE)) {
+        let t = index.chapter_titles[ci]
+          .replace(/^PAPER-(I|II|III):\s*[A-Z0-9]+:\s*/, "");
+        if (t.length > 32) t = t.slice(0, 31) + "…";
+        const done = counts[ci] || 0;
+        rows.push([this.btn(`${t} (${index.chapter_counts[ci]} Q${done ? ` · ✅${done} done` : ""})`, `mx:chap:${ci}`)]);
+      }
+      const nav = [];
+      if (flow.page > 0) nav.push(this.btn("⬅️ Prev", `page:${flow.page - 1}`));
+      if (flow.page < pages - 1) nav.push(this.btn("Next ➡️", `page:${flow.page + 1}`));
+      if (nav.length) rows.push(nav);
+      rows.push([this.btn("⬅️ Back to Topic Groups", "mx:groups"),
+                 this.btn("❌ Cancel", "cancel")]);
+      await this.edit(chatId, mid, `📖 ${P.paper} › ${g.name} — choose a chapter:`, rows);
+      await this.state.storage.put("flow", flow); // page clamp saved
+    } else if (flow.step === "mixcount") {
+      const rows = MIX_COUNT_CHOICES.map((n) =>
+        [this.btn(`${n} Questions`, `mx:cnt:${n}`)]);
+      rows.push([this.btn("⬅️ Back", "mx:backcount"),
+                 this.btn("❌ Cancel", "cancel")]);
+      await this.edit(chatId, mid,
+        `➕ Add: ${flow.pendingUnit.label}\nHow many questions from this?`, rows);
     } else if (flow.step === "mode") {
+      if (flow.kind === "mix") {
+        const counts = flow.dm ? (flow.targetState?.askedCounts || {})
+          : (await this.state.storage.get("askedCounts")) || {};
+        const { total, done } = mixTotals(index, flow.mix || [], counts);
+        const rows = [
+          [this.btn(`🆕 New Questions (${total - done} left)`, "mode:new")],
+          [this.btn(`🔁 Completed Questions (${done} done)`, "mode:done")],
+          [this.btn(`🎲 All Questions (${total})`, "mode:all")],
+          [this.btn("⬅️ Back", "mx:home"), this.btn("❌ Cancel", "cancel")],
+        ];
+        await this.edit(chatId, mid,
+          `✅ ${mixLabel(flow.mix || [])}\nWhich questions should the quiz use?`, rows);
+        return;
+      }
       const label = labelFor(index, flow.subject, flow.chapter);
       const cand = candidateParts(index, flow.subject, flow.chapter);
       const total = cand.reduce((s2, p) => s2 + p.size, 0);
@@ -899,9 +1036,30 @@ export class QuizRoom {
       await this.edit(chatId, mid, `✅ Topic: ${label}\nHow many questions?`, rows);
     } else if (flow.step === "seconds") {
       const rows = SECOND_CHOICES.map((n) => [this.btn(`${n} seconds / question`, `sec:${n}`)]);
-      rows.push([this.btn("⬅️ Back", "back:count"), this.btn("❌ Cancel", "cancel")]);
+      rows.push([this.btn("⬅️ Back", flow.kind === "mix" ? "back:mode" : "back:count"),
+                 this.btn("❌ Cancel", "cancel")]);
       await this.edit(chatId, mid, "⏱️ How much time per question?", rows);
     } else if (flow.step === "confirm") {
+      if (flow.kind === "mix") {
+        const counts = flow.dm ? (flow.targetState?.askedCounts || {})
+          : (await this.state.storage.get("askedCounts")) || {};
+        const { total, done } = mixTotals(index, flow.mix || [], counts);
+        let poolSize = total;
+        if (flow.mode === "new") poolSize = total - done;
+        if (flow.mode === "done") poolSize = done;
+        const asked = (flow.mix || []).reduce((s, e) => s + e.count, 0);
+        const count = Math.min(asked, poolSize);
+        const modeName = { new: "🆕 New Questions", done: "🔁 Completed Questions", all: "🎲 All Questions" }[flow.mode || "all"];
+        const lines = ["🚀 Mix Quiz is ready:"];
+        (flow.mix || []).forEach((e, i) => lines.push(`${i + 1}. ${e.label} — ${e.count} Q`));
+        lines.push(`🎯 ${modeName}`);
+        lines.push(`📌 ${count} questions (pool: ${poolSize})`);
+        lines.push(`⏱️ ${flow.seconds} seconds per question`);
+        lines.push("\nStart the quiz?");
+        await this.edit(chatId, mid, lines.join("\n"),
+          [[this.btn("▶️ START QUIZ", "start"), this.btn("❌ Cancel", "cancel")]]);
+        return;
+      }
       const label = labelFor(index, flow.subject, flow.chapter);
       const cand = candidateParts(index, flow.subject, flow.chapter);
       const total = cand.reduce((s2, p) => s2 + p.size, 0);
@@ -989,7 +1147,7 @@ export class QuizRoom {
         const l = meta.lastSelection;
         await this.edit(chatId, flow.messageId, "🔁 Starting the last quiz again…");
         await this.answerCb(cq.id);
-        await this.startSession(chatId, l.label, l.subject, l.chapter, l.count, l.seconds, l.mode || "all");
+        await this.startSession(chatId, l.label, l.subject, l.chapter, l.count, l.seconds, l.mode || "all", l.plan || null);
       } else if (data === "default") {
         await this.edit(chatId, flow.messageId, "⚡ Starting the default quiz…");
         await this.answerCb(cq.id);
@@ -997,6 +1155,28 @@ export class QuizRoom {
       } else {
         await this.answerCb(cq.id);
       }
+      return;
+    }
+    if (data === "start" && flow.kind === "mix") {
+      const label = mixLabel(flow.mix || []);
+      const totalCount = (flow.mix || []).reduce((s, e) => s + e.count, 0);
+      const sel = {
+        label, subject: null, chapter: null, count: totalCount,
+        seconds: flow.seconds, mode: flow.mode || "all", plan: flow.mix,
+      };
+      if (flow.dm && flow.targetChatId) {
+        await this.dmLaunch(chatId, flow, sel);
+        await this.answerCb(cq.id);
+        return;
+      }
+      const meta = (await this.state.storage.get("meta")) || {};
+      meta.lastSelection = sel;
+      await this.state.storage.put("meta", meta);
+      await this.state.storage.delete("flow");
+      await this.edit(chatId, flow.messageId, `▶️ Starting the quiz — ${label}`);
+      await this.answerCb(cq.id);
+      await this.startSession(chatId, label, null, null, totalCount,
+        flow.seconds, flow.mode || "all", flow.mix);
       return;
     }
     if (data === "start") {
@@ -1022,7 +1202,46 @@ export class QuizRoom {
       await this.startSession(chatId, label, flow.subject, flow.chapter, flow.count, flow.seconds, flow.mode || "all");
       return;
     }
-    if (data.startsWith("sub:")) {
+    if (data === "mx:open") {
+      flow.kind = "mix"; flow.mix = flow.mix || []; flow.step = "mixhome";
+    } else if (data === "mx:home") {
+      flow.step = "mixhome";
+    } else if (data === "mx:add") {
+      flow.step = "sylpapers";
+    } else if (data.startsWith("mx:paper:")) {
+      flow.sylPaper = parseInt(data.slice(9), 10); flow.step = "sylgroups";
+    } else if (data === "mx:groups") {
+      flow.step = "sylgroups";
+    } else if (data.startsWith("mx:group:")) {
+      flow.sylGroup = data.slice(9); flow.page = 0; flow.step = "sylchapters";
+    } else if (data.startsWith("mx:chap:")) {
+      const ci = parseInt(data.slice(8), 10);
+      const short = index.chapter_titles[ci]
+        .replace(/^PAPER-(I|II|III):\s*[A-Z0-9]+:\s*/, "");
+      flow.pendingUnit = { label: short, cis: [ci] };
+      flow.pendingFrom = "sylchapters"; flow.step = "mixcount";
+    } else if (data === "mx:wholegroup") {
+      const P = syllabusMap(index)[flow.sylPaper];
+      const g = P.groups.find((x) => x.code === flow.sylGroup);
+      flow.pendingUnit = { label: `${P.paper} › ${g.name}`, cis: g.cis };
+      flow.pendingFrom = "sylchapters"; flow.step = "mixcount";
+    } else if (data === "mx:wholepaper") {
+      const P = syllabusMap(index)[flow.sylPaper];
+      flow.pendingUnit = { label: `${P.paper} (All Topics)`, cis: P.cis };
+      flow.pendingFrom = "sylgroups"; flow.step = "mixcount";
+    } else if (data.startsWith("mx:cnt:")) {
+      const n = parseInt(data.slice(7), 10);
+      flow.mix = flow.mix || [];
+      flow.mix.push({ ...flow.pendingUnit, count: n });
+      flow.pendingUnit = null; flow.step = "mixhome";
+    } else if (data === "mx:backcount") {
+      flow.step = flow.pendingFrom || "sylchapters";
+    } else if (data === "mx:clear") {
+      flow.mix = []; flow.step = "mixhome";
+    } else if (data === "mx:go") {
+      flow.step = "mode";
+    } else if (data.startsWith("sub:")) {
+      flow.kind = null; flow.mix = null;
       flow.subject = parseInt(data.slice(4), 10);
       flow.chapter = null; flow.page = 0; flow.step = "chapters";
     } else if (data.startsWith("page:")) {
@@ -1033,7 +1252,7 @@ export class QuizRoom {
       flow.step = "mode";
     } else if (data.startsWith("mode:")) {
       flow.mode = data.slice(5);
-      flow.step = "count";
+      flow.step = flow.kind === "mix" ? "seconds" : "count";
     } else if (data.startsWith("cnt:")) {
       flow.count = parseInt(data.slice(4), 10);
       flow.step = "seconds";
@@ -1058,11 +1277,32 @@ export class QuizRoom {
   }
 
   // ------------------------------------------------------------ session
-  async startSession(chatId, label, subjectI, chapterI, count, seconds, mode = "all") {
+  async startSession(chatId, label, subjectI, chapterI, count, seconds, mode = "all", plan = null) {
     const index = await loadIndex();
     const askedOf = (name) => this.askedSet(name);
-    const pool = await fetchPool(index, subjectI, chapterI, count, mode, askedOf);
-    const items = shuffle(pool);
+    let items;
+    if (plan && plan.length) {
+      // Mix quiz: draw each entry's share from its own chapters, de-dupe
+      // across entries, then shuffle everything together.
+      items = [];
+      const usedK = new Set();
+      for (const e of plan) {
+        const pool = shuffle(await fetchPool(
+          index, null, null, e.count, mode, askedOf, e.cis));
+        let got = 0;
+        for (const item of pool) {
+          if (got >= e.count) break;
+          if (item._k && usedK.has(item._k)) continue;
+          if (buildPollPayload(item, 1, seconds).skip) continue;
+          if (item._k) usedK.add(item._k);
+          items.push(item);
+          got++;
+        }
+      }
+      items = shuffle(items);
+    } else {
+      items = shuffle(await fetchPool(index, subjectI, chapterI, count, mode, askedOf));
+    }
     const payloads = [];
     const usedKeys = [];
     for (const item of items) {

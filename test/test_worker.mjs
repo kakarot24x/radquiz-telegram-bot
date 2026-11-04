@@ -358,6 +358,58 @@ check("all poll explanations within 200 chars", explLens.every((n) => n <= 200))
 check("some polls carry bundled explanations",
   explLens.some((n) => n >= 120));
 
+// 15. Mix Quiz — syllabus-wise combine (Leave Rules x10 + Pension topic x10)
+await getRoom(CHAT).state.storage.delete("session");
+await getRoom(CHAT).state.storage.delete("flow");
+await hook(msg("/quiz"), cfg.secret);
+{
+  const kb0 = lastCall("sendMessage")?.params.reply_markup?.inline_keyboard || [];
+  check("subjects keyboard has Mix button",
+    kb0.flat().some((b) => b.callback_data === "mx:open"));
+  const mMid = midSeq;
+  const tap = async (data) => {
+    await hook(cb(data, mMid), cfg.secret);
+    return lastCall("editMessageText")?.params.reply_markup?.inline_keyboard || [];
+  };
+  const flat = (kb) => kb.flat();
+  const lastText = () => lastCall("editMessageText")?.params.text || "";
+  let kb = await tap("mx:open");
+  check("mix home opens", lastText().includes("Mix Quiz"));
+  kb = await tap("mx:add");
+  check("syllabus papers shown", flat(kb).some((b) => b.callback_data === "mx:paper:0"));
+  kb = await tap("mx:paper:0");
+  check("paper groups shown (Establishment)",
+    flat(kb).some((b) => b.callback_data === "mx:group:EST"));
+  kb = await tap("mx:group:EST");
+  const leaveBtn = flat(kb).find((b) => b.callback_data.startsWith("mx:chap:") &&
+    b.text.includes("Leave Rules"));
+  check("EST chapters include Leave Rules", !!leaveBtn);
+  kb = await tap(leaveBtn.callback_data);
+  kb = await tap("mx:cnt:10");
+  check("mix shows Leave Rules + total 10",
+    lastText().includes("Leave Rules") && lastText().includes("Total: 10"));
+  kb = await tap("mx:add");
+  kb = await tap("mx:paper:0");
+  kb = await tap("mx:group:PPN");
+  kb = await tap("mx:wholegroup");
+  kb = await tap("mx:cnt:10");
+  check("mix total now 20", lastText().includes("Total: 20"));
+  kb = await tap("mx:go");
+  check("mix mode step opens", lastText().includes("Which questions"));
+  kb = await tap("mode:all");
+  kb = await tap("sec:10");
+  check("mix confirm lists parts + 20 questions",
+    lastText().includes("Leave Rules") && lastText().includes("20 questions"));
+  const pollsBefore = calls.filter((c) => c.method === "sendPoll").length;
+  await tap("start");
+  const announce = calls.filter((c) => c.method === "sendMessage").pop();
+  check("mix quiz announced with 20 questions",
+    (announce?.params.text || "").includes("20 questions"));
+  check("mix first poll sent",
+    calls.filter((c) => c.method === "sendPoll").length === pollsBefore + 1);
+  await getRoom(CHAT).state.storage.delete("session");
+}
+
 // 14. Telegram command menu registered (v12) + no plain tick/cross glyphs left
 const cmdCalls = calls.filter((c) => c.method === "setMyCommands");
 check("setMyCommands registered", cmdCalls.length >= 1 &&
