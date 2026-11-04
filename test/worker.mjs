@@ -192,7 +192,7 @@ function buildPollPayload(item, number, seconds) {
   let qtext = String(item.q || "").trim();
   let pre = null;
   if (qtext.length > Q_LIMIT) {
-    pre = `Question ${number}:\n${qtext}`;
+    pre = `📝 Question ${number}:\n${qtext}`;
     qtext = qtext.slice(0, Q_LIMIT - 1) + "…";
   }
   const fixed = options.map((o) => {
@@ -367,7 +367,7 @@ long-press the box and tap <b>Paste</b> again.</p>
 ▶ Start the Bot</button></form>`;
   }
   return `<h2>✅ RADEQuiz Bot is Running</h2>
-<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-04 v11</b></p>
+<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-04 v12</b></p>
 <p>Now open your Telegram group <b>RADEQuiz</b> and type <b>/quiz</b> —
 choose a topic, the number of questions and the timer, and the quiz starts.
 Everything is controlled from Telegram itself.</p>
@@ -426,6 +426,7 @@ copy the token shown there exactly, and try again.<br>
     drop_pending_updates: true,
     allowed_updates: ["message", "callback_query", "poll_answer"],
   });
+  try { await registerCommands(token); } catch (e) { /* menu retries later */ }
   return `<h2>✅ Done!</h2>
 <p>Bot <b>@${me.username}</b> is now running and connected to Telegram.</p>
 <p>Now type <b>/ping</b> in the <b>RADEQuiz</b> group — the bot will reply.
@@ -434,12 +435,36 @@ Then start your first quiz with <b>/quiz</b>.</p>
 the bot is set up from here.</p>`;
 }
 
+// Telegram's own "/" command menu (shown by the Telegram app itself).
+async function registerCommands(token) {
+  const base = [
+    { command: "quiz", description: "🎯 Start a quiz" },
+    { command: "score", description: "🏆 All-time ranking" },
+    { command: "ping", description: "✅ Is the bot live?" },
+  ];
+  const group = [
+    base[0],
+    { command: "stop", description: "🛑 Stop the running quiz (admin only)" },
+    base[1], base[2],
+    { command: "settings", description: "⚙️ Quiz info" },
+  ];
+  await tg(token, "setMyCommands", { commands: base });
+  await tg(token, "setMyCommands",
+    { commands: group, scope: { type: "all_group_chats" } });
+}
+
 async function handleHook(request, env, ctx) {
   const cfg = await resolveConfig(env);
   if (!cfg) return new Response("ok");
   const secret = request.headers.get("x-telegram-bot-api-secret-token");
   if (secret !== cfg.secret) return new Response("forbidden", { status: 403 });
   const update = await request.json();
+
+  // One-time: publish the command menu to Telegram (v12+).
+  if (!(await env.KV.get("cmds_v12"))) {
+    ctx.waitUntil(registerCommands(cfg.token)
+      .then(() => env.KV.put("cmds_v12", "1")).catch(() => {}));
+  }
 
   if (update.poll_answer) {
     const chatId = await env.KV.get(`pollmap:${update.poll_answer.poll_id}`);
@@ -701,7 +726,7 @@ export class QuizRoom {
       } else if (sender && await this.isAdmin(chatId, sender)) {
         await this.startFlow(chatId, sender);
       } else {
-        await this.send(chatId, "Only a group admin can start a quiz.");
+        await this.send(chatId, "🔒 Only a group admin can start a quiz.");
       }
     } else if (text === "/stop") {
       const session = await this.state.storage.get("session");
@@ -710,7 +735,7 @@ export class QuizRoom {
         await this.state.storage.put("session", session);
         await this.send(chatId, "🛑 Stopping the quiz after this question…");
       } else if (session) {
-        await this.send(chatId, "Only a group admin can stop the quiz.");
+        await this.send(chatId, "🔒 Only a group admin can stop the quiz.");
       }
     } else if (text === "/score") {
       const totals = (await this.state.storage.get("scores")) || {};
@@ -720,10 +745,10 @@ export class QuizRoom {
           .sort((a, b) => (ptsOf(b, true) - ptsOf(a, true)) || ((a[4] || 0) - (b[4] || 0)))
           .slice(0, 10);
         const lines = ["🏆 All-time Ranking (saved by the bot):"];
-        ranked.forEach((t, i) => lines.push(`${i + 1}. ${t[0]} — ${fmtPts(t, true)} pts · ✓${t[1] || 0} ✗${t[3] || 0} · ⏱ ${fmtTime(t[4] || 0)}`));
+        ranked.forEach((t, i) => lines.push(`${i + 1}. ${t[0]} — ${fmtPts(t, true)} pts · ✅${t[1] || 0} ❌${t[3] || 0} · ⏱ ${fmtTime(t[4] || 0)}`));
         await this.send(chatId, lines.join("\n"));
       } else {
-        await this.send(chatId, "No scores saved yet.");
+        await this.send(chatId, "📊 No scores saved yet.");
       }
     } else if (text === "/settings") {
       await this.send(chatId, "⚙️ Auto quiz has been removed — a quiz now starts only with /quiz, whenever you want.");
@@ -764,7 +789,7 @@ export class QuizRoom {
       let t = index.chapter_titles[ci];
       if (t.length > 32) t = t.slice(0, 31) + "…";
       const done = counts[ci] || 0;
-      rows.push([this.btn(`${t} (${index.chapter_counts[ci]} Q${done ? ` · ✓${done} done` : ""})`, `top:${ci}`)]);
+      rows.push([this.btn(`${t} (${index.chapter_counts[ci]} Q${done ? ` · ✅${done} done` : ""})`, `top:${ci}`)]);
     }
     const nav = [];
     if (flow.page > 0) nav.push(this.btn("⬅️ Prev", `page:${flow.page - 1}`));
@@ -1121,13 +1146,13 @@ export class QuizRoom {
       const medals = ["🥇", "🥈", "🥉"];
       const lines = ["🏆 Ranking (score • time taken):"];
       ranked.forEach((e, i) => {
-        lines.push(`${i < 3 ? medals[i] : `${i + 1}.`} ${e[0]} — ${fmtPts(e)} pts · ✓${e[1] || 0} ✗${e[2] || 0} · ⏱ ${fmtTime(e[3] || 0)}`);
+        lines.push(`${i < 3 ? medals[i] : `${i + 1}.`} ${e[0]} — ${fmtPts(e)} pts · ✅${e[1] || 0} ❌${e[2] || 0} · ⏱ ${fmtTime(e[3] || 0)}`);
       });
       resultText = lines.join("\n");
     } else {
-      resultText = "No answers were recorded in this quiz.";
+      resultText = "ℹ️ No answers were recorded in this quiz.";
     }
-    const head = session.stop ? "🛑 Quiz stopped." : "✅ Quiz finished!";
+    const head = session.stop ? "🛑 Quiz stopped." : "🎉 Quiz finished!";
     await this.send(session.chatId, `${head} ${session.asked} questions done.\n\n${resultText}`);
   }
 

@@ -185,14 +185,14 @@ check("session finished after 10 questions", !room.state.storage.m.get("session"
 check("all 10 polls answered in loop", answered === 10);
 const fin = lastCall("sendMessage");
 check("finish message with ranking 10 pts + time for Boss",
-  fin?.params.text.includes("Quiz finished") && fin?.params.text.includes("Boss — 10 pts · ✓10 ✗0 · ⏱"));
+  fin?.params.text.includes("Quiz finished") && fin?.params.text.includes("Boss — 10 pts · ✅10 ❌0 · ⏱"));
 check("negative marking: Ram -3.33 pts (10 wrong)",
-  fin?.params.text.includes("Ram — -3.33 pts · ✓0 ✗10"));
+  fin?.params.text.includes("Ram — -3.33 pts · ✅0 ❌10"));
 
 // 7. /score all-time
 await hook(msg("/score"), cfg.secret);
 check("/score shows Boss 10 pts",
-  lastCall("sendMessage")?.params.text.includes("Boss — 10 pts · ✓10 ✗0"));
+  lastCall("sendMessage")?.params.text.includes("Boss — 10 pts · ✅10 ❌0"));
 
 // 8. default quiz + /stop
 await hook(msg("/quiz"), cfg.secret);
@@ -279,7 +279,7 @@ async function runQuizFromFlow(mid, mode, count) {
 }
 {
   const { mid, tb } = await openFlowToTopic();
-  check("topic button shows done count", !!tb && tb.text.includes(`✓${base} done`));
+  check("topic button shows done count", !!tb && tb.text.includes(`✅${base} done`));
   await hook(cb("cancel", mid), cfg.secret);
 }
 {
@@ -357,6 +357,15 @@ const explLens = calls.filter((c) => c.method === "sendPoll")
 check("all poll explanations within 200 chars", explLens.every((n) => n <= 200));
 check("some polls carry bundled explanations",
   explLens.some((n) => n >= 120));
+
+// 14. Telegram command menu registered (v12) + no plain tick/cross glyphs left
+const cmdCalls = calls.filter((c) => c.method === "setMyCommands");
+check("setMyCommands registered", cmdCalls.length >= 1 &&
+  JSON.stringify(cmdCalls.map((c) => c.params.commands)).includes('"quiz"') &&
+  JSON.stringify(cmdCalls.map((c) => c.params.commands)).includes('"stop"'));
+const glyphLeak = calls.filter((c) => (c.params.text || "").includes("✓") ||
+  (c.params.text || "").includes("✗"));
+check("no plain ✓/✗ glyphs in bot messages", glyphLeak.length === 0);
 
 console.log(failures === 0 ? "\nALL TESTS PASSED" : `\n${failures} FAILURES`);
 process.exit(failures ? 1 : 0);
