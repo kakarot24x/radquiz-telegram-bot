@@ -104,6 +104,43 @@ async function fetchPart(name) {
   return resp.json();
 }
 
+// ------------------------------------------------- Telegram question editor
+// Saved edits live in one KV value (edits_all): { qid: {q, options, answer,
+// e, orig, by, at} }. They are applied over the bank item (matched by its
+// stable ID) every time a quiz is built, so an edit is live from the next
+// quiz without touching the bank files. /edits exports them so they can be
+// merged back into the real bank later.
+let _searchCache = null;
+let _searchCacheAt = 0;
+async function loadSearchIndex() {
+  if (_searchCache && Date.now() - _searchCacheAt < 30 * 60 * 1000) {
+    return _searchCache;
+  }
+  const resp = await fetch(`${BANK_BASE}/search.json`);
+  if (!resp.ok) {
+    if (_searchCache) return _searchCache;
+    throw new Error("search index fetch failed");
+  }
+  _searchCache = await resp.json();
+  _searchCacheAt = Date.now();
+  return _searchCache;
+}
+
+async function loadEdits(env) {
+  try {
+    return JSON.parse((await env.KV.get("edits_all")) || "{}");
+  } catch (e) { return {}; }
+}
+
+function applyEdit(item, ed) {
+  if (!ed) return item;
+  item.q = ed.q;
+  item.options = ed.options;
+  item.answer = ed.answer;
+  if (ed.e !== undefined) item.e = ed.e;
+  return item;
+}
+
 // candidate parts for a selection, as [{name, size}]
 function candidateParts(index, subjectI, chapterI, cis = null) {
   const parts = [];
@@ -132,7 +169,7 @@ function candidateParts(index, subjectI, chapterI, cis = null) {
 // mode: "all" | "new" (never asked) | "done" (already asked, for revision).
 // askedOf(partName) -> Promise<Set of asked indices within that part>.
 // Every returned item is tagged with _k = "<part>#<index>" and _ci (chapter).
-async function fetchPool(index, subjectI, chapterI, count, mode = "all", askedOf = null, cis = null) {
+async function fetchPool(index, subjectI, chapterI, count, mode = "all", askedOf = null, cis = null, edits = null) {
   const cand = candidateParts(index, subjectI, chapterI, cis);
   const totalQ = cand.reduce((s, p) => s + p.size, 0);
   const want = Math.max(300, count * 3);
@@ -170,6 +207,7 @@ async function fetchPool(index, subjectI, chapterI, count, mode = "all", askedOf
       if (mode === "done" && !isDone) return;
       q._k = `${p.name}#${i}`;
       q._ci = parseInt(p.name.split("-")[1], 10);
+      if (edits && q.i && edits[q.i]) applyEdit(q, edits[q.i]);
       items.push(q);
     });
   }
@@ -504,7 +542,7 @@ long-press the box and tap <b>Paste</b> again.</p>
 ▶ Start the Bot</button></form>`;
   }
   return `<h2>✅ RADEQuiz Bot is Running</h2>
-<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-04 v14</b></p>
+<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-04 v15</b></p>
 <p>Now open your Telegram group <b>RADEQuiz</b> and type <b>/quiz</b> —
 choose a topic, the number of questions and the timer, and the quiz starts.
 Everything is controlled from Telegram itself.</p>
@@ -578,6 +616,8 @@ async function registerCommands(token) {
     { command: "quiz", description: "🎯 Start a quiz" },
     { command: "score", description: "🏆 All-time ranking" },
     { command: "ping", description: "✅ Is the bot live?" },
+    { command: "edit", description: "✏️ Edit a question (search & fix)" },
+    { command: "edits", description: "📤 My saved edits (export)" },
   ];
   const group = [
     base[0],
@@ -585,6 +625,7 @@ async function registerCommands(token) {
     base[1], base[2],
     { command: "settings", description: "⚙️ Quiz info" },
     { command: "autoquiz", description: "🌙 9 PM auto quiz — on / off / test" },
+    { command: "edit", description: "✏️ Edit a question (opens in DM)" },
   ];
   await tg(token, "setMyCommands", { commands: base });
   await tg(token, "setMyCommands",
@@ -599,9 +640,9 @@ async function handleHook(request, env, ctx) {
   const update = await request.json();
 
   // One-time: publish the command menu to Telegram (v12+).
-  if (!(await env.KV.get("cmds_v14"))) {
+  if (!(await env.KV.get("cmds_v15"))) {
     ctx.waitUntil(registerCommands(cfg.token)
-      .then(() => env.KV.put("cmds_v14", "1")).catch(() => {}));
+      .then(() => env.KV.put("cmds_v15", "1")).catch(() => {}));
   }
 
   if (update.poll_answer) {
@@ -638,7 +679,7 @@ async function handleHook(request, env, ctx) {
       }).catch(() => {}));
       return new Response("ok");
     }
-    if (["/quiz", "/stop", "/score", "/settings"].includes(text) ||
+    if (["/quiz", "/stop", "/score", "/settings", "/edit", "/edits"].includes(text) ||
         text.split(" ")[0] === "/autoquiz") {
       const stub = env.QUIZ.get(env.QUIZ.idFromName(String(msg.chat.id)));
       ctx.waitUntil(stub.fetch("https://do/message", {
@@ -654,8 +695,8 @@ async function handleHook(request, env, ctx) {
       }).catch(() => {}));
       return new Response("ok");
     }
-    if (["/quiz", "/start", "/stop", "/score"].includes(text) ||
-        text.split(" ")[0] === "/autoquiz") {
+    if (["/quiz", "/start", "/stop", "/score", "/edit", "/edits"].includes(text) ||
+        text.split(" ")[0] === "/autoquiz" || !text.startsWith("/")) {
       const stub = env.QUIZ.get(env.QUIZ.idFromName(String(msg.chat.id)));
       ctx.waitUntil(stub.fetch("https://do/message", {
         method: "POST", body: JSON.stringify(msg),
@@ -722,6 +763,347 @@ export class QuizRoom {
         callback_query_id: id, text,
       });
     } catch (e) { /* ignore */ }
+  }
+
+  async sendDocument(chatId, filename, content, caption) {
+    const form = new FormData();
+    form.set("chat_id", String(chatId));
+    if (caption) form.set("caption", caption);
+    form.set("document",
+      new Blob([content], { type: "application/json" }), filename);
+    const resp = await fetch(
+      `https://api.telegram.org/bot${await this.token()}/sendDocument`,
+      { method: "POST", body: form });
+    return resp.json().catch(() => ({}));
+  }
+
+  // ------------------------------------------------------ question editor
+  editorNorm(s) { return (s || "").toLowerCase().replace(/\s+/g, " ").trim(); }
+
+  async startEditor(chatId, userId) {
+    const groups = await this.knownGroupsFor(userId);
+    if (!groups.length) {
+      await this.send(chatId, "🔒 Question editing is only for a group admin.");
+      return;
+    }
+    const ef = {
+      owner: userId, step: "await_query", msgId: null, results: [],
+      draft: null, orig: null, qid: null, ci: null, field: null, warn: "",
+    };
+    const sent = await this.send(chatId,
+      "✏️ Question Editor\nType some words from the question you want to fix (e.g. \"error sheet manual\") — I will search the whole bank.");
+    ef.msgId = sent.message_id;
+    await this.state.storage.put("editflow", ef);
+  }
+
+  async editorSearch(chatId, ef, query) {
+    const tokens = this.editorNorm(query).split(" ").filter(Boolean);
+    if (!tokens.length) return;
+    await this.edit(chatId, ef.msgId, "🔎 Searching the bank…");
+    let sidx;
+    try {
+      sidx = await loadSearchIndex();
+    } catch (e) {
+      await this.edit(chatId, ef.msgId, "⚠️ Search is unavailable right now. Try again in a minute.",
+        [[this.btn("❌ Close editor", "ed:close")]]);
+      return;
+    }
+    const hits = [];
+    for (const e of sidx) {
+      const qn = this.editorNorm(e[3]);
+      if (tokens.every((t) => qn.includes(t))) {
+        hits.push(e);
+        if (hits.length >= 40) break;
+      }
+    }
+    if (!hits.length) {
+      ef.step = "await_query";
+      await this.state.storage.put("editflow", ef);
+      await this.edit(chatId, ef.msgId,
+        `🔎 No question matches "${query}".\nType different words to search again.`,
+        [[this.btn("❌ Close editor", "ed:close")]]);
+      return;
+    }
+    ef.results = hits.slice(0, 8).map((e) => ({ i: e[0], part: e[1], idx: e[2] }));
+    ef.step = "results";
+    await this.state.storage.put("editflow", ef);
+    const index = await loadIndex();
+    const rows = ef.results.map((r, n) => {
+      const ci = parseInt(r.part.split("-")[1], 10);
+      const chT = (index.chapter_titles[ci] || "").slice(0, 16);
+      return [this.btn(`${hits[n][3].slice(0, 36)} · ${chT}`, `ed:pick:${n}`)];
+    });
+    rows.push([this.btn("🔍 Search again", "ed:new"),
+               this.btn("❌ Close", "ed:close")]);
+    await this.edit(chatId, ef.msgId,
+      `🔎 ${hits.length >= 40 ? "40+" : hits.length} match(es) for "${query}" — tap the question to edit:`,
+      rows);
+  }
+
+  async editorOpen(chatId, ef, entry) {
+    const items = await fetchPart(entry.part);
+    const item = items[entry.idx];
+    if (!item || item.i !== entry.i) {
+      await this.edit(chatId, ef.msgId,
+        "⚠️ That question could not be loaded. Please search again.",
+        [[this.btn("🔍 Search again", "ed:new"),
+          this.btn("❌ Close", "ed:close")]]);
+      return;
+    }
+    const clone = (o) => JSON.parse(JSON.stringify(o));
+    ef.qid = item.i;
+    ef.orig = {
+      q: item.q, options: clone(item.options),
+      answer: item.answer, e: item.e || "",
+    };
+    ef.draft = clone(ef.orig);
+    ef.step = "card";
+    ef.warn = "";
+    await this.state.storage.put("editflow", ef);
+    await this.renderEditorCard(chatId, ef);
+  }
+
+  editorChanged(ef) {
+    const a = ef.orig, b = ef.draft;
+    if (!a || !b) return false;
+    return a.q !== b.q || a.answer !== b.answer ||
+      (a.e || "") !== (b.e || "") ||
+      "ABCD".split("").some((L) => (a.options[L] || "") !== (b.options[L] || ""));
+  }
+
+  async renderEditorCard(chatId, ef) {
+    const index = await loadIndex();
+    const d = ef.draft;
+    const changed = this.editorChanged(ef);
+    const mark = (cond) => (cond ? " ●" : "");
+    const lines = [`✏️ Editing [${ef.qid}]`];
+    if (ef.ci !== null && ef.ci !== undefined) {
+      lines.push(`📚 ${index.chapter_titles[ef.ci] || ""}`);
+    }
+    lines.push("", `Q${mark(d.q !== ef.orig.q)}: ${String(d.q).slice(0, 1200)}`, "");
+    for (const L of ["A", "B", "C", "D"]) {
+      lines.push(`${L}) ${d.options[L] || ""}${d.answer === L ? " ✅" : ""}${mark(d.options[L] !== ef.orig.options[L])}`);
+    }
+    if (d.answer !== ef.orig.answer) lines.push("🎯 Answer changed ●");
+    lines.push("",
+      `💡 ${(d.e || "(no explanation)").slice(0, 160)}${(d.e || "").length > 160 ? "…" : ""}${mark((d.e || "") !== (ef.orig.e || ""))}`);
+    if (ef.warn) lines.push("", `⚠️ ${ef.warn}`);
+    lines.push("", changed
+      ? "● = changed — tap 💾 SAVE to make it live."
+      : "No changes yet — tap a ✏️ button to edit, 🎯 to set the answer.");
+    const rows = [
+      [this.btn("✏️ Question", "ed:q"), this.btn("✏️ Explanation", "ed:e")],
+      [this.btn("✏️ A", "ed:o:A"), this.btn("✏️ B", "ed:o:B"),
+       this.btn("✏️ C", "ed:o:C"), this.btn("✏️ D", "ed:o:D")],
+      ["A", "B", "C", "D"].map((L) =>
+        this.btn(d.answer === L ? `✅ Ans ${L}` : `🎯 Ans ${L}`, `ed:a:${L}`)),
+      [this.btn("💾 SAVE", "ed:save"), this.btn("↩️ Reset", "ed:reset")],
+      [this.btn("🔍 New search", "ed:new"), this.btn("❌ Close", "ed:close")],
+    ];
+    await this.edit(chatId, ef.msgId, lines.join("\n"), rows);
+  }
+
+  async editorPrompt(chatId, ef, field, label, current) {
+    ef.step = "await_text";
+    ef.field = field;
+    await this.state.storage.put("editflow", ef);
+    await this.edit(chatId, ef.msgId,
+      `✏️ Send the new text for ${label}.\n\nCurrent:\n${String(current).slice(0, 900)}\n\n(Your next message will replace it.)`,
+      [[this.btn("↩️ Back to question", "ed:card"),
+        this.btn("❌ Close", "ed:close")]]);
+  }
+
+  async editorHandleText(chatId, ef, text) {
+    if (ef.step === "await_query") {
+      await this.editorSearch(chatId, ef, text);
+      return;
+    }
+    if (ef.step === "await_text") {
+      const v = text.trim();
+      if (!v) return;
+      ef.warn = "";
+      if (ef.field === "q") ef.draft.q = v;
+      else if (ef.field === "e") ef.draft.e = v;
+      else if (ef.field && ef.field.startsWith("o:")) {
+        const L = ef.field.slice(2);
+        ef.draft.options[L] = v;
+        if (v.length > 100) {
+          ef.warn = "That option is longer than 100 characters — Telegram polls will show it cut with …";
+        }
+      }
+      ef.step = "card";
+      ef.field = null;
+      await this.state.storage.put("editflow", ef);
+      await this.renderEditorCard(chatId, ef);
+    }
+  }
+
+  async showEdits(chatId, userId) {
+    const groups = await this.knownGroupsFor(userId);
+    if (!groups.length) {
+      await this.send(chatId, "🔒 Only for a group admin.");
+      return;
+    }
+    const edits = await loadEdits(this.env);
+    const ids = Object.keys(edits);
+    if (!ids.length) {
+      await this.send(chatId, "📤 No saved edits yet. Use /edit to fix a question.");
+      return;
+    }
+    const rows = [[this.btn(`📤 Export all ${ids.length} edit(s) as file`, "ed:exp")]];
+    ids.slice(0, 8).forEach((id) =>
+      rows.push([this.btn(`↩️ Revert ${id}`, `ed:rev:${id}`)]));
+    rows.push([this.btn("🧹 Clear ALL saved edits", "ed:clr")]);
+    const lines = [
+      `📤 Saved edits: ${ids.length} (live in the bot)`,
+      "Export the file and send it for merging into the app bank — then clear them here.",
+    ];
+    ids.slice(0, 10).forEach((id) =>
+      lines.push(`• ${id} — ${String(edits[id].q).slice(0, 44)}…`));
+    await this.send(chatId, lines.join("\n"), rows);
+  }
+
+  async editorCallback(chatId, cq) {
+    const data = cq.data || "";
+    const userId = cq.from?.id;
+    if (data === "ed:keep") { await this.answerCb(cq.id, "Kept 👍"); return; }
+    if (data === "ed:exp" || data.startsWith("ed:rev:") ||
+        data === "ed:clr" || data === "ed:clrok") {
+      const groups = userId ? await this.knownGroupsFor(userId) : [];
+      if (!groups.length) {
+        await this.answerCb(cq.id, "🔒 Only for a group admin.");
+        return;
+      }
+      const edits = await loadEdits(this.env);
+      if (data === "ed:exp") {
+        const payload = JSON.stringify({
+          exported_at: new Date().toISOString(),
+          count: Object.keys(edits).length, edits,
+        }, null, 1);
+        await this.sendDocument(chatId, "radequiz-edits.json", payload,
+          "📤 RADEQuiz saved question edits — send this file for merging into the app bank.");
+        await this.answerCb(cq.id, "File sent 📤");
+        return;
+      }
+      if (data.startsWith("ed:rev:")) {
+        const id = data.slice(7);
+        if (edits[id]) {
+          delete edits[id];
+          await this.env.KV.put("edits_all", JSON.stringify(edits));
+        }
+        await this.answerCb(cq.id, `↩️ Edit removed: ${id}`);
+        await this.send(chatId,
+          `↩️ Edit for ${id} removed — the bank version will be used again.`);
+        return;
+      }
+      if (data === "ed:clr") {
+        await this.edit(chatId, cq.message.message_id,
+          `🧹 Delete ALL ${Object.keys(edits).length} saved edits?\nOnly do this after they have been merged into the app bank.`,
+          [[this.btn("✅ Yes, clear all", "ed:clrok"),
+            this.btn("❌ Keep them", "ed:keep")]]);
+        return;
+      }
+      if (data === "ed:clrok") {
+        await this.env.KV.put("edits_all", "{}");
+        await this.edit(chatId, cq.message.message_id,
+          "🧹 All saved edits cleared.");
+        return;
+      }
+    }
+    const ef = await this.state.storage.get("editflow");
+    if (!ef) {
+      await this.answerCb(cq.id, "Editor is closed. Send /edit to start.");
+      return;
+    }
+    if (userId !== ef.owner) {
+      await this.answerCb(cq.id, "🔒 This editor belongs to another admin.");
+      return;
+    }
+    if (data === "ed:close") {
+      await this.state.storage.delete("editflow");
+      await this.edit(chatId, ef.msgId, "✏️ Editor closed.");
+      await this.answerCb(cq.id);
+      return;
+    }
+    if (data === "ed:new") {
+      ef.step = "await_query"; ef.draft = null; ef.qid = null; ef.results = [];
+      await this.state.storage.put("editflow", ef);
+      await this.edit(chatId, ef.msgId,
+        "✏️ Question Editor\nType some words from the question:",
+        [[this.btn("❌ Close editor", "ed:close")]]);
+      await this.answerCb(cq.id);
+      return;
+    }
+    if (data.startsWith("ed:pick:")) {
+      const entry = (ef.results || [])[parseInt(data.slice(8), 10)];
+      if (!entry) {
+        await this.answerCb(cq.id, "That result is gone — search again.");
+        return;
+      }
+      ef.ci = parseInt(entry.part.split("-")[1], 10);
+      await this.state.storage.put("editflow", ef);
+      await this.editorOpen(chatId, ef, entry);
+      await this.answerCb(cq.id);
+      return;
+    }
+    if (!ef.draft) { await this.answerCb(cq.id, "Pick a question first."); return; }
+    if (data === "ed:card") {
+      ef.step = "card";
+      await this.state.storage.put("editflow", ef);
+      await this.renderEditorCard(chatId, ef);
+      await this.answerCb(cq.id);
+      return;
+    }
+    if (data === "ed:q") {
+      await this.editorPrompt(chatId, ef, "q", "the QUESTION", ef.draft.q);
+      await this.answerCb(cq.id);
+      return;
+    }
+    if (data === "ed:e") {
+      await this.editorPrompt(chatId, ef, "e", "the EXPLANATION", ef.draft.e || "(none)");
+      await this.answerCb(cq.id);
+      return;
+    }
+    if (data.startsWith("ed:o:")) {
+      const L = data.slice(5);
+      await this.editorPrompt(chatId, ef, `o:${L}`, `OPTION ${L}`, ef.draft.options[L] || "");
+      await this.answerCb(cq.id);
+      return;
+    }
+    if (data.startsWith("ed:a:")) {
+      ef.draft.answer = data.slice(5);
+      await this.state.storage.put("editflow", ef);
+      await this.renderEditorCard(chatId, ef);
+      await this.answerCb(cq.id, `🎯 Answer set to ${ef.draft.answer}`);
+      return;
+    }
+    if (data === "ed:reset") {
+      ef.draft = JSON.parse(JSON.stringify(ef.orig));
+      ef.warn = "";
+      await this.state.storage.put("editflow", ef);
+      await this.renderEditorCard(chatId, ef);
+      await this.answerCb(cq.id, "↩️ Changes reset");
+      return;
+    }
+    if (data === "ed:save") {
+      if (!this.editorChanged(ef)) {
+        await this.answerCb(cq.id, "Nothing changed yet.");
+        return;
+      }
+      const edits = await loadEdits(this.env);
+      edits[ef.qid] = {
+        q: ef.draft.q, options: ef.draft.options, answer: ef.draft.answer,
+        e: ef.draft.e || "", orig: ef.orig, by: ef.owner, at: Date.now(),
+      };
+      await this.env.KV.put("edits_all", JSON.stringify(edits));
+      const qid = ef.qid;
+      await this.state.storage.delete("editflow");
+      await this.edit(chatId, ef.msgId,
+        `✅ Saved! [${qid}]\nThe corrected question is live in the bot from the next quiz.\n📤 Use /edits anytime to export all saved edits for merging into the app.`);
+      await this.answerCb(cq.id, "✅ Saved");
+      return;
+    }
+    await this.answerCb(cq.id);
   }
 
   async isAdmin(chatId, userId) {
@@ -832,6 +1214,7 @@ export class QuizRoom {
   }
 
   async startDmFlow(chatId, userId) {
+    await this.state.storage.delete("editflow");
     const groups = await this.knownGroupsFor(userId);
     if (!groups.length) {
       await this.send(chatId,
@@ -857,6 +1240,20 @@ export class QuizRoom {
     const text = (msg.text || "").split("@")[0].trim();
     const sender = effectiveSenderId(msg);
     if (msg.chat.type === "private") {
+      const ef0 = await this.state.storage.get("editflow");
+      if (ef0 && sender && ef0.owner === sender && !text.startsWith("/") &&
+          (ef0.step === "await_query" || ef0.step === "await_text")) {
+        await this.editorHandleText(chatId, ef0, text);
+        return;
+      }
+      if (text === "/edit" && sender) {
+        await this.startEditor(chatId, sender);
+        return;
+      }
+      if (text === "/edits" && sender) {
+        await this.showEdits(chatId, sender);
+        return;
+      }
       if ((text === "/quiz" || text === "/start") && sender) {
         await this.startDmFlow(chatId, sender);
       } else if (text === "/stop" || text === "/score" ||
@@ -896,6 +1293,8 @@ export class QuizRoom {
       } else {
         await this.send(chatId, "📊 No scores saved yet.");
       }
+    } else if (text === "/edit" || text === "/edits") {
+      await this.send(chatId, "✏️ Question editing is done in private — open the @RADEQuizbot chat and send /edit there.");
     } else if (text === "/settings") {
       const cfg = (await this.state.storage.get("autoCfg")) || {};
       await this.send(chatId, "⚙️ RADEQuiz settings\n" +
@@ -1208,6 +1607,10 @@ export class QuizRoom {
     if (!chatId) return;
     const data = cq.data || "";
     const userId = cq.from?.id;
+    if (data.startsWith("ed:")) {
+      await this.editorCallback(chatId, cq);
+      return;
+    }
     let flow = await this.state.storage.get("flow");
     if (!flow) {
       await this.answerCb(cq.id, "No quiz setup is open. Type /quiz to start one.");
@@ -1406,6 +1809,7 @@ export class QuizRoom {
   async startSession(chatId, label, subjectI, chapterI, count, seconds, mode = "all", plan = null) {
     const index = await loadIndex();
     const askedOf = (name) => this.askedSet(name);
+    const edits = await loadEdits(this.env);
     let items;
     if (plan && plan.length) {
       // Mix quiz: draw each entry's share from its own chapters, de-dupe
@@ -1414,7 +1818,7 @@ export class QuizRoom {
       const usedK = new Set();
       for (const e of plan) {
         const pool = shuffle(await fetchPool(
-          index, null, null, e.count, mode, askedOf, e.cis));
+          index, null, null, e.count, mode, askedOf, e.cis, edits));
         let got = 0;
         for (const item of pool) {
           if (got >= e.count) break;
@@ -1427,7 +1831,7 @@ export class QuizRoom {
       }
       items = shuffle(items);
     } else {
-      items = shuffle(await fetchPool(index, subjectI, chapterI, count, mode, askedOf));
+      items = shuffle(await fetchPool(index, subjectI, chapterI, count, mode, askedOf, null, edits));
     }
     const payloads = [];
     const usedKeys = [];

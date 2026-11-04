@@ -17,7 +17,8 @@ globalThis.fetch = async (url, opts = {}) => {
   const u = String(url);
   if (u.startsWith("https://api.telegram.org/")) {
     const method = u.split("/").pop();
-    const params = opts.body ? JSON.parse(opts.body) : {};
+    let params = {};
+    try { params = opts.body ? JSON.parse(opts.body) : {}; } catch (e) { params = {}; }
     calls.push({ method, params });
     const ok = (result) => new Response(JSON.stringify({ ok: true, result }),
       { headers: { "Content-Type": "application/json" } });
@@ -439,6 +440,58 @@ await hook(msg("/quiz"), cfg.secret);
   await drain();
   check("cron does nothing when OFF",
     calls.filter((c) => c.method === "sendPoll").length === pollsC);
+}
+
+// 17. Question editor (/edit in DM): search -> card -> edit -> save -> live -> export/revert
+{
+  await hook(dmMsg("/edit", PLAYER), cfg.secret);
+  check("editor refused for non-admin",
+    (lastCall("sendMessage")?.params.text || "").includes("only for a group admin"));
+  await hook(dmMsg("/edit"), cfg.secret);
+  check("editor asks for search words",
+    (lastCall("sendMessage")?.params.text || "").includes("Question Editor"));
+  const eMid = midSeq;
+  await hook(dmMsg("error sheet manual"), cfg.secret);
+  let kb = lastCall("editMessageText")?.params.reply_markup?.inline_keyboard || [];
+  const pickBtn = kb.flat().find((b) => b.callback_data.startsWith("ed:pick:"));
+  check("editor search finds the manual-system question", !!pickBtn);
+  await hook(dmCb(pickBtn.callback_data, eMid), cfg.secret);
+  let cardText = lastCall("editMessageText")?.params.text || "";
+  check("editor card opens q1xtnaneriym",
+    cardText.includes("q1xtnaneriym") && cardText.includes("under manual system"));
+  await hook(dmCb("ed:a:A", eMid), cfg.secret);
+  await hook(dmCb("ed:o:B", eMid), cfg.secret);
+  await hook(dmMsg("4 copies (corrected)"), cfg.secret);
+  cardText = lastCall("editMessageText")?.params.text || "";
+  check("card shows the changed option",
+    cardText.includes("4 copies (corrected)") && cardText.includes("changed"));
+  await hook(dmCb("ed:save", eMid), cfg.secret);
+  check("save confirmed",
+    (lastCall("editMessageText")?.params.text || "").includes("✅ Saved"));
+  const savedEdits = JSON.parse((await kv.get("edits_all")) || "{}");
+  check("edit persisted in KV",
+    savedEdits.q1xtnaneriym?.answer === "A" &&
+    savedEdits.q1xtnaneriym?.options?.B === "4 copies (corrected)");
+  const grpRoom = getRoom(CHAT);
+  await grpRoom.state.storage.delete("session");
+  await grpRoom.startSession(CHAT, "edtest", null, null, 500, 10, "all",
+    [{ label: "Goods", cis: [2], count: 500 }]);
+  const sess = grpRoom.state.storage.m.get("session");
+  check("saved edit appears in built quiz payloads",
+    JSON.stringify(sess || {}).includes("4 copies (corrected)"));
+  await grpRoom.state.storage.delete("session");
+  await hook(dmMsg("/edits"), cfg.secret);
+  const edKb = lastCall("sendMessage")?.params.reply_markup?.inline_keyboard || [];
+  check("edits list shows export + revert buttons",
+    edKb.flat().some((b) => b.callback_data === "ed:exp") &&
+    edKb.flat().some((b) => b.callback_data === "ed:rev:q1xtnaneriym"));
+  const edMid = midSeq;
+  await hook(dmCb("ed:exp", edMid), cfg.secret);
+  check("export sends a document",
+    calls.some((c) => c.method === "sendDocument"));
+  await hook(dmCb("ed:rev:q1xtnaneriym", edMid), cfg.secret);
+  const after = JSON.parse((await kv.get("edits_all")) || "{}");
+  check("revert removes the edit", !after.q1xtnaneriym);
 }
 
 // 14. Telegram command menu registered (v12) + no plain tick/cross glyphs left

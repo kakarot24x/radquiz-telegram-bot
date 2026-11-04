@@ -28,11 +28,22 @@ Parts ko KABHI haath se edit mat karo. Sudhaar hamesha asal source
 (app questions.json / master / TG source) me karo, phir:
 ```
 python3 split_bank.py && python3 add_telegram.py && python3 add_ids.py \
-    && python3 add_explanations.py && python3 bank_check.py
+    && python3 add_explanations.py && python3 make_search_index.py \
+    && python3 bank_check.py
 ```
 `bank_check.py` ki HARD problems 0 honi chahiye tabhi push karo.
 Har part item me `i` = sawal ki pakki ID hai (main bank = app wala
 qidOf hash; Telegram chapters = asal TG_Q id) — sudhaar ID se khojo.
+`bank/search.json` Telegram wale /edit editor ki khoj-soochi hai
+(make_search_index.py banata hai).
+
+## Telegram editor ke edits (/edit, v15)
+Admin bot ke DM me `/edit` se sawal khoj kar sudhaar sakta hai. Wo
+sudhaar bank files me NAHI jaate — KV ke `edits_all` me ID ke saath
+save hote hain aur har quiz bante samay sawal par lag jaate hain
+(bot me turant live). `/edits` se unki file (radequiz-edits.json)
+export hoti hai — use asal bank (app questions.json / TG sources)
+me mila kar pipeline chalao, phir bot me `/edits` → Clear kar do.
 
 ## Setup (one-time)
 1. Cloudflare par free account (email se, card nahi).
