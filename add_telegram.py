@@ -10,6 +10,26 @@ Idempotent: re-running replaces the Telegram chapters cleanly.
 import glob
 import json
 import os
+import re
+
+
+def strip_lead(q):
+    """Bot-display hygiene: drop harvest number/junk prefixes from question
+    text (e.g. 'Q136.) ', '146) ', '/ 24 ', '...... ') — bot parts only;
+    the app/TG source files keep their original text."""
+    s = str(q)
+    for _ in range(6):
+        prev = s
+        s = re.sub(r'^[\s\.,/\)]+', '', s)
+        s = re.sub(r'^Q\d{1,4}\.\)\s*', '', s)
+        s = re.sub(r'^\d{1,3}\)\s*', '', s)
+        if s == prev:
+            break
+    if str(q).lstrip().startswith('/'):
+        s = re.sub(r'^\d{1,3}\s+', '', s)
+    if re.match(r'^[\s\.,/\)]*\d+\)', str(q)):
+        s = re.sub(r'^\d{1,3}\s+', '', s)
+    return s if len(s) >= 8 else str(q)
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 BANK = os.path.join(HERE, "bank")
@@ -44,7 +64,7 @@ def main():
     total_askable = 0
     for ci, fname, title, expected in GROUPS:
         data = json.load(open(os.path.join(SRC, fname)))
-        items = [{"q": it["q"], "options": it["o"], "answer": it["a"]}
+        items = [{"q": strip_lead(it["q"]), "options": it["o"], "answer": it["a"]}
                  for it in data["questions"]]
         assert len(items) == expected, (fname, len(items), expected)
         for old in glob.glob(os.path.join(BANK, f"p-{ci}-*.json")):
