@@ -542,7 +542,7 @@ long-press the box and tap <b>Paste</b> again.</p>
 ▶ Start the Bot</button></form>`;
   }
   return `<h2>✅ RADEQuiz Bot is Running</h2>
-<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-04 v15</b></p>
+<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-05 v16</b></p>
 <p>Now open your Telegram group <b>RADEQuiz</b> and type <b>/quiz</b> —
 choose a topic, the number of questions and the timer, and the quiz starts.
 Everything is controlled from Telegram itself.</p>
@@ -1287,8 +1287,8 @@ export class QuizRoom {
         const ranked = vals
           .sort((a, b) => (ptsOf(b, true) - ptsOf(a, true)) || ((a[4] || 0) - (b[4] || 0)))
           .slice(0, 10);
-        const lines = ["🏆 All-time Ranking (saved by the bot):"];
-        ranked.forEach((t, i) => lines.push(`${i + 1}. ${t[0]} — ${fmtPts(t, true)} pts · ✅${t[1] || 0} ❌${t[3] || 0} · ⏱ ${fmtTime(t[4] || 0)}`));
+        const lines = ["🏆 All-time Ranking (saved by the bot):", ""];
+        ranked.forEach((t, i) => lines.push(`${i + 1}. ${t[0]} — ${fmtPts(t, true)} pts · ✅${t[1] || 0}   ❌${t[3] || 0} · ⏱ ${fmtTime(t[4] || 0)}`));
         await this.send(chatId, lines.join("\n"));
       } else {
         await this.send(chatId, "📊 No scores saved yet.");
@@ -1914,9 +1914,9 @@ export class QuizRoom {
         .sort((a, b) => (ptsOf(b) - ptsOf(a)) || ((a[3] || 0) - (b[3] || 0)))
         .slice(0, 10);
       const medals = ["🥇", "🥈", "🥉"];
-      const lines = ["🏆 Ranking (score • time taken):"];
+      const lines = ["🏆 Ranking (score • time taken):", ""];
       ranked.forEach((e, i) => {
-        lines.push(`${i < 3 ? medals[i] : `${i + 1}.`} ${e[0]} — ${fmtPts(e)} pts · ✅${e[1] || 0} ❌${e[2] || 0} · ⏱ ${fmtTime(e[3] || 0)}`);
+        lines.push(`${i < 3 ? medals[i] : `${i + 1}.`} ${e[0]} — ${fmtPts(e)} pts · ✅${e[1] || 0}   ❌${e[2] || 0} · ⏱ ${fmtTime(e[3] || 0)}`);
       });
       resultText = lines.join("\n");
     } else {

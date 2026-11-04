@@ -186,14 +186,14 @@ check("session finished after 10 questions", !room.state.storage.m.get("session"
 check("all 10 polls answered in loop", answered === 10);
 const fin = lastCall("sendMessage");
 check("finish message with ranking 10 pts + time for Boss",
-  fin?.params.text.includes("Quiz finished") && fin?.params.text.includes("Boss — 10 pts · ✅10 ❌0 · ⏱"));
+  fin?.params.text.includes("Quiz finished") && fin?.params.text.includes("Boss — 10 pts · ✅10   ❌0 · ⏱"));
 check("negative marking: Ram -3.33 pts (10 wrong)",
-  fin?.params.text.includes("Ram — -3.33 pts · ✅0 ❌10"));
+  fin?.params.text.includes("Ram — -3.33 pts · ✅0   ❌10"));
 
 // 7. /score all-time
 await hook(msg("/score"), cfg.secret);
 check("/score shows Boss 10 pts",
-  lastCall("sendMessage")?.params.text.includes("Boss — 10 pts · ✅10 ❌0"));
+  lastCall("sendMessage")?.params.text.includes("Boss — 10 pts · ✅10   ❌0"));
 
 // 8. default quiz + /stop
 await hook(msg("/quiz"), cfg.secret);
