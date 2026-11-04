@@ -270,6 +270,78 @@ function syllabusMap(index) {
   return papers.filter((p) => p.total > 0);
 }
 
+// ------------------------------------------------------- 9 PM auto quiz
+// Daily at 21:00 IST the Worker cron fires; every group whose admin has
+// switched /autoquiz ON gets today's syllabus-rotation quiz (50 Q, 20 s,
+// New-questions mode, falling back to All when a pool runs dry).
+function istDayIndex() {
+  const ist = new Date(Date.now() + 5.5 * 3600 * 1000);
+  return (ist.getUTCDay() + 6) % 7; // Monday = 0
+}
+
+function autoSelection(index) {
+  const papers = syllabusMap(index);
+  const byName = Object.fromEntries(papers.map((p) => [p.paper, p]));
+  const groupEntry = (paper, code, count) => {
+    const g = (byName[paper]?.groups || []).find((x) => x.code === code);
+    return g ? { label: `${paper} › ${SYL_GROUP_NAMES[code] || code}`, cis: g.cis, count } : null;
+  };
+  const d = istDayIndex();
+  let plan, tag;
+  if (d === 3) { // Thursday = Mix day
+    plan = [groupEntry("PAPER-I", "EST", 17), groupEntry("PAPER-II", "STR", 17),
+            groupEntry("PAPER-III", "TAC", 16)].filter(Boolean);
+    tag = "🧩 Mix Day (Establishment + Stores + Traffic Accounts)";
+  } else {
+    const name = ["PAPER-I", "PAPER-II", "PAPER-III", null,
+                  "PAPER-I", "PAPER-II", "PAPER-III"][d];
+    plan = [{ label: `${name} (All Topics)`, cis: byName[name].cis, count: 50 }];
+    tag = `📖 ${name}`;
+  }
+  return {
+    plan, label: `🌙 9 PM Auto Quiz — ${tag}`,
+    count: 50, seconds: 20, mode: "new",
+  };
+}
+
+async function roomCallFromWorker(env, chatId, path, payload) {
+  const stub = env.QUIZ.get(env.QUIZ.idFromName(String(chatId)));
+  const r = await stub.fetch(`https://do${path}`, {
+    method: "POST", body: JSON.stringify(payload || {}),
+  });
+  return r.json().catch(() => ({}));
+}
+
+async function runAutoQuizzes(env) {
+  let groups = {};
+  try {
+    groups = JSON.parse((await env.KV.get("groups")) || "{}");
+  } catch (e) { /* no registry yet */ }
+  const ids = Object.keys(groups);
+  if (!ids.length) return;
+  const index = await loadIndex();
+  const sel = autoSelection(index);
+  for (const id of ids) {
+    const chatId = Number(id);
+    try {
+      const st = await roomCallFromWorker(env, chatId, "/auto");
+      if (!st.on || st.running) continue;
+      let res = await roomCallFromWorker(env, chatId, "/start", {
+        chatId, label: sel.label, subject: null, chapter: null,
+        count: sel.count, seconds: sel.seconds, mode: sel.mode,
+        plan: sel.plan, saveLast: false,
+      });
+      if (!res.ok && res.reason === "empty") {
+        res = await roomCallFromWorker(env, chatId, "/start", {
+          chatId, label: sel.label, subject: null, chapter: null,
+          count: sel.count, seconds: sel.seconds, mode: "all",
+          plan: sel.plan, saveLast: false,
+        });
+      }
+    } catch (e) { /* one bad group must not stop the others */ }
+  }
+}
+
 function mixLabel(mix) {
   return "🧩 Mix: " + mix.map((e) => `${e.label} ×${e.count}`).join(" + ");
 }
@@ -321,6 +393,11 @@ export default {
     } catch (e) {
       return new Response(`error: ${e.message}`, { status: 500 });
     }
+  },
+
+  // Cron: daily 15:30 UTC = 21:00 IST — 9 PM auto quiz in opted-in groups.
+  async scheduled(event, env, ctx) {
+    ctx.waitUntil(runAutoQuizzes(env));
   },
 };
 
@@ -427,7 +504,7 @@ long-press the box and tap <b>Paste</b> again.</p>
 ▶ Start the Bot</button></form>`;
   }
   return `<h2>✅ RADEQuiz Bot is Running</h2>
-<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-04 v13</b></p>
+<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-04 v14</b></p>
 <p>Now open your Telegram group <b>RADEQuiz</b> and type <b>/quiz</b> —
 choose a topic, the number of questions and the timer, and the quiz starts.
 Everything is controlled from Telegram itself.</p>
@@ -507,6 +584,7 @@ async function registerCommands(token) {
     { command: "stop", description: "🛑 Stop the running quiz (admin only)" },
     base[1], base[2],
     { command: "settings", description: "⚙️ Quiz info" },
+    { command: "autoquiz", description: "🌙 9 PM auto quiz — on / off / test" },
   ];
   await tg(token, "setMyCommands", { commands: base });
   await tg(token, "setMyCommands",
@@ -521,9 +599,9 @@ async function handleHook(request, env, ctx) {
   const update = await request.json();
 
   // One-time: publish the command menu to Telegram (v12+).
-  if (!(await env.KV.get("cmds_v12"))) {
+  if (!(await env.KV.get("cmds_v14"))) {
     ctx.waitUntil(registerCommands(cfg.token)
-      .then(() => env.KV.put("cmds_v12", "1")).catch(() => {}));
+      .then(() => env.KV.put("cmds_v14", "1")).catch(() => {}));
   }
 
   if (update.poll_answer) {
@@ -560,7 +638,8 @@ async function handleHook(request, env, ctx) {
       }).catch(() => {}));
       return new Response("ok");
     }
-    if (["/quiz", "/stop", "/score", "/settings"].includes(text)) {
+    if (["/quiz", "/stop", "/score", "/settings"].includes(text) ||
+        text.split(" ")[0] === "/autoquiz") {
       const stub = env.QUIZ.get(env.QUIZ.idFromName(String(msg.chat.id)));
       ctx.waitUntil(stub.fetch("https://do/message", {
         method: "POST", body: JSON.stringify(msg),
@@ -575,7 +654,8 @@ async function handleHook(request, env, ctx) {
       }).catch(() => {}));
       return new Response("ok");
     }
-    if (["/quiz", "/start", "/stop", "/score"].includes(text)) {
+    if (["/quiz", "/start", "/stop", "/score"].includes(text) ||
+        text.split(" ")[0] === "/autoquiz") {
       const stub = env.QUIZ.get(env.QUIZ.idFromName(String(msg.chat.id)));
       ctx.waitUntil(stub.fetch("https://do/message", {
         method: "POST", body: JSON.stringify(msg),
@@ -676,6 +756,10 @@ export class QuizRoom {
         });
       } else if (path === "/start") {
         return Response.json(await this.remoteStart(body));
+      } else if (path === "/auto") {
+        const cfg = (await this.state.storage.get("autoCfg")) || {};
+        const session = await this.state.storage.get("session");
+        return Response.json({ on: !!cfg.on, running: !!session });
       }
     } catch (e) {
       console.log("room error:", e.message);
@@ -775,7 +859,8 @@ export class QuizRoom {
     if (msg.chat.type === "private") {
       if ((text === "/quiz" || text === "/start") && sender) {
         await this.startDmFlow(chatId, sender);
-      } else if (text === "/stop" || text === "/score") {
+      } else if (text === "/stop" || text === "/score" ||
+                 text.split(" ")[0] === "/autoquiz") {
         await this.send(chatId, "ℹ️ Please use this command inside the group.");
       }
       return;
@@ -812,7 +897,48 @@ export class QuizRoom {
         await this.send(chatId, "📊 No scores saved yet.");
       }
     } else if (text === "/settings") {
-      await this.send(chatId, "⚙️ Auto quiz has been removed — a quiz now starts only with /quiz, whenever you want.");
+      const cfg = (await this.state.storage.get("autoCfg")) || {};
+      await this.send(chatId, "⚙️ RADEQuiz settings\n" +
+        `🌙 9 PM Auto Quiz (syllabus rotation, 50 Q · 20 s): ${cfg.on ? "🟢 ON" : "🔴 OFF"}\n` +
+        "Admin commands: /autoquiz on · /autoquiz off · /autoquiz test");
+    } else if (text.split(" ")[0] === "/autoquiz") {
+      if (!(sender && await this.isAdmin(chatId, sender))) {
+        await this.send(chatId, "🔒 Only a group admin can change the auto quiz setting.");
+        return;
+      }
+      const arg = (text.split(" ")[1] || "").toLowerCase();
+      const cfg = (await this.state.storage.get("autoCfg")) || {};
+      if (arg === "on") {
+        cfg.on = true;
+        await this.state.storage.put("autoCfg", cfg);
+        await this.send(chatId, "🌙 9 PM Auto Quiz is now 🟢 ON — every night at 9:00 PM a 50-question quiz (20 s each) will start automatically.\n📚 Rotation: Mon Paper-I · Tue Paper-II · Wed Paper-III · Thu 🧩 Mix · Fri Paper-I · Sat Paper-II · Sun Paper-III.");
+      } else if (arg === "off") {
+        cfg.on = false;
+        await this.state.storage.put("autoCfg", cfg);
+        await this.send(chatId, "🌙 9 PM Auto Quiz is now 🔴 OFF.");
+      } else if (arg === "test") {
+        const session = await this.state.storage.get("session");
+        if (session) {
+          await this.send(chatId, "⏳ A quiz is already running — test skipped.");
+          return;
+        }
+        await this.send(chatId, "🌙 Starting today's auto quiz now (test)…");
+        const index = await loadIndex();
+        const sel = autoSelection(index);
+        await this.startSession(chatId, sel.label, null, null, sel.count,
+          sel.seconds, sel.mode, sel.plan);
+        const now = await this.state.storage.get("session");
+        if (!now) {
+          await this.startSession(chatId, sel.label, null, null, sel.count,
+            sel.seconds, "all", sel.plan);
+        }
+      } else {
+        const probe = autoSelection(await loadIndex());
+        await this.send(chatId,
+          `🌙 9 PM Auto Quiz: ${cfg.on ? "🟢 ON" : "🔴 OFF"}\n` +
+          `Today's quiz would be: ${probe.label} — 50 Q · 20 s\n` +
+          "Use /autoquiz on, /autoquiz off, or /autoquiz test.");
+      }
     }
   }
 

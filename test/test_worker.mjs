@@ -410,6 +410,37 @@ await hook(msg("/quiz"), cfg.secret);
   await getRoom(CHAT).state.storage.delete("session");
 }
 
+// 16. 9 PM Auto Quiz — /autoquiz on/off + cron (scheduled) starts the quiz
+{
+  const aq = (t, from = ADMIN) => hook(msg(t, from), cfg.secret);
+  await aq("/autoquiz on", PLAYER);
+  check("autoquiz change refused for non-admin",
+    (lastCall("sendMessage")?.params.text || "").includes("Only a group admin"));
+  await aq("/autoquiz on");
+  check("autoquiz turned ON by admin",
+    (lastCall("sendMessage")?.params.text || "").includes("🟢 ON"));
+  await aq("/autoquiz");
+  check("autoquiz status shows today's rotation",
+    (lastCall("sendMessage")?.params.text || "").includes("9 PM Auto Quiz"));
+  await getRoom(CHAT).state.storage.delete("session");
+  const pollsB = calls.filter((c) => c.method === "sendPoll").length;
+  await worker.scheduled({}, env, ctx);
+  await drain();
+  const ann = calls.filter((c) => c.method === "sendMessage").pop();
+  check("cron starts the auto quiz",
+    (ann?.params.text || "").includes("9 PM Auto Quiz") &&
+    calls.filter((c) => c.method === "sendPoll").length === pollsB + 1);
+  await getRoom(CHAT).state.storage.delete("session");
+  await aq("/autoquiz off");
+  check("autoquiz turned OFF",
+    (lastCall("sendMessage")?.params.text || "").includes("🔴 OFF"));
+  const pollsC = calls.filter((c) => c.method === "sendPoll").length;
+  await worker.scheduled({}, env, ctx);
+  await drain();
+  check("cron does nothing when OFF",
+    calls.filter((c) => c.method === "sendPoll").length === pollsC);
+}
+
 // 14. Telegram command menu registered (v12) + no plain tick/cross glyphs left
 const cmdCalls = calls.filter((c) => c.method === "setMyCommands");
 check("setMyCommands registered", cmdCalls.length >= 1 &&

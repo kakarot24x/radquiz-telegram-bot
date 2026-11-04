@@ -15,3 +15,7 @@ class_name = "QuizRoom"
 [[migrations]]
 tag = "v1"
 new_sqlite_classes = ["QuizRoom"]
+
+# Roz raat 9:00 baje IST auto quiz (15:30 UTC)
+[triggers]
+crons = ["30 15 * * *"]
