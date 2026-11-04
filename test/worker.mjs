@@ -559,7 +559,7 @@ long-press the box and tap <b>Paste</b> again.</p>
 ▶ Start the Bot</button></form>`;
   }
   return `<h2>✅ RADEQuiz Bot is Running</h2>
-<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-05 v17</b></p>
+<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-05 v18</b></p>
 <p>Now open your Telegram group <b>RADEQuiz</b> and type <b>/quiz</b> —
 choose a topic, the number of questions and the timer, and the quiz starts.
 Everything is controlled from Telegram itself.</p>
@@ -1456,32 +1456,41 @@ export class QuizRoom {
     return { total: keys.length, done };
   }
 
-  // Fetch the exact items a keyword matched (by "part#index" keys),
-  // honouring the New/Completed/All mode and saved edits.
-  async fetchByKeys(keys, mode, askedOf, edits) {
-    const byPart = new Map();
-    for (const k of keys) {
+  // Fetch items a keyword matched (by "part#index" keys), honouring the
+  // New/Completed/All mode and saved edits. A broad keyword can match
+  // questions in HUNDREDS of part files — fetching them all in one go
+  // kills the start (subrequest limits), so: shuffle the keys first and
+  // open at most MAX_PARTS_PER_QUIZ files, like fetchPool does.
+  async fetchByKeys(keys, count, mode, askedOf, edits) {
+    const shuffled = shuffle([...keys]);
+    const want = Math.max(count * 3, count + 30);
+    const items = [];
+    const fetched = new Map();
+    const askedCache = new Map();
+    let fetches = 0;
+    for (const k of shuffled) {
+      if (items.length >= want) break;
       const hash = k.lastIndexOf("#");
       const part = k.slice(0, hash);
-      const idx = parseInt(k.slice(hash + 1), 10);
-      if (!byPart.has(part)) byPart.set(part, []);
-      byPart.get(part).push(idx);
-    }
-    const items = [];
-    for (const [part, idxs] of byPart) {
-      const qs = await fetchPart(part);
-      const asked = (mode !== "all" && askedOf) ? await askedOf(part) : null;
-      for (const i of idxs) {
-        const q = qs[i];
-        if (!q) continue;
+      const i = parseInt(k.slice(hash + 1), 10);
+      if (!fetched.has(part)) {
+        if (fetches >= MAX_PARTS_PER_QUIZ) continue;
+        fetched.set(part, await fetchPart(part));
+        fetches++;
+      }
+      const q = fetched.get(part)[i];
+      if (!q) continue;
+      if (mode !== "all" && askedOf) {
+        if (!askedCache.has(part)) askedCache.set(part, await askedOf(part));
+        const asked = askedCache.get(part);
         const isDone = asked ? asked.has(i) : false;
         if (mode === "new" && isDone) continue;
         if (mode === "done" && !isDone) continue;
-        q._k = `${part}#${i}`;
-        q._ci = parseInt(part.split("-")[1], 10);
-        if (edits && q.i && edits[q.i]) applyEdit(q, edits[q.i]);
-        items.push(q);
       }
+      q._k = `${part}#${i}`;
+      q._ci = parseInt(part.split("-")[1], 10);
+      if (edits && q.i && edits[q.i]) applyEdit(q, edits[q.i]);
+      items.push(q);
     }
     return items;
   }
@@ -1896,8 +1905,16 @@ export class QuizRoom {
       await this.state.storage.delete("flow");
       await this.edit(chatId, flow.messageId, `▶️ Starting the quiz — ${label}`);
       await this.answerCb(cq.id);
-      await this.startSession(chatId, label, null, null, totalCount,
-        flow.seconds, flow.mode || "all", plan);
+      try {
+        await this.startSession(chatId, label, null, null, totalCount,
+          flow.seconds, flow.mode || "all", plan);
+        const now = await this.state.storage.get("session");
+        if (!now) {
+          await this.send(chatId, "⚠️ Is selection se koi question nahi mila — dusra Mode ya keyword try karo.");
+        }
+      } catch (e) {
+        await this.send(chatId, "⚠️ Quiz start nahi ho paya — ek baar phir /quiz se try karo.");
+      }
       return;
     }
     if (data === "start") {
@@ -2029,7 +2046,7 @@ export class QuizRoom {
       const usedK = new Set();
       for (const e of plan) {
         const pool = shuffle(e.keys
-          ? await this.fetchByKeys(e.keys, mode, askedOf, edits)
+          ? await this.fetchByKeys(e.keys, e.count, mode, askedOf, edits)
           : await fetchPool(
               index, null, null, e.count, mode, askedOf, e.cis, edits));
         let got = 0;

@@ -562,6 +562,38 @@ await hook(msg("/quiz"), cfg.secret);
     (lastCall("editMessageText")?.params.text || "").includes("Total: 10"));
 }
 
+// 19. Keyword Quiz regression: a BROAD keyword (matches in hundreds of
+// part files) must still start — pool is built from a capped file set.
+{
+  await getRoom(CHAT).state.storage.delete("session");
+  await getRoom(CHAT).state.storage.delete("flow");
+  await hook(msg("/quiz"), cfg.secret);
+  const kMid = midSeq;
+  const tap = async (data) => { await hook(cb(data, kMid), cfg.secret); };
+  const lastText = () => lastCall("editMessageText")?.params.text || "";
+  await tap("kw:open");
+  await tap("kw:add");
+  await hook(msg("leave"), cfg.secret);
+  check("broad keyword finds a large pool",
+    /kul \d{3,} questions mile/.test(lastText()));
+  await tap("kw:cnt:10");
+  await tap("kw:go");
+  await tap("mode:all");
+  await tap("sec:10");
+  const pollsB = calls.filter((c) => c.method === "sendPoll").length;
+  await tap("start");
+  const ann = calls.filter((c) => c.method === "sendMessage").pop();
+  check("broad-keyword quiz announced",
+    (ann?.params.text || "").includes("10 questions"));
+  check("broad-keyword first poll sent",
+    calls.filter((c) => c.method === "sendPoll").length === pollsB + 1);
+  const sess = getRoom(CHAT).state.storage.m.get("session");
+  const qs = (sess?.items || []).map((p) => (p.poll?.question || ""));
+  check("broad-keyword payloads all match the keyword",
+    qs.length === 10 && qs.every((q) => q.toLowerCase().includes("leave")));
+  await getRoom(CHAT).state.storage.delete("session");
+}
+
 // 14. Telegram command menu registered (v12) + no plain tick/cross glyphs left
 const cmdCalls = calls.filter((c) => c.method === "setMyCommands");
 check("setMyCommands registered", cmdCalls.length >= 1 &&
