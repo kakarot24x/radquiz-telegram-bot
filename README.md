@@ -62,3 +62,15 @@ aise hi aur keyword jod sakta hai. Mode (New/Completed/All) poore
 keyword-mix par lagta hai; sawal har keyword ke matches se uski
 ginati me aakar shuffle hote hain; Repeat Last me bhi rehta hai.
 Group aur DM (private setup) dono me chalta hai.
+
+## Akaza bot (v19) — dusri deployment, wahi code
+Ek hi codebase do bot chalata hai. Jis deployment ke bot username me
+"akaza" hoga (setup par getMe se apne aap pakda jata hai), wo Akaza
+flavor me chalegi: group commands /akaza, /akazastop, /akazascore,
+/akazaping, /akazaauto; bare /quiz, /stop, /score par wo chup rehti
+hai taaki main bot se takraav na ho. DM me sab kuchh waisa hi (/quiz
+private setup, /edit, /edits). Quiz announcement par "👹 Akaza" brand.
+Dusri Cloudflare account ke liye `wrangler.akaza.toml` hai — Builds ka
+Deploy command: `npx wrangler deploy -c wrangler.akaza.toml`, aur nayi
+KV ki id us file me bharni hoti hai. Bank dono ka ek hi hai (yehi
+repo), ranking/progress har bot ka apna hota hai.

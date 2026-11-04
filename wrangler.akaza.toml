@@ -1,0 +1,25 @@
+# Akaza bot ki deployment (DUSRI Cloudflare account ke liye).
+# Workers Builds me is worker ka Deploy command rakho:
+#   npx wrangler deploy -c wrangler.akaza.toml
+# KV namespace dusri account me banane ke baad uski id neeche bharni hai
+# (id milte hi file update karke push kar diya jayega).
+name = "akaza-bot"
+main = "worker.js"
+compatibility_date = "2025-01-01"
+
+[[kv_namespaces]]
+binding = "KV"
+id = "REPLACE_WITH_AKAZA_KV_ID"
+
+[[durable_objects.bindings]]
+name = "QUIZ"
+class_name = "QuizRoom"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["QuizRoom"]
+
+# Roz raat 9:00 baje IST auto quiz (15:30 UTC) — Akaza me default OFF hai,
+# group me /akazaauto on karne par hi chalega.
+[triggers]
+crons = ["30 15 * * *"]

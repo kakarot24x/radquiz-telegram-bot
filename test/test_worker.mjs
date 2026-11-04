@@ -594,6 +594,46 @@ await hook(msg("/quiz"), cfg.secret);
   await getRoom(CHAT).state.storage.delete("session");
 }
 
+// 20. Akaza flavor: same code, second bot — /quiz ignored, /akaza starts
+{
+  const CHAT2 = -100999;
+  const savedCfg = await kv.get("config");
+  const c2 = JSON.parse(savedCfg);
+  c2.username = "AkazaQuizBot";
+  c2.flavor = "akaza";
+  await kv.put("config", JSON.stringify(c2));
+  const msg2 = (text, from = ADMIN) => ({
+    message: { message_id: 3, chat: { id: CHAT2, type: "supergroup" },
+               from: { id: from, first_name: "Boss" }, text },
+  });
+  const cb2 = (data, mid, from = ADMIN) => ({
+    callback_query: { id: "cb" + Math.random(), data, from: { id: from },
+                      message: { message_id: mid, chat: { id: CHAT2 } } },
+  });
+  const sendsTo2 = () => calls.filter((x) => x.method === "sendMessage" &&
+    x.params.chat_id === CHAT2);
+  await hook(msg2("/quiz"), cfg.secret);
+  check("akaza ignores bare /quiz", sendsTo2().length === 0);
+  await hook(msg2("/akaza"), cfg.secret);
+  check("akaza opens setup on /akaza",
+    sendsTo2().some((x) => (x.params.reply_markup?.inline_keyboard || [])
+      .flat().some((b) => b.callback_data === "sub:0")));
+  const aMid = midSeq;
+  await hook(cb2("sub:0", aMid), cfg.secret);
+  const akb = lastCall("editMessageText")?.params.reply_markup?.inline_keyboard || [];
+  check("akaza chapters show All Topics",
+    akb.flat().some((b) => b.callback_data === "top:all"));
+  await hook(cb2("top:all", aMid), cfg.secret);
+  await hook(cb2("mode:all", aMid), cfg.secret);
+  await hook(cb2("cnt:10", aMid), cfg.secret);
+  await hook(cb2("sec:10", aMid), cfg.secret);
+  await hook(cb2("start", aMid), cfg.secret);
+  check("akaza announce carries its own brand",
+    sendsTo2().some((x) => (x.params.text || "").includes("👹 Akaza")));
+  await getRoom(CHAT2).state.storage.delete("session");
+  await kv.put("config", savedCfg);
+}
+
 // 14. Telegram command menu registered (v12) + no plain tick/cross glyphs left
 const cmdCalls = calls.filter((c) => c.method === "setMyCommands");
 check("setMyCommands registered", cmdCalls.length >= 1 &&
