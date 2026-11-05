@@ -615,7 +615,12 @@ await hook(msg("/quiz"), cfg.secret);
   await hook(msg2("/quiz"), cfg.secret);
   check("akaza ignores bare /quiz", sendsTo2().length === 0);
   await hook(msg2("/akaza"), cfg.secret);
-  check("akaza opens setup on /akaza",
+  check("akaza ignores the old bare /akaza", sendsTo2().length === 0);
+  await hook(msg2("/akazaedit"), cfg.secret);
+  check("akaza group /akazaedit points to its DM",
+    sendsTo2().some((x) => (x.params.text || "").includes("@akazaquizbot")));
+  await hook(msg2("/akazaquiz"), cfg.secret);
+  check("akaza opens setup on /akazaquiz",
     sendsTo2().some((x) => (x.params.reply_markup?.inline_keyboard || [])
       .flat().some((b) => b.callback_data === "sub:0")));
   const aMid = midSeq;

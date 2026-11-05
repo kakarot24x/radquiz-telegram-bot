@@ -66,7 +66,7 @@ Group aur DM (private setup) dono me chalta hai.
 ## Akaza bot (v19) — dusri deployment, wahi code
 Ek hi codebase do bot chalata hai. Jis deployment ke bot username me
 "akaza" hoga (setup par getMe se apne aap pakda jata hai), wo Akaza
-flavor me chalegi: group commands /akaza, /akazastop, /akazascore,
+flavor me chalegi: group commands /akazaquiz, /akazastop, /akazascore, /akazaedit,
 /akazaping, /akazaauto; bare /quiz, /stop, /score par wo chup rehti
 hai taaki main bot se takraav na ho. DM me sab kuchh waisa hi (/quiz
 private setup, /edit, /edits). Quiz announcement par "👹 Akaza" brand.
