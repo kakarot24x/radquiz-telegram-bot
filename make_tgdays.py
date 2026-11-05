@@ -3,18 +3,38 @@
 
 For Accounts Exam 1–3 the index is EXPORT-DRIVEN (user order 2026-11-05):
 it replays the group's own Telegram Desktop export (result.json) day by
-day — EVERY poll of the day, in original order, repeats across days
-included — instead of the app bank's unique-question view (the app bank
-kept each question once, so later days there show only their few NEW
-questions). This index is BOT-ONLY; the app is untouched.
+day — the day's polls in original order, repeats across days included —
+instead of the app bank's unique-question view. This index is BOT-ONLY;
+the app is untouched.
 
 An export carries no answer key (Telegram Desktop never exports it), so
 each export poll borrows its verified question/options/answer from the
-existing bank: the poll's cleaned stem is matched against the whole bot
-bank, and a transfer is accepted only when the bank item's CORRECT option
-text appears among the export poll's answers and the option sets overlap
-strongly. Polls with no verified match are skipped and counted in the
-build report (they cannot be quizzed without a known correct answer).
+existing bank. The first loose matcher (v26) produced wrong picks on
+generic stems, so matching is DATE-LOCKED and evidence-tiered (v28):
+
+  Tier 1  The group's own chapter holds a copy harvested from THIS date
+          and it also passes strong option verification — near-certain.
+  Tier 2  Same, but the copy cannot be option-verified (e.g. options
+          reworded in harvest): accepted only when it is the day's ONLY
+          copy of that stem, the day holds only one poll of that stem,
+          and the stem is not one whose bank copies disagree on the
+          correct option text (conflict group).
+  Tier 3  No copy from this date, but strong option verification passes
+          and every verified candidate agrees on the correct text.
+  Tier 4  All bank copies of the stem share the identical option set AND
+          the identical correct text — any copy asks the same question
+          with the same key, so the transfer cannot be wrong.
+  Anything else is SKIPPED and counted: a shorter day beats a wrong key.
+
+  (Caution, learned the hard way in the v28 rebuild: main-bank parts
+  store options as a dict {A:..}, Telegram parts as a list — see
+  opts_list(). Reading a dict's keys as its options silently poisoned
+  every cross-chapter match in v26.)
+
+Strong verification — real polls: the candidate's correct option text is
+among the poll's answers and >=3/4 of its options appear there. Letter
+polls (answers just A/B/C/D, real options embedded in the question
+text): >=3/4 of the candidate's option texts appear in the question.
 
 Exam 4 has no export in hand, so it keeps the bank-driven build from
 bank-src/telegram_g4.json (field "d"), exactly as before.
@@ -33,7 +53,7 @@ import math
 import os
 import re
 import sys
-from collections import OrderedDict
+from collections import Counter, OrderedDict
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 BANK = os.path.join(HERE, "bank")
@@ -42,13 +62,14 @@ PART = 100  # must match add_telegram.py
 EXPORT_DIR = os.path.expanduser("~/workspace/user/files")
 
 EXPORT_GROUPS = [
-    (599, "result_0_b08e.json", "Accounts Exam 1", "LDCE"),
-    (600, "result__1__0_qol3.json", "Accounts Exam 2", "Departmental"),
-    (601, "result__2__0_8k7o.json", "Accounts Exam 3", "Quizee"),
+    (599, "result_0_b08e.json", "Accounts Exam 1", "LDCE", "telegram_g1.json"),
+    (600, "result__1__0_qol3.json", "Accounts Exam 2", "Departmental", "telegram_g2.json"),
+    (601, "result__2__0_8k7o.json", "Accounts Exam 3", "Quizee", "telegram_g3.json"),
 ]
 BANK_GROUPS = [
     (602, "telegram_g4.json", "Accounts Exam 4"),
 ]
+LETTER_SET = {"a", "b", "c", "d", "e"}
 
 
 def clean_stem(s):
@@ -76,8 +97,19 @@ def trunc_opt(s):
     return o[:99] + "…" if len(o) > 100 else o
 
 
+def opts_list(item):
+    """Bank parts store options two ways: the main bank as a dict
+    {A: .., B: ..} and the Telegram chapters as a list. (The worker's
+    buildPollPayload accepts both; this generator must normalize or it
+    reads a dict's KEYS as the options — the v26/v28 matching bug.)"""
+    o = item.get("options")
+    if isinstance(o, dict):
+        return [o[k] for k in sorted(o)]
+    return list(o or [])
+
+
 def askable(item):
-    opts = item.get("options") or []
+    opts = opts_list(item)
     if len(opts) < 2 or not all(str(o).strip() for o in opts):
         return False
     a = item.get("answer")
@@ -101,7 +133,7 @@ def load_candidate_pool():
             stem = clean_stem(it.get("q", ""))
             if not stem:
                 continue
-            opts = [norm_opt(trunc_opt(o)) for o in it["options"]]
+            opts = [norm_opt(trunc_opt(o)) for o in opts_list(it)]
             correct = opts[ord(it["answer"]) - 65]
             pool.setdefault(stem, []).append(
                 (f"{part}#{i}", ci, set(opts), correct, len(opts)))
@@ -110,60 +142,37 @@ def load_candidate_pool():
     return pool
 
 
-LETTER_SET = {"a", "b", "c", "d", "e"}
+def strong_verified(cand, answers, qnorm):
+    """answers is None for letter polls (then qnorm is used)."""
+    key, ci, opts, correct, n = cand
+    need = max(2, math.ceil(0.75 * n))
+    if answers is not None:
+        return correct in answers and len(opts & answers) >= need
+    if all(len(o) <= 1 for o in opts):
+        return False  # letter-option bank item: nothing findable in text
+    found = sum(1 for o in opts if (" " + o + " ") in qnorm or o in qnorm)
+    return found >= need
 
 
-def match_poll(pool, poll, group_ci):
-    """Return (key, tier) or (None, 0). Tier 1: the bank item's correct
-    option text is among the poll's answers and the option sets overlap.
-    Tier 2 (letter polls, whose real options sit inside the question
-    text): most of the bank item's option texts appear in the question.
-    Tier 3: the stem occurs exactly once in the group's own chapter —
-    that chapter was harvested from this group's polls, so a unique
-    same-chapter stem is the same question."""
-    cands = pool.get(clean_stem(poll["question"]))
-    if not cands:
-        return None, 0
-    answers = {norm_opt(a["text"]) for a in poll["answers"]}
-    if not answers <= LETTER_SET:
-        best, best_rank = None, None
-        for key, ci, opts, correct, n in cands:
-            if correct not in answers:
-                continue
-            overlap = len(opts & answers)
-            if overlap >= 2 and overlap >= math.ceil(0.5 * n):
-                rank = (1 if ci == group_ci else 0, overlap)
-                if best_rank is None or rank > best_rank:
-                    best, best_rank = key, rank
-        if best:
-            return best, 1
-    else:
-        qnorm = " " + clean_stem(poll["question"]) + " "
-        best, best_found = None, -1
-        for key, ci, opts, correct, n in cands:
-            if all(len(o) <= 1 for o in opts):
-                continue  # letter-option bank item: nothing to find in text
-            found = sum(1 for o in opts
-                        if (" " + o + " ") in qnorm or o in qnorm)
-            if found >= 2 and found >= math.ceil(0.75 * n) and found > best_found:
-                best, best_found = key, found
-        if best:
-            return best, 2
-    same = [c for c in cands if c[1] == group_ci]
-    if len(same) == 1:
-        return same[0][0], 3
-    return None, 0
-
-
-def build_export_group(pool, ci, fname, name, expect):
+def build_export_group(pool, keymap, conflicts, ci, fname, name, expect, srcfile):
     path = os.path.join(EXPORT_DIR, fname)
     data = json.load(open(path))
     chat = data.get("name", "")
     if expect.lower() not in chat.lower():
         print(f"WARNING: {fname} chat name {chat!r} does not mention {expect!r}")
-    months = OrderedDict()
-    total_polls = kept = 0
-    tiers = {1: 0, 2: 0, 3: 0}
+    # This group's own chapter, by harvest date: date -> stem -> [keys in
+    # source order] — the date-locked candidate queues.
+    src = json.load(open(os.path.join(SRC, srcfile)))
+    by_date = {}
+    for pos, it in enumerate(src["questions"]):
+        key = f"p-{ci}-{pos // PART}.json#{pos % PART}"
+        if key not in keymap or not it.get("d"):
+            continue
+        by_date.setdefault(it["d"], {}).setdefault(
+            clean_stem(it["q"]), []).append(key)
+    # Export polls grouped by day, file order preserved.
+    days_in = OrderedDict()
+    total_polls = 0
     for m in data["messages"]:
         if m.get("type") != "message" or "poll" not in m:
             continue
@@ -171,13 +180,62 @@ def build_export_group(pool, ci, fname, name, expect):
         if len(poll.get("answers", [])) < 2:
             continue
         total_polls += 1
-        key, tier = match_poll(pool, poll, ci)
-        if key is None:
-            continue
-        kept += 1
-        tiers[tier] += 1
-        d = m["date"][:10]
-        months.setdefault(d[:7], OrderedDict()).setdefault(d, []).append(key)
+        days_in.setdefault(m["date"][:10], []).append(poll)
+    months = OrderedDict()
+    kept = 0
+    tiers = Counter()
+    for d, polls in days_in.items():
+        queues = {s: list(ks) for s, ks in by_date.get(d, {}).items()}
+        stem_count = Counter(clean_stem(p["question"]) for p in polls)
+        day_keys = []
+        for poll in polls:
+            stem = clean_stem(poll["question"])
+            cands = pool.get(stem)
+            if not cands:
+                continue
+            raw_answers = {norm_opt(a["text"]) for a in poll["answers"]}
+            is_letter = raw_answers <= LETTER_SET
+            answers = None if is_letter else raw_answers
+            qnorm = (" " + stem + " ") if is_letter else None
+            verified = {c[0] for c in cands
+                        if strong_verified(c, answers, qnorm)}
+            pick, tier = None, 0
+            queue = queues.get(stem, [])
+            for qk in list(queue):
+                if qk in verified:
+                    pick, tier = qk, 1
+                    queue.remove(qk)
+                    break
+            if pick is None and len(queue) == 1 and stem_count[stem] == 1:
+                cand = keymap[queue[0]]
+                if (stem, frozenset(cand[2])) not in conflicts:
+                    pick, tier = queue[0], 2
+                    queue.clear()
+            if pick is None and verified:
+                vc = [c for c in cands if c[0] in verified]
+                if len({c[3] for c in vc}) == 1:
+                    # Sabse zyada option-match wala copy us din ke asal
+                    # poll ke sabse kareeb hai; chapter sirf tie-break.
+                    def faith(c):
+                        if answers is not None:
+                            return (len(c[2] & answers), 1 if c[1] == ci else 0)
+                        found = sum(1 for o in c[2]
+                                    if (" " + o + " ") in qnorm or o in qnorm)
+                        return (found, 1 if c[1] == ci else 0)
+                    pick, tier = max(vc, key=faith)[0], 3
+            if pick is None:
+                optsets = {frozenset(c[2]) for c in cands}
+                corrects = {c[3] for c in cands}
+                if len(optsets) == 1 and len(corrects) == 1:
+                    same = [c for c in cands if c[1] == ci]
+                    pick, tier = (same or cands)[0][0], 4
+            if pick is None:
+                continue
+            kept += 1
+            tiers[tier] += 1
+            day_keys.append(pick)
+        if day_keys:
+            months.setdefault(d[:7], OrderedDict())[d] = day_keys
     mlist, ndays, slots = [], 0, 0
     for mo in sorted(months, reverse=True):
         days = [{"d": d, "n": len(months[mo][d]), "keys": months[mo][d]}
@@ -188,7 +246,7 @@ def build_export_group(pool, ci, fname, name, expect):
     pct = kept * 100 // max(total_polls, 1)
     print(f"ci {ci} {name}: export polls {total_polls} · kept {kept} ({pct}%) · "
           f"skipped {total_polls - kept} · {ndays} days · {slots} slots · "
-          f"tiers 1/2/3 = {tiers[1]}/{tiers[2]}/{tiers[3]}")
+          f"tiers 1/2/3/4 = {tiers[1]}/{tiers[2]}/{tiers[3]}/{tiers[4]}")
     return {"ci": ci, "name": name, "total": slots, "ndays": ndays,
             "months": mlist}, ndays
 
@@ -228,11 +286,24 @@ def build_bank_group(ci, fname, name):
 
 def main():
     pool = load_candidate_pool()
+    keymap = {}
+    for cands in pool.values():
+        for c in cands:
+            keymap[c[0]] = c
+    # Conflict groups: same stem + same option set, but bank copies
+    # disagree on the correct option TEXT.
+    by_sc = {}
+    for stem, cands in pool.items():
+        for c in cands:
+            by_sc.setdefault((stem, frozenset(c[2])), set()).add(c[3])
+    conflicts = {k for k, v in by_sc.items() if len(v) > 1}
+    print(f"conflict groups (stem+options, jawab alag): {len(conflicts)}")
     out = {"groups": []}
     total_days = 0
     spread = []
-    for ci, fname, name, expect in EXPORT_GROUPS:
-        g, nd = build_export_group(pool, ci, fname, name, expect)
+    for ci, fname, name, expect, srcfile in EXPORT_GROUPS:
+        g, nd = build_export_group(pool, keymap, conflicts,
+                                   ci, fname, name, expect, srcfile)
         out["groups"].append(g)
         total_days += nd
     for ci, fname, name in BANK_GROUPS:
