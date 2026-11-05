@@ -616,11 +616,14 @@ await hook(msg("/quiz"), cfg.secret);
   check("akaza ignores bare /quiz", sendsTo2().length === 0);
   await hook(msg2("/akaza"), cfg.secret);
   check("akaza ignores the old bare /akaza", sendsTo2().length === 0);
-  await hook(msg2("/akazaedit"), cfg.secret);
-  check("akaza group /akazaedit points to its DM",
-    sendsTo2().some((x) => (x.params.text || "").includes("@akazaquizbot")));
   await hook(msg2("/akazaquiz"), cfg.secret);
-  check("akaza opens setup on /akazaquiz",
+  check("akaza ignores the replaced /akazaquiz (now /maheshquiz)",
+    sendsTo2().length === 0);
+  await hook(msg2("/maheshedit"), cfg.secret);
+  check("akaza group /maheshedit points to its DM",
+    sendsTo2().some((x) => (x.params.text || "").includes("@akazaquizbot")));
+  await hook(msg2("/maheshquiz"), cfg.secret);
+  check("akaza opens setup on /maheshquiz",
     sendsTo2().some((x) => (x.params.reply_markup?.inline_keyboard || [])
       .flat().some((b) => b.callback_data === "sub:0")));
   const aMid = midSeq;
@@ -635,18 +638,18 @@ await hook(msg("/quiz"), cfg.secret);
   await hook(cb2("start", aMid), cfg.secret);
   check("akaza announce carries its own brand",
     sendsTo2().some((x) => (x.params.text || "").includes("👹 Akaza")));
-  await hook(msg2("/akazaping"), cfg.secret);
+  await hook(msg2("/maheshping"), cfg.secret);
   check("akaza ping reply carries its own name",
     sendsTo2().some((x) => (x.params.text || "") === "✅ Akaza bot is live!"));
   const dmBefore = calls.filter((x) => x.method === "sendMessage" &&
     x.params.chat_id === ADMIN).length;
-  await hook(dmMsg("/akazaping"), cfg.secret);
-  check("akaza DM /akazaping replies live",
+  await hook(dmMsg("/maheshping"), cfg.secret);
+  check("akaza DM /maheshping replies live",
     calls.filter((x) => x.method === "sendMessage" &&
       x.params.chat_id === ADMIN)
       .some((x) => (x.params.text || "") === "✅ Akaza bot is live!"));
-  await hook(dmMsg("/akazaquiz"), cfg.secret);
-  check("akaza DM /akazaquiz gets a response (setup or add-me-first)",
+  await hook(dmMsg("/maheshquiz"), cfg.secret);
+  check("akaza DM /maheshquiz gets a response (setup or add-me-first)",
     calls.filter((x) => x.method === "sendMessage" &&
       x.params.chat_id === ADMIN).length > dmBefore);
   await getRoom(CHAT2).state.storage.delete("session");

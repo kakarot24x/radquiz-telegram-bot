@@ -532,8 +532,8 @@ as its value. Then open this page again.</p>`;
     const isAkaza = flavorOf(me.username) === "akaza";
     return `<h2>✅ Bot is Live!</h2>
 <p>Bot <b>@${me.username}</b> is now connected to Telegram.</p>
-<p>Open the <b>RADEQuiz</b> group and type <b>${isAkaza ? "/akazaping" : "/ping"}</b> — the bot will reply.
-Then start a quiz with <b>${isAkaza ? "/akazaquiz" : "/quiz"}</b>.</p>`;
+<p>Open the <b>RADEQuiz</b> group and type <b>${isAkaza ? "/maheshping" : "/ping"}</b> — the bot will reply.
+Then start a quiz with <b>${isAkaza ? "/maheshquiz" : "/quiz"}</b>.</p>`;
   } catch (e) {
     return `<h2>❌ Activation failed</h2>
 <p>Telegram did not accept the token stored in BOT_TOKEN.</p>
@@ -569,7 +569,7 @@ long-press the box and tap <b>Paste</b> again.</p>
 ▶ Start the Bot</button></form>`;
   }
   return `<h2>✅ RADEQuiz Bot is Running</h2>
-<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-05 v22</b></p>
+<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-05 v23</b></p>
 <p>Now open your Telegram group <b>RADEQuiz</b> and type <b>/quiz</b> —
 choose a topic, the number of questions and the timer, and the quiz starts.
 Everything is controlled from Telegram itself.</p>
@@ -632,7 +632,7 @@ copy the token shown there exactly, and try again.<br>
   return `<h2>✅ Done!</h2>
 <p>Bot <b>@${me.username}</b> is now running and connected to Telegram.</p>
 <p>Now type <b>/ping</b> in the <b>RADEQuiz</b> group — the bot will reply.
-Then start your first quiz with <b>${cfg.flavor === "akaza" ? "/akazaquiz" : "/quiz"}</b>.</p>
+Then start your first quiz with <b>${cfg.flavor === "akaza" ? "/maheshquiz" : "/quiz"}</b>.</p>
 <p style="color:#555">Do not share this page's address (URL) with anyone —
 the bot is set up from here.</p>`;
 }
@@ -647,12 +647,12 @@ async function registerCommands(token, flavor = "main") {
     { command: "edits", description: "📤 My saved edits (export)" },
   ];
   const group = flavor === "akaza" ? [
-    { command: "akazaquiz", description: "🎯 Start a quiz (Akaza)" },
-    { command: "akazastop", description: "🛑 Stop the running quiz (admin only)" },
-    { command: "akazascore", description: "🏆 All-time ranking (Akaza)" },
-    { command: "akazaping", description: "✅ Is the bot live?" },
-    { command: "akazaauto", description: "🌙 9 PM auto quiz — on / off / test" },
-    { command: "akazaedit", description: "✏️ Edit a question (opens in DM)" },
+    { command: "maheshquiz", description: "🎯 Start a quiz (Akaza)" },
+    { command: "maheshstop", description: "🛑 Stop the running quiz (admin only)" },
+    { command: "maheshscore", description: "🏆 All-time ranking (Akaza)" },
+    { command: "maheshping", description: "✅ Is the bot live?" },
+    { command: "maheshauto", description: "🌙 9 PM auto quiz — on / off / test" },
+    { command: "maheshedit", description: "✏️ Edit a question (opens in DM)" },
   ] : [
     base[0],
     { command: "stop", description: "🛑 Stop the running quiz (admin only)" },
@@ -674,9 +674,9 @@ async function handleHook(request, env, ctx) {
   const update = await request.json();
 
   // One-time: publish the command menu to Telegram (v12+).
-  if (!(await env.KV.get("cmds_v21"))) {
+  if (!(await env.KV.get("cmds_v23"))) {
     ctx.waitUntil(registerCommands(cfg.token, cfg.flavor || flavorOf(cfg.username))
-      .then(() => env.KV.put("cmds_v21", "1")).catch(() => {}));
+      .then(() => env.KV.put("cmds_v23", "1")).catch(() => {}));
   }
 
   if (update.poll_answer) {
@@ -709,7 +709,7 @@ async function handleHook(request, env, ctx) {
     const text = (msg.text || "").split("@")[0].trim();
     const flavor = cfg.flavor || flavorOf(cfg.username);
     if ((text === "/ping" && flavor !== "akaza") ||
-        (text === "/akazaping" && flavor === "akaza")) {
+        (text === "/maheshping" && flavor === "akaza")) {
       ctx.waitUntil(tg(cfg.token, "sendMessage", {
         chat_id: msg.chat.id,
         text: flavor === "akaza" ? "✅ Akaza bot is live!" : "✅ RADEQuiz bot is live!",
@@ -717,9 +717,9 @@ async function handleHook(request, env, ctx) {
       return new Response("ok");
     }
     if (["/quiz", "/stop", "/score", "/settings", "/edit", "/edits",
-         "/akazaquiz", "/akazastop", "/akazascore", "/akazaedit"].includes(text) ||
+         "/maheshquiz", "/maheshstop", "/maheshscore", "/maheshedit"].includes(text) ||
         text.split(" ")[0] === "/autoquiz" ||
-        text.split(" ")[0] === "/akazaauto" || !text.startsWith("/")) {
+        text.split(" ")[0] === "/maheshauto" || !text.startsWith("/")) {
       const stub = env.QUIZ.get(env.QUIZ.idFromName(String(msg.chat.id)));
       ctx.waitUntil(stub.fetch("https://do/message", {
         method: "POST", body: JSON.stringify(msg),
@@ -728,7 +728,7 @@ async function handleHook(request, env, ctx) {
   } else if (msg && msg.chat && msg.chat.type === "private") {
     // Private chat: the admin runs the quiz setup here, hidden from members.
     const text = (msg.text || "").split("@")[0].trim();
-    if (text === "/ping" || text === "/akazaping") {
+    if (text === "/ping" || text === "/maheshping") {
       ctx.waitUntil(tg(cfg.token, "sendMessage", {
         chat_id: msg.chat.id,
         text: (cfg.flavor || flavorOf(cfg.username)) === "akaza"
@@ -736,10 +736,10 @@ async function handleHook(request, env, ctx) {
       }).catch(() => {}));
       return new Response("ok");
     }
-    if (["/quiz", "/start", "/stop", "/score", "/edit", "/edits", "/akazaedit",
-         "/akazaquiz", "/akazastop", "/akazascore"].includes(text) ||
+    if (["/quiz", "/start", "/stop", "/score", "/edit", "/edits", "/maheshedit",
+         "/maheshquiz", "/maheshstop", "/maheshscore"].includes(text) ||
         text.split(" ")[0] === "/autoquiz" ||
-        text.split(" ")[0] === "/akazaauto" || !text.startsWith("/")) {
+        text.split(" ")[0] === "/maheshauto" || !text.startsWith("/")) {
       const stub = env.QUIZ.get(env.QUIZ.idFromName(String(msg.chat.id)));
       ctx.waitUntil(stub.fetch("https://do/message", {
         method: "POST", body: JSON.stringify(msg),
@@ -1276,7 +1276,7 @@ export class QuizRoom {
     if (!groups.length) {
       const akaza = (await this.flavor()) === "akaza";
       await this.send(chatId, akaza
-        ? "No group found yet.\n1) Make @akazaquizbot an admin in your group.\n2) Send /akazaping once inside the group.\n3) Then send /quiz here again."
+        ? "No group found yet.\n1) Make @akazaquizbot an admin in your group.\n2) Send /maheshping once inside the group.\n3) Then send /quiz here again."
         : "No group found yet.\n1) Make @RADEQuizbot an admin in your group.\n2) Send /ping once inside the group.\n3) Then send /quiz here again.");
       return;
     }
@@ -1311,7 +1311,7 @@ export class QuizRoom {
         await this.keywordAccept(chatId, flow0, text);
         return;
       }
-      if ((text === "/edit" || text === "/akazaedit") && sender) {
+      if ((text === "/edit" || text === "/maheshedit") && sender) {
         await this.startEditor(chatId, sender);
         return;
       }
@@ -1319,12 +1319,12 @@ export class QuizRoom {
         await this.showEdits(chatId, sender);
         return;
       }
-      if ((text === "/quiz" || text === "/start" || text === "/akazaquiz") && sender) {
+      if ((text === "/quiz" || text === "/start" || text === "/maheshquiz") && sender) {
         await this.startDmFlow(chatId, sender);
       } else if (text === "/stop" || text === "/score" ||
-                 text === "/akazastop" || text === "/akazascore" ||
+                 text === "/maheshstop" || text === "/maheshscore" ||
                  text.split(" ")[0] === "/autoquiz" ||
-                 text.split(" ")[0] === "/akazaauto") {
+                 text.split(" ")[0] === "/maheshauto") {
         await this.send(chatId, "ℹ️ Please use this command inside the group.");
       }
       return;
@@ -1336,10 +1336,10 @@ export class QuizRoom {
       return;
     }
     const flavor = await this.flavor();
-    const quizCmd = flavor === "akaza" ? "/akazaquiz" : "/quiz";
-    const stopCmd = flavor === "akaza" ? "/akazastop" : "/stop";
-    const scoreCmd = flavor === "akaza" ? "/akazascore" : "/score";
-    const autoCmd = flavor === "akaza" ? "/akazaauto" : "/autoquiz";
+    const quizCmd = flavor === "akaza" ? "/maheshquiz" : "/quiz";
+    const stopCmd = flavor === "akaza" ? "/maheshstop" : "/stop";
+    const scoreCmd = flavor === "akaza" ? "/maheshscore" : "/score";
+    const autoCmd = flavor === "akaza" ? "/maheshauto" : "/autoquiz";
     if (text === quizCmd) {
       const session = await this.state.storage.get("session");
       if (session) {
@@ -1373,8 +1373,8 @@ export class QuizRoom {
       }
     } else if (flavor === "main" && (text === "/edit" || text === "/edits")) {
       await this.send(chatId, "✏️ Question editing is done in private — open the @RADEQuizbot chat and send /edit there.");
-    } else if (flavor === "akaza" && text === "/akazaedit") {
-      await this.send(chatId, "✏️ Question editing is done in private — open the @akazaquizbot chat and send /akazaedit there.");
+    } else if (flavor === "akaza" && text === "/maheshedit") {
+      await this.send(chatId, "✏️ Question editing is done in private — open the @akazaquizbot chat and send /maheshedit there.");
     } else if (flavor === "main" && text === "/settings") {
       const cfg = (await this.state.storage.get("autoCfg")) || {};
       await this.send(chatId, "⚙️ RADEQuiz settings\n" +
