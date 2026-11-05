@@ -569,7 +569,7 @@ long-press the box and tap <b>Paste</b> again.</p>
 ▶ Start the Bot</button></form>`;
   }
   return `<h2>✅ RADEQuiz Bot is Running</h2>
-<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-05 v21</b></p>
+<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-05 v22</b></p>
 <p>Now open your Telegram group <b>RADEQuiz</b> and type <b>/quiz</b> —
 choose a topic, the number of questions and the timer, and the quiz starts.
 Everything is controlled from Telegram itself.</p>
@@ -728,7 +728,7 @@ async function handleHook(request, env, ctx) {
   } else if (msg && msg.chat && msg.chat.type === "private") {
     // Private chat: the admin runs the quiz setup here, hidden from members.
     const text = (msg.text || "").split("@")[0].trim();
-    if (text === "/ping") {
+    if (text === "/ping" || text === "/akazaping") {
       ctx.waitUntil(tg(cfg.token, "sendMessage", {
         chat_id: msg.chat.id,
         text: (cfg.flavor || flavorOf(cfg.username)) === "akaza"
@@ -736,8 +736,10 @@ async function handleHook(request, env, ctx) {
       }).catch(() => {}));
       return new Response("ok");
     }
-    if (["/quiz", "/start", "/stop", "/score", "/edit", "/edits", "/akazaedit"].includes(text) ||
-        text.split(" ")[0] === "/autoquiz" || !text.startsWith("/")) {
+    if (["/quiz", "/start", "/stop", "/score", "/edit", "/edits", "/akazaedit",
+         "/akazaquiz", "/akazastop", "/akazascore"].includes(text) ||
+        text.split(" ")[0] === "/autoquiz" ||
+        text.split(" ")[0] === "/akazaauto" || !text.startsWith("/")) {
       const stub = env.QUIZ.get(env.QUIZ.idFromName(String(msg.chat.id)));
       ctx.waitUntil(stub.fetch("https://do/message", {
         method: "POST", body: JSON.stringify(msg),
@@ -1272,8 +1274,10 @@ export class QuizRoom {
     await this.state.storage.delete("editflow");
     const groups = await this.knownGroupsFor(userId);
     if (!groups.length) {
-      await this.send(chatId,
-        "No group found yet.\n1) Make @RADEQuizbot an admin in your group.\n2) Send /ping once inside the group.\n3) Then send /quiz here again.");
+      const akaza = (await this.flavor()) === "akaza";
+      await this.send(chatId, akaza
+        ? "No group found yet.\n1) Make @akazaquizbot an admin in your group.\n2) Send /akazaping once inside the group.\n3) Then send /quiz here again."
+        : "No group found yet.\n1) Make @RADEQuizbot an admin in your group.\n2) Send /ping once inside the group.\n3) Then send /quiz here again.");
       return;
     }
     const flow = {
@@ -1315,10 +1319,12 @@ export class QuizRoom {
         await this.showEdits(chatId, sender);
         return;
       }
-      if ((text === "/quiz" || text === "/start") && sender) {
+      if ((text === "/quiz" || text === "/start" || text === "/akazaquiz") && sender) {
         await this.startDmFlow(chatId, sender);
       } else if (text === "/stop" || text === "/score" ||
-                 text.split(" ")[0] === "/autoquiz") {
+                 text === "/akazastop" || text === "/akazascore" ||
+                 text.split(" ")[0] === "/autoquiz" ||
+                 text.split(" ")[0] === "/akazaauto") {
         await this.send(chatId, "ℹ️ Please use this command inside the group.");
       }
       return;

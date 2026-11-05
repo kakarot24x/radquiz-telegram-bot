@@ -638,6 +638,17 @@ await hook(msg("/quiz"), cfg.secret);
   await hook(msg2("/akazaping"), cfg.secret);
   check("akaza ping reply carries its own name",
     sendsTo2().some((x) => (x.params.text || "") === "✅ Akaza bot is live!"));
+  const dmBefore = calls.filter((x) => x.method === "sendMessage" &&
+    x.params.chat_id === ADMIN).length;
+  await hook(dmMsg("/akazaping"), cfg.secret);
+  check("akaza DM /akazaping replies live",
+    calls.filter((x) => x.method === "sendMessage" &&
+      x.params.chat_id === ADMIN)
+      .some((x) => (x.params.text || "") === "✅ Akaza bot is live!"));
+  await hook(dmMsg("/akazaquiz"), cfg.secret);
+  check("akaza DM /akazaquiz gets a response (setup or add-me-first)",
+    calls.filter((x) => x.method === "sendMessage" &&
+      x.params.chat_id === ADMIN).length > dmBefore);
   await getRoom(CHAT2).state.storage.delete("session");
   await kv.put("config", savedCfg);
 }
