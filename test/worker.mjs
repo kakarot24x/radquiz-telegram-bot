@@ -599,7 +599,7 @@ long-press the box and tap <b>Paste</b> again.</p>
 ▶ Start the Bot</button></form>`;
   }
   return `<h2>✅ RADEQuiz Bot is Running</h2>
-<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-05 v24</b></p>
+<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-05 v25</b></p>
 <p>Now open your Telegram group <b>RADEQuiz</b> and type <b>/quiz</b> —
 choose a topic, the number of questions and the timer, and the quiz starts.
 Everything is controlled from Telegram itself.</p>
@@ -1468,7 +1468,7 @@ export class QuizRoom {
   async subjectsKeyboardFull(meta, index) {
     const rows = this.subjectsKeyboard(meta);
     rows.push([this.btn("🧩 Mix Quiz — Syllabus-wise (combine topics)", "mx:open")]);
-    rows.push([this.btn("🔑 Keyword Quiz — apne shabd se sawal banao", "kw:open")]);
+    rows.push([this.btn("🔑 Keyword Quiz — build from your own keyword", "kw:open")]);
     index.subjects.forEach((s, i) => {
       rows.push([this.btn(`${s.icon || "📚"} ${s.name} (${s.questions} Q)`, `sub:${i}`)]);
     });
@@ -1780,7 +1780,7 @@ export class QuizRoom {
     } else if (flow.step === "kwhome") {
       const entries = flow.kwEntries || [];
       const total = entries.reduce((s, e) => s + e.count, 0);
-      const lines = ["🔑 Keyword Quiz — keyword dalo, uske sawal jodo:"];
+      const lines = ["🔑 Keyword Quiz — add keywords and build a quiz from their questions:"];
       if (entries.length) {
         entries.forEach((e, i) =>
           lines.push(`${i + 1}. "${e.label}" — ${e.count} Q (pool ${e.total})`));
@@ -1796,7 +1796,7 @@ export class QuizRoom {
       await this.edit(chatId, mid, lines.join("\n"), rows);
     } else if (flow.step === "kwinput") {
       await this.edit(chatId, mid,
-        "⌨️ Keyword apne next message me likho\n(e.g. pension · error sheet · wharfage · leave rules)",
+        "⌨️ Type your keyword in your next message\n(e.g. pension · error sheet · wharfage · leave rules)",
         [[this.btn("⬅️ Back", "kw:home"), this.btn("❌ Cancel", "cancel")]]);
     } else if (flow.step === "kwcount") {
       const pk = flow.pendingKw || { label: "", total: 0, done: 0 };
@@ -1805,7 +1805,7 @@ export class QuizRoom {
       rows.push([this.btn("⬅️ Back", "kw:home"),
                  this.btn("❌ Cancel", "cancel")]);
       await this.edit(chatId, mid,
-        `🔑 "${pk.label}" — kul ${pk.total} questions mile\n✅ Completed: ${pk.done} · 🆕 Pending: ${pk.total - pk.done}\nIs keyword se kitne sawal rakhu?`, rows);
+        `🔑 "${pk.label}" — ${pk.total} questions found\n✅ Completed: ${pk.done} · 🆕 Pending: ${pk.total - pk.done}\nHow many questions from this keyword?`, rows);
     } else if (flow.step === "mixhome") {
       const mix = flow.mix || [];
       const total = mix.reduce((s, e) => s + e.count, 0);
@@ -2073,10 +2073,10 @@ export class QuizRoom {
           flow.seconds, flow.mode || "all", plan);
         const now = await this.state.storage.get("session");
         if (!now) {
-          await this.send(chatId, "⚠️ Is selection se koi question nahi mila — dusra Mode ya keyword try karo.");
+          await this.send(chatId, "⚠️ No questions could be built from this selection — try another Mode or keyword.");
         }
       } catch (e) {
-        await this.send(chatId, "⚠️ Quiz start nahi ho paya — ek baar phir /quiz se try karo.");
+        await this.send(chatId, "⚠️ The quiz could not be started — please try again with /quiz.");
       }
       return;
     }

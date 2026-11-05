@@ -516,7 +516,7 @@ await hook(msg("/quiz"), cfg.secret);
   check("member keyword ignored", !lastText().includes("kitne sawal"));
   await hook(msg("error sheet"), cfg.secret);
   check("keyword count screen shows pool + completed/pending",
-    lastText().includes("questions mile") && lastText().includes("Completed") &&
+    lastText().includes("questions found") && lastText().includes("Completed") &&
     lastText().includes("Pending"));
   await tap("kw:cnt:10");
   check("keyword home total 10", lastText().includes("Total: 10"));
@@ -556,7 +556,7 @@ await hook(msg("/quiz"), cfg.secret);
   await hook(dmCb("kw:add", dMid), cfg.secret);
   await hook(dmMsg("pension"), cfg.secret);
   check("DM keyword count screen",
-    (lastCall("editMessageText")?.params.text || "").includes("questions mile"));
+    (lastCall("editMessageText")?.params.text || "").includes("questions found"));
   await hook(dmCb("kw:cnt:10", dMid), cfg.secret);
   check("DM keyword home total 10",
     (lastCall("editMessageText")?.params.text || "").includes("Total: 10"));
@@ -575,7 +575,7 @@ await hook(msg("/quiz"), cfg.secret);
   await tap("kw:add");
   await hook(msg("leave"), cfg.secret);
   check("broad keyword finds a large pool",
-    /kul \d{3,} questions mile/.test(lastText()));
+    /\d{3,} questions found/.test(lastText()));
   await tap("kw:cnt:10");
   await tap("kw:go");
   await tap("mode:all");
