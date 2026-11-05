@@ -529,10 +529,11 @@ as its value. Then open this page again.</p>`;
       token: cfg.token, secret: cfg.secret, username: me.username,
       flavor: flavorOf(me.username),
     }));
+    const isAkaza = flavorOf(me.username) === "akaza";
     return `<h2>✅ Bot is Live!</h2>
 <p>Bot <b>@${me.username}</b> is now connected to Telegram.</p>
-<p>Open the <b>RADEQuiz</b> group and type <b>/ping</b> — the bot will reply.
-Then start a quiz with <b>/quiz</b>.</p>`;
+<p>Open the <b>RADEQuiz</b> group and type <b>${isAkaza ? "/akazaping" : "/ping"}</b> — the bot will reply.
+Then start a quiz with <b>${isAkaza ? "/akaza" : "/quiz"}</b>.</p>`;
   } catch (e) {
     return `<h2>❌ Activation failed</h2>
 <p>Telegram did not accept the token stored in BOT_TOKEN.</p>
@@ -568,7 +569,7 @@ long-press the box and tap <b>Paste</b> again.</p>
 ▶ Start the Bot</button></form>`;
   }
   return `<h2>✅ RADEQuiz Bot is Running</h2>
-<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-05 v19</b></p>
+<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-05 v20</b></p>
 <p>Now open your Telegram group <b>RADEQuiz</b> and type <b>/quiz</b> —
 choose a topic, the number of questions and the timer, and the quiz starts.
 Everything is controlled from Telegram itself.</p>
@@ -710,7 +711,8 @@ async function handleHook(request, env, ctx) {
     if ((text === "/ping" && flavor !== "akaza") ||
         (text === "/akazaping" && flavor === "akaza")) {
       ctx.waitUntil(tg(cfg.token, "sendMessage", {
-        chat_id: msg.chat.id, text: "✅ RADEQuiz bot is live!",
+        chat_id: msg.chat.id,
+        text: flavor === "akaza" ? "✅ Akaza bot is live!" : "✅ RADEQuiz bot is live!",
       }).catch(() => {}));
       return new Response("ok");
     }
@@ -728,7 +730,9 @@ async function handleHook(request, env, ctx) {
     const text = (msg.text || "").split("@")[0].trim();
     if (text === "/ping") {
       ctx.waitUntil(tg(cfg.token, "sendMessage", {
-        chat_id: msg.chat.id, text: "✅ RADEQuiz bot is live!",
+        chat_id: msg.chat.id,
+        text: (cfg.flavor || flavorOf(cfg.username)) === "akaza"
+          ? "✅ Akaza bot is live!" : "✅ RADEQuiz bot is live!",
       }).catch(() => {}));
       return new Response("ok");
     }

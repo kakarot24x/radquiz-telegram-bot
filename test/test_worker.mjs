@@ -630,6 +630,9 @@ await hook(msg("/quiz"), cfg.secret);
   await hook(cb2("start", aMid), cfg.secret);
   check("akaza announce carries its own brand",
     sendsTo2().some((x) => (x.params.text || "").includes("👹 Akaza")));
+  await hook(msg2("/akazaping"), cfg.secret);
+  check("akaza ping reply carries its own name",
+    sendsTo2().some((x) => (x.params.text || "") === "✅ Akaza bot is live!"));
   await getRoom(CHAT2).state.storage.delete("session");
   await kv.put("config", savedCfg);
 }
