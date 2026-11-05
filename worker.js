@@ -599,7 +599,7 @@ long-press the box and tap <b>Paste</b> again.</p>
 ▶ Start the Bot</button></form>`;
   }
   return `<h2>✅ RADEQuiz Bot is Running</h2>
-<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-05 v26</b></p>
+<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-05 v27</b></p>
 <p>Now open your Telegram group <b>RADEQuiz</b> and type <b>/quiz</b> —
 choose a topic, the number of questions and the timer, and the quiz starts.
 Everything is controlled from Telegram itself.</p>
@@ -1324,6 +1324,30 @@ export class QuizRoom {
     await this.state.storage.put("flow", flow);
   }
 
+  // Akaza-only study roast (user's exact words, 2026-11-05): a plain
+  // spoken message — not a command, not input a flow is waiting for —
+  // gets a reply. The first one per person in a room differs; every
+  // later message gets the second line. Main bot never does this.
+  async maybeRoast(msg) {
+    if ((await this.flavor()) !== "akaza") return;
+    const raw = (msg.text || "").trim();
+    if (!raw || raw.startsWith("/")) return;
+    if (msg.from?.is_bot) return;
+    const sender = effectiveSenderId(msg);
+    if (!sender) return;
+    const counts = (await this.state.storage.get("roast")) || {};
+    const n = (counts[sender] || 0) + 1;
+    counts[sender] = n;
+    await this.state.storage.put("roast", counts);
+    try {
+      await this.call("sendMessage", {
+        chat_id: msg.chat.id,
+        text: n === 1 ? "Bhag Madarchod Ja Padhai kar" : "Bhag Bhosdi ke",
+        reply_parameters: { message_id: msg.message_id },
+      });
+    } catch (e) { /* original message may be gone; roast is best-effort */ }
+  }
+
   async onMessage(msg) {
     const chatId = msg.chat.id;
     const text = (msg.text || "").split("@")[0].trim();
@@ -1356,6 +1380,8 @@ export class QuizRoom {
                  text.split(" ")[0] === "/autoquiz" ||
                  text.split(" ")[0] === "/maheshauto") {
         await this.send(chatId, "ℹ️ Please use this command inside the group.");
+      } else {
+        await this.maybeRoast(msg);
       }
       return;
     }
@@ -1449,6 +1475,7 @@ export class QuizRoom {
           `Use ${autoCmd} on, ${autoCmd} off, or ${autoCmd} test.`);
       }
     }
+    await this.maybeRoast(msg);
   }
 
   // ------------------------------------------------------------ flow UI

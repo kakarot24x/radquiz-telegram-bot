@@ -652,8 +652,37 @@ await hook(msg("/quiz"), cfg.secret);
   check("akaza DM /maheshquiz gets a response (setup or add-me-first)",
     calls.filter((x) => x.method === "sendMessage" &&
       x.params.chat_id === ADMIN).length > dmBefore);
+  // Roast: plain speech (not a command) gets the study roast — first
+  // message one line, every later message the second line.
+  const roastTo2 = () => sendsTo2().filter((x) =>
+    (x.params.text || "").startsWith("Bhag"));
+  await hook(msg2("kuch bhi bol diya", 777), cfg.secret);
+  await hook(msg2("phir se bol diya", 777), cfg.secret);
+  await hook(msg2("teesri baar bhi", 777), cfg.secret);
+  check("akaza roast: pehli baar pehli line, phir dusri line hi",
+    roastTo2().length === 3 &&
+    roastTo2()[0].params.text === "Bhag Madarchod Ja Padhai kar" &&
+    roastTo2()[1].params.text === "Bhag Bhosdi ke" &&
+    roastTo2()[2].params.text === "Bhag Bhosdi ke" &&
+    roastTo2()[0].params.reply_parameters?.message_id === 3);
+  const dmRoast = () => calls.filter((x) => x.method === "sendMessage" &&
+    x.params.chat_id === ADMIN &&
+    (x.params.text || "").startsWith("Bhag"));
+  await hook(dmMsg("hello akaza"), cfg.secret);
+  await hook(dmMsg("aur ek baar"), cfg.secret);
+  check("akaza DM roast bhi waisa hi chalta hai",
+    dmRoast().length === 2 &&
+    dmRoast()[0].params.text === "Bhag Madarchod Ja Padhai kar" &&
+    dmRoast()[1].params.text === "Bhag Bhosdi ke");
   await getRoom(CHAT2).state.storage.delete("session");
   await kv.put("config", savedCfg);
+  // Main bot: plain speech gets silence, never a roast.
+  const mainSendsBefore = calls.filter((x) => x.method === "sendMessage" &&
+    x.params.chat_id === CHAT).length;
+  await hook(msg("kuch bhi bol diya", PLAYER), cfg.secret);
+  check("main bot plain speech par chup rehta hai (koi roast nahi)",
+    calls.filter((x) => x.method === "sendMessage" &&
+      x.params.chat_id === CHAT).length === mainSendsBefore);
 }
 
 // 21. Day-wise Quiz: Telegram subject -> Group -> Month -> Day replays
