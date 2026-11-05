@@ -74,3 +74,14 @@ Dusri Cloudflare account ke liye `wrangler.akaza.toml` hai — Builds ka
 Deploy command: `npx wrangler deploy -c wrangler.akaza.toml`, aur nayi
 KV ki id us file me bharni hoti hai. Bank dono ka ek hi hai (yehi
 repo), ranking/progress har bot ka apna hota hai.
+
+## Day-wise Quiz (v24) — Telegram Quizzes ke asal din wale quiz
+✈️ Telegram Quizzes subject ke Topics me sabse upar **📅 Day-wise**
+button: Group (Accounts Exam 1–4) → Month → Day → Timer → Start. Din
+ke SAARÉ sawal asal kram me chalte hain — koi New/Completed chhaant
+nahi, dusre din repeat hua sawal is din me bhi aayega (same-to-same
+replay). Din ki list me ✅ done ginati bhi dikhti hai. Data:
+`bank/tgdays.json` (780 din, `make_tgdays.py` banata hai — pipeline me
+add_telegram ke baad; part alignment ID se verify hota hai). Plan entry
+`ordered: true` par startSession shuffle nahi karta aur
+fetchByKeysOrdered istemal hota hai. Sirf bot me hai — app aparivartit.

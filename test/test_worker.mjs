@@ -656,6 +656,79 @@ await hook(msg("/quiz"), cfg.secret);
   await kv.put("config", savedCfg);
 }
 
+// 21. Day-wise Quiz: Telegram subject -> Group -> Month -> Day replays
+// that day's original quiz, every question, in original order.
+{
+  const tg = JSON.parse(fs.readFileSync(path.join(ROOT, "bank", "tgdays.json"), "utf8"));
+  const idx = JSON.parse(fs.readFileSync(path.join(ROOT, "bank", "index.json"), "utf8"));
+  const tgSubj = idx.subjects.findIndex((s) => (s.chapters || []).includes(599));
+  // Pick a small day whose questions are all short and askable, so the
+  // session payloads must match the source order exactly.
+  let pick = null;
+  outer:
+  for (let gi = 0; gi < tg.groups.length; gi++) {
+    for (const mo of tg.groups[gi].months) {
+      for (const dy of mo.days) {
+        if (dy.n < 2 || dy.n > 12) continue;
+        const qs = dy.keys.map((k) => {
+          const [p, i] = k.split("#");
+          const part = JSON.parse(fs.readFileSync(path.join(ROOT, "bank", p), "utf8"));
+          return part[parseInt(i, 10)];
+        });
+        const okDay = qs.every((q) => q && q.options && q.options.length >= 2 &&
+          q.q.length <= 280 &&
+          q.options.map((o) => String(o).trim()).includes(q.options["ABCD".indexOf(q.answer)]) &&
+          new Set(q.options.map((o) => String(o).trim().slice(0, 99))).size === q.options.length);
+        if (okDay) { pick = { gi, m: mo.m, d: dy.d, n: dy.n, qs: qs.map((q) => q.q.trim()) }; break outer; }
+      }
+    }
+  }
+  check("a small fully-askable day exists for the test", !!pick);
+  await getRoom(CHAT).state.storage.delete("session");
+  await getRoom(CHAT).state.storage.delete("flow");
+  await hook(msg("/quiz"), cfg.secret);
+  const dMid = midSeq;
+  const tap = async (data) => { await hook(cb(data, dMid), cfg.secret); };
+  const kb = () => lastCall("editMessageText")?.params.reply_markup?.inline_keyboard || [];
+  const has = (data) => kb().flat().some((b) => b.callback_data === data);
+  const findPage = async (target, nextPrefix) => {
+    for (let p = 0; p < 12 && !has(target); p++) {
+      const nb = kb().flat().find((b) => b.callback_data?.startsWith(nextPrefix) &&
+        parseInt(b.callback_data.split(":").pop(), 10) > p);
+      if (!nb) break;
+      await tap(nb.callback_data);
+    }
+    return has(target);
+  };
+  await tap(`sub:${tgSubj}`);
+  check("day-wise button on Telegram subject", has("dw:open"));
+  await tap("dw:open");
+  check("day-wise groups shown", has(`dw:grp:${pick.gi}`));
+  await tap(`dw:grp:${pick.gi}`);
+  check("day-wise month reachable", await findPage(`dw:mon:${pick.m}`, "dw:monp:"));
+  await tap(`dw:mon:${pick.m}`);
+  check("day-wise day reachable", await findPage(`dw:day:${pick.d}`, "dw:dayp:"));
+  await tap(`dw:day:${pick.d}`);
+  await tap("sec:10");
+  const confirmText = lastCall("editMessageText")?.params.text || "";
+  check("day-wise confirm shows the day and full count",
+    confirmText.includes("Day-wise Quiz is ready") &&
+    confirmText.includes(`${pick.n} questions`));
+  const pollsB = calls.filter((c) => c.method === "sendPoll").length;
+  await tap("start");
+  const ann = calls.filter((c) => c.method === "sendMessage").pop();
+  check("day-wise quiz announced with full day count",
+    (ann?.params.text || "").includes(`${pick.n} questions`));
+  check("day-wise first poll sent",
+    calls.filter((c) => c.method === "sendPoll").length === pollsB + 1);
+  const sess = getRoom(CHAT).state.storage.m.get("session");
+  const gotQs = (sess?.items || []).map((p) => p.poll?.question || "");
+  check("day-wise payloads = the day's questions in ORIGINAL order",
+    JSON.stringify(gotQs) ===
+    JSON.stringify(pick.qs.map((q, i) => `Q${i + 1}. ${q}`)));
+  await getRoom(CHAT).state.storage.delete("session");
+}
+
 // 14. Telegram command menu registered (v12) + no plain tick/cross glyphs left
 const cmdCalls = calls.filter((c) => c.method === "setMyCommands");
 check("setMyCommands registered", cmdCalls.length >= 1 &&

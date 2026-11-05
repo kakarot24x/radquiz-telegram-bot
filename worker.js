@@ -126,6 +126,36 @@ async function loadSearchIndex() {
   return _searchCache;
 }
 
+// Day-wise index for Telegram Quizzes (bank/tgdays.json, built by
+// make_tgdays.py): Group -> Month -> Day -> that day's question keys in
+// original order, so a group's actual day quiz replays same-to-same.
+let _tgDaysCache = null;
+let _tgDaysCacheAt = 0;
+async function loadTgDays() {
+  if (_tgDaysCache && Date.now() - _tgDaysCacheAt < 30 * 60 * 1000) {
+    return _tgDaysCache;
+  }
+  const resp = await fetch(`${BANK_BASE}/tgdays.json`);
+  if (!resp.ok) {
+    if (_tgDaysCache) return _tgDaysCache;
+    throw new Error("tgdays fetch failed");
+  }
+  _tgDaysCache = await resp.json();
+  _tgDaysCacheAt = Date.now();
+  return _tgDaysCache;
+}
+
+const MONTH_NAMES = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                     "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+function fmtMonth(m) { // "2024-01" -> "Jan 2024"
+  const [y, mo] = m.split("-");
+  return `${MONTH_NAMES[parseInt(mo, 10) - 1]} ${y}`;
+}
+function fmtDay(d) { // "2024-01-16" -> "16 Jan 2024"
+  const [y, mo, da] = d.split("-");
+  return `${parseInt(da, 10)} ${MONTH_NAMES[parseInt(mo, 10) - 1]} ${y}`;
+}
+
 async function loadEdits(env) {
   try {
     return JSON.parse((await env.KV.get("edits_all")) || "{}");
@@ -569,7 +599,7 @@ long-press the box and tap <b>Paste</b> again.</p>
 ▶ Start the Bot</button></form>`;
   }
   return `<h2>✅ RADEQuiz Bot is Running</h2>
-<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-05 v23</b></p>
+<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-05 v24</b></p>
 <p>Now open your Telegram group <b>RADEQuiz</b> and type <b>/quiz</b> —
 choose a topic, the number of questions and the timer, and the quiz starts.
 Everything is controlled from Telegram itself.</p>
@@ -1501,6 +1531,30 @@ export class QuizRoom {
     return { total: keys.length, done };
   }
 
+  // Fetch items in the EXACT key order (Day-wise replay): no shuffle,
+  // no mode filter, no small part cap — a day's questions sit in a few
+  // neighbouring part files and must come back same-to-same.
+  async fetchByKeysOrdered(keys, edits) {
+    const items = [];
+    const fetched = new Map();
+    for (const k of keys) {
+      const hash = k.lastIndexOf("#");
+      const part = k.slice(0, hash);
+      const i = parseInt(k.slice(hash + 1), 10);
+      if (!fetched.has(part)) {
+        if (fetched.size >= 40) break;
+        fetched.set(part, await fetchPart(part));
+      }
+      const q = fetched.get(part)[i];
+      if (!q) continue;
+      q._k = `${part}#${i}`;
+      q._ci = parseInt(part.split("-")[1], 10);
+      if (edits && q.i && edits[q.i]) applyEdit(q, edits[q.i]);
+      items.push(q);
+    }
+    return items;
+  }
+
   // Fetch items a keyword matched (by "part#index" keys), honouring the
   // New/Completed/All mode and saved edits. A broad keyword can match
   // questions in HUNDREDS of part files — fetching them all in one go
@@ -1662,8 +1716,66 @@ export class QuizRoom {
       const s = index.subjects[flow.subject];
       const counts = flow.dm ? (flow.targetState?.askedCounts || {})
         : (await this.state.storage.get("askedCounts")) || {};
+      const rows = this.chaptersKeyboard(index, flow, counts);
+      if ((s.chapters || []).includes(599)) {
+        rows.unshift([this.btn("📅 Day-wise — Month → Day (original day quizzes)", "dw:open")]);
+      }
       await this.edit(chatId, mid, `${s.icon || "📚"} ${s.name} — now choose a Topic:`,
-        this.chaptersKeyboard(index, flow, counts));
+        rows);
+      await this.state.storage.put("flow", flow); // page clamp saved
+    } else if (flow.step === "dwgroups") {
+      const tg = await loadTgDays();
+      const rows = tg.groups.map((g, i) =>
+        [this.btn(`🗓️ ${g.name} — ${g.ndays} days · ${g.total} Q`, `dw:grp:${i}`)]);
+      rows.push([this.btn("⬅️ Back to Topics", "back:chapters"),
+                 this.btn("❌ Cancel", "cancel")]);
+      await this.edit(chatId, mid,
+        "📅 Day-wise Quiz — the group's original day quizzes, with every question (repeats included).\nFirst choose a Group:", rows);
+    } else if (flow.step === "dwmonths") {
+      const tg = await loadTgDays();
+      const g = tg.groups[flow.dwGroup || 0];
+      const pages = Math.max(1, Math.ceil(g.months.length / PAGE_SIZE));
+      flow.page = Math.min(flow.page || 0, pages - 1);
+      const rows = g.months
+        .slice(flow.page * PAGE_SIZE, (flow.page + 1) * PAGE_SIZE)
+        .map((mo) => [this.btn(
+          `🗓️ ${fmtMonth(mo.m)} — ${mo.days.length} days · ${mo.n} Q`, `dw:mon:${mo.m}`)]);
+      const nav = [];
+      if (flow.page > 0) nav.push(this.btn("⬅️ Prev", `dw:monp:${flow.page - 1}`));
+      if (flow.page < pages - 1) nav.push(this.btn("Next ➡️", `dw:monp:${flow.page + 1}`));
+      if (nav.length) rows.push(nav);
+      rows.push([this.btn("⬅️ Back to Groups", "dw:groups"),
+                 this.btn("❌ Cancel", "cancel")]);
+      await this.edit(chatId, mid, `📅 ${g.name} — choose a Month:`, rows);
+      await this.state.storage.put("flow", flow); // page clamp saved
+    } else if (flow.step === "dwdays") {
+      const tg = await loadTgDays();
+      const g = tg.groups[flow.dwGroup || 0];
+      const mo = g.months.find((x) => x.m === flow.dwMonth) || g.months[0];
+      const parts = [...new Set(mo.days.flatMap((dy) =>
+        dy.keys.map((k) => k.split("#")[0])))];
+      const sets = await this.flowAskedSets(flow, parts);
+      const doneOf = (dy) => dy.keys.reduce((s2, k) => {
+        const [p, i] = k.split("#");
+        return s2 + (sets.get(p)?.has(parseInt(i, 10)) ? 1 : 0);
+      }, 0);
+      const pages = Math.max(1, Math.ceil(mo.days.length / PAGE_SIZE));
+      flow.page = Math.min(flow.page || 0, pages - 1);
+      const rows = mo.days
+        .slice(flow.page * PAGE_SIZE, (flow.page + 1) * PAGE_SIZE)
+        .map((dy) => {
+          const done = doneOf(dy);
+          return [this.btn(
+            `${fmtDay(dy.d)} · ${dy.n} Q${done ? ` · ✅${done} done` : ""}`, `dw:day:${dy.d}`)];
+        });
+      const nav = [];
+      if (flow.page > 0) nav.push(this.btn("⬅️ Prev", `dw:dayp:${flow.page - 1}`));
+      if (flow.page < pages - 1) nav.push(this.btn("Next ➡️", `dw:dayp:${flow.page + 1}`));
+      if (nav.length) rows.push(nav);
+      rows.push([this.btn("⬅️ Back to Months", "dw:months"),
+                 this.btn("❌ Cancel", "cancel")]);
+      await this.edit(chatId, mid,
+        `📅 ${g.name} › ${fmtMonth(mo.m)} — choose a Day (full day quiz, original order):`, rows);
       await this.state.storage.put("flow", flow); // page clamp saved
     } else if (flow.step === "kwhome") {
       const entries = flow.kwEntries || [];
@@ -1799,12 +1911,14 @@ export class QuizRoom {
       await this.edit(chatId, mid, `✅ Topic: ${label}\nHow many questions?`, rows);
     } else if (flow.step === "seconds") {
       const rows = SECOND_CHOICES.map((n) => [this.btn(`${n} seconds / question`, `sec:${n}`)]);
-      rows.push([this.btn("⬅️ Back", (flow.kind === "mix" || flow.kind === "keyword") ? "back:mode" : "back:count"),
+      rows.push([this.btn("⬅️ Back", flow.kind === "daywise" ? "dw:days"
+        : (flow.kind === "mix" || flow.kind === "keyword") ? "back:mode" : "back:count"),
                  this.btn("❌ Cancel", "cancel")]);
       await this.edit(chatId, mid, "⏱️ How much time per question?", rows);
     } else if (flow.step === "confirm") {
-      if (flow.kind === "mix" || flow.kind === "keyword") {
-        const entries = flow.kind === "mix" ? (flow.mix || []) : (flow.kwEntries || []);
+      if (flow.kind === "mix" || flow.kind === "keyword" || flow.kind === "daywise") {
+        const entries = flow.kind === "mix" ? (flow.mix || [])
+          : flow.kind === "keyword" ? (flow.kwEntries || []) : (flow.dwEntries || []);
         let total, done;
         if (flow.kind === "mix") {
           const counts = flow.dm ? (flow.targetState?.askedCounts || {})
@@ -1820,7 +1934,8 @@ export class QuizRoom {
         const asked = entries.reduce((s, e) => s + e.count, 0);
         const count = Math.min(asked, poolSize);
         const modeName = { new: "🆕 New Questions", done: "🔁 Completed Questions", all: "🎲 All Questions" }[flow.mode || "all"];
-        const lines = [flow.kind === "mix" ? "🚀 Mix Quiz is ready:" : "🚀 Keyword Quiz is ready:"];
+        const lines = [flow.kind === "mix" ? "🚀 Mix Quiz is ready:"
+          : flow.kind === "keyword" ? "🚀 Keyword Quiz is ready:" : "🚀 Day-wise Quiz is ready:"];
         entries.forEach((e, i) => lines.push(`${i + 1}. ${e.label} — ${e.count} Q`));
         lines.push(`🎯 ${modeName}`);
         lines.push(`📌 ${count} questions (pool: ${poolSize})`);
@@ -1931,9 +2046,12 @@ export class QuizRoom {
       }
       return;
     }
-    if (data === "start" && (flow.kind === "mix" || flow.kind === "keyword")) {
-      const plan = flow.kind === "mix" ? (flow.mix || []) : (flow.kwEntries || []);
-      const label = flow.kind === "mix" ? mixLabel(plan) : planLabel("keyword", plan);
+    if (data === "start" && (flow.kind === "mix" || flow.kind === "keyword" || flow.kind === "daywise")) {
+      const plan = flow.kind === "mix" ? (flow.mix || [])
+        : flow.kind === "keyword" ? (flow.kwEntries || []) : (flow.dwEntries || []);
+      const label = flow.kind === "mix" ? mixLabel(plan)
+        : flow.kind === "keyword" ? planLabel("keyword", plan)
+        : (plan[0]?.label || "📅 Day-wise Quiz");
       const totalCount = plan.reduce((s, e) => s + e.count, 0);
       const sel = {
         label, subject: null, chapter: null, count: totalCount,
@@ -1985,7 +2103,44 @@ export class QuizRoom {
       await this.startSession(chatId, label, flow.subject, flow.chapter, flow.count, flow.seconds, flow.mode || "all");
       return;
     }
-    if (data === "kw:open") {
+    if (data === "dw:open") {
+      flow.kind = "daywise"; flow.step = "dwgroups";
+    } else if (data === "dw:groups") {
+      flow.step = "dwgroups";
+    } else if (data.startsWith("dw:grp:")) {
+      flow.dwGroup = parseInt(data.slice(7), 10);
+      flow.page = 0;
+      flow.step = "dwmonths";
+    } else if (data.startsWith("dw:monp:")) {
+      flow.page = parseInt(data.slice(8), 10);
+      flow.step = "dwmonths";
+    } else if (data.startsWith("dw:mon:")) {
+      flow.dwMonth = data.slice(7);
+      flow.page = 0;
+      flow.step = "dwdays";
+    } else if (data === "dw:months") {
+      flow.step = "dwmonths";
+    } else if (data.startsWith("dw:dayp:")) {
+      flow.page = parseInt(data.slice(8), 10);
+      flow.step = "dwdays";
+    } else if (data === "dw:days") {
+      flow.step = "dwdays";
+    } else if (data.startsWith("dw:day:")) {
+      const tg = await loadTgDays();
+      const g = tg.groups[flow.dwGroup || 0];
+      const mo = g.months.find((x) => x.m === flow.dwMonth) || g.months[0];
+      const dy = mo.days.find((x) => x.d === data.slice(7));
+      if (!dy) {
+        await this.answerCb(cq.id, "That day is no longer available.");
+        return;
+      }
+      flow.dwEntries = [{
+        label: `📅 ${g.name} · ${fmtDay(dy.d)}`,
+        keys: dy.keys, count: dy.n, total: dy.n, ordered: true,
+      }];
+      flow.mode = "all";
+      flow.step = "seconds";
+    } else if (data === "kw:open") {
       flow.kind = "keyword"; flow.kwEntries = flow.kwEntries || [];
       flow.step = "kwhome";
     } else if (data === "kw:home") {
@@ -2090,10 +2245,12 @@ export class QuizRoom {
       items = [];
       const usedK = new Set();
       for (const e of plan) {
-        const pool = shuffle(e.keys
-          ? await this.fetchByKeys(e.keys, e.count, mode, askedOf, edits)
-          : await fetchPool(
-              index, null, null, e.count, mode, askedOf, e.cis, edits));
+        const pool = e.ordered
+          ? await this.fetchByKeysOrdered(e.keys, edits)
+          : shuffle(e.keys
+            ? await this.fetchByKeys(e.keys, e.count, mode, askedOf, edits)
+            : await fetchPool(
+                index, null, null, e.count, mode, askedOf, e.cis, edits));
         let got = 0;
         for (const item of pool) {
           if (got >= e.count) break;
@@ -2104,7 +2261,7 @@ export class QuizRoom {
           got++;
         }
       }
-      items = shuffle(items);
+      items = (plan.length === 1 && plan[0].ordered) ? items : shuffle(items);
     } else {
       items = shuffle(await fetchPool(index, subjectI, chapterI, count, mode, askedOf, null, edits));
     }
