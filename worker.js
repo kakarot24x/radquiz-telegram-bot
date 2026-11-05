@@ -599,7 +599,7 @@ long-press the box and tap <b>Paste</b> again.</p>
 ▶ Start the Bot</button></form>`;
   }
   return `<h2>✅ RADEQuiz Bot is Running</h2>
-<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-05 v27</b></p>
+<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-06 v28</b></p>
 <p>Now open your Telegram group <b>RADEQuiz</b> and type <b>/quiz</b> —
 choose a topic, the number of questions and the timer, and the quiz starts.
 Everything is controlled from Telegram itself.</p>
@@ -870,9 +870,12 @@ export class QuizRoom {
     const ef = {
       owner: userId, step: "await_query", msgId: null, results: [],
       draft: null, orig: null, qid: null, ci: null, field: null, warn: "",
+      lq: null, lqPage: 0,
     };
     const sent = await this.send(chatId,
-      "✏️ Question Editor\nType some words from the question you want to fix (e.g. \"error sheet manual\") — I will search the whole bank.");
+      "✏️ Question Editor\nType some words from the question you want to fix (e.g. \"error sheet manual\") — I will search the whole bank.\nOr pick from a group's last quiz:",
+      [[this.btn("🕘 Last Quiz Questions", "ed:lq")],
+       [this.btn("❌ Close editor", "ed:close")]]);
     ef.msgId = sent.message_id;
     await this.state.storage.put("editflow", ef);
   }
@@ -918,6 +921,90 @@ export class QuizRoom {
                this.btn("❌ Close", "ed:close")]);
     await this.edit(chatId, ef.msgId,
       `🔎 ${hits.length >= 40 ? "40+" : hits.length} match(es) for "${query}" — tap the question to edit:`,
+      rows);
+  }
+
+  // -------------------------------------------------- editor: last quiz
+  // Pick a group -> the questions of its most recent quiz (recorded in
+  // the group room by startSession, read back via the /lastquiz route)
+  // -> tap one -> the same editor card the word-search path opens.
+  async editorLqGroups(chatId, ef) {
+    const groups = await this.knownGroupsFor(ef.owner);
+    if (!groups.length) {
+      await this.edit(chatId, ef.msgId,
+        "🔒 Question editing is only for a group admin.",
+        [[this.btn("❌ Close editor", "ed:close")]]);
+      return;
+    }
+    ef.step = "lq_groups";
+    await this.state.storage.put("editflow", ef);
+    const rows = groups.map((g) =>
+      [this.btn(`👥 ${g.title || g.id}`, `ed:lqg:${g.id}`)]);
+    rows.push([this.btn("🔍 Search by words", "ed:new"),
+               this.btn("❌ Close", "ed:close")]);
+    await this.edit(chatId, ef.msgId,
+      "🕘 Last Quiz Questions\nPick a group — I will show the questions from its most recent quiz:",
+      rows);
+  }
+
+  async editorLqOpen(chatId, ef, groupId) {
+    const groups = await this.knownGroupsFor(ef.owner);
+    const g = groups.find((x) => x.id === groupId);
+    if (!g) {
+      await this.edit(chatId, ef.msgId,
+        "🔒 You are not an admin of that group.",
+        [[this.btn("🕘 Pick another group", "ed:lq"),
+          this.btn("❌ Close", "ed:close")]]);
+      return;
+    }
+    await this.edit(chatId, ef.msgId, "🕘 Loading the last quiz…");
+    const res = await this.roomCall(groupId, "/lastquiz", {});
+    if (!res.found || !(res.items || []).length) {
+      ef.step = "lq_groups";
+      await this.state.storage.put("editflow", ef);
+      await this.edit(chatId, ef.msgId,
+        `🕘 No quiz has been recorded in 👥 ${g.title || g.id} yet.\nRun a quiz in that group first — then its questions will appear here.`,
+        [[this.btn("🕘 Pick another group", "ed:lq"),
+          this.btn("❌ Close", "ed:close")]]);
+      return;
+    }
+    ef.lq = {
+      chatId: groupId, title: g.title || String(groupId),
+      at: res.at || null, label: res.label || "", items: res.items,
+    };
+    ef.lqPage = 0;
+    ef.step = "lq_list";
+    await this.state.storage.put("editflow", ef);
+    await this.renderLqList(chatId, ef);
+  }
+
+  async renderLqList(chatId, ef) {
+    const lq = ef.lq;
+    const items = lq?.items || [];
+    const pages = Math.max(1, Math.ceil(items.length / PAGE_SIZE));
+    ef.lqPage = Math.min(ef.lqPage || 0, pages - 1);
+    const when = lq?.at
+      ? new Date(lq.at).toLocaleString("en-IN", {
+          timeZone: "Asia/Kolkata", day: "numeric", month: "short",
+          hour: "numeric", minute: "2-digit" })
+      : "";
+    const rows = items
+      .slice(ef.lqPage * PAGE_SIZE, (ef.lqPage + 1) * PAGE_SIZE)
+      .map((it, k) => {
+        const n = ef.lqPage * PAGE_SIZE + k;
+        return [this.btn(`${n + 1}. ${String(it.q || "").slice(0, 38)}`,
+          `ed:lqq:${n}`)];
+      });
+    const nav = [];
+    if (ef.lqPage > 0) nav.push(this.btn("⬅️ Prev", `ed:lqp:${ef.lqPage - 1}`));
+    if (ef.lqPage < pages - 1) {
+      nav.push(this.btn("Next ➡️", `ed:lqp:${ef.lqPage + 1}`));
+    }
+    if (nav.length) rows.push(nav);
+    rows.push([this.btn("🕘 Groups", "ed:lq"),
+               this.btn("❌ Close", "ed:close")]);
+    await this.edit(chatId, ef.msgId,
+      `🕘 Last quiz in 👥 ${lq.title}\n${lq.label}${when ? ` · ${when}` : ""} · ${items.length} question(s)\nTap a question to edit it:`,
       rows);
   }
 
@@ -979,7 +1066,12 @@ export class QuizRoom {
       ["A", "B", "C", "D"].map((L) =>
         this.btn(d.answer === L ? `✅ Ans ${L}` : `🎯 Ans ${L}`, `ed:a:${L}`)),
       [this.btn("💾 SAVE", "ed:save"), this.btn("↩️ Reset", "ed:reset")],
-      [this.btn("🔍 New search", "ed:new"), this.btn("❌ Close", "ed:close")],
+      ef.lq
+        ? [this.btn("🕘 Last Quiz list", "ed:lql"),
+           this.btn("🔍 New search", "ed:new"),
+           this.btn("❌ Close", "ed:close")]
+        : [this.btn("🔍 New search", "ed:new"),
+           this.btn("❌ Close", "ed:close")],
     ];
     await this.edit(chatId, ef.msgId, lines.join("\n"), rows);
   }
@@ -1111,7 +1203,53 @@ export class QuizRoom {
       await this.state.storage.put("editflow", ef);
       await this.edit(chatId, ef.msgId,
         "✏️ Question Editor\nType some words from the question:",
-        [[this.btn("❌ Close editor", "ed:close")]]);
+        [[this.btn("🕘 Last Quiz Questions", "ed:lq")],
+         [this.btn("❌ Close editor", "ed:close")]]);
+      await this.answerCb(cq.id);
+      return;
+    }
+    if (data === "ed:lq") {
+      await this.editorLqGroups(chatId, ef);
+      await this.answerCb(cq.id);
+      return;
+    }
+    if (data.startsWith("ed:lqg:")) {
+      await this.editorLqOpen(chatId, ef, parseInt(data.slice(7), 10));
+      await this.answerCb(cq.id);
+      return;
+    }
+    if (data.startsWith("ed:lqp:")) {
+      if (!ef.lq) {
+        await this.answerCb(cq.id, "Open a group's last quiz first.");
+        return;
+      }
+      ef.lqPage = parseInt(data.slice(7), 10);
+      ef.step = "lq_list";
+      await this.state.storage.put("editflow", ef);
+      await this.renderLqList(chatId, ef);
+      await this.answerCb(cq.id);
+      return;
+    }
+    if (data === "ed:lql") {
+      if (!ef.lq) {
+        await this.answerCb(cq.id, "Open a group's last quiz first.");
+        return;
+      }
+      ef.step = "lq_list"; ef.draft = null; ef.qid = null;
+      await this.state.storage.put("editflow", ef);
+      await this.renderLqList(chatId, ef);
+      await this.answerCb(cq.id);
+      return;
+    }
+    if (data.startsWith("ed:lqq:")) {
+      const entry = (ef.lq?.items || [])[parseInt(data.slice(7), 10)];
+      if (!entry) {
+        await this.answerCb(cq.id, "That question is gone — open the list again.");
+        return;
+      }
+      ef.ci = entry.part ? parseInt(entry.part.split("-")[1], 10) : null;
+      await this.state.storage.put("editflow", ef);
+      await this.editorOpen(chatId, ef, entry);
       await this.answerCb(cq.id);
       return;
     }
@@ -1225,6 +1363,13 @@ export class QuizRoom {
           out[p] = (await this.state.storage.get(`asked:${p}`)) || [];
         }
         return Response.json(out);
+      } else if (path === "/lastquiz") {
+        // The DM question editor reads the group's most recent quiz
+        // (recorded by startSession) through this route.
+        const lq = await this.state.storage.get("lastQuiz");
+        return Response.json(lq && (lq.items || []).length
+          ? { found: true, at: lq.at, label: lq.label, items: lq.items }
+          : { found: false });
       } else if (path === "/auto") {
         const cfg = (await this.state.storage.get("autoCfg")) || {};
         const session = await this.state.storage.get("session");
@@ -2328,6 +2473,7 @@ export class QuizRoom {
     }
     const payloads = [];
     const usedKeys = [];
+    const lqItems = [];
     for (const item of items) {
       if (payloads.length >= count) break;
       const built = buildPollPayload(item, payloads.length + 1, seconds);
@@ -2336,6 +2482,14 @@ export class QuizRoom {
       if (item._k) {
         const [part, idx] = item._k.split("#");
         usedKeys.push({ part, idx: parseInt(idx, 10), ci: item._ci });
+        // Remember this quiz's questions in the group room so the DM
+        // question editor can offer them via "Last Quiz Questions".
+        if (item.i && lqItems.length < 100) {
+          lqItems.push({
+            i: item.i, part, idx: parseInt(idx, 10),
+            q: String(item.q || "").slice(0, 120),
+          });
+        }
       }
     }
     if (!payloads.length) {
@@ -2348,6 +2502,10 @@ export class QuizRoom {
       return;
     }
     if (usedKeys.length) await this.recordAsked(usedKeys);
+    if (lqItems.length) {
+      await this.state.storage.put("lastQuiz",
+        { at: Date.now(), label, items: lqItems });
+    }
     const session = {
       chatId, label, seconds, items: payloads, idx: 0,
       scores: {}, pollMap: {}, pollSentAt: {}, answered: {},

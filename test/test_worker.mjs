@@ -758,6 +758,91 @@ await hook(msg("/quiz"), cfg.secret);
   await getRoom(CHAT).state.storage.delete("session");
 }
 
+// 22. Editor — Last Quiz path: run a quiz in the group, then in DM open
+// /edit -> Last Quiz -> pick the group -> question list -> open one ->
+// change its answer -> save; the edit must land in edits_all. A group
+// that never ran a quiz shows the plain "no quiz recorded" message and
+// non-admins stay refused, exactly like the word-search editor.
+{
+  const room22 = getRoom(CHAT);
+  await room22.state.storage.delete("session");
+  await room22.state.storage.delete("flow");
+  await room22.state.storage.delete("lastQuiz");
+  await hook(msg("/quiz"), cfg.secret);
+  const qMid = midSeq;
+  await hook(cb("sub:0", qMid), cfg.secret);
+  const kbT = lastCall("editMessageText")?.params.reply_markup?.inline_keyboard || [];
+  const topB = kbT.flat().find((b) => b.callback_data.startsWith("top:") &&
+    b.callback_data !== "top:all");
+  await hook(cb(topB.callback_data, qMid), cfg.secret);
+  await hook(cb("mode:all", qMid), cfg.secret);
+  await hook(cb("cnt:10", qMid), cfg.secret);
+  await hook(cb("sec:10", qMid), cfg.secret);
+  await hook(cb("start", qMid), cfg.secret);
+  const lq = room22.state.storage.m.get("lastQuiz");
+  check("last quiz recorded in the group room (10 questions)",
+    !!lq && lq.items.length === 10 && !!lq.label &&
+    lq.items.every((x) => x.i && x.part && Number.isInteger(x.idx)));
+  const firstQ = lq.items[0];
+  await room22.state.storage.delete("session");
+
+  // a second registered group that has never run a quiz
+  const CHAT3 = -100777;
+  const groupsKv = JSON.parse((await kv.get("groups")) || "{}");
+  groupsKv[CHAT3] = { title: "Empty Group", at: Date.now() };
+  await kv.put("groups", JSON.stringify(groupsKv));
+
+  await hook(dmMsg("/edit", PLAYER), cfg.secret);
+  check("last-quiz editor path refused for non-admin",
+    (lastCall("sendMessage")?.params.text || "").includes("only for a group admin"));
+
+  await hook(dmMsg("/edit"), cfg.secret);
+  const eMid = midSeq;
+  const homeKb = lastCall("sendMessage")?.params.reply_markup?.inline_keyboard || [];
+  check("editor home has the Last Quiz button",
+    homeKb.flat().some((b) => b.callback_data === "ed:lq"));
+  await hook(dmCb("ed:lq", eMid), cfg.secret);
+  let kb = lastCall("editMessageText")?.params.reply_markup?.inline_keyboard || [];
+  check("last-quiz group picker lists the admin's groups",
+    kb.flat().some((b) => b.callback_data === `ed:lqg:${CHAT}`) &&
+    kb.flat().some((b) => b.callback_data === `ed:lqg:${CHAT3}`));
+  await hook(dmCb(`ed:lqg:${CHAT3}`, eMid), cfg.secret);
+  check("group with no quiz shows the plain message",
+    (lastCall("editMessageText")?.params.text || "")
+      .includes("No quiz has been recorded"));
+  await hook(dmCb(`ed:lqg:${CHAT}`, eMid), cfg.secret);
+  const listText = lastCall("editMessageText")?.params.text || "";
+  kb = lastCall("editMessageText")?.params.reply_markup?.inline_keyboard || [];
+  check("last-quiz list header + first page (8 of 10)",
+    listText.includes("Last quiz in") && listText.includes("10 question(s)") &&
+    kb.flat().filter((b) => b.callback_data.startsWith("ed:lqq:")).length === 8 &&
+    kb.flat().some((b) => b.callback_data === "ed:lqp:1"));
+  await hook(dmCb("ed:lqp:1", eMid), cfg.secret);
+  kb = lastCall("editMessageText")?.params.reply_markup?.inline_keyboard || [];
+  check("last-quiz list page 2 shows the remaining 2",
+    kb.flat().filter((b) => b.callback_data.startsWith("ed:lqq:")).length === 2);
+  await hook(dmCb("ed:lqq:0", eMid), cfg.secret);
+  const cardText = lastCall("editMessageText")?.params.text || "";
+  const cardKb = lastCall("editMessageText")?.params.reply_markup?.inline_keyboard || [];
+  check("last-quiz pick opens the editor card for that question",
+    cardText.includes(`[${firstQ.i}]`) &&
+    cardKb.flat().some((b) => b.callback_data === "ed:lql"));
+  const curLine = cardText.split("\n")
+    .find((ln) => /^[ABCD]\)/.test(ln) && ln.includes("✅"));
+  const curL = curLine ? curLine[0] : null;
+  check("card shows a marked correct answer to flip", !!curL);
+  const otherL = curL === "A" ? "B" : "A";
+  await hook(dmCb(`ed:a:${otherL}`, eMid), cfg.secret);
+  await hook(dmCb("ed:save", eMid), cfg.secret);
+  check("save from the last-quiz card confirmed",
+    (lastCall("editMessageText")?.params.text || "").includes("✅ Saved"));
+  const edits22 = JSON.parse((await kv.get("edits_all")) || "{}");
+  check("edit from the last-quiz path landed in edits_all",
+    edits22[firstQ.i]?.answer === otherL);
+  delete edits22[firstQ.i];
+  await kv.put("edits_all", JSON.stringify(edits22));
+}
+
 // 14. Telegram command menu registered (v12) + no plain tick/cross glyphs left
 const cmdCalls = calls.filter((c) => c.method === "setMyCommands");
 check("setMyCommands registered", cmdCalls.length >= 1 &&
