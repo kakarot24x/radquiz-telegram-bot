@@ -9,7 +9,7 @@ compatibility_date = "2025-01-01"
 
 [[kv_namespaces]]
 binding = "KV"
-id = "REPLACE_WITH_AKAZA_KV_ID"
+id = "dd83bcb10b804d049e2e6930d1e4e161"
 
 [[durable_objects.bindings]]
 name = "QUIZ"
