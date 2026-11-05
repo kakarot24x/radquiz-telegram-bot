@@ -81,7 +81,12 @@ button: Group (Accounts Exam 1–4) → Month → Day → Timer → Start. Din
 ke SAARÉ sawal asal kram me chalte hain — koi New/Completed chhaant
 nahi, dusre din repeat hua sawal is din me bhi aayega (same-to-same
 replay). Din ki list me ✅ done ginati bhi dikhti hai. Data:
-`bank/tgdays.json` (780 din, `make_tgdays.py` banata hai — pipeline me
-add_telegram ke baad; part alignment ID se verify hota hai). Plan entry
+`bank/tgdays.json` (1,146 din, `make_tgdays.py` banata hai — pipeline me
+add_telegram ke baad). Exam 1–3 ke din EXPORT-DRIVEN hain (2026-11-05 se):
+group ke asal Telegram export ke har din ke saare poll, asal kram me,
+repeat sahit — jawab verified bank se stem+option match karke (export me
+jawab hota hi nahi); bina-match poll chhoot'ta hai. Exam 4 bank-driven
+hai (uska export uplabdh nahi). Jo din 36 se zyada part files me bikhre
+hain, unke poore items index me hi baked hain (`items` + `_src`). Plan entry
 `ordered: true` par startSession shuffle nahi karta aur
 fetchByKeysOrdered istemal hota hai. Sirf bot me hai — app aparivartit.

@@ -599,7 +599,7 @@ long-press the box and tap <b>Paste</b> again.</p>
 ▶ Start the Bot</button></form>`;
   }
   return `<h2>✅ RADEQuiz Bot is Running</h2>
-<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-05 v25</b></p>
+<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-05 v26</b></p>
 <p>Now open your Telegram group <b>RADEQuiz</b> and type <b>/quiz</b> —
 choose a topic, the number of questions and the timer, and the quiz starts.
 Everything is controlled from Telegram itself.</p>
@@ -1531,6 +1531,28 @@ export class QuizRoom {
     return { total: keys.length, done };
   }
 
+  // Day-wise days scattered over too many part files are baked into
+  // tgdays.json as full items (each carries _src = its bank key, so
+  // asked-tracking and saved edits keep working). Resolve the day from
+  // the index and hand its items over in order.
+  async fetchDayInline(ref, edits) {
+    const tg = await loadTgDays();
+    const g = tg.groups[ref.gi];
+    const mo = g && g.months.find((x) => x.m === ref.m);
+    const dy = mo && mo.days.find((x) => x.d === ref.d);
+    if (!dy || !dy.items) return [];
+    return dy.items.map((q) => {
+      const c = { ...q };
+      if (c._src) {
+        c._k = c._src;
+        c._ci = parseInt(c._src.split("-")[1], 10);
+        delete c._src;
+      }
+      if (edits && c.i && edits[c.i]) applyEdit(c, edits[c.i]);
+      return c;
+    });
+  }
+
   // Fetch items in the EXACT key order (Day-wise replay): no shuffle,
   // no mode filter, no small part cap — a day's questions sit in a few
   // neighbouring part files and must come back same-to-same.
@@ -1752,10 +1774,11 @@ export class QuizRoom {
       const tg = await loadTgDays();
       const g = tg.groups[flow.dwGroup || 0];
       const mo = g.months.find((x) => x.m === flow.dwMonth) || g.months[0];
+      const keysOf = (dy) => dy.keys || (dy.items || []).map((q) => q._src);
       const parts = [...new Set(mo.days.flatMap((dy) =>
-        dy.keys.map((k) => k.split("#")[0])))];
+        keysOf(dy).map((k) => k.split("#")[0])))];
       const sets = await this.flowAskedSets(flow, parts);
-      const doneOf = (dy) => dy.keys.reduce((s2, k) => {
+      const doneOf = (dy) => keysOf(dy).reduce((s2, k) => {
         const [p, i] = k.split("#");
         return s2 + (sets.get(p)?.has(parseInt(i, 10)) ? 1 : 0);
       }, 0);
@@ -2134,10 +2157,16 @@ export class QuizRoom {
         await this.answerCb(cq.id, "That day is no longer available.");
         return;
       }
-      flow.dwEntries = [{
-        label: `📅 ${g.name} · ${fmtDay(dy.d)}`,
-        keys: dy.keys, count: dy.n, total: dy.n, ordered: true,
-      }];
+      flow.dwEntries = [dy.items
+        ? {
+            label: `📅 ${g.name} · ${fmtDay(dy.d)}`,
+            dwRef: { gi: flow.dwGroup || 0, m: mo.m, d: dy.d },
+            count: dy.n, total: dy.n, ordered: true,
+          }
+        : {
+            label: `📅 ${g.name} · ${fmtDay(dy.d)}`,
+            keys: dy.keys, count: dy.n, total: dy.n, ordered: true,
+          }];
       flow.mode = "all";
       flow.step = "seconds";
     } else if (data === "kw:open") {
@@ -2246,7 +2275,9 @@ export class QuizRoom {
       const usedK = new Set();
       for (const e of plan) {
         const pool = e.ordered
-          ? await this.fetchByKeysOrdered(e.keys, edits)
+          ? (e.dwRef
+            ? await this.fetchDayInline(e.dwRef, edits)
+            : await this.fetchByKeysOrdered(e.keys, edits))
           : shuffle(e.keys
             ? await this.fetchByKeys(e.keys, e.count, mode, askedOf, edits)
             : await fetchPool(
@@ -2254,9 +2285,12 @@ export class QuizRoom {
         let got = 0;
         for (const item of pool) {
           if (got >= e.count) break;
-          if (item._k && usedK.has(item._k)) continue;
+          // Ordered (day-wise) entries replay a day same-to-same: a
+          // question the group posted twice that day stays twice, so
+          // the cross-entry de-dupe does not apply to them.
+          if (!e.ordered && item._k && usedK.has(item._k)) continue;
           if (buildPollPayload(item, 1, seconds).skip) continue;
-          if (item._k) usedK.add(item._k);
+          if (!e.ordered && item._k) usedK.add(item._k);
           items.push(item);
           got++;
         }
