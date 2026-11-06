@@ -438,8 +438,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 492 | PAPER-III: INS: Stock Verification | 70 | 0 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. Stock satyapan sangat |
 | 493 | PAPER-III: INS: Inspection of Workshops | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Workshop nirikshan sangat |
 | 494 | PAPER-III: INS: Inspection of Traffic Accounts Office | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. TAO nirikshan sangat |
-| 495 | PAPER-III: INS: Inspection of Divisional Accounts | 60 | 0 | 0 | pending |
-| 496 | PAPER-III: INS: Inspection of Suspense Heads | 60 | 0 | 0 | pending |
+| 495 | PAPER-III: INS: Inspection of Divisional Accounts | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Mandal lekha nirikshan sangat |
+| 496 | PAPER-III: INS: Inspection of Suspense Heads | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Suspense nirikshan sangat |
 | 497 | PAPER-III: INS: Inspection of Outstandings | 60 | 0 | 0 | pending |
 | 498 | PAPER-III: INS: Inspection Reports & Compliance | 70 | 0 | 0 | pending |
 | 499 | PAPER-III: INS: Surprise Inspections | 60 | 0 | 0 | pending |
