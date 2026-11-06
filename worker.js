@@ -599,7 +599,7 @@ long-press the box and tap <b>Paste</b> again.</p>
 ▶ Start the Bot</button></form>`;
   }
   return `<h2>✅ RADEQuiz Bot is Running</h2>
-<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-06 v29</b></p>
+<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-06 v30</b></p>
 <p>Now open your Telegram group <b>RADEQuiz</b> and type <b>/quiz</b> —
 choose a topic, the number of questions and the timer, and the quiz starts.
 Everything is controlled from Telegram itself.</p>
@@ -1477,14 +1477,32 @@ export class QuizRoom {
   // ONLY when the message contains the word "mahesh" (no @tag needed);
   // other group chatter is ignored and does not advance the count.
   // DM behaviour is unchanged: any plain text roasts.
+  // Trigger widened (user order 2026-11-06 evening): in groups the
+  // roast ALSO fires when the message is a reply to this bot's own
+  // message, or a reply to a message sent by a person named Mahesh
+  // (first/last name or username contains "mahesh"). The roast always
+  // lands on the sender of the triggering message.
   async maybeRoast(msg) {
     if ((await this.flavor()) !== "akaza") return;
     const raw = (msg.text || "").trim();
     if (!raw || raw.startsWith("/")) return;
     if (msg.from?.is_bot) return;
     const chatType = msg.chat?.type || "";
-    if ((chatType === "group" || chatType === "supergroup") &&
-        !/\bmahesh\b/i.test(raw)) return;
+    if (chatType === "group" || chatType === "supergroup") {
+      const rt = msg.reply_to_message?.from || null;
+      const rtName = rt
+        ? [rt.first_name, rt.last_name, rt.username].filter(Boolean).join(" ")
+        : "";
+      let replyToBot = false;
+      if (rt?.is_bot && rt.username) {
+        const cfg = await getConfig(this.env).catch(() => null);
+        replyToBot = !!cfg?.username &&
+          rt.username.toLowerCase() === String(cfg.username).toLowerCase();
+      }
+      const triggered = /\bmahesh\b/i.test(raw) || /mahesh/i.test(rtName) ||
+        replyToBot;
+      if (!triggered) return;
+    }
     const sender = effectiveSenderId(msg);
     if (!sender) return;
     const counts = (await this.state.storage.get("roast")) || {};
