@@ -366,8 +366,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 420 | PAPER-III: TAC: Inter-Railway Adjustments | 80 | 0 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. Antar-railway samaayojan sangat (batwara doori aadhar) |
 | 421 | PAPER-III: TAC: Audit of Traffic Earnings | 80 | 0 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. Yaatayat aay audit sangat |
 | 422 | PAPER-III: TAC: Outstanding & Unrealized Earnings | 70 | 0 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. Bakaya/avyavasthit aay sangat |
-| 423 | PAPER-III: TAC: Digital Payments & E-ticketing | 70 | 0 | 0 | pending |
-| 424 | PAPER-III: TAC: Ticket Checking & Excess Fare | 80 | 0 | 0 | pending |
+| 423 | PAPER-III: TAC: Digital Payments & E-ticketing | 70 | 0 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. Digital bhugtan/e-ticketing sangat |
+| 424 | PAPER-III: TAC: Ticket Checking & Excess Fare | 80 | 0 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. Ticket jaanch/adhik kiraya sangat (Sec 137/138, luggage 70/50/40/35 kg) |
 | 425 | PAPER-III: TAC: Military & Government Traffic | 60 | 0 | 0 | pending |
 | 426 | PAPER-III: FIN: Railway Finance Organization | 60 | 0 | 0 | pending |
 | 427 | PAPER-III: FIN: Finance Code | 70 | 2 | 0 | pending |
