@@ -599,7 +599,7 @@ long-press the box and tap <b>Paste</b> again.</p>
 ▶ Start the Bot</button></form>`;
   }
   return `<h2>✅ RADEQuiz Bot is Running</h2>
-<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-06 v31</b></p>
+<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-06 v32</b></p>
 <p>Now open your Telegram group <b>RADEQuiz</b> and type <b>/quiz</b> —
 choose a topic, the number of questions and the timer, and the quiz starts.
 Everything is controlled from Telegram itself.</p>
@@ -1509,9 +1509,10 @@ export class QuizRoom {
     const n = (counts[sender] || 0) + 1;
     counts[sender] = n;
     await this.state.storage.put("roast", counts);
-    // Variety rule (user order 2026-11-06 evening): every reply after
-    // the first is a different line, but every line must carry a gaali.
-    // The room's previous pool line is never repeated back-to-back.
+    // Variety rule (user order 2026-11-06 evening, refined same night):
+    // replies after the first come from a gaali pool picked PURELY at
+    // random — a line may repeat, but only by chance, never in a fixed
+    // cycle. Every line must carry a gaali.
     let text;
     if (n === 1) {
       text = "Bhag Madarchod Ja Padhai kar";
@@ -1529,12 +1530,14 @@ export class QuizRoom {
         "Chutiya, bakchodi kam, padhai zyada — chal shuru ho ja",
         "Behenchod, aaj ka target poora kar pehle, phir aana",
         "Saale bhosdi ke, jaake revise kar — exam paas aa raha hai",
+        "Koi fir se aa gaya madarchod",
+        "Ye fir aa gaya bhosdi ke",
+        "Dekho, madarchod fir haazir hai",
+        "Fir se aa gaya chutiya",
+        "Aa gaya behenchod dobara",
+        "Madarchod ko chain nahi hai, fir aa gaya",
       ];
-      const last = (await this.state.storage.get("roastlast")) ?? -1;
-      let idx = Math.floor(Math.random() * POOL.length);
-      if (POOL.length > 1 && idx === last) idx = (idx + 1) % POOL.length;
-      await this.state.storage.put("roastlast", idx);
-      text = POOL[idx];
+      text = POOL[Math.floor(Math.random() * POOL.length)];
     }
     try {
       await this.call("sendMessage", {
