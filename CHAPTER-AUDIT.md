@@ -112,7 +112,7 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 106 | expenditurev2 | 800 | 600 | 0 | done 2026-11-06: 800/800 tay, 0 sudhaar. Ganit-paath sahi; 100 Match-List paath karyakram se satyapit (Plan Head/Demand/Abstract/Fund nakshon se) |
 | 107 | Books & Budget II | 202 | 202 | 0 | done 2026-11-06: 202/202 tay, 0 sudhaar. Samanya book-keeping/budget set maanak aur sangat |
 | 108 | Book Keeping v1 | 1000 | 1000 | 0 | done 2026-11-06: 1000/1000 tay, 1 sudhaar. Suspense shesh ki disha galat thi: debit paksh Rs 4,200 adhik ho to Suspense CREDIT shesh dikhata hai (ch108 + ch109 sathi, B) |
-| 109 | PAPER-I | 5583 | 5579 | 23 | pending |
+| 109 | PAPER-I | 5583 | 5579 | 23 | done 2026-11-06: 5583 Q (5133 purane chapters ki pratilipi + 450 naye stem poore padhe), 1 sudhaar. TG3_Q0596 dues form A 1108 se A 1138. Baaki takraav akshar-bhed nikle, mool path sab mel khaata hai; BRA jodi sthiti purani (user faisla pending) |
 | 110 | PAPER-II | 3701 | 3694 | 36 | pending |
 | 111 | PAPER-III | 2463 | 2462 | 39 | pending |
 | 172 | PAPER-I: GRP: Railway Budget & Budget Types | 80 | 2 | 0 | pending |
