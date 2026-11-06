@@ -462,8 +462,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 516 | IRFC Vol 2: Works Primary Units | 100 | 1 | 0 | done 2026-11-06: 100/100 tay, 0 sudhaar. Revenue PU banam Works PU do suchiyan sangat (CGST 63 aadi) |
 | 517 | IRFC Vol 2: Abstract Y – Detailed Heads | 100 | 0 | 0 | done 2026-11-06: 100/100 tay, 0 sudhaar. Abstract Y head + anuprayog sangat |
 | 518 | IRFC Vol 2: Receipts & Expenditure | 100 | 0 | 0 | done 2026-11-06: 100/100 tay, 0 sudhaar. Abstract M (DRF/Pension/DF) + ginti sangat; source code sudhre kram se sangat |
-| 519 | IRFC Vol 2: True/False – Plan & Misc | 100 | 0 | 0 | pending |
-| 520 | IRFC Vol 2: Fill in Blanks – G Series | 100 | 0 | 0 | pending |
+| 519 | IRFC Vol 2: True/False – Plan & Misc | 100 | 0 | 0 | done 2026-11-06: 100/100 tay, 0 sudhaar. Satya/Asatya + rikt sthan sangat |
+| 520 | IRFC Vol 2: Fill in Blanks – G Series | 100 | 0 | 0 | done 2026-11-06: 100/100 tay, 0 sudhaar. Rikt sthan/T-F jaari, sangat |
 | 521 | IRFC Vol 2: Fill in Blanks – Z Series & Misc | 100 | 0 | 0 | pending |
 | 522 | GCC Works: Tender Regulations — Part I | 120 | 0 | 0 | pending |
 | 523 | GCC Works: Tender Forms & Submission | 130 | 1 | 0 | pending |
