@@ -215,8 +215,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 269 | PAPER-II: AUD: CAG & Statutory Audit | 60 | 2 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. CAG/vaidhanik lekha-pariksha (Anuchhed 148-151, PAC 22) sangat |
 | 270 | PAPER-II: AUD: Audit Paras & Reports | 50 | 1 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Audit-para/ATN (6 saptah jawaab, 4 mahine ATN) sangat |
 | 271 | PAPER-II: AUD: Propriety & Performance Audit | 50 | 1 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Auchitya/nishpadan lekha-pariksha sangat |
-| 272 | PAPER-II: AUD: Inspection Reports & Test Audit | 40 | 0 | 0 | pending |
-| 273 | PAPER-II: AUD: Audit of Receipts & Traffic Accounts | 40 | 0 | 0 | pending |
+| 272 | PAPER-II: AUD: Inspection Reports & Test Audit | 40 | 0 | 0 | done 2026-11-06: 40/40 tay, 0 sudhaar. Nirikshan report/test audit sangat |
+| 273 | PAPER-II: AUD: Audit of Receipts & Traffic Accounts | 40 | 0 | 0 | done 2026-11-06: 40/40 tay, 0 sudhaar. Praptiyon/yatayat lekha-pariksha sangat |
 | 274 | PAPER-I: IR: PNM Structure & Machinery | 60 | 0 | 0 | pending |
 | 275 | PAPER-I: IR: JCM - Joint Consultative Machinery | 50 | 0 | 0 | pending |
 | 276 | PAPER-I: IR: PREM | 50 | 0 | 0 | pending |
