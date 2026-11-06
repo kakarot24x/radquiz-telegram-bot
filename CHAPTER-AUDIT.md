@@ -176,7 +176,7 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 230 | PAPER-I: EXP: Works Expenditure | 100 | 0 | 0 | done 2026-11-06: 100/100 tay, 0 sudhaar. Karya kharch siddhant sangat |
 | 231 | PAPER-I: EXP: Establishment Expenditure | 100 | 1 | 0 | done 2026-11-06: 100/100 tay, 0 sudhaar. Sthapana kharch siddhant sangat (videsh-seva: dono yogdaan videshi niyokta deta hai — ch20 sandarbh) |
 | 232 | PAPER-I: EXP: Contingent Expenditure | 80 | 0 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. Aakasmik kharch siddhant sangat |
-| 233 | PAPER-I: EXP: Suspense Heads & Expenditure Accounting | 80 | 0 | 0 | pending |
+| 233 | PAPER-I: EXP: Suspense Heads & Expenditure Accounting | 80 | 0 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. Suspense heads siddhant sangat |
 | 234 | PAPER-I: EXP: Losses, Write-offs & Ex-gratia | 80 | 0 | 0 | pending |
 | 235 | PAPER-I: EXP: Stores & Materials Expenditure | 80 | 2 | 0 | pending |
 | 236 | PAPER-I: EXP: Pension & Retirement Benefits Expenditure | 60 | 0 | 0 | pending |
