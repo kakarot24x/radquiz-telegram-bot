@@ -308,8 +308,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 362 | PAPER-II: WCF: Job Costing & Batch Costing | 70 | 0 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. Job/batch costing sangat |
 | 363 | PAPER-II: WCF: On-cost: Calculation & Absorption | 80 | 0 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. On-cost ganana/absorption (ganit jaanch-sahit) sangat |
 | 364 | PAPER-II: WCF: Labour Costing & Variances | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Shram lagat/variance (ganit jaanch-sahit) sangat |
-| 365 | PAPER-II: WCF: Material Costing & Variances | 60 | 0 | 0 | pending |
-| 366 | PAPER-II: WCF: Overheads: Allocation & Apportionment | 60 | 2 | 0 | pending |
+| 365 | PAPER-II: WCF: Material Costing & Variances | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Samagri lagat/variance sangat |
+| 366 | PAPER-II: WCF: Overheads: Allocation & Apportionment | 60 | 2 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Overhead aabantan/apportionment sangat (tracker ke 2 conflict akshar-star ke the, path-star par sangat) |
 | 367 | PAPER-II: WCF: Standard Costing & Variance Analysis | 60 | 0 | 0 | pending |
 | 368 | PAPER-II: WCF: Marginal Costing & Decision Making | 50 | 0 | 0 | pending |
 | 369 | PAPER-II: WCF: Budgetary Control in Workshops | 60 | 0 | 0 | pending |
