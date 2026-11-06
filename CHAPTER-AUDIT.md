@@ -188,8 +188,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 242 | PAPER-I: BB: Cash Book | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Cash book/BRS maanak |
 | 243 | PAPER-I: BB: Subsidiary Books & Registers | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Sahayak bahiyan/register maanak |
 | 244 | PAPER-I: BB: Balance Sheet | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Railway tulanpatra sanrachna sangat |
-| 245 | PAPER-I: BB: Capital & Revenue Accounts | 50 | 0 | 0 | pending |
-| 246 | PAPER-I: BB: Budget Terminology & Process | 50 | 1 | 0 | pending |
+| 245 | PAPER-I: BB: Capital & Revenue Accounts | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Poonji/rajaswa lekha sangat |
+| 246 | PAPER-I: BB: Budget Terminology & Process | 50 | 1 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar (token demand ₹100 yahan, token pravdhan Re 1 ch227/ch237 — sankalan-bhed, haath nahi). Budget shabdavali sangat |
 | 247 | PAPER-I: BB: Budget Estimates Preparation | 40 | 0 | 0 | pending |
 | 248 | PAPER-I: BB: Revised Estimates | 40 | 1 | 0 | pending |
 | 249 | PAPER-I: BB: Budget Documents | 40 | 0 | 0 | pending |
