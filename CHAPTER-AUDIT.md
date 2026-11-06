@@ -322,8 +322,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 376 | PAPER-II: EX2: Expenditure Control & Sanctions | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Vyay niyantran/swikriti sangat |
 | 377 | PAPER-II: EX2: Revenue Expenditure | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Rajaswa vyay (DRF/Pension Fund) sangat |
 | 378 | PAPER-II: EX2: Works Expenditure | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Karya vyay (Works Programme/anumaan) sangat |
-| 379 | PAPER-II: EX2: Establishment Expenditure | 50 | 1 | 0 | pending |
-| 380 | PAPER-II: EX2: Contingent Expenditure | 50 | 1 | 0 | pending |
+| 379 | PAPER-II: EX2: Establishment Expenditure | 50 | 1 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Sthapana vyay sangat |
+| 380 | PAPER-II: EX2: Contingent Expenditure | 50 | 1 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Aakasmik vyay/imprest sangat |
 | 381 | PAPER-II: EX2: Re-appropriation & Savings | 50 | 1 | 0 | pending |
 | 382 | PAPER-II: EX2: Losses & Write-offs | 50 | 0 | 0 | pending |
 | 383 | PAPER-II: EX2: Economy Measures | 50 | 0 | 0 | pending |
