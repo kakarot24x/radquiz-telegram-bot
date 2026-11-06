@@ -173,7 +173,7 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 227 | PAPER-I: EXP: Appropriation & Re-appropriation | 100 | 2 | 0 | done 2026-11-06: 100/100 tay, 0 sudhaar. Viniyog/punahviniyog siddhant ch174 se sangat |
 | 228 | PAPER-I: EXP: Canons of Financial Propriety & Sanction | 100 | 0 | 0 | done 2026-11-06: 100/100 tay, 0 sudhaar. Vittiya auchitya (PVACA) siddhant ch179 se sangat |
 | 229 | PAPER-I: EXP: Control of Expenditure & Reviews | 80 | 0 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. Kharch niyantran/sameeksha siddhant sangat |
-| 230 | PAPER-I: EXP: Works Expenditure | 100 | 0 | 0 | pending |
+| 230 | PAPER-I: EXP: Works Expenditure | 100 | 0 | 0 | done 2026-11-06: 100/100 tay, 0 sudhaar. Karya kharch siddhant sangat |
 | 231 | PAPER-I: EXP: Establishment Expenditure | 100 | 1 | 0 | pending |
 | 232 | PAPER-I: EXP: Contingent Expenditure | 80 | 0 | 0 | pending |
 | 233 | PAPER-I: EXP: Suspense Heads & Expenditure Accounting | 80 | 0 | 0 | pending |
