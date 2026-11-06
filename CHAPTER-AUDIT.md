@@ -77,8 +77,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 70 | CTARA - Stores | 578 | 578 | 0 | done 2026-11-06: 578/578 tay, 0 sudhaar. AAC DyCMM ≤₹1 cr yahan bhi mila (aapke hastlikhit note ke paksh me ek aur pushti). Option clause, 5%/12.5% issue charges, Stock Adjustment P7180 shrinkhala — sab mail |
 | 71 | CTARA - Statistics | 132 | 132 | 0 | done 2026-11-06: 132/132 tay, 0 sudhaar. ASS vivaran-soochi (Stmt 40 karmchari, 44 quarters, 6-B parcel, 7-A goods) aadhikarik soochi se poorna mail |
 | 72 | CTARA - Railway Accounts and Finance | 271 | 271 | 0 | done 2026-11-06: 271/271 tay, 0 sudhaar. Preliminary Survey ki Engineering Code paribhasha ("detailed instrumental examination... close estimate") yahan sahi mili — ch22 ke khule FLS samuh me TG paksh ("close estimation") ab nishchit roop se kamzor, main paksh ("alignment feasibility") majboot; samuh phir bhi user ke faisle par. GM OOT seema ₹2.5 cr yahan bhi (ch67 ke avalokan ki pushti) |
-| 73 | CTARA - GST | 61 | 61 | 0 | pending |
-| 74 | CTARA - Cash and Pay | 77 | 77 | 0 | pending |
+| 73 | CTARA - GST | 61 | 61 | 0 | done 2026-11-06: 61/61 tay, 0 sudhaar. GST slab 0/5/18/40 (nayi sanrachna) sahi darj |
+| 74 | CTARA - Cash and Pay | 77 | 77 | 0 | done 2026-11-06: 77/77 tay, 0 sudhaar |
 | 75 | CTARA - Book Keeping | 160 | 160 | 0 | pending |
 | 76 | Expenditure | 202 | 202 | 1 | pending |
 | 77 | About Indian Railway (General) | 63 | 59 | 0 | pending |
