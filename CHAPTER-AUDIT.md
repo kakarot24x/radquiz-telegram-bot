@@ -204,8 +204,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 258 | PAPER-I: EST: Joining Time & Transfer | 40 | 0 | 0 | done 2026-11-06: 40/40 tay, 0 sudhaar. Joining time (adhiktam 12 din) sangat |
 | 259 | PAPER-I: EST: Deputation & Foreign Service | 40 | 1 | 0 | done 2026-11-06: 40/40 tay, 0 sudhaar. Pratyayojan/videsh-seva sangat (dono yogdaan videshi sangathan deta hai) |
 | 260 | PAPER-I: EST: Seniority & Promotion | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Varishthata/padonnati sangat |
-| 261 | PAPER-I: EST: Discipline & Appeal Rules | 60 | 0 | 0 | pending |
-| 262 | PAPER-I: EST: Conduct Rules | 40 | 0 | 0 | pending |
+| 261 | PAPER-I: EST: Discipline & Appeal Rules | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. D&A Rules 1968 sangat |
+| 262 | PAPER-I: EST: Conduct Rules | 40 | 0 | 0 | done 2026-11-06: 40/40 tay, 0 sudhaar. Acharan niyam 1966 sangat |
 | 263 | PAPER-I: EST: Superannuation & Service Matters | 40 | 0 | 0 | pending |
 | 264 | PAPER-I: EST: Training & Probation | 30 | 0 | 0 | pending |
 | 265 | PAPER-I: EST: Casual & Work-charged Labour | 40 | 0 | 0 | pending |
