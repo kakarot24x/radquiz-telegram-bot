@@ -1439,7 +1439,7 @@
     "Collected Revenue",
     "None of the above"
    ],
-   "a": "B",
+   "a": "C",
    "d": "2026-07-15"
   },
   {
@@ -7967,7 +7967,7 @@
     "98",
     "99"
    ],
-   "a": "D",
+   "a": "C",
    "d": "2026-07-18"
   },
   {
@@ -8483,7 +8483,7 @@
     "DF III",
     "DF IV"
    ],
-   "a": "C",
+   "a": "D",
    "d": "2026-07-18"
   },
   {
@@ -8651,7 +8651,7 @@
     "25 %",
     "Nil"
    ],
-   "a": "B",
+   "a": "A",
    "d": "2026-07-18"
   },
   {
@@ -15647,7 +15647,7 @@
     "(C) Passenger, Goods, Other Coaching and Sundries only",
     ". (D) Other Sundries, Other Coaching, Goods, Passenger and Traffic Suspense."
    ],
-   "a": "D",
+   "a": "C",
    "d": "2026-07-21"
   },
   {
@@ -18971,7 +18971,7 @@
     "Performa on cost",
     "None of the above"
    ],
-   "a": "C",
+   "a": "B",
    "d": "2026-07-24"
   },
   {
@@ -29411,7 +29411,7 @@
     "PCE",
     "RBS"
    ],
-   "a": "C",
+   "a": "D",
    "d": "2026-07-30"
   },
   {
@@ -41903,7 +41903,7 @@
     "Both (A) & (B)",
     "Only (B)"
    ],
-   "a": "C",
+   "a": "A",
    "d": "2026-08-08"
   },
   {
@@ -41939,7 +41939,7 @@
     "(A) only Correct",
     "(A) & (B) are correct"
    ],
-   "a": "A",
+   "a": "C",
    "d": "2026-08-08"
   },
   {
@@ -47771,7 +47771,7 @@
     "Machine prepared abstract showing details of invoices",
     "None of these"
    ],
-   "a": "A",
+   "a": "C",
    "d": "2026-08-17"
   },
   {
@@ -50891,7 +50891,7 @@
     "Cheques &Bills(-) Cr; Deposit with Reserve Bank Cr",
     "None of these"
    ],
-   "a": "B",
+   "a": "C",
    "d": "2026-08-20"
   },
   {
