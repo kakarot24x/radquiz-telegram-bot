@@ -44,9 +44,9 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 37 | R3 - S2CH4 Q203-302 (818-pg PDF) | 13 | 13 | 1 | done 2026-11-06: 13/13 tay. Iska ekmatra takraav ch24 me hi sulajh gaya tha (option clause). **1 vyakhya sudhaar** — usi sawal ki vyakhya purani galat kunji (supplier request) ka samarthan karti reh gayi thi, ab "Railway can enforce" ke saath milaa di |
 | 38 | R3 - Stores & GeM (818-pg PDF) | 146 | 146 | 4 | pending |
 | 39 | R3 - Workshop Accounts (818-pg PDF) | 187 | 187 | 9 | done 2026-11-06: 187/187 tay. **10 sudhaar** — 9 takraav (5 TG: advance deposit 20%/50L, ROAMS, Revenue Work Order x2, machine breakdown; 4 main: estimate-jaanch aur WMS review dono = All the above) + **1 antar-chapter: Wagon POH Abstract D hai** (kai copies E galat thi; kram B=way, C=loco, D=gaadiyan, E=plant). **Khule:** SR POH workshop (Perambur banam Golden Rock), oncost sangrah ka madhyam (Standing banam On Cost Work Order — vansh matbhed) |
-| 40 | IRIFM 1001 - Railway history | 11 | 11 | 0 | pending |
-| 41 | IRIFM 1001 - Indian Railways financial overview | 16 | 15 | 0 | pending |
-| 42 | IRIFM 1001 - Business policy and strategy | 42 | 42 | 1 | pending |
+| 40 | IRIFM 1001 - Railway history | 11 | 11 | 0 | done 2026-11-06: 11/11 tay, 0 sudhaar (NAIR itihas up-set, kunjiya ch35 se mail) |
+| 41 | IRIFM 1001 - Indian Railways financial overview | 16 | 15 | 0 | done 2026-11-06: 16/16 tay, 0 sudhaar (NAIR vittiya up-set; tracker me 15 ananya — ek sawal do baar ek hi ID/kunji ke saath darj hai) |
+| 42 | IRIFM 1001 - Business policy and strategy | 42 | 42 | 1 | done 2026-11-06: 42/42 tay. **1 sudhaar** — Arbitration Council of India hi naye adhiniyam ki pramukh visheshta hai (TG2 "none" galat tha) |
 | 43 | IRIFM 1001 - Books | 212 | 212 | 4 | pending |
 | 44 | IRIFM 1001 - Budget | 166 | 165 | 3 | pending |
 | 45 | IRIFM 1001 - General Expenditure | 198 | 198 | 4 | pending |
