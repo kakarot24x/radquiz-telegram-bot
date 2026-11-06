@@ -81,9 +81,9 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 74 | CTARA - Cash and Pay | 77 | 77 | 0 | done 2026-11-06: 77/77 tay, 0 sudhaar |
 | 75 | CTARA - Book Keeping | 160 | 160 | 0 | done 2026-11-06: 160/160 tay, 0 sudhaar |
 | 76 | Expenditure | 202 | 202 | 1 | done 2026-11-06: 202/202 tay, 0 sudhaar. Ekmatra takraav BRA 12 vs 16 ghante — 31-wali khuli soochi ka sawal hai (stem me sandarbh hi nahi; HQ vishram ke 12/16 ke niyam duty-avadhi par nirbhar hain), aapke faisle par yathavat |
-| 77 | About Indian Railway (General) | 63 | 59 | 0 | pending |
-| 78 | Recruitment | 66 | 63 | 0 | pending |
-| 79 | Allowances / Advances | 41 | 41 | 0 | pending |
+| 77 | About Indian Railway (General) | 63 | 59 | 0 | done 2026-11-06: 63/63 tay. **1 sudhaar** — Central Railway ka gathan **5 November 1951** hai (Wikipedia/TOI/Moneycontrol se pushti); kunji 9 November galat keh rahi thi |
+| 78 | Recruitment | 66 | 63 | 0 | done 2026-11-06: 66/66 tay, 0 sudhaar |
+| 79 | Allowances / Advances | 41 | 41 | 0 | done 2026-11-06: 41/41 tay, 0 kunji sudhaar. Ek toota sawal note kiya — PF yogdan wale sawal ke paas keval ek hi vikalp hai (7.00%), woh pehle se hi quarantine me hai |
 | 80 | Pass Rules | 46 | 46 | 0 | pending |
 | 81 | Hours of Employment and Regulations | 95 | 94 | 0 | pending |
 | 82 | Labour Laws | 76 | 74 | 0 | pending |
