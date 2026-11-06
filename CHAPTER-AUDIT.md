@@ -79,8 +79,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 72 | CTARA - Railway Accounts and Finance | 271 | 271 | 0 | done 2026-11-06: 271/271 tay, 0 sudhaar. Preliminary Survey ki Engineering Code paribhasha ("detailed instrumental examination... close estimate") yahan sahi mili — ch22 ke khule FLS samuh me TG paksh ("close estimation") ab nishchit roop se kamzor, main paksh ("alignment feasibility") majboot; samuh phir bhi user ke faisle par. GM OOT seema ₹2.5 cr yahan bhi (ch67 ke avalokan ki pushti) |
 | 73 | CTARA - GST | 61 | 61 | 0 | done 2026-11-06: 61/61 tay, 0 sudhaar. GST slab 0/5/18/40 (nayi sanrachna) sahi darj |
 | 74 | CTARA - Cash and Pay | 77 | 77 | 0 | done 2026-11-06: 77/77 tay, 0 sudhaar |
-| 75 | CTARA - Book Keeping | 160 | 160 | 0 | pending |
-| 76 | Expenditure | 202 | 202 | 1 | pending |
+| 75 | CTARA - Book Keeping | 160 | 160 | 0 | done 2026-11-06: 160/160 tay, 0 sudhaar |
+| 76 | Expenditure | 202 | 202 | 1 | done 2026-11-06: 202/202 tay, 0 sudhaar. Ekmatra takraav BRA 12 vs 16 ghante — 31-wali khuli soochi ka sawal hai (stem me sandarbh hi nahi; HQ vishram ke 12/16 ke niyam duty-avadhi par nirbhar hain), aapke faisle par yathavat |
 | 77 | About Indian Railway (General) | 63 | 59 | 0 | pending |
 | 78 | Recruitment | 66 | 63 | 0 | pending |
 | 79 | Allowances / Advances | 41 | 41 | 0 | pending |
