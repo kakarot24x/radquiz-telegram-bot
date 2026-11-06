@@ -135,8 +135,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 189 | PAPER-I: PPN: PF Interest & Statements | 30 | 0 | 0 | done 2026-11-06: 30/30 tay, 0 sudhaar. SRPF byaaj/vivaran maanak |
 | 190 | PAPER-I: PPN: PF Refundable Advances | 40 | 0 | 0 | done 2026-11-06: 40/40 tay, 0 sudhaar. SRPF asthayi agrim (36 kist) maanak |
 | 191 | PAPER-I: PPN: PF Non-refundable Advance & Withdrawal | 40 | 0 | 0 | done 2026-11-06: 40/40 tay, 0 sudhaar. SRPF part-final withdrawal (15 varsh/10 varsh) maanak |
-| 192 | PAPER-I: PPN: PF Nomination & Settlement | 30 | 0 | 0 | pending |
-| 193 | PAPER-I: PPN: Qualifying Service | 50 | 0 | 0 | pending |
+| 192 | PAPER-I: PPN: PF Nomination & Settlement | 30 | 0 | 0 | done 2026-11-06: 30/30 tay, 0 sudhaar. SRPF namankan/niptan maanak |
+| 193 | PAPER-I: PPN: Qualifying Service | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Ahark seva siddhant maanak (nyoonatam 10 varsh) |
 | 194 | PAPER-I: PPN: Pension Calculation | 50 | 0 | 0 | pending |
 | 195 | PAPER-I: PPN: Commutation of Pension | 40 | 0 | 0 | pending |
 | 196 | PAPER-I: PPN: DCRG | 40 | 0 | 0 | pending |
