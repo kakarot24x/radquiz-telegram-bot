@@ -380,8 +380,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 434 | PAPER-III: FIN: Railway Funds | 90 | 0 | 0 | done 2026-11-06: 90/90 tay, 0 sudhaar. Railway kosh (DRF/DF/Capital/Safety/Pension) sangat |
 | 435 | PAPER-III: FIN: Capital-at-Charge | 70 | 1 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. Punji-bhaar (capital-at-charge) sangat |
 | 436 | PAPER-III: FIN: IRFC & Market Borrowing | 70 | 0 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. IRFC/bazaar udhaar sangat (1986, IPO 2021, Navratna) |
-| 437 | PAPER-III: FIN: Financial Control & Concurrence | 70 | 1 | 0 | pending |
-| 438 | PAPER-III: FIN: Capital vs Revenue & Planning | 60 | 0 | 0 | pending |
+| 437 | PAPER-III: FIN: Financial Control & Concurrence | 70 | 1 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. Vittiya niyantran/sahmati sangat |
+| 438 | PAPER-III: FIN: Capital vs Revenue & Planning | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Punji बनाम rajaswa/yojana sangat |
 | 439 | PAPER-III: FIN: Budget Merger 2016 | 50 | 0 | 0 | pending |
 | 440 | PAPER-III: FIN: Convention Committee & Dividend | 50 | 0 | 0 | pending |
 | 441 | PAPER-III: FIN: Operating Ratio & Financial Results | 70 | 0 | 0 | pending |
