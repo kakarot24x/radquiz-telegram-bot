@@ -489,8 +489,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 543 | MSOP: Part F — Establishment (Gazetted) | 200 | 0 | 0 | done 2026-11-06: 200/200 tay, 0 sudhaar. Part F (Gazetted) Item 1-28 sangat; NOT-correct template kunji sahi (#2 verify) |
 | 544 | MSOP: Part F — Establishment (Non-Gazetted) | 150 | 1 | 0 | done 2026-11-06: 150/150 tay, 0 sudhaar. Part F Sub-part II + samanya MSOP siddhant sangat |
 | 545 | MSOP: Part G — Security Matters | 80 | 0 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. Part G Security (RPF), 2018 adhigrahan + Annexure patra sangat |
-| 546 | MSOP: Annexures — GM & DRM Powers | 120 | 0 | 0 | pending |
-| 547 | MSOP: Financial Limits Master | 150 | 0 | 0 | pending |
+| 546 | MSOP: Annexures — GM & DRM Powers | 120 | 0 | 0 | done 2026-11-06: 120/120 tay, 0 sudhaar. Annexure 1 (FX(II)-2015/PW/7, 12.06.2017) / Annexure 2 (2017/Trans/01/Policy, 18.10.2017) sangat |
+| 547 | MSOP: Financial Limits Master | 150 | 0 | 0 | done 2026-11-06: 150/150 tay, 0 sudhaar. Item 5(f) quotation + parcel-leasing sidhiyan ch538/ch542 se cross-verify sangat |
 | 548 | Rajbhasha: Presidential Orders 1960 | 80 | 0 | 0 | pending |
 | 549 | Rajbhasha: Official Language Resolution 1968 | 70 | 3 | 0 | pending |
 | 550 | Rajbhasha: Eighth Schedule Languages | 150 | 2 | 0 | pending |
