@@ -376,8 +376,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 430 | PAPER-III: FIN: Demands for Grants | 70 | 1 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. Demands for Grants sangat. NOTE: labhansh samapti varsh ch428 me 2016-17, yahan 2017-18 — dono pariprekshya prachlit, koi badlav nahi |
 | 431 | PAPER-III: FIN: Appropriation Accounts | 70 | 1 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. Viniyog lekhe sangat |
 | 432 | PAPER-III: FIN: Voted vs Charged Expenditure | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Voted/bharit vyay sangat |
-| 433 | PAPER-III: FIN: Supplementary & Excess Grants | 60 | 0 | 0 | pending |
-| 434 | PAPER-III: FIN: Railway Funds | 90 | 0 | 0 | pending |
+| 433 | PAPER-III: FIN: Supplementary & Excess Grants | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Poorak/adhik anudaan (Anuchhed 115) sangat |
+| 434 | PAPER-III: FIN: Railway Funds | 90 | 0 | 0 | done 2026-11-06: 90/90 tay, 0 sudhaar. Railway kosh (DRF/DF/Capital/Safety/Pension) sangat |
 | 435 | PAPER-III: FIN: Capital-at-Charge | 70 | 1 | 0 | pending |
 | 436 | PAPER-III: FIN: IRFC & Market Borrowing | 70 | 0 | 0 | pending |
 | 437 | PAPER-III: FIN: Financial Control & Concurrence | 70 | 1 | 0 | pending |
