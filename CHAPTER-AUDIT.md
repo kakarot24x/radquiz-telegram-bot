@@ -263,8 +263,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 317 | PAPER-II: STR: Uniforms & Clothing | 40 | 0 | 0 | done 2026-11-06: 40/40 tay, 0 sudhaar. Vardi/poshak (Parel Clothing Factory) sangat |
 | 318 | PAPER-II: STR: Stationery, Forms & Medical Stores | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Lekhan-samagri/forms/chikitsa bhandaar sangat |
 | 319 | PAPER-II: STR: Demand Planning & Provisioning | 70 | 0 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. Mang yojana/provisioning sangat |
-| 320 | PAPER-II: STR: Imported Stores & Customs | 50 | 0 | 0 | pending |
-| 321 | PAPER-II: STR: Warranty, Guarantee & Rejection | 50 | 0 | 0 | pending |
+| 320 | PAPER-II: STR: Imported Stores & Customs | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Aayatit bhandaar/seema-shulk sangat |
+| 321 | PAPER-II: STR: Warranty, Guarantee & Rejection | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Warranty/asweekriti (LD 0.5%/saptah, adhiktam 10%) sangat |
 | 322 | PAPER-II: WKS: Workshop Organization & Production | 60 | 1 | 0 | pending |
 | 323 | PAPER-II: WKS: Workshop Costing System | 80 | 0 | 0 | pending |
 | 324 | PAPER-II: WKS: Direct vs Indirect Expenditure (On-cost) | 70 | 0 | 0 | pending |
