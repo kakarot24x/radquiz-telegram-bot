@@ -256,8 +256,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 310 | PAPER-II: STR: Purchase Suspense | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Purchase suspense sanchaalan sangat |
 | 311 | PAPER-II: STR: Depot Organization | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Depot sangathan sangat |
 | 312 | PAPER-II: STR: Materials-at-Site | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Kary-sthal samagri (MAS) sangat |
-| 313 | PAPER-II: STR: Fuel Accounts (Coal/Diesel) | 70 | 0 | 0 | pending |
-| 314 | PAPER-II: STR: Tools & Plant | 60 | 0 | 0 | pending |
+| 313 | PAPER-II: STR: Fuel Accounts (Coal/Diesel) | 70 | 0 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. Indhan lekha (koyla/HSD) sangat |
+| 314 | PAPER-II: STR: Tools & Plant | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Tools & Plant sangat |
 | 315 | PAPER-II: STR: Losses, Shortages & Write-off | 70 | 0 | 0 | pending |
 | 316 | PAPER-II: STR: Stores Budget & Control | 60 | 0 | 0 | pending |
 | 317 | PAPER-II: STR: Uniforms & Clothing | 40 | 0 | 0 | pending |
