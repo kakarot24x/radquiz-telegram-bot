@@ -235,8 +235,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 289 | PAPER-I: BK: Capital & Revenue | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Punji banam rajasva vargeekaran sangat |
 | 290 | PAPER-I: BK: Receipts & Payments vs Income & Expenditure | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Prapti-bhugtan/aay-vyay lekha sangat |
 | 291 | PAPER-I: BK: Railway Finance Code Vol I Book-keeping | 60 | 1 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Vitt Sanhita Vol-I book-keeping sangat |
-| 292 | PAPER-I: BK: Vouchers & Day Book | 40 | 0 | 0 | pending |
-| 293 | PAPER-I: BK: Suspense Accounts | 40 | 0 | 0 | pending |
+| 292 | PAPER-I: BK: Vouchers & Day Book | 40 | 0 | 0 | done 2026-11-06: 40/40 tay, 0 sudhaar. Voucher/Day Book sangat |
+| 293 | PAPER-I: BK: Suspense Accounts | 40 | 0 | 0 | done 2026-11-06: 40/40 tay, 0 sudhaar. Suspense khate sangat |
 | 294 | PAPER-I: BK: Control Accounts & Self-balancing | 30 | 0 | 0 | pending |
 | 295 | PAPER-I: BK: Single Entry vs Double Entry | 40 | 0 | 0 | pending |
 | 296 | PAPER-II: STR: Stores Organization & SMM | 70 | 6 | 0 | pending |
