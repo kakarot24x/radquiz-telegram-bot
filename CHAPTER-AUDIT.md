@@ -95,13 +95,13 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 88 | Discipline and Appeal Rules | 48 | 48 | 0 | done 2026-11-06: 48/48 tay, 0 kunji sudhaar. Ek toota sawal note — Major/Minor chargesheet form wale sawal ke paas keval ek vikalp (SF-1) hai, sahi jodi (SF-5/SF-11) vikalpon me hai hi nahi; pehle se quarantine me hai, vikalp badalna aapke faisle par |
 | 89 | Pension and Family Pension | 66 | 65 | 0 | done 2026-11-06: 66/66 tay, 0 kunji sudhaar. Ek toota sawal note — "NPS kab shuru hua" ke paas keval ek vikalp (01.01.2006) hai, sahi tithi 01.01.2004 vikalpon me nahi (isi chapter ka dusra sawal use sahi kehta hai); quarantine me hai, faisla aapka |
 | 90 | Compassionate Appointment | 21 | 21 | 0 | done 2026-11-06: 21/21 tay, 0 sudhaar |
-| 91 | Industrial Relations (PNM, JCM, PREM) | 83 | 79 | 0 | pending |
-| 92 | Central Administrative Tribunals | 19 | 19 | 0 | pending |
-| 93 | Right To Information | 17 | 17 | 0 | pending |
-| 94 | Modified Assured Career Progression Scheme | 19 | 18 | 0 | pending |
-| 95 | Causal Labour | 10 | 10 | 0 | pending |
-| 96 | Establishment | 25 | 24 | 0 | pending |
-| 97 | Running Allowances | 29 | 29 | 0 | pending |
+| 91 | Industrial Relations (PNM, JCM, PREM) | 83 | 79 | 0 | done 2026-11-06: 83/83 tay, 0 sudhaar |
+| 92 | Central Administrative Tribunals | 19 | 19 | 0 | done 2026-11-06: 19/19 tay, 0 sudhaar |
+| 93 | Right To Information | 17 | 17 | 0 | done 2026-11-06: 17/17 tay, 0 kunji sudhaar. Ek doshpurn sawal note — RTI Act me kul **31 dharaen** hain, lekin vikalpon me 31 hai hi nahi (10/20/30/40); vikalp badalna aapke faisle par |
+| 94 | Modified Assured Career Progression Scheme | 19 | 18 | 0 | done 2026-11-06: 19/19 tay. **1 sudhaar** — MACP ke liye "Very Good" benchmark **25 July 2016** se lagu hai (ch85 ki do kunjiyon se bhi mail); kunji 2018 keh rahi thi |
+| 95 | Causal Labour | 10 | 10 | 0 | done 2026-11-06: 10/10 tay, 0 sudhaar |
+| 96 | Establishment | 25 | 24 | 0 | done 2026-11-06: 25/25 tay, 0 sudhaar |
+| 97 | Running Allowances | 29 | 29 | 0 | done 2026-11-06: 29/29 tay, 0 sudhaar |
 | 99 | IRIFM PPT WORKSHOP | 490 | 489 | 0 | pending |
 | 100 | IRIFM PPT STORES | 467 | 460 | 0 | pending |
 | 101 | Stores v1 | 491 | 488 | 0 | pending |
