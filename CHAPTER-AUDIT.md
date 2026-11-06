@@ -430,8 +430,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 484 | PAPER-III: INS: Inspection of City Booking Agencies | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. City booking agency nirikshan sangat |
 | 485 | PAPER-III: INS: Inspection of Cash Offices | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Cash office nirikshan sangat |
 | 486 | PAPER-III: INS: Cash Verification | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Cash satyapan sangat |
-| 487 | PAPER-III: INS: Inspection of Remittances | 60 | 0 | 0 | pending |
-| 488 | PAPER-III: INS: Inspection of Ticket Stocks | 60 | 0 | 0 | pending |
+| 487 | PAPER-III: INS: Inspection of Remittances | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Remittance nirikshan sangat |
+| 488 | PAPER-III: INS: Inspection of Ticket Stocks | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Ticket stock nirikshan sangat |
 | 489 | PAPER-III: INS: Inspection of Refunds | 60 | 0 | 0 | pending |
 | 490 | PAPER-III: INS: Inspection of Claims | 60 | 0 | 0 | pending |
 | 491 | PAPER-III: INS: Inspection of Stores Depots | 70 | 0 | 0 | pending |
