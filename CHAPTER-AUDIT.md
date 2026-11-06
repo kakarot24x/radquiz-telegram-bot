@@ -278,8 +278,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 332 | PAPER-II: WKS: Scrap & By-products | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Scrap/by-product sangat |
 | 333 | PAPER-II: WKS: Plant & Machinery Accounts | 50 | 1 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Plant & Machinery lekha sangat |
 | 334 | PAPER-II: WKS: Workshop Budget | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Workshop bajat sangat |
-| 335 | PAPER-II: WKS: Losses in Workshops | 40 | 0 | 0 | pending |
-| 336 | PAPER-II: WKS: Railway Production Units | 50 | 1 | 0 | pending |
+| 335 | PAPER-II: WKS: Losses in Workshops | 40 | 0 | 0 | done 2026-11-06: 40/40 tay, 0 sudhaar. Workshop haani/wastage sangat |
+| 336 | PAPER-II: WKS: Railway Production Units | 50 | 1 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Utpadan ikaiyan sangat (CLW sabse purani) |
 | 337 | PAPER-II: WKS: Estimates for Workshop Jobs | 50 | 1 | 0 | pending |
 | 338 | PAPER-II: WKS: Time Booking & Job Cards | 50 | 0 | 0 | pending |
 | 339 | PAPER-II: WKS: Rejections & Rework | 40 | 0 | 0 | pending |
