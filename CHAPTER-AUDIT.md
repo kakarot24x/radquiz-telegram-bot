@@ -118,7 +118,7 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 172 | PAPER-I: GRP: Railway Budget & Budget Types | 80 | 2 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. 2021-22 budget aankde andar sangat; budget-prakar siddhant ch58 sudhaaron se mel |
 | 173 | PAPER-I: GRP: Earnings & Expenditure Budget | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Earnings budget siddhant + ganit (PKM/NTKM, 5M:7M) sab sahi |
 | 174 | PAPER-I: GRP: Appropriation & Re-appropriation | 60 | 2 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Appropriation Accounts + punahviniyog siddhant sangat (ch35/ch44 sudhaaron se mel) |
-| 175 | PAPER-I: GRP: Parliamentary Control over Finances | 60 | 1 | 0 | pending |
+| 175 | PAPER-I: GRP: Parliamentary Control over Finances | 60 | 1 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Sansadiya niyantran siddhant maanak aur sangat |
 | 176 | PAPER-I: GRP: Accounting Reforms & Systems | 80 | 3 | 0 | pending |
 | 177 | PAPER-I: GRP: Heads of Account | 60 | 3 | 0 | pending |
 | 178 | PAPER-I: GRP: Adjustments (Contra, Deduct, Write back/off) | 60 | 1 | 0 | pending |
