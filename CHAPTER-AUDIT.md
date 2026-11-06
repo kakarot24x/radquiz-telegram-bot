@@ -304,8 +304,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 358 | PAPER-II: WCF: Cost Accounting Concepts | 70 | 0 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. Lagat lekha avadharna sangat |
 | 359 | PAPER-II: WCF: Elements of Cost & Cost Build-up | 70 | 0 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. Lagat tatva/build-up (ganit jaanch-sahit) sangat |
 | 360 | PAPER-II: WCF: Cost Centres & Cost Units | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Lagat kendra/ikai sangat |
-| 361 | PAPER-II: WCF: Cost Sheets & Cost Statements | 70 | 0 | 0 | pending |
-| 362 | PAPER-II: WCF: Job Costing & Batch Costing | 70 | 0 | 0 | pending |
+| 361 | PAPER-II: WCF: Cost Sheets & Cost Statements | 70 | 0 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. Cost sheet/vivaran sangat |
+| 362 | PAPER-II: WCF: Job Costing & Batch Costing | 70 | 0 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. Job/batch costing sangat |
 | 363 | PAPER-II: WCF: On-cost: Calculation & Absorption | 80 | 0 | 0 | pending |
 | 364 | PAPER-II: WCF: Labour Costing & Variances | 60 | 0 | 0 | pending |
 | 365 | PAPER-II: WCF: Material Costing & Variances | 60 | 0 | 0 | pending |
