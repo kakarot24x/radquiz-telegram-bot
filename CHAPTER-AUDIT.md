@@ -107,7 +107,7 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 101 | Stores v1 | 491 | 488 | 0 | done 2026-11-06: 491/491 tay, 0 sudhaar. PPT-vansh se poori sangat; ek stem me GFR ki purani LPC-seema (₹25,000–2,50,000) shabdabali hai parantu poochhi gayi vidhi (Local Purchase Committee) sahi kunjibaddh hai |
 | 102 | Workshop v1 | 500 | 498 | 0 | done 2026-11-06: 500/500 tay, 0 sudhaar. Workshop-vansh se poori sangat; PL vistaar yahan "Priced Ledger Number", ch 100/101 me "Price List Number" — dono prayog sahitya me chalte hain, koi badlaav nahi |
 | 103 | Rajbhasa | 500 | 500 | 0 | done 2026-11-06: 500/500 tay, 0 sudhaar. Rajbhasha set aatm-sangat (Sanvidhan 343-351, OL Act/Rules, kshetra-lakshya); 2025-26 puraskar GK-paath sankalan ke anusaar satat |
-| 104 | Labour Laws & Finance | 300 | 300 | 0 | pending |
+| 104 | Labour Laws & Finance | 300 | 300 | 0 | done 2026-11-06: 300/300 tay, 0 sudhaar. Shram-vidhi set maanak; do "Update" vyakhyaon wale paath (Payment of Wages bina seema — Code on Wages 21.11.2025 se; EPF seema ₹25,000 — vyakhya me Gazette S.O. 5109(E) 17.09.2026 uddhrit) yug-anusaar sthit hain, badlaav nahi |
 | 105 | GRP v1 | 350 | 347 | 0 | pending |
 | 106 | expenditurev2 | 800 | 600 | 0 | pending |
 | 107 | Books & Budget II | 202 | 202 | 0 | pending |
