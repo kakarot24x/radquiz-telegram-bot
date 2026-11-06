@@ -56,8 +56,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 49 | IRIFM 1001 - Workshop Accounts | 57 | 57 | 6 | done 2026-11-06: 57/57 tay, 0 sudhaar. Bache 2 takraav dono khule samooh hain — G14 (Route card banam Work order) aur G16 (proforma oncost: Earnings banam Revenue Heads) — user ke faisle par. Baaki sab purane sudhaaron se mail (idle time, estimate-jaanch, rate-of-return) |
 | 50 | IRIFM 1001 - Information Technology | 23 | 21 | 0 | done 2026-11-06: 23/23 tay, 0 sudhaar (IPAS/samanya IT tathya) |
 | 51 | IRIFM 1001 - Commercial book keeping | 162 | 162 | 3 | done 2026-11-06: 162/162 tay, 0 sudhaar. Uske 3 takraav pehle hi sulajh chuke the (Matching siddhant sahit). Ganana-wale sawal jaanche — purchases 80,900 (80,700+6,000-5,800), Rule-of-72 se 10,000→80,000 = 18 varsh, dono sahi. IRIFM shrinkhala ka antim chapter |
-| 52 | MCQ on Budget | 23 | 23 | 0 | pending |
-| 53 | MCQ on Auditing | 24 | 24 | 1 | pending |
+| 52 | MCQ on Budget | 23 | 23 | 0 | done 2026-11-06: 23/23 tay, 0 sudhaar |
+| 53 | MCQ on Auditing | 24 | 24 | 1 | done 2026-11-06: 24/24 tay. **1 sudhaar — C&AG = Comptroller and AUDITOR General** (do copies "Accountant General" galat keh rahi thi; chapter ka apna pehla sawal aur ch54 sahi the) |
 | 54 | MCQ on Audit and Parliamentary Control on Railway Finances | 19 | 19 | 1 | pending |
 | 55 | MCQ on Appropriation Accounts | 11 | 11 | 0 | pending |
 | 56 | MCQ on Works Programme & IRPSM | 14 | 14 | 0 | pending |
