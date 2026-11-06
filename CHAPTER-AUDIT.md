@@ -55,7 +55,7 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 48 | IRIFM 1001 - Stores Accounts | 149 | 142 | 8 | done 2026-11-06: 149/149 tay, 0 sudhaar. Purane 8 takraavon me 7 pehle hi sulajh chuke the; bacha 1 (WMS naam) ek-roop sanketan hai. Option clause, reverse auction, time book, 8-lakh shakti, production shops — sab purane sudhaaron se mail |
 | 49 | IRIFM 1001 - Workshop Accounts | 57 | 57 | 6 | done 2026-11-06: 57/57 tay, 0 sudhaar. Bache 2 takraav dono khule samooh hain — G14 (Route card banam Work order) aur G16 (proforma oncost: Earnings banam Revenue Heads) — user ke faisle par. Baaki sab purane sudhaaron se mail (idle time, estimate-jaanch, rate-of-return) |
 | 50 | IRIFM 1001 - Information Technology | 23 | 21 | 0 | done 2026-11-06: 23/23 tay, 0 sudhaar (IPAS/samanya IT tathya) |
-| 51 | IRIFM 1001 - Commercial book keeping | 162 | 162 | 3 | pending |
+| 51 | IRIFM 1001 - Commercial book keeping | 162 | 162 | 3 | done 2026-11-06: 162/162 tay, 0 sudhaar. Uske 3 takraav pehle hi sulajh chuke the (Matching siddhant sahit). Ganana-wale sawal jaanche — purchases 80,900 (80,700+6,000-5,800), Rule-of-72 se 10,000→80,000 = 18 varsh, dono sahi. IRIFM shrinkhala ka antim chapter |
 | 52 | MCQ on Budget | 23 | 23 | 0 | pending |
 | 53 | MCQ on Auditing | 24 | 24 | 1 | pending |
 | 54 | MCQ on Audit and Parliamentary Control on Railway Finances | 19 | 19 | 1 | pending |
