@@ -221,7 +221,7 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 275 | PAPER-I: IR: JCM - Joint Consultative Machinery | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. JCM (1966, Rashtriya Parishad) sangat |
 | 276 | PAPER-I: IR: PREM | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. PREM (Corporate Enterprise Group) sangat |
 | 277 | PAPER-I: IR: Staff Grievances & Negotiations | 40 | 0 | 0 | done 2026-11-06: 40/40 tay, 0 sudhaar. Shikayat/varta tantra sangat |
-| 278 | PAPER-I: BK: Double Entry System & Accounting Principles | 80 | 8 | 0 | pending |
+| 278 | PAPER-I: BK: Double Entry System & Accounting Principles | 80 | 8 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. Dohri-pravishti siddhant maanak |
 | 279 | PAPER-I: BK: Journal & Journal Entries | 80 | 2 | 0 | pending |
 | 280 | PAPER-I: BK: Ledger Posting & Balancing | 60 | 0 | 0 | pending |
 | 281 | PAPER-I: BK: Trial Balance | 60 | 0 | 0 | pending |
