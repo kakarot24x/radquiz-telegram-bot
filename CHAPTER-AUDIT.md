@@ -168,7 +168,7 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 222 | PAPER-I: LLF: Sanction Powers - DRM/GM/Board | 30 | 0 | 0 | done 2026-11-06: 30/30 tay, 0 sudhaar. Svikriti shaktiyan (DRM/GM/Board) maanak |
 | 223 | PAPER-I: EXP: Revenue vs Capital Expenditure | 100 | 1 | 0 | done 2026-11-06: 100/100 tay, 0 sudhaar. Rajaswa/poonji vargikaran (DRF/DF/Capital) sangat |
 | 224 | PAPER-I: EXP: Voted vs Charged Expenditure | 80 | 0 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. Voted/Charged siddhant (Anuchhed 112-117) maanak |
-| 225 | PAPER-I: EXP: Plan Heads & Primary Units | 100 | 0 | 0 | pending |
+| 225 | PAPER-I: EXP: Plan Heads & Primary Units | 100 | 0 | 0 | done 2026-11-06: 100/100 tay, 0 sudhaar. Plan Head/PU naksha canonical (ch106/ch107 se mel) |
 | 226 | PAPER-I: EXP: Demands for Grants | 100 | 0 | 0 | pending |
 | 227 | PAPER-I: EXP: Appropriation & Re-appropriation | 100 | 2 | 0 | pending |
 | 228 | PAPER-I: EXP: Canons of Financial Propriety & Sanction | 100 | 0 | 0 | pending |
