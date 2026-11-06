@@ -76,7 +76,7 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 69 | CTARA - Traffic Accounts | 167 | 167 | 8 | done 2026-11-06: 167/167 tay. **1 sudhaar (2 copies)** — Traffic Book me apportionment ka parinaam **Part B** hai (Part A Station, Part C Traffic Account, Part D Abstract); ch69 + ch111 ki ek-ek copy Part C galat keh rahi thi. Baaki 6 takraav pehle suljhe; special-cancellation (faisla #2) aur ticket-roll continuity (4v4) yahan bhi mile — dono aapke faisle par yathavat |
 | 70 | CTARA - Stores | 578 | 578 | 0 | done 2026-11-06: 578/578 tay, 0 sudhaar. AAC DyCMM ≤₹1 cr yahan bhi mila (aapke hastlikhit note ke paksh me ek aur pushti). Option clause, 5%/12.5% issue charges, Stock Adjustment P7180 shrinkhala — sab mail |
 | 71 | CTARA - Statistics | 132 | 132 | 0 | done 2026-11-06: 132/132 tay, 0 sudhaar. ASS vivaran-soochi (Stmt 40 karmchari, 44 quarters, 6-B parcel, 7-A goods) aadhikarik soochi se poorna mail |
-| 72 | CTARA - Railway Accounts and Finance | 271 | 271 | 0 | pending |
+| 72 | CTARA - Railway Accounts and Finance | 271 | 271 | 0 | done 2026-11-06: 271/271 tay, 0 sudhaar. Preliminary Survey ki Engineering Code paribhasha ("detailed instrumental examination... close estimate") yahan sahi mili — ch22 ke khule FLS samuh me TG paksh ("close estimation") ab nishchit roop se kamzor, main paksh ("alignment feasibility") majboot; samuh phir bhi user ke faisle par. GM OOT seema ₹2.5 cr yahan bhi (ch67 ke avalokan ki pushti) |
 | 73 | CTARA - GST | 61 | 61 | 0 | pending |
 | 74 | CTARA - Cash and Pay | 77 | 77 | 0 | pending |
 | 75 | CTARA - Book Keeping | 160 | 160 | 0 | pending |
