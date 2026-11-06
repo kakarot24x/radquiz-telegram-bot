@@ -350,8 +350,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 404 | PAPER-II: SAC: Audit of Stores Accounts | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Stores lekha audit sangat |
 | 405 | PAPER-II: SAC: Depot Accounts & Returns | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Depot lekhe/vivaran sangat — SAC samooh sampann (ch392-405, 700 Q, 0 sudhaar) |
 | 406 | PAPER-III: TAC: Traffic Accounts Organization | 80 | 0 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. Yaatayat lekha sangathan sangat — PAPER-III shuru |
-| 407 | PAPER-III: TAC: Coaching Earnings: Tickets | 150 | 1 | 0 | pending |
-| 408 | PAPER-III: TAC: Season Tickets & Concessions | 80 | 0 | 0 | pending |
+| 407 | PAPER-III: TAC: Coaching Earnings: Tickets | 150 | 1 | 0 | done 2026-11-06: 150/150 tay, 0 sudhaar. Ticket/coaching lekha sangat (Sec 138 ₹500, arakshan shulk SL ₹20/AC3 ₹40/AC2 ₹50 sahi) |
+| 408 | PAPER-III: TAC: Season Tickets & Concessions | 80 | 0 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. Season ticket/riyayat sangat |
 | 409 | PAPER-III: TAC: Parcels & Luggage | 80 | 0 | 0 | pending |
 | 410 | PAPER-III: TAC: Goods Earnings: Freight | 180 | 0 | 0 | pending |
 | 411 | PAPER-III: TAC: Demurrage & Wharfage | 80 | 0 | 0 | pending |
