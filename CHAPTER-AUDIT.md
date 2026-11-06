@@ -510,7 +510,7 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 564 | Pension, NPS & UPS (2026 Rules) | 422 | 0 | 0 | done 2026-11-06: 422/422 tay, 2 sudhaar — #291 mrityu-upadan 25 varsh: 25x galat, sahi 33x = Rs.16,50,000 (D); #352 NPS premature-exit poorna-nikasi seema Rs.5L galat, sahi Rs.2.5L (A). Baaki saari ganana (pension/parivar/gratuity/NPS/UPS) satyapit |
 | 565 | AFA LDCE - Govt. Accounting & Audit | 2250 | 2250 | 0 | done 2026-11-06: poora scan (statement-items spot-check); Major Head canon (LMMH), C&AG DPC sections, Articles, OR/fiscal arithmetic — sab sahi, 0 sudhaar. |
 | 566 | AFA LDCE - Books & Budget | 2250 | 2250 | 0 | done 2026-11-06: poora scan (statement-items spot-check); SMH/Plan-Head maps, supplementary-batch kram (Monsoon/Winter/Budget), DF-I/II/III, apportionment Part A/B — sab canon-sangat, 0 sudhaar. |
-| 567 | AFA LDCE - Traffic Accounts & Statistics | 2250 | 2250 | 0 | pending |
+| 567 | AFA LDCE - Traffic Accounts & Statistics | 2250 | 2250 | 0 | done 2026-11-06: poora scan (1934 fact + 316 statement-type spot-check), 0 sudhaar; statement parivar (1=passenger train, 2=goods train, 4-A loco, 4-B C&W, 6-A approx earnings, 6-B parcels, 7-A/7-B/7-C, 8=EMU) + Sec 55/59/65/95/103/105/106/110/124/124A/126/128/137/142/144/145/146/153/154/155/156/161 sab standard; saari arithmetic drills (occupancy/SFC/SEC/turn-round/lead/NTKM) sahi; platform tickets yahan bhi Coaching (khula bhed ch412/421/462 Sundry ke saath — LDCE set poora Coaching taraf, user faisla pending) |
 | 568 | AFA LDCE - Establishment | 2250 | 2250 | 0 | pending |
 | 569 | AFA LDCE - General Expenditure | 2250 | 2250 | 0 | pending |
 | 570 | AFA LDCE - Workshop Accounts | 2250 | 2250 | 0 | pending |
