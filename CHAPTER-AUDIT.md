@@ -200,8 +200,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 254 | PAPER-I: EST: Pay Fixation (7th CPC) | 80 | 0 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. 7th CPC vetan nirdharan sangat |
 | 255 | PAPER-I: EST: Allowances (DA/HRA/TA) | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Bhatte (DA/HRA/CEA/CTG) aankde maanak |
 | 256 | PAPER-I: EST: Leave Rules | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Avkash niyam ch29 se sangat |
-| 257 | PAPER-I: EST: Pass Rules | 50 | 0 | 0 | pending |
-| 258 | PAPER-I: EST: Joining Time & Transfer | 40 | 0 | 0 | pending |
+| 257 | PAPER-I: EST: Pass Rules | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Pass niyam sangat |
+| 258 | PAPER-I: EST: Joining Time & Transfer | 40 | 0 | 0 | done 2026-11-06: 40/40 tay, 0 sudhaar. Joining time (adhiktam 12 din) sangat |
 | 259 | PAPER-I: EST: Deputation & Foreign Service | 40 | 1 | 0 | pending |
 | 260 | PAPER-I: EST: Seniority & Promotion | 50 | 0 | 0 | pending |
 | 261 | PAPER-I: EST: Discipline & Appeal Rules | 60 | 0 | 0 | pending |
