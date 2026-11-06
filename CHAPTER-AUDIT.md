@@ -400,8 +400,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 454 | PAPER-III: TSC: Terminal Costs | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Terminal laagat sangat (₹50/tonne, ₹20/wagon satyaapit) |
 | 455 | PAPER-III: TSC: Haulage Costs | 70 | 0 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. Haulage laagat sangat |
 | 456 | PAPER-III: TSC: Train Costing | 70 | 0 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. Train laagat sangat |
-| 457 | PAPER-III: TSC: Section Costing | 60 | 0 | 0 | pending |
-| 458 | PAPER-III: TSC: Commodity Costing | 60 | 0 | 0 | pending |
+| 457 | PAPER-III: TSC: Section Costing | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Section laagat sangat |
+| 458 | PAPER-III: TSC: Commodity Costing | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Commodity laagat sangat |
 | 459 | PAPER-III: TSC: Avoidable vs Distributed Costs | 60 | 0 | 0 | pending |
 | 460 | PAPER-III: TSC: Rate Fixation Costing | 60 | 0 | 0 | pending |
 | 461 | PAPER-III: TSC: Operating Ratio Analysis | 60 | 0 | 0 | pending |
