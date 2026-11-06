@@ -270,8 +270,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 324 | PAPER-II: WKS: Direct vs Indirect Expenditure (On-cost) | 70 | 0 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. Pratyaksh/apratyaksh (on-cost) sangat |
 | 325 | PAPER-II: WKS: Workshop Labour & Incentives | 70 | 0 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. Workshop shram/protsahan (variance ganit jaanch-sahit) sangat |
 | 326 | PAPER-II: WKS: Materials for Workshops | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Workshop samagri sangat |
-| 327 | PAPER-II: WKS: Work Orders | 60 | 0 | 0 | pending |
-| 328 | PAPER-II: WKS: POH/IOH Overhaul Costing | 60 | 0 | 0 | pending |
+| 327 | PAPER-II: WKS: Work Orders | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Work order tantra sangat |
+| 328 | PAPER-II: WKS: POH/IOH Overhaul Costing | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. POH/IOH lagat sangat |
 | 329 | PAPER-II: WKS: Manufacture Suspense | 60 | 0 | 0 | pending |
 | 330 | PAPER-II: WKS: Workshop General Charges & Proforma On-cost | 60 | 1 | 0 | pending |
 | 331 | PAPER-II: WKS: Outturn Statement | 50 | 0 | 0 | pending |
