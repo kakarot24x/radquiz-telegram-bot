@@ -70,7 +70,7 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 63 | MSOP - Model Schedule of Powers | 14 | 14 | 0 | done 2026-11-06: 14/14 tay, 0 kunji sudhaar. Ek harvest-toota sawal note kiya (#10, stem me agle sawal ka kachra) — kunji yathasthan |
 | 64 | CTARA - Rajbhasha | 4 | 4 | 0 | done 2026-11-06: 4/4 tay, 0 sudhaar |
 | 65 | CTARA - Establishment including Pension | 270 | 270 | 1 | done 2026-11-06: 270/270 tay. **2 sudhaar** — First Class A pass ka rang **White** (TG3 Green galat thi) aur **Production Units = 8** (aapke book-niyam 2026-11-02 ke anusaar; purani kunji 6 thi). NPS karmchari 10% / sarkar 14% yahan sahi — ch599 wale "employees contribution 14%" wale shabdon wala sawal khula hi hai. **Toota sawal (faisla #5):** retirement gratuity ki nyoonatam seva asal me 5 varsh hai, par vikalpon me 5 hai hi nahi (10/20/30/33) — vikalp badalne ki anumati chahiye |
-| 66 | CTARA - Books and Budget | 176 | 175 | 2 | pending |
+| 66 | CTARA - Books and Budget | 176 | 175 | 2 | done 2026-11-06: 176/176 tay, 0 sudhaar. Dono takraav pehle sulajh chuke the. AOB closing, dues form A-1138, Convention Committee, Liability Register — sab purane sudhaaron se mail |
 | 67 | CTARA - General Expenditure | 329 | 329 | 0 | pending |
 | 68 | CTARA - Workshop Accounts | 348 | 348 | 5 | pending |
 | 69 | CTARA - Traffic Accounts | 167 | 167 | 8 | pending |
