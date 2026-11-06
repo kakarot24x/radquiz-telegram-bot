@@ -432,8 +432,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 486 | PAPER-III: INS: Cash Verification | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Cash satyapan sangat |
 | 487 | PAPER-III: INS: Inspection of Remittances | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Remittance nirikshan sangat |
 | 488 | PAPER-III: INS: Inspection of Ticket Stocks | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Ticket stock nirikshan sangat |
-| 489 | PAPER-III: INS: Inspection of Refunds | 60 | 0 | 0 | pending |
-| 490 | PAPER-III: INS: Inspection of Claims | 60 | 0 | 0 | pending |
+| 489 | PAPER-III: INS: Inspection of Refunds | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Refund nirikshan sangat |
+| 490 | PAPER-III: INS: Inspection of Claims | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Daava nirikshan sangat |
 | 491 | PAPER-III: INS: Inspection of Stores Depots | 70 | 0 | 0 | pending |
 | 492 | PAPER-III: INS: Stock Verification | 70 | 0 | 0 | pending |
 | 493 | PAPER-III: INS: Inspection of Workshops | 60 | 0 | 0 | pending |
