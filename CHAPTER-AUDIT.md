@@ -194,7 +194,7 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 248 | PAPER-I: BB: Revised Estimates | 40 | 1 | 0 | done 2026-11-06: 40/40 tay, 0 sudhaar. Sanshodhit anumaan (August review) sangat |
 | 249 | PAPER-I: BB: Budget Documents | 40 | 0 | 0 | done 2026-11-06: 40/40 tay, 0 sudhaar. Budget dastavej sangat |
 | 250 | PAPER-I: BB: Railway Budget History & Presentation | 30 | 0 | 0 | done 2026-11-06: 30/30 tay, 0 sudhaar. Railway budget itihas sangat |
-| 251 | PAPER-I: BB: Appropriation Accounts | 40 | 0 | 0 | pending |
+| 251 | PAPER-I: BB: Appropriation Accounts | 40 | 0 | 0 | done 2026-11-06: 40/40 tay, 0 sudhaar. Viniyog lekha siddhant sangat |
 | 252 | PAPER-I: EST: IREC General Rules & Service Conditions | 60 | 0 | 0 | pending |
 | 253 | PAPER-I: EST: Recruitment & Appointment | 50 | 0 | 0 | pending |
 | 254 | PAPER-I: EST: Pay Fixation (7th CPC) | 80 | 0 | 0 | pending |
