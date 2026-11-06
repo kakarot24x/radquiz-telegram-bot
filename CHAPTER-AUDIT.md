@@ -472,8 +472,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 526 | GCC Works: General Obligations — Part II | 120 | 0 | 0 | done 2026-11-06: 120 padhe, 0 sudhaar. Part-II samanya daayitva sangat; #18-25 precedence sawal ch522 wale rakhe-hue parivar ke hain (yahan SoR sabse neeche — ch522 se bhi ulta) — user faisle par |
 | 527 | GCC Works: Security Deposit & Performance Guarantee | 110 | 0 | 0 | done 2026-11-06: 110/110 tay, 0 sudhaar. ACS-11 PG 5%, Govt Securities 5% neeche, Surety Bond DOC 36 mah, JV lead 30% — gananaaen satyapit |
 | 528 | GCC Works: Time, Extension & Force Majeure | 100 | 0 | 0 | done 2026-11-06: 100/100 tay, 0 sudhaar. Samay/vistaar/force majeure/LD siddhant sangat |
-| 529 | GCC Works: Execution & Measurement | 110 | 1 | 0 | pending |
-| 530 | GCC Works: Termination & Determination | 90 | 0 | 0 | pending |
+| 529 | GCC Works: Execution & Measurement | 110 | 1 | 0 | done 2026-11-06: 110/110 tay, 0 sudhaar. Nispadan/maap/on-account + antim bill siddhant sangat |
+| 530 | GCC Works: Termination & Determination | 90 | 0 | 0 | done 2026-11-06: 90/90 tay, 0 sudhaar. Cl 62 48-ghante notice, Annexure-XI (ACS-8) sangat |
 | 531 | GCC Works: Arbitration & Settlement | 80 | 0 | 0 | pending |
 | 532 | GCC Works: GST & Tax Provisions | 100 | 0 | 0 | pending |
 | 533 | GCC Stores: Stores Tender Conditions | 120 | 0 | 0 | pending |
