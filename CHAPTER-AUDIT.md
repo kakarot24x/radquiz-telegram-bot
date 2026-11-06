@@ -147,8 +147,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 201 | PAPER-I: PPN: NPS Contributions | 30 | 0 | 0 | done 2026-11-06: 30/30 tay, 0 sudhaar. NPS yogdan — karmchari 10%, sarkar 14% (2019 se) spasht; ch599 wale 14% shabdawali prashn par aantarik samarthan |
 | 202 | PAPER-I: PPN: NPS Investment | 30 | 0 | 0 | done 2026-11-06: 30/30 tay, 0 sudhaar. NPS nivesh (Active/Auto, LC) maanak |
 | 203 | PAPER-I: PPN: NPS Exit & Annuity | 40 | 0 | 0 | done 2026-11-06: 40/40 tay, 0 sudhaar. NPS exit/annuity (40%/60%, 5 lakh seema) vartaman niyam |
-| 204 | PAPER-I: LLF: Payment of Wages Act 1936 | 60 | 0 | 0 | pending |
-| 205 | PAPER-I: LLF: Minimum Wages Act 1948 | 50 | 0 | 0 | pending |
+| 204 | PAPER-I: LLF: Payment of Wages Act 1936 | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Payment of Wages Act (24,000 seema, 3% jurmana) maanak |
+| 205 | PAPER-I: LLF: Minimum Wages Act 1948 | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Minimum Wages Act maanak |
 | 206 | PAPER-I: LLF: Factories Act 1948 | 60 | 0 | 0 | pending |
 | 207 | PAPER-I: LLF: Industrial Disputes Act 1947 | 60 | 0 | 0 | pending |
 | 208 | PAPER-I: LLF: Employees Compensation Act 1923 | 50 | 0 | 0 | pending |
