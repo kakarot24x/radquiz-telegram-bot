@@ -47,7 +47,7 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 40 | IRIFM 1001 - Railway history | 11 | 11 | 0 | done 2026-11-06: 11/11 tay, 0 sudhaar (NAIR itihas up-set, kunjiya ch35 se mail) |
 | 41 | IRIFM 1001 - Indian Railways financial overview | 16 | 15 | 0 | done 2026-11-06: 16/16 tay, 0 sudhaar (NAIR vittiya up-set; tracker me 15 ananya — ek sawal do baar ek hi ID/kunji ke saath darj hai) |
 | 42 | IRIFM 1001 - Business policy and strategy | 42 | 42 | 1 | done 2026-11-06: 42/42 tay. **1 sudhaar** — Arbitration Council of India hi naye adhiniyam ki pramukh visheshta hai (TG2 "none" galat tha) |
-| 43 | IRIFM 1001 - Books | 212 | 212 | 4 | pending |
+| 43 | IRIFM 1001 - Books | 212 | 212 | 4 | done 2026-11-06: 212/212 tay. Uske 3 bache takraav purane the (Plan Head 1100 aur SD zabti — ek-roop sanketan; odd-one link suspense — 31-suchi, user ke faisle par). **1 sudhaar — Primary Unit = Object of Expenditure** (PU ko Object Heads hi kehte hain; ch43 copy "Activity" galat thi, ch35/ch38 sahi). Abstract kram yahan bhi sahi mila (B raha/C loco/D gaadi/E plant) |
 | 44 | IRIFM 1001 - Budget | 166 | 165 | 3 | pending |
 | 45 | IRIFM 1001 - General Expenditure | 198 | 198 | 4 | pending |
 | 46 | IRIFM 1001 - Establishment finance | 55 | 54 | 0 | pending |
