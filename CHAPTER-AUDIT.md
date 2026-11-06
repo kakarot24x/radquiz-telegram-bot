@@ -245,8 +245,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 299 | PAPER-II: STR: GeM & E-Procurement | 70 | 1 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. GeM/e-kharid (IREPS) sangat |
 | 300 | PAPER-II: STR: Rate & Running Contracts | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Dar/chalu anubandh (fall clause) sangat |
 | 301 | PAPER-II: STR: Inspection & Acceptance | 80 | 0 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. Nirikshan/sweekriti (RITES) sangat |
-| 302 | PAPER-II: STR: Receipt of Stores | 60 | 0 | 0 | pending |
-| 303 | PAPER-II: STR: Issue of Stores | 70 | 0 | 0 | pending |
+| 302 | PAPER-II: STR: Receipt of Stores | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Bhandaar prapti sangat |
+| 303 | PAPER-II: STR: Issue of Stores | 70 | 0 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. Bhandaar nirgam (averej-rate ganit jaanch-sahit) sangat |
 | 304 | PAPER-II: STR: Inventory Control (ABC/VED/FSN) | 80 | 0 | 0 | pending |
 | 305 | PAPER-II: STR: EOQ, Re-order Level & Safety Stock | 70 | 0 | 0 | pending |
 | 306 | PAPER-II: STR: Stock Verification | 80 | 0 | 0 | pending |
