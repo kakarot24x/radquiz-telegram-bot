@@ -503,9 +503,9 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 557 | Rajbhasha: Courts, Dept & Conferences | 60 | 4 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Art 348/349/350A/350B, Hindi Diwas tathya, sammelan sangat |
 | 558 | D&AR: Enquiry & Standard Forms | 90 | 0 | 0 | done 2026-11-06: 90/90 tay, 0 sudhaar. D&AR SF-1..SF-14 roop-suchi + niyam (Rule 9/11/24/25/25A) aadhikarik sangat — ch88 faisla #6 ka samarthan |
 | 559 | Forms & Reports: TA/A/S/E/COM | 117 | 0 | 0 | done 2026-11-06: 117/117 tay, 0 kunji sudhaar. TA/A/E/COM roop sangat; tippani: S-1313 (#80) vs S-1302 (#81) requisition — aantarik aspashtata, palat ka aadhar nahi |
-| 560 | Full Forms: Railway Abbreviations | 100 | 1 | 0 | pending |
+| 560 | Full Forms: Railway Abbreviations | 100 | 1 | 0 | done 2026-11-06: 100/100 tay, 0 sudhaar. Full forms sab paramparik sahi (C&AG = Auditor General — ch53 sudhaar se sangat) |
 | 561 | Financial Powers: Tenders & Contracts | 330 | 1 | 0 | pending |
-| 562 | Jan Vishwas Act 2026: Railways Act Amendments | 60 | 0 | 0 | pending |
+| 562 | Jan Vishwas Act 2026: Railways Act Amendments | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Jan Vishwas Act 2026 — Railways Act dand-parivartan aantarik sangat; Sec 138 floor 500, 180+500=680 sahi |
 | 563 | Cancellation, Refund & Tatkal Rules | 60 | 1 | 0 | pending |
 | 564 | Pension, NPS & UPS (2026 Rules) | 422 | 0 | 0 | pending |
 | 565 | AFA LDCE - Govt. Accounting & Audit | 2250 | 2250 | 0 | pending |
