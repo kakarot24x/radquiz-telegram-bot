@@ -170,7 +170,7 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 224 | PAPER-I: EXP: Voted vs Charged Expenditure | 80 | 0 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. Voted/Charged siddhant (Anuchhed 112-117) maanak |
 | 225 | PAPER-I: EXP: Plan Heads & Primary Units | 100 | 0 | 0 | done 2026-11-06: 100/100 tay, 0 sudhaar. Plan Head/PU naksha canonical (ch106/ch107 se mel) |
 | 226 | PAPER-I: EXP: Demands for Grants | 100 | 0 | 0 | done 2026-11-06: 100/100 tay, 0 sudhaar. Demands for Grants naksha ch224/ch225 se sangat |
-| 227 | PAPER-I: EXP: Appropriation & Re-appropriation | 100 | 2 | 0 | pending |
+| 227 | PAPER-I: EXP: Appropriation & Re-appropriation | 100 | 2 | 0 | done 2026-11-06: 100/100 tay, 0 sudhaar. Viniyog/punahviniyog siddhant ch174 se sangat |
 | 228 | PAPER-I: EXP: Canons of Financial Propriety & Sanction | 100 | 0 | 0 | pending |
 | 229 | PAPER-I: EXP: Control of Expenditure & Reviews | 80 | 0 | 0 | pending |
 | 230 | PAPER-I: EXP: Works Expenditure | 100 | 0 | 0 | pending |
