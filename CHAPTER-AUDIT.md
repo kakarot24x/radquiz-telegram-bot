@@ -276,8 +276,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 330 | PAPER-II: WKS: Workshop General Charges & Proforma On-cost | 60 | 1 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. General charges/proforma on-cost sangat (proforma prayog-visthar ch324 se alag ang — chhodaa gaya) |
 | 331 | PAPER-II: WKS: Outturn Statement | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Outturn vivaran sangat |
 | 332 | PAPER-II: WKS: Scrap & By-products | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Scrap/by-product sangat |
-| 333 | PAPER-II: WKS: Plant & Machinery Accounts | 50 | 1 | 0 | pending |
-| 334 | PAPER-II: WKS: Workshop Budget | 50 | 0 | 0 | pending |
+| 333 | PAPER-II: WKS: Plant & Machinery Accounts | 50 | 1 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Plant & Machinery lekha sangat |
+| 334 | PAPER-II: WKS: Workshop Budget | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Workshop bajat sangat |
 | 335 | PAPER-II: WKS: Losses in Workshops | 40 | 0 | 0 | pending |
 | 336 | PAPER-II: WKS: Railway Production Units | 50 | 1 | 0 | pending |
 | 337 | PAPER-II: WKS: Estimates for Workshop Jobs | 50 | 1 | 0 | pending |
