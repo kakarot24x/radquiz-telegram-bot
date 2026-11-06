@@ -509,7 +509,7 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 563 | Cancellation, Refund & Tatkal Rules | 60 | 1 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. 2026 naye refund slab (72/24/8 ghante) + GSR 41(E) VB Sleeper + Tatkal shulk sangat |
 | 564 | Pension, NPS & UPS (2026 Rules) | 422 | 0 | 0 | done 2026-11-06: 422/422 tay, 2 sudhaar — #291 mrityu-upadan 25 varsh: 25x galat, sahi 33x = Rs.16,50,000 (D); #352 NPS premature-exit poorna-nikasi seema Rs.5L galat, sahi Rs.2.5L (A). Baaki saari ganana (pension/parivar/gratuity/NPS/UPS) satyapit |
 | 565 | AFA LDCE - Govt. Accounting & Audit | 2250 | 2250 | 0 | done 2026-11-06: poora scan (statement-items spot-check); Major Head canon (LMMH), C&AG DPC sections, Articles, OR/fiscal arithmetic — sab sahi, 0 sudhaar. |
-| 566 | AFA LDCE - Books & Budget | 2250 | 2250 | 0 | pending |
+| 566 | AFA LDCE - Books & Budget | 2250 | 2250 | 0 | done 2026-11-06: poora scan (statement-items spot-check); SMH/Plan-Head maps, supplementary-batch kram (Monsoon/Winter/Budget), DF-I/II/III, apportionment Part A/B — sab canon-sangat, 0 sudhaar. |
 | 567 | AFA LDCE - Traffic Accounts & Statistics | 2250 | 2250 | 0 | pending |
 | 568 | AFA LDCE - Establishment | 2250 | 2250 | 0 | pending |
 | 569 | AFA LDCE - General Expenditure | 2250 | 2250 | 0 | pending |
