@@ -240,7 +240,7 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 294 | PAPER-I: BK: Control Accounts & Self-balancing | 30 | 0 | 0 | done 2026-11-06: 30/30 tay, 0 sudhaar. Niyantran khate sangat |
 | 295 | PAPER-I: BK: Single Entry vs Double Entry | 40 | 0 | 0 | done 2026-11-06: 40/40 tay, 0 sudhaar. Ikahari pranali (ganit jaanch-sahit) sangat |
 | 296 | PAPER-II: STR: Stores Organization & SMM | 70 | 6 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. Bhandaar sangathan (PCMM/IREPS) sangat |
-| 297 | PAPER-II: STR: Purchase Procedures & COS | 80 | 0 | 0 | pending |
+| 297 | PAPER-II: STR: Purchase Procedures & COS | 80 | 0 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. Kharid prakriya (PAC/TC/EMD) sangat |
 | 298 | PAPER-II: STR: Tender System for Stores | 100 | 0 | 0 | pending |
 | 299 | PAPER-II: STR: GeM & E-Procurement | 70 | 1 | 0 | pending |
 | 300 | PAPER-II: STR: Rate & Running Contracts | 60 | 0 | 0 | pending |
