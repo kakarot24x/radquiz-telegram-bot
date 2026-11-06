@@ -374,8 +374,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 428 | PAPER-III: FIN: Budget Formulation | 80 | 0 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. Budget rachna sangat (vilay 2017-18, labhansh samapti 2016-17) |
 | 429 | PAPER-III: FIN: Budget Presentation | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Budget prastuti sangat (Acworth 1921, RRSK ₹1 lakh cr) |
 | 430 | PAPER-III: FIN: Demands for Grants | 70 | 1 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. Demands for Grants sangat. NOTE: labhansh samapti varsh ch428 me 2016-17, yahan 2017-18 — dono pariprekshya prachlit, koi badlav nahi |
-| 431 | PAPER-III: FIN: Appropriation Accounts | 70 | 1 | 0 | pending |
-| 432 | PAPER-III: FIN: Voted vs Charged Expenditure | 50 | 0 | 0 | pending |
+| 431 | PAPER-III: FIN: Appropriation Accounts | 70 | 1 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. Viniyog lekhe sangat |
+| 432 | PAPER-III: FIN: Voted vs Charged Expenditure | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Voted/bharit vyay sangat |
 | 433 | PAPER-III: FIN: Supplementary & Excess Grants | 60 | 0 | 0 | pending |
 | 434 | PAPER-III: FIN: Railway Funds | 90 | 0 | 0 | pending |
 | 435 | PAPER-III: FIN: Capital-at-Charge | 70 | 1 | 0 | pending |
