@@ -102,7 +102,7 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 95 | Causal Labour | 10 | 10 | 0 | done 2026-11-06: 10/10 tay, 0 sudhaar |
 | 96 | Establishment | 25 | 24 | 0 | done 2026-11-06: 25/25 tay, 0 sudhaar |
 | 97 | Running Allowances | 29 | 29 | 0 | done 2026-11-06: 29/29 tay, 0 sudhaar |
-| 99 | IRIFM PPT WORKSHOP | 490 | 489 | 0 | pending |
+| 99 | IRIFM PPT WORKSHOP | 490 | 489 | 0 | done 2026-11-06: 490/490 tay, 0 sudhaar. PPT-vansh ka set poori tarah aatm-sangat (WMS P.7200, on-cost ke teen prakar, POC -> Z Earnings is vansh ki sthiti) |
 | 100 | IRIFM PPT STORES | 467 | 460 | 0 | pending |
 | 101 | Stores v1 | 491 | 488 | 0 | pending |
 | 102 | Workshop v1 | 500 | 498 | 0 | pending |
