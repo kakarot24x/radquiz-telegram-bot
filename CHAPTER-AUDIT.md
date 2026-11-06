@@ -225,8 +225,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 279 | PAPER-I: BK: Journal & Journal Entries | 80 | 2 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. Journal pravishtiyan maanak |
 | 280 | PAPER-I: BK: Ledger Posting & Balancing | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Khata-bahi posting sangat |
 | 281 | PAPER-I: BK: Trial Balance | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Talpat sangat |
-| 282 | PAPER-I: BK: Rectification of Errors | 60 | 1 | 0 | pending |
-| 283 | PAPER-I: BK: Cash Book | 60 | 0 | 0 | pending |
+| 282 | PAPER-I: BK: Rectification of Errors | 60 | 1 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Truti sudhaar sangat |
+| 283 | PAPER-I: BK: Cash Book | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Rokad bahi sangat |
 | 284 | PAPER-I: BK: Bank Reconciliation Statement | 60 | 0 | 0 | pending |
 | 285 | PAPER-I: BK: Subsidiary Books | 50 | 1 | 0 | pending |
 | 286 | PAPER-I: BK: Bills of Exchange & Promissory Notes | 50 | 1 | 0 | pending |
