@@ -261,8 +261,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 315 | PAPER-II: STR: Losses, Shortages & Write-off | 70 | 0 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. Haani/kami/write-off sangat |
 | 316 | PAPER-II: STR: Stores Budget & Control | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Stores budget/niyantran sangat |
 | 317 | PAPER-II: STR: Uniforms & Clothing | 40 | 0 | 0 | done 2026-11-06: 40/40 tay, 0 sudhaar. Vardi/poshak (Parel Clothing Factory) sangat |
-| 318 | PAPER-II: STR: Stationery, Forms & Medical Stores | 50 | 0 | 0 | pending |
-| 319 | PAPER-II: STR: Demand Planning & Provisioning | 70 | 0 | 0 | pending |
+| 318 | PAPER-II: STR: Stationery, Forms & Medical Stores | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Lekhan-samagri/forms/chikitsa bhandaar sangat |
+| 319 | PAPER-II: STR: Demand Planning & Provisioning | 70 | 0 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. Mang yojana/provisioning sangat |
 | 320 | PAPER-II: STR: Imported Stores & Customs | 50 | 0 | 0 | pending |
 | 321 | PAPER-II: STR: Warranty, Guarantee & Rejection | 50 | 0 | 0 | pending |
 | 322 | PAPER-II: WKS: Workshop Organization & Production | 60 | 1 | 0 | pending |
