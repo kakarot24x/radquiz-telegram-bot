@@ -88,9 +88,9 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 81 | Hours of Employment and Regulations | 95 | 94 | 0 | done 2026-11-06: 95/95 tay, 0 sudhaar. Ek naram bindu note — sanyukt "Intensive/Continuous" stem par 54 ghante ki kunji (Intensive ki vaidhanik seema 45 hai, ch30/ch33 se spasht); sanyukt stem hone se akele badalna uchit nahi |
 | 82 | Labour Laws | 76 | 74 | 0 | done 2026-11-06: 76/76 tay, 0 sudhaar |
 | 83 | Leave Rules | 90 | 89 | 0 | done 2026-11-06: 90/90 tay. **1 sudhaar** — railway school teachers ko **10 din LAP (5+5)** milta hai (Rule 525, RBE 64/2019 se sanshodhit; Nageswara Rao ki site se bhi pushti); kunji purane niyam wala 0 din keh rahi thi |
-| 84 | Promotion / Selections | 65 | 65 | 0 | pending |
-| 85 | Annual Performance Appraisal Report | 23 | 23 | 0 | pending |
-| 86 | Staff Benefit Fund | 53 | 51 | 0 | pending |
+| 84 | Promotion / Selections | 65 | 65 | 0 | done 2026-11-06: 65/65 tay, 0 sudhaar |
+| 85 | Annual Performance Appraisal Report | 23 | 23 | 0 | done 2026-11-06: 23/23 tay, 0 sudhaar |
+| 86 | Staff Benefit Fund | 53 | 51 | 0 | done 2026-11-06: 53/53 tay, 0 sudhaar. SBF prati-vyakti ₹800 aur mahila sashaktikaran ₹28 ch76 se mail khata hai |
 | 87 | Railway Service (Conduct) Rules, 1966 | 15 | 15 | 0 | pending |
 | 88 | Discipline and Appeal Rules | 48 | 48 | 0 | pending |
 | 89 | Pension and Family Pension | 66 | 65 | 0 | pending |
