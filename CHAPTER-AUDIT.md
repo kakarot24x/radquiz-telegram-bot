@@ -58,17 +58,17 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 51 | IRIFM 1001 - Commercial book keeping | 162 | 162 | 3 | done 2026-11-06: 162/162 tay, 0 sudhaar. Uske 3 takraav pehle hi sulajh chuke the (Matching siddhant sahit). Ganana-wale sawal jaanche — purchases 80,900 (80,700+6,000-5,800), Rule-of-72 se 10,000→80,000 = 18 varsh, dono sahi. IRIFM shrinkhala ka antim chapter |
 | 52 | MCQ on Budget | 23 | 23 | 0 | done 2026-11-06: 23/23 tay, 0 sudhaar |
 | 53 | MCQ on Auditing | 24 | 24 | 1 | done 2026-11-06: 24/24 tay. **1 sudhaar — C&AG = Comptroller and AUDITOR General** (do copies "Accountant General" galat keh rahi thi; chapter ka apna pehla sawal aur ch54 sahi the) |
-| 54 | MCQ on Audit and Parliamentary Control on Railway Finances | 19 | 19 | 1 | pending |
-| 55 | MCQ on Appropriation Accounts | 11 | 11 | 0 | pending |
-| 56 | MCQ on Works Programme & IRPSM | 14 | 14 | 0 | pending |
-| 57 | MCQ on Budget 2021-22 | 9 | 9 | 0 | pending |
-| 58 | MCQ on Different types of Budget | 11 | 11 | 0 | pending |
-| 59 | MCQ on PPP | 5 | 5 | 0 | pending |
-| 60 | MCQ on DFC | 10 | 10 | 1 | pending |
-| 61 | MCQ on GCC for Works, 2020 July | 41 | 41 | 0 | pending |
-| 62 | MCQ on Books & Budget | 49 | 49 | 0 | pending |
-| 63 | MSOP - Model Schedule of Powers | 14 | 14 | 0 | pending |
-| 64 | CTARA - Rajbhasha | 4 | 4 | 0 | pending |
+| 54 | MCQ on Audit and Parliamentary Control on Railway Finances | 19 | 19 | 1 | done 2026-11-06: 19/19 tay, 0 sudhaar (C&AG vistaar yahan sahi mila) |
+| 55 | MCQ on Appropriation Accounts | 11 | 11 | 0 | done 2026-11-06: 11/11 tay, 0 sudhaar |
+| 56 | MCQ on Works Programme & IRPSM | 14 | 14 | 0 | done 2026-11-06: 14/14 tay, 0 sudhaar |
+| 57 | MCQ on Budget 2021-22 | 9 | 9 | 0 | done 2026-11-06: 9/9 tay, 0 sudhaar (2021-22 tathya apne varsh ke hisaab se) |
+| 58 | MCQ on Different types of Budget | 11 | 11 | 0 | done 2026-11-06: 11/11 tay. **3 sudhaar** — budget-prakar ki paribhashayen uljhi thi: outlay→outcome = **Outcome Budget**, scratch se justification = **Zero Based Budget**, "spending up to the budget" ki aadat = **Traditional Budget** (ch62 se bhi mail) |
+| 59 | MCQ on PPP | 5 | 5 | 0 | done 2026-11-06: 5/5 tay, 0 sudhaar |
+| 60 | MCQ on DFC | 10 | 10 | 1 | done 2026-11-06: 10/10 tay. **1 sudhaar** — DFC vitt: World Bank + JICA + **ADB** (ADB ne EDFC khandon ke liye rin diya hai; TG2 copy adhuri thi) |
+| 61 | MCQ on GCC for Works, 2020 July | 41 | 41 | 0 | done 2026-11-06: 41/41 tay, 0 sudhaar. GCC Works PG 21 din yahan sahi hai (ACS-9); IRIFM copies ka 60 din vistaar-sahit antim seema hai — dono path apni jagah, chhua nahi |
+| 62 | MCQ on Books & Budget | 49 | 49 | 0 | done 2026-11-06: 49/49 tay, 0 sudhaar. Sabse purana karyarat kosh = DRF yahan bhi sahi (re-check ke TG2 sudhaar se mail) |
+| 63 | MSOP - Model Schedule of Powers | 14 | 14 | 0 | done 2026-11-06: 14/14 tay, 0 kunji sudhaar. Ek harvest-toota sawal note kiya (#10, stem me agle sawal ka kachra) — kunji yathasthan |
+| 64 | CTARA - Rajbhasha | 4 | 4 | 0 | done 2026-11-06: 4/4 tay, 0 sudhaar |
 | 65 | CTARA - Establishment including Pension | 270 | 270 | 1 | pending |
 | 66 | CTARA - Books and Budget | 176 | 175 | 2 | pending |
 | 67 | CTARA - General Expenditure | 329 | 329 | 0 | pending |
