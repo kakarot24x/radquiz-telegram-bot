@@ -312,8 +312,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 366 | PAPER-II: WCF: Overheads: Allocation & Apportionment | 60 | 2 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Overhead aabantan/apportionment sangat (tracker ke 2 conflict akshar-star ke the, path-star par sangat) |
 | 367 | PAPER-II: WCF: Standard Costing & Variance Analysis | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Maanak lagat/variance sangat |
 | 368 | PAPER-II: WCF: Marginal Costing & Decision Making | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Seemant lagat/nirnay sangat |
-| 369 | PAPER-II: WCF: Budgetary Control in Workshops | 60 | 0 | 0 | pending |
-| 370 | PAPER-II: WCF: Financial Concurrence & Associated Finance | 70 | 0 | 0 | pending |
+| 369 | PAPER-II: WCF: Budgetary Control in Workshops | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Workshop bajat niyantran sangat |
+| 370 | PAPER-II: WCF: Financial Concurrence & Associated Finance | 70 | 0 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. Vitta sahamati/associated finance sangat |
 | 371 | PAPER-II: WCF: Capital vs Revenue Expenditure | 60 | 0 | 0 | pending |
 | 372 | PAPER-II: WCF: Internal Check & Finance Role | 50 | 0 | 0 | pending |
 | 373 | PAPER-II: WCF: Cost Audit & Cost Records | 50 | 0 | 0 | pending |
