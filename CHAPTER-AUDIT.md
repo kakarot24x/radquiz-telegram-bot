@@ -53,8 +53,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 46 | IRIFM 1001 - Establishment finance | 55 | 54 | 0 | done 2026-11-06: 55/55 tay, 0 sudhaar. 7th CPC DA talika poori sahi (L14+ 1200, L12-13 1000, L9-11 900, L6-8 800, L5- 500); anupasthiti-DA "not correct" wala = 50% (ch35 #591 se mail); CEA 2812.50, DCRG seema 25 lakh |
 | 47 | IRIFM 1001 - Traffic Accounts | 109 | 108 | 3 | done 2026-11-06: 109/109 tay, 0 sudhaar. Traffic Book A/B/C/D, MST 15, nodal WR, BOXN 59, WIS 15% — sab purane sudhaaron se mail. Iska eklauta takraav = 31-suchi ka bhugtan-mode samooh (user ke faisle par) |
 | 48 | IRIFM 1001 - Stores Accounts | 149 | 142 | 8 | done 2026-11-06: 149/149 tay, 0 sudhaar. Purane 8 takraavon me 7 pehle hi sulajh chuke the; bacha 1 (WMS naam) ek-roop sanketan hai. Option clause, reverse auction, time book, 8-lakh shakti, production shops — sab purane sudhaaron se mail |
-| 49 | IRIFM 1001 - Workshop Accounts | 57 | 57 | 6 | pending |
-| 50 | IRIFM 1001 - Information Technology | 23 | 21 | 0 | pending |
+| 49 | IRIFM 1001 - Workshop Accounts | 57 | 57 | 6 | done 2026-11-06: 57/57 tay, 0 sudhaar. Bache 2 takraav dono khule samooh hain — G14 (Route card banam Work order) aur G16 (proforma oncost: Earnings banam Revenue Heads) — user ke faisle par. Baaki sab purane sudhaaron se mail (idle time, estimate-jaanch, rate-of-return) |
+| 50 | IRIFM 1001 - Information Technology | 23 | 21 | 0 | done 2026-11-06: 23/23 tay, 0 sudhaar (IPAS/samanya IT tathya) |
 | 51 | IRIFM 1001 - Commercial book keeping | 162 | 162 | 3 | pending |
 | 52 | MCQ on Budget | 23 | 23 | 0 | pending |
 | 53 | MCQ on Auditing | 24 | 24 | 1 | pending |
