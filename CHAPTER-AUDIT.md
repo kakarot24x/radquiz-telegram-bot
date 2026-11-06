@@ -294,8 +294,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 348 | PAPER-II: COS: Stores Accounts & Ledgers | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Stores lekha/khate (ausat-dar ganit jaanch-sahit) sangat |
 | 349 | PAPER-II: COS: Purchase Suspense & Accounting | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Kharid suspense/lekha sangat |
 | 350 | PAPER-II: COS: Depot Management | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Depot prabandhan sangat |
-| 351 | PAPER-II: COS: E-Procurement & IREPS | 50 | 1 | 0 | pending |
-| 352 | PAPER-II: COS: Import Procedures | 40 | 0 | 0 | pending |
+| 351 | PAPER-II: COS: E-Procurement & IREPS | 50 | 1 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. E-procurement/IREPS sangat |
+| 352 | PAPER-II: COS: Import Procedures | 40 | 0 | 0 | done 2026-11-06: 40/40 tay, 0 sudhaar. Ayaat prakriya sangat |
 | 353 | PAPER-II: COS: Warranty & Claims | 40 | 0 | 0 | pending |
 | 354 | PAPER-II: COS: Stores Budget & Expenditure Control | 50 | 0 | 0 | pending |
 | 355 | PAPER-II: COS: Audit of Stores | 40 | 0 | 0 | pending |
