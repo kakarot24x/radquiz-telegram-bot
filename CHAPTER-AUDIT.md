@@ -410,8 +410,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 464 | PAPER-III: STA: Coaching Earnings Account | 80 | 0 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. NOTE khula bhed: platform ticket aay — yahan Coaching, par ch412/ch421/ch462 me Sundry; bahumat Sundry, koi badlav nahi, user faisla |
 | 465 | PAPER-III: STA: Goods Earnings Account | 80 | 0 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. Maal aay lekha sangat |
 | 466 | PAPER-III: STA: Parcels & Luggage Account | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Parcel/saaman lekha sangat |
-| 467 | PAPER-III: STA: Station Balance Sheet | 100 | 0 | 0 | pending |
-| 468 | PAPER-III: STA: Remittances | 70 | 0 | 0 | pending |
+| 467 | PAPER-III: STA: Station Balance Sheet | 100 | 0 | 0 | done 2026-11-06: 100/100 tay, 0 sudhaar. Station balance sheet sangat |
+| 468 | PAPER-III: STA: Remittances | 70 | 0 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. Remittance sangat |
 | 469 | PAPER-III: STA: Refunds at Stations | 60 | 0 | 0 | pending |
 | 470 | PAPER-III: STA: Ticket Stock & Control | 70 | 0 | 0 | pending |
 | 471 | PAPER-III: STA: Outstandings & Unrealized Earnings | 70 | 0 | 0 | pending |
