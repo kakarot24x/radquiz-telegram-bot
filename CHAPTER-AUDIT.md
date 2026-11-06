@@ -354,8 +354,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 408 | PAPER-III: TAC: Season Tickets & Concessions | 80 | 0 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. Season ticket/riyayat sangat |
 | 409 | PAPER-III: TAC: Parcels & Luggage | 80 | 0 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. Parcel/luggage sangat (P/L scale, Sec 106) |
 | 410 | PAPER-III: TAC: Goods Earnings: Freight | 180 | 0 | 0 | done 2026-11-06: 180/180 tay, 0 sudhaar. Maal bhada sangat (wharfage goods-shed aadhar sahi) |
-| 411 | PAPER-III: TAC: Demurrage & Wharfage | 80 | 0 | 0 | pending |
-| 412 | PAPER-III: TAC: Station Accounts & Balance Sheets | 140 | 0 | 0 | pending |
+| 411 | PAPER-III: TAC: Demurrage & Wharfage | 80 | 0 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. Vilamb-shulk/wharfage sangat (free time 9 ghante, wharfage 12/15/30 samooh) |
+| 412 | PAPER-III: TAC: Station Accounts & Balance Sheets | 140 | 0 | 0 | done 2026-11-06: 140/140 tay, 0 sudhaar. Station lekhe/balance sheet sangat |
 | 413 | PAPER-III: TAC: Remittances & Cash Handling | 80 | 0 | 0 | pending |
 | 414 | PAPER-III: TAC: Refunds: Coaching & Goods | 80 | 0 | 0 | pending |
 | 415 | PAPER-III: TAC: Claims & Compensation | 80 | 0 | 0 | pending |
