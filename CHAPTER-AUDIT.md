@@ -231,8 +231,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 285 | PAPER-I: BK: Subsidiary Books | 50 | 1 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Sahayak bahiyan sangat |
 | 286 | PAPER-I: BK: Bills of Exchange & Promissory Notes | 50 | 1 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Vinimay-patra (NI Act 1881, 3 din kripa) sangat |
 | 287 | PAPER-I: BK: Depreciation & Provisions | 50 | 1 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Mulya-hras aur praavadhan sangat |
-| 288 | PAPER-I: BK: Final Accounts | 80 | 5 | 0 | pending |
-| 289 | PAPER-I: BK: Capital & Revenue | 50 | 0 | 0 | pending |
+| 288 | PAPER-I: BK: Final Accounts | 80 | 5 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. Antim lekhe sangat |
+| 289 | PAPER-I: BK: Capital & Revenue | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Punji banam rajasva vargeekaran sangat |
 | 290 | PAPER-I: BK: Receipts & Payments vs Income & Expenditure | 50 | 0 | 0 | pending |
 | 291 | PAPER-I: BK: Railway Finance Code Vol I Book-keeping | 60 | 1 | 0 | pending |
 | 292 | PAPER-I: BK: Vouchers & Day Book | 40 | 0 | 0 | pending |
