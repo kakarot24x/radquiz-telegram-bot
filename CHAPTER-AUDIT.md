@@ -418,8 +418,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 472 | PAPER-III: STA: Station Inspection | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Station nirikshan sangat |
 | 473 | PAPER-III: STA: Station Audit & Internal Check | 70 | 0 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. Station audit/aantarik jaanch sangat |
 | 474 | PAPER-III: STA: Claims Handling at Stations | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Station daava prabandhan sangat (Sec 106, 6 maah) |
-| 475 | PAPER-III: STA: Digital Systems (UTS/PRS/FOIS) | 60 | 0 | 0 | pending |
-| 476 | PAPER-III: STA: Station Records & Returns | 70 | 0 | 0 | pending |
+| 475 | PAPER-III: STA: Digital Systems (UTS/PRS/FOIS) | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Digital pranaali (UTS/PRS/FOIS) sangat |
+| 476 | PAPER-III: STA: Station Records & Returns | 70 | 0 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. Station abhilekh/vivaran sangat. Platform ticket: yahan bhi Coaching (STA me 2-2, TAC me Sundry 2) — bhed khula |
 | 477 | PAPER-III: STA: Losses & Irregularities | 60 | 0 | 0 | pending |
 | 478 | PAPER-III: INS: Inspection Organization & Duties | 60 | 0 | 0 | pending |
 | 479 | PAPER-III: INS: Inspection vs Audit | 60 | 0 | 0 | pending |
