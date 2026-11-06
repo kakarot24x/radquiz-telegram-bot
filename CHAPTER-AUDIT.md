@@ -36,7 +36,7 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 29 | Leave Rules | 29 | 29 | 1 | done 2026-11-06: 29/29 tay; 1 sudhaar — ward se saaman bina Issue voucher nahi (TG x2 Gate pass galat tha) |
 | 30 | R3 - Chapter 5 (818-pg PDF) | 57 | 57 | 0 | pending |
 | 31 | R3 - Chapter 9 (818-pg PDF) | 55 | 55 | 3 | pending |
-| 32 | R3 - Financial Accounting (General) | 393 | 393 | 0 | pending |
+| 32 | R3 - Financial Accounting (General) | 393 | 393 | 0 | done 2026-11-06: 393/393 tay. Samanya vanijya ka generated set (hire purchase/branch/partnership/NFRA-Ind AS). **2 spasht sudhaar** — reclaim kriya = repossession, kabze ka adhikar = Right of Repossession; jodi ch111 me bhi sudhri. Kuch generated sawal aapas me uljhe (realisation laabh "gaining ratio" — sahi vikalp vikalpo me hi nahi; retirement-assets joda) — note matra |
 | 33 | R3 - HOER (Railkaksha) | 50 | 50 | 0 | pending |
 | 34 | R3 - Labour Laws & GST (818-pg PDF) | 36 | 36 | 1 | pending |
 | 35 | R3 - NAIR 1001 Questions (Accounts) | 738 | 738 | 21 | pending |
