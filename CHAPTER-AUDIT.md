@@ -336,8 +336,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 390 | PAPER-II: WMS: WMS in Production Units | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Utpadan ikaiyon me WMS sangat |
 | 391 | PAPER-II: WMS: WMS Accounting Procedure | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. WMS lekha prakriya sangat — WMS samooh sampann (ch386-391, 300 Q, 0 sudhaar) |
 | 392 | PAPER-II: SAC: Stores Accounts Code Overview | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Stores Accounts Code parichay sangat |
-| 393 | PAPER-II: SAC: Numerical Ledgers | 50 | 0 | 0 | pending |
-| 394 | PAPER-II: SAC: Priced Ledgers | 50 | 0 | 0 | pending |
+| 393 | PAPER-II: SAC: Numerical Ledgers | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Sankhyatmak khate sangat |
+| 394 | PAPER-II: SAC: Priced Ledgers | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Mulya khate sangat. KHULA BHED: lauti stores ka dar — ch394 = vartamaan ausat dar, ch326/ch348 = mool issue dar (2v1); user ke shabd bina nahi badla |
 | 395 | PAPER-II: SAC: Monthly Compilation | 50 | 0 | 0 | pending |
 | 396 | PAPER-II: SAC: Reconciliation with General Books | 50 | 0 | 0 | pending |
 | 397 | PAPER-II: SAC: Stock Suspense | 50 | 0 | 0 | pending |
