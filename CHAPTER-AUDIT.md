@@ -507,7 +507,7 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 561 | Financial Powers: Tenders & Contracts | 330 | 1 | 0 | done 2026-11-06: 330/330 tay, 0 aantarik sudhaar. Chapter apni (purani SOP) talika par aantarik sangat hai; works-acceptance seedhi RB patra 25.07.2024 se alag hai — wahi khula Annexure-A bhed jo kitab me pehle se user-faisle par hai, naya nahi |
 | 562 | Jan Vishwas Act 2026: Railways Act Amendments | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Jan Vishwas Act 2026 — Railways Act dand-parivartan aantarik sangat; Sec 138 floor 500, 180+500=680 sahi |
 | 563 | Cancellation, Refund & Tatkal Rules | 60 | 1 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. 2026 naye refund slab (72/24/8 ghante) + GSR 41(E) VB Sleeper + Tatkal shulk sangat |
-| 564 | Pension, NPS & UPS (2026 Rules) | 422 | 0 | 0 | pending |
+| 564 | Pension, NPS & UPS (2026 Rules) | 422 | 0 | 0 | done 2026-11-06: 422/422 tay, 2 sudhaar — #291 mrityu-upadan 25 varsh: 25x galat, sahi 33x = Rs.16,50,000 (D); #352 NPS premature-exit poorna-nikasi seema Rs.5L galat, sahi Rs.2.5L (A). Baaki saari ganana (pension/parivar/gratuity/NPS/UPS) satyapit |
 | 565 | AFA LDCE - Govt. Accounting & Audit | 2250 | 2250 | 0 | pending |
 | 566 | AFA LDCE - Books & Budget | 2250 | 2250 | 0 | pending |
 | 567 | AFA LDCE - Traffic Accounts & Statistics | 2250 | 2250 | 0 | pending |
