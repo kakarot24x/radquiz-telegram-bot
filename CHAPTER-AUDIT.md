@@ -130,7 +130,7 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 184 | PAPER-I: GRP: Traffic Earnings & Apportionment | 60 | 1 | 0 | done 2026-11-06: 60/60 tay, 1 sudhaar. CAS nodal agency Central se Northern Railway (TG parivar: CAS=NR, TAMS=CR; apportionment nodal WR user-niyam alag). Traffic Book SALA/CAS siddhant ch17/ch18 sudhaaron se sangat |
 | 185 | PAPER-I: GRP: Commercial (NFR, PPP, DFC) | 60 | 5 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. NFR/PPP/DFC tathya-set maanak aur sangat |
 | 186 | PAPER-I: GRP: Sources of Finance & EBR | 60 | 1 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Vitt srot/EBR tathya sangat (DRF 1924, RSF 2001, RRSK, PH 2200 — ch106/ch109/ch177 se mel) |
-| 187 | PAPER-I: GRP: Misc (OR, Lease, GST, MSOP) | 40 | 1 | 0 | pending |
+| 187 | PAPER-I: GRP: Misc (OR, Lease, GST, MSOP) | 40 | 1 | 0 | done 2026-11-06: 40/40 tay, 0 sudhaar. Misc (OR/PEI, GST composition, RBS-MAR) sangat |
 | 188 | PAPER-I: PPN: PF Membership & Subscription | 40 | 0 | 0 | pending |
 | 189 | PAPER-I: PPN: PF Interest & Statements | 30 | 0 | 0 | pending |
 | 190 | PAPER-I: PPN: PF Refundable Advances | 40 | 0 | 0 | pending |
