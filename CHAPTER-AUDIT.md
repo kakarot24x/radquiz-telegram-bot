@@ -184,8 +184,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 238 | PAPER-I: EXP: Economy Measures & Expenditure Cuts | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Mitavyayita upaay sangat |
 | 239 | PAPER-I: EXP: Bills, Vouchers & Pay Orders | 80 | 0 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. Bill/voucher/pay-order siddhant sangat |
 | 240 | PAPER-I: EXP: Audit of Expenditure | 60 | 1 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Kharch lekha-pariksha siddhant sangat |
-| 241 | PAPER-I: BB: Journal & Ledger | 60 | 0 | 0 | pending |
-| 242 | PAPER-I: BB: Cash Book | 50 | 0 | 0 | pending |
+| 241 | PAPER-I: BB: Journal & Ledger | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Journal/ledger sunehre niyam maanak (suspense credit-balance — ch108 sudhaar se sangat) |
+| 242 | PAPER-I: BB: Cash Book | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Cash book/BRS maanak |
 | 243 | PAPER-I: BB: Subsidiary Books & Registers | 50 | 0 | 0 | pending |
 | 244 | PAPER-I: BB: Balance Sheet | 50 | 0 | 0 | pending |
 | 245 | PAPER-I: BB: Capital & Revenue Accounts | 50 | 0 | 0 | pending |
