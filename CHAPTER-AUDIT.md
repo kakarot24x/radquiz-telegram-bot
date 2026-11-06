@@ -491,8 +491,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 545 | MSOP: Part G — Security Matters | 80 | 0 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. Part G Security (RPF), 2018 adhigrahan + Annexure patra sangat |
 | 546 | MSOP: Annexures — GM & DRM Powers | 120 | 0 | 0 | done 2026-11-06: 120/120 tay, 0 sudhaar. Annexure 1 (FX(II)-2015/PW/7, 12.06.2017) / Annexure 2 (2017/Trans/01/Policy, 18.10.2017) sangat |
 | 547 | MSOP: Financial Limits Master | 150 | 0 | 0 | done 2026-11-06: 150/150 tay, 0 sudhaar. Item 5(f) quotation + parcel-leasing sidhiyan ch538/ch542 se cross-verify sangat |
-| 548 | Rajbhasha: Presidential Orders 1960 | 80 | 0 | 0 | pending |
-| 549 | Rajbhasha: Official Language Resolution 1968 | 70 | 3 | 0 | pending |
+| 548 | Rajbhasha: Presidential Orders 1960 | 80 | 0 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. Rashtrapati Aadesh 1960 (Kher Ayog 1955, Art 344, 14 nirdesh, Samiti 30) paramparik sangat |
+| 549 | Rajbhasha: Official Language Resolution 1968 | 70 | 3 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. Sankalp 1968 + tri-bhasha sutra (Kothari) paramparik sangat |
 | 550 | Rajbhasha: Eighth Schedule Languages | 150 | 2 | 0 | pending |
 | 551 | Rajbhasha: Regions A, B, C | 120 | 2 | 0 | pending |
 | 552 | Rajbhasha: Hindi Teaching Scheme | 100 | 0 | 0 | pending |
