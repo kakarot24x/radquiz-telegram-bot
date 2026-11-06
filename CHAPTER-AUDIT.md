@@ -485,8 +485,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 539 | MSOP: Part B — Medical Matters | 200 | 0 | 0 | done 2026-11-06: 200/200 tay, 0 sudhaar. Part B Chikitsa: CMD/MD/CMS, rate contract, referral, Hospital Administrator=Branch Officer sangat |
 | 540 | MSOP: Part C — Miscellaneous Matters | 350 | 0 | 0 | done 2026-11-06: 350/350 tay, 0 sudhaar. Part C Vividh: IT/PR/vidhi/prashikshan/catering/kalyan sangat |
 | 541 | MSOP: Part D — Stores Matters | 220 | 0 | 0 | done 2026-11-06: 220/220 tay, 0 sudhaar. Part D Item 1-9: PCMM Full (quantity approval), panjikaran sangat; AAC aankda is chapter me nahi |
-| 542 | MSOP: Part E — Commercial Matters | 180 | 0 | 0 | pending |
-| 543 | MSOP: Part F — Establishment (Gazetted) | 200 | 0 | 0 | pending |
+| 542 | MSOP: Part E — Commercial Matters | 180 | 0 | 0 | done 2026-11-06: 180/180 tay, 0 sudhaar. Part E Item 1-18 + parcel-leasing TC sidhiyan sangat; wharfage goods-shed adhar sangat |
+| 543 | MSOP: Part F — Establishment (Gazetted) | 200 | 0 | 0 | done 2026-11-06: 200/200 tay, 0 sudhaar. Part F (Gazetted) Item 1-28 sangat; NOT-correct template kunji sahi (#2 verify) |
 | 544 | MSOP: Part F — Establishment (Non-Gazetted) | 150 | 1 | 0 | pending |
 | 545 | MSOP: Part G — Security Matters | 80 | 0 | 0 | pending |
 | 546 | MSOP: Annexures — GM & DRM Powers | 120 | 0 | 0 | pending |
