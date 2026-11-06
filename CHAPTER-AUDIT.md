@@ -116,7 +116,7 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 110 | PAPER-II | 3701 | 3694 | 36 | done 2026-11-06: 3701 Q (3548 pratilipi + 153 naye stem), 1 sudhaar. RMC = Railway Material Consignment (ch110 prati Railway Maintenance Clause galat thi, sudhaari). Baaki path-takraav sab akshar-bhed |
 | 111 | PAPER-III | 2463 | 2462 | 39 | done 2026-11-06: 2463 Q (2325 pratilipi + 138 naye stem), 1 sudhaar. TG2_Q7022 other-coaching journal entry Abstract Y se X (Abstract X = poori coaching earnings, minor head 100/300/400/600 bank-bhar se siddh). Khule samooh: special-cancellation (faisla #2), special-train slab, TIA detention check 5 vs 10 din (naya 2v2 samooh) |
 | 172 | PAPER-I: GRP: Railway Budget & Budget Types | 80 | 2 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. 2021-22 budget aankde andar sangat; budget-prakar siddhant ch58 sudhaaron se mel |
-| 173 | PAPER-I: GRP: Earnings & Expenditure Budget | 60 | 0 | 0 | pending |
+| 173 | PAPER-I: GRP: Earnings & Expenditure Budget | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Earnings budget siddhant + ganit (PKM/NTKM, 5M:7M) sab sahi |
 | 174 | PAPER-I: GRP: Appropriation & Re-appropriation | 60 | 2 | 0 | pending |
 | 175 | PAPER-I: GRP: Parliamentary Control over Finances | 60 | 1 | 0 | pending |
 | 176 | PAPER-I: GRP: Accounting Reforms & Systems | 80 | 3 | 0 | pending |
