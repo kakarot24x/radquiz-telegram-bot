@@ -404,8 +404,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 458 | PAPER-III: TSC: Commodity Costing | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Commodity laagat sangat |
 | 459 | PAPER-III: TSC: Avoidable vs Distributed Costs | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Pariharneeya banam vitarit laagat sangat |
 | 460 | PAPER-III: TSC: Rate Fixation Costing | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Dar nirdharan laagat sangat |
-| 461 | PAPER-III: TSC: Operating Ratio Analysis | 60 | 0 | 0 | pending |
-| 462 | PAPER-III: STA: Station Organization & Duties | 60 | 0 | 0 | pending |
+| 461 | PAPER-III: TSC: Operating Ratio Analysis | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Parichalan anupaat vishleshan sangat — TSC samooh sampann (ch444-461, 1220 Q, 0 sudhaar) |
+| 462 | PAPER-III: STA: Station Organization & Duties | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Station sangathan/kartavya sangat — STA samooh shuru |
 | 463 | PAPER-III: STA: Station Cash & Cash Book | 70 | 0 | 0 | pending |
 | 464 | PAPER-III: STA: Coaching Earnings Account | 80 | 0 | 0 | pending |
 | 465 | PAPER-III: STA: Goods Earnings Account | 80 | 0 | 0 | pending |
