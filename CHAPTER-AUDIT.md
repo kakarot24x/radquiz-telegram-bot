@@ -316,8 +316,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 370 | PAPER-II: WCF: Financial Concurrence & Associated Finance | 70 | 0 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. Vitta sahamati/associated finance sangat |
 | 371 | PAPER-II: WCF: Capital vs Revenue Expenditure | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Punji banaam rajaswa vyay sangat |
 | 372 | PAPER-II: WCF: Internal Check & Finance Role | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Aantarik jaanch/vitta bhoomika sangat |
-| 373 | PAPER-II: WCF: Cost Audit & Cost Records | 50 | 0 | 0 | pending |
-| 374 | PAPER-II: WCF: Pricing of Workshop Outturn | 50 | 0 | 0 | pending |
+| 373 | PAPER-II: WCF: Cost Audit & Cost Records | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Cost audit/abhilekh sangat |
+| 374 | PAPER-II: WCF: Pricing of Workshop Outturn | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Outturn mulya-nirdharan sangat |
 | 375 | PAPER-II: WCF: Cost Control & Reduction | 50 | 0 | 0 | pending |
 | 376 | PAPER-II: EX2: Expenditure Control & Sanctions | 50 | 0 | 0 | pending |
 | 377 | PAPER-II: EX2: Revenue Expenditure | 50 | 0 | 0 | pending |
