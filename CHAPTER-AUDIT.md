@@ -320,8 +320,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 374 | PAPER-II: WCF: Pricing of Workshop Outturn | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Outturn mulya-nirdharan sangat |
 | 375 | PAPER-II: WCF: Cost Control & Reduction | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Lagat niyantran/katauti sangat — WCF samooh sampann (ch358-375, 1070 Q, 0 sudhaar) |
 | 376 | PAPER-II: EX2: Expenditure Control & Sanctions | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Vyay niyantran/swikriti sangat |
-| 377 | PAPER-II: EX2: Revenue Expenditure | 50 | 0 | 0 | pending |
-| 378 | PAPER-II: EX2: Works Expenditure | 50 | 0 | 0 | pending |
+| 377 | PAPER-II: EX2: Revenue Expenditure | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Rajaswa vyay (DRF/Pension Fund) sangat |
+| 378 | PAPER-II: EX2: Works Expenditure | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Karya vyay (Works Programme/anumaan) sangat |
 | 379 | PAPER-II: EX2: Establishment Expenditure | 50 | 1 | 0 | pending |
 | 380 | PAPER-II: EX2: Contingent Expenditure | 50 | 1 | 0 | pending |
 | 381 | PAPER-II: EX2: Re-appropriation & Savings | 50 | 1 | 0 | pending |
