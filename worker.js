@@ -599,7 +599,7 @@ long-press the box and tap <b>Paste</b> again.</p>
 ▶ Start the Bot</button></form>`;
   }
   return `<h2>✅ RADEQuiz Bot is Running</h2>
-<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-06 v32</b></p>
+<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-06 v33</b></p>
 <p>Now open your Telegram group <b>RADEQuiz</b> and type <b>/quiz</b> —
 choose a topic, the number of questions and the timer, and the quiz starts.
 Everything is controlled from Telegram itself.</p>
@@ -1548,8 +1548,35 @@ export class QuizRoom {
     } catch (e) { /* original message may be gone; roast is best-effort */ }
   }
 
+  // Akaza-only new-member greeting (user's exact line, 2026-11-06):
+  // when a new member joins the group, the bot announces them in
+  // Mahesh style. One line per join event, only for human members,
+  // and never for the bot itself being added.
+  async maybeJoinRoast(msg) {
+    if ((await this.flavor()) !== "akaza") return;
+    const chatType = msg.chat?.type || "";
+    if (chatType !== "group" && chatType !== "supergroup") return;
+    const cfg = await getConfig(this.env).catch(() => null);
+    const humans = (msg.new_chat_members || []).filter((u) =>
+      !u.is_bot &&
+      (!cfg?.username || (u.username || "").toLowerCase() !==
+        String(cfg.username).toLowerCase()));
+    if (!humans.length) return;
+    try {
+      await this.call("sendMessage", {
+        chat_id: msg.chat.id,
+        text: "Ek aur dalla aa gaya group me",
+        reply_parameters: { message_id: msg.message_id },
+      });
+    } catch (e) { /* join message may be gone; greeting is best-effort */ }
+  }
+
   async onMessage(msg) {
     const chatId = msg.chat.id;
+    if (msg.new_chat_members?.length) {
+      await this.maybeJoinRoast(msg);
+      return;
+    }
     const text = (msg.text || "").split("@")[0].trim();
     const sender = effectiveSenderId(msg);
     if (msg.chat.type === "private") {
