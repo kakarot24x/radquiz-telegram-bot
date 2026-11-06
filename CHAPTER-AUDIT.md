@@ -178,7 +178,7 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 232 | PAPER-I: EXP: Contingent Expenditure | 80 | 0 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. Aakasmik kharch siddhant sangat |
 | 233 | PAPER-I: EXP: Suspense Heads & Expenditure Accounting | 80 | 0 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. Suspense heads siddhant sangat |
 | 234 | PAPER-I: EXP: Losses, Write-offs & Ex-gratia | 80 | 0 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. Hani/write-off/ex-gratia siddhant sangat |
-| 235 | PAPER-I: EXP: Stores & Materials Expenditure | 80 | 2 | 0 | pending |
+| 235 | PAPER-I: EXP: Stores & Materials Expenditure | 80 | 2 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. Bhandar/samagri kharch siddhant sangat |
 | 236 | PAPER-I: EXP: Pension & Retirement Benefits Expenditure | 60 | 0 | 0 | pending |
 | 237 | PAPER-I: EXP: New Service & New Instrument of Service | 60 | 0 | 0 | pending |
 | 238 | PAPER-I: EXP: Economy Measures & Expenditure Cuts | 60 | 0 | 0 | pending |
