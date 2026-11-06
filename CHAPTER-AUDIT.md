@@ -398,8 +398,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 452 | PAPER-III: TSC: Coaching Services Costing | 80 | 0 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. Coaching seva laagat sangat (POH 18 maah/IOH 9 maah) |
 | 453 | PAPER-III: TSC: Goods Services Costing | 80 | 0 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. Maal seva laagat sangat |
 | 454 | PAPER-III: TSC: Terminal Costs | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Terminal laagat sangat (₹50/tonne, ₹20/wagon satyaapit) |
-| 455 | PAPER-III: TSC: Haulage Costs | 70 | 0 | 0 | pending |
-| 456 | PAPER-III: TSC: Train Costing | 70 | 0 | 0 | pending |
+| 455 | PAPER-III: TSC: Haulage Costs | 70 | 0 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. Haulage laagat sangat |
+| 456 | PAPER-III: TSC: Train Costing | 70 | 0 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. Train laagat sangat |
 | 457 | PAPER-III: TSC: Section Costing | 60 | 0 | 0 | pending |
 | 458 | PAPER-III: TSC: Commodity Costing | 60 | 0 | 0 | pending |
 | 459 | PAPER-III: TSC: Avoidable vs Distributed Costs | 60 | 0 | 0 | pending |
