@@ -143,8 +143,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 197 | PAPER-I: PPN: Family Pension | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Parivar pension (30%/50%, 10 varsh/67 aayu shakhaayen) maanak |
 | 198 | PAPER-I: PPN: Extraordinary Pension | 30 | 0 | 0 | done 2026-11-06: 30/30 tay, 0 sudhaar. Asadharan pension maanak |
 | 199 | PAPER-I: PPN: Retirement Types | 40 | 0 | 0 | done 2026-11-06: 40/40 tay, 0 sudhaar. Sevanivritti prakar (VR 20 varsh + 5 varsh weightage, FR 56(j)) maanak |
-| 200 | PAPER-I: PPN: NPS Basics & PRAN | 40 | 0 | 0 | pending |
-| 201 | PAPER-I: PPN: NPS Contributions | 30 | 0 | 0 | pending |
+| 200 | PAPER-I: PPN: NPS Basics & PRAN | 40 | 0 | 0 | done 2026-11-06: 40/40 tay, 0 sudhaar. NPS maulik (01.01.2004, PRAN, PFRDA) maanak |
+| 201 | PAPER-I: PPN: NPS Contributions | 30 | 0 | 0 | done 2026-11-06: 30/30 tay, 0 sudhaar. NPS yogdan — karmchari 10%, sarkar 14% (2019 se) spasht; ch599 wale 14% shabdawali prashn par aantarik samarthan |
 | 202 | PAPER-I: PPN: NPS Investment | 30 | 0 | 0 | pending |
 | 203 | PAPER-I: PPN: NPS Exit & Annuity | 40 | 0 | 0 | pending |
 | 204 | PAPER-I: LLF: Payment of Wages Act 1936 | 60 | 0 | 0 | pending |
