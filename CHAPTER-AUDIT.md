@@ -127,7 +127,7 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 181 | PAPER-I: GRP: GCC & Contract Clauses | 60 | 3 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. GCC Works/Services antar sangat (PG 21/30 din parivar, ch45/ch61/ch67 se mel) |
 | 182 | PAPER-I: GRP: Stores | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Stores suspense (P71 parivar) + GeM + way-leave sangat |
 | 183 | PAPER-I: GRP: Workshop | 60 | 2 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. WMS/on-cost/WTR siddhant sangat (ch99/ch102/ch105 se mel) |
-| 184 | PAPER-I: GRP: Traffic Earnings & Apportionment | 60 | 1 | 0 | pending |
+| 184 | PAPER-I: GRP: Traffic Earnings & Apportionment | 60 | 1 | 0 | done 2026-11-06: 60/60 tay, 1 sudhaar. CAS nodal agency Central se Northern Railway (TG parivar: CAS=NR, TAMS=CR; apportionment nodal WR user-niyam alag). Traffic Book SALA/CAS siddhant ch17/ch18 sudhaaron se sangat |
 | 185 | PAPER-I: GRP: Commercial (NFR, PPP, DFC) | 60 | 5 | 0 | pending |
 | 186 | PAPER-I: GRP: Sources of Finance & EBR | 60 | 1 | 0 | pending |
 | 187 | PAPER-I: GRP: Misc (OR, Lease, GST, MSOP) | 40 | 1 | 0 | pending |
