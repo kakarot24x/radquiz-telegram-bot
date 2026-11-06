@@ -384,8 +384,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 438 | PAPER-III: FIN: Capital vs Revenue & Planning | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Punji बनाम rajaswa/yojana sangat |
 | 439 | PAPER-III: FIN: Budget Merger 2016 | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Budget vilay 2016 sangat (Debroy 2015, Cabinet 21.09.2016) |
 | 440 | PAPER-III: FIN: Convention Committee & Dividend | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Convention Committee/labhansh sangat |
-| 441 | PAPER-III: FIN: Operating Ratio & Financial Results | 70 | 0 | 0 | pending |
-| 442 | PAPER-III: FIN: CAG Audit & PAC | 70 | 2 | 0 | pending |
+| 441 | PAPER-III: FIN: Operating Ratio & Financial Results | 70 | 0 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. Parichalan anupaat/vittiya parinaam sangat |
+| 442 | PAPER-III: FIN: CAG Audit & PAC | 70 | 2 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. CAG audit/PAC sangat (PAC 22 = 15+7, draft para 6 saptaah, ATN 4 maah) |
 | 443 | PAPER-III: FIN: Economy & Financial Propriety | 80 | 0 | 0 | pending |
 | 444 | PAPER-III: TSC: Traffic Statistics Organization | 60 | 0 | 0 | pending |
 | 445 | PAPER-III: TSC: Coaching Statistics | 80 | 0 | 0 | pending |
