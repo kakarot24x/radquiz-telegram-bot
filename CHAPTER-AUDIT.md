@@ -159,8 +159,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 213 | PAPER-I: LLF: ESI Act 1948 | 40 | 0 | 0 | done 2026-11-06: 40/40 tay, 0 sudhaar. ESI Act (0.75/3.25, 21,000 seema) maanak |
 | 214 | PAPER-I: LLF: Maternity Benefit Act 1961 | 30 | 0 | 0 | done 2026-11-06: 30/30 tay, 0 sudhaar. Maternity Benefit Act (26 saptah) maanak |
 | 215 | PAPER-I: LLF: HOER - Hours of Employment Regulations | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. HOER roster aankde (42/48/75) sangat — vaidhanik seemaon se alag prashn |
-| 216 | PAPER-I: LLF: Trade Unions & Standing Orders | 30 | 0 | 0 | pending |
-| 217 | PAPER-I: LLF: Child Labour, Apprentices & Misc Acts | 40 | 0 | 0 | pending |
+| 216 | PAPER-I: LLF: Trade Unions & Standing Orders | 30 | 0 | 0 | done 2026-11-06: 30/30 tay, 0 sudhaar. Trade Unions/Standing Orders maanak (SO seema 300 yahan, ch207 me 100 — yug-bhed, haath nahi) |
+| 217 | PAPER-I: LLF: Child Labour, Apprentices & Misc Acts | 40 | 0 | 0 | done 2026-11-06: 40/40 tay, 0 sudhaar. Bal shram/apprentice/misc Acts maanak |
 | 218 | PAPER-I: LLF: Financial Concurrence - Concept | 40 | 0 | 0 | pending |
 | 219 | PAPER-I: LLF: Delegation of Powers & SOP | 50 | 0 | 0 | pending |
 | 220 | PAPER-I: LLF: Finance in Tenders & Contracts | 40 | 0 | 0 | pending |
