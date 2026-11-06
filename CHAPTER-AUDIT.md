@@ -133,8 +133,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 187 | PAPER-I: GRP: Misc (OR, Lease, GST, MSOP) | 40 | 1 | 0 | done 2026-11-06: 40/40 tay, 0 sudhaar. Misc (OR/PEI, GST composition, RBS-MAR) sangat |
 | 188 | PAPER-I: PPN: PF Membership & Subscription | 40 | 0 | 0 | done 2026-11-06: 40/40 tay, 0 sudhaar. SRPF sadasyata/abhidan (nyoonatam 6%) maanak |
 | 189 | PAPER-I: PPN: PF Interest & Statements | 30 | 0 | 0 | done 2026-11-06: 30/30 tay, 0 sudhaar. SRPF byaaj/vivaran maanak |
-| 190 | PAPER-I: PPN: PF Refundable Advances | 40 | 0 | 0 | pending |
-| 191 | PAPER-I: PPN: PF Non-refundable Advance & Withdrawal | 40 | 0 | 0 | pending |
+| 190 | PAPER-I: PPN: PF Refundable Advances | 40 | 0 | 0 | done 2026-11-06: 40/40 tay, 0 sudhaar. SRPF asthayi agrim (36 kist) maanak |
+| 191 | PAPER-I: PPN: PF Non-refundable Advance & Withdrawal | 40 | 0 | 0 | done 2026-11-06: 40/40 tay, 0 sudhaar. SRPF part-final withdrawal (15 varsh/10 varsh) maanak |
 | 192 | PAPER-I: PPN: PF Nomination & Settlement | 30 | 0 | 0 | pending |
 | 193 | PAPER-I: PPN: Qualifying Service | 50 | 0 | 0 | pending |
 | 194 | PAPER-I: PPN: Pension Calculation | 50 | 0 | 0 | pending |
