@@ -223,8 +223,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 277 | PAPER-I: IR: Staff Grievances & Negotiations | 40 | 0 | 0 | done 2026-11-06: 40/40 tay, 0 sudhaar. Shikayat/varta tantra sangat |
 | 278 | PAPER-I: BK: Double Entry System & Accounting Principles | 80 | 8 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. Dohri-pravishti siddhant maanak |
 | 279 | PAPER-I: BK: Journal & Journal Entries | 80 | 2 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. Journal pravishtiyan maanak |
-| 280 | PAPER-I: BK: Ledger Posting & Balancing | 60 | 0 | 0 | pending |
-| 281 | PAPER-I: BK: Trial Balance | 60 | 0 | 0 | pending |
+| 280 | PAPER-I: BK: Ledger Posting & Balancing | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Khata-bahi posting sangat |
+| 281 | PAPER-I: BK: Trial Balance | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Talpat sangat |
 | 282 | PAPER-I: BK: Rectification of Errors | 60 | 1 | 0 | pending |
 | 283 | PAPER-I: BK: Cash Book | 60 | 0 | 0 | pending |
 | 284 | PAPER-I: BK: Bank Reconciliation Statement | 60 | 0 | 0 | pending |
