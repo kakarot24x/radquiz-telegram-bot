@@ -7523,7 +7523,7 @@
     "Cash Remittance Note",
     "None of the above"
    ],
-   "a": "B",
+   "a": "A",
    "d": "2024-05-07"
   },
   {
@@ -12659,7 +12659,7 @@
     "Military Traffic",
     "POL"
    ],
-   "a": "A",
+   "a": "D",
    "d": "2024-05-17"
   },
   {
@@ -30803,7 +30803,7 @@
     "Leviable on selected commodities",
     "None of the above"
    ],
-   "a": "B",
+   "a": "A",
    "d": "2024-06-15"
   },
   {
@@ -30827,7 +30827,7 @@
     "Creditor for closing balance",
     "All the above"
    ],
-   "a": "A",
+   "a": "D",
    "d": "2024-06-15"
   },
   {
