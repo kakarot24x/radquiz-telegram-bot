@@ -32,8 +32,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 25 | Stores - Stores (Ch 3) | 88 | 88 | 4 | done 2026-11-06: 88/88 tay; takraav sudhaar — e-auction/reverse (TG4), time book (TG2), non-GeM open tender Rs 8 lakh (TG2), production shops = process + job dono (ch25 apni copy + ch110 copy + vyakhya). Ek garbled sawal note: budgetary reviews wala (kunji "-2" apni hi soochi se takrati hai) — chhua nahi |
 | 26 | Stores - COS Procedures (Ch 4) | 11 | 11 | 0 | done 2026-11-06: 11/11 tay, 0 sudhaar |
 | 27 | Expenditure | 30 | 30 | 2 | done 2026-11-06: 30/30 tay; **2 sudhaar** — budgeting jaanch = Liability Register (TG2 galat tha), works classification ke pehle 2 ank = Plan Head (ch27 apni copy galat thi — vittiya srot uske baad wale ank se aata hai) |
-| 28 | Books & Budget | 12 | 12 | 1 | pending |
-| 29 | Leave Rules | 29 | 29 | 1 | pending |
+| 28 | Books & Budget | 12 | 12 | 1 | done 2026-11-06: 12/12 tay; 1 sudhaar — budget vitaran = Pink Book (TG_Q7084 Green book galat tha) |
+| 29 | Leave Rules | 29 | 29 | 1 | done 2026-11-06: 29/29 tay; 1 sudhaar — ward se saaman bina Issue voucher nahi (TG x2 Gate pass galat tha) |
 | 30 | R3 - Chapter 5 (818-pg PDF) | 57 | 57 | 0 | pending |
 | 31 | R3 - Chapter 9 (818-pg PDF) | 55 | 55 | 3 | pending |
 | 32 | R3 - Financial Accounting (General) | 393 | 393 | 0 | pending |
