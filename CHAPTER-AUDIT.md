@@ -487,8 +487,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 541 | MSOP: Part D — Stores Matters | 220 | 0 | 0 | done 2026-11-06: 220/220 tay, 0 sudhaar. Part D Item 1-9: PCMM Full (quantity approval), panjikaran sangat; AAC aankda is chapter me nahi |
 | 542 | MSOP: Part E — Commercial Matters | 180 | 0 | 0 | done 2026-11-06: 180/180 tay, 0 sudhaar. Part E Item 1-18 + parcel-leasing TC sidhiyan sangat; wharfage goods-shed adhar sangat |
 | 543 | MSOP: Part F — Establishment (Gazetted) | 200 | 0 | 0 | done 2026-11-06: 200/200 tay, 0 sudhaar. Part F (Gazetted) Item 1-28 sangat; NOT-correct template kunji sahi (#2 verify) |
-| 544 | MSOP: Part F — Establishment (Non-Gazetted) | 150 | 1 | 0 | pending |
-| 545 | MSOP: Part G — Security Matters | 80 | 0 | 0 | pending |
+| 544 | MSOP: Part F — Establishment (Non-Gazetted) | 150 | 1 | 0 | done 2026-11-06: 150/150 tay, 0 sudhaar. Part F Sub-part II + samanya MSOP siddhant sangat |
+| 545 | MSOP: Part G — Security Matters | 80 | 0 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. Part G Security (RPF), 2018 adhigrahan + Annexure patra sangat |
 | 546 | MSOP: Annexures — GM & DRM Powers | 120 | 0 | 0 | pending |
 | 547 | MSOP: Financial Limits Master | 150 | 0 | 0 | pending |
 | 548 | Rajbhasha: Presidential Orders 1960 | 80 | 0 | 0 | pending |
