@@ -91,10 +91,10 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 84 | Promotion / Selections | 65 | 65 | 0 | done 2026-11-06: 65/65 tay, 0 sudhaar |
 | 85 | Annual Performance Appraisal Report | 23 | 23 | 0 | done 2026-11-06: 23/23 tay, 0 sudhaar |
 | 86 | Staff Benefit Fund | 53 | 51 | 0 | done 2026-11-06: 53/53 tay, 0 sudhaar. SBF prati-vyakti ₹800 aur mahila sashaktikaran ₹28 ch76 se mail khata hai |
-| 87 | Railway Service (Conduct) Rules, 1966 | 15 | 15 | 0 | pending |
-| 88 | Discipline and Appeal Rules | 48 | 48 | 0 | pending |
-| 89 | Pension and Family Pension | 66 | 65 | 0 | pending |
-| 90 | Compassionate Appointment | 21 | 21 | 0 | pending |
+| 87 | Railway Service (Conduct) Rules, 1966 | 15 | 15 | 0 | done 2026-11-06: 15/15 tay, 0 sudhaar |
+| 88 | Discipline and Appeal Rules | 48 | 48 | 0 | done 2026-11-06: 48/48 tay, 0 kunji sudhaar. Ek toota sawal note — Major/Minor chargesheet form wale sawal ke paas keval ek vikalp (SF-1) hai, sahi jodi (SF-5/SF-11) vikalpon me hai hi nahi; pehle se quarantine me hai, vikalp badalna aapke faisle par |
+| 89 | Pension and Family Pension | 66 | 65 | 0 | done 2026-11-06: 66/66 tay, 0 kunji sudhaar. Ek toota sawal note — "NPS kab shuru hua" ke paas keval ek vikalp (01.01.2006) hai, sahi tithi 01.01.2004 vikalpon me nahi (isi chapter ka dusra sawal use sahi kehta hai); quarantine me hai, faisla aapka |
+| 90 | Compassionate Appointment | 21 | 21 | 0 | done 2026-11-06: 21/21 tay, 0 sudhaar |
 | 91 | Industrial Relations (PNM, JCM, PREM) | 83 | 79 | 0 | pending |
 | 92 | Central Administrative Tribunals | 19 | 19 | 0 | pending |
 | 93 | Right To Information | 17 | 17 | 0 | pending |
