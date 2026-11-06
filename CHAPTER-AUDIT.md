@@ -326,8 +326,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 380 | PAPER-II: EX2: Contingent Expenditure | 50 | 1 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Aakasmik vyay/imprest sangat |
 | 381 | PAPER-II: EX2: Re-appropriation & Savings | 50 | 1 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Punarviniyog/bachat sangat |
 | 382 | PAPER-II: EX2: Losses & Write-offs | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Haani/write-off sangat |
-| 383 | PAPER-II: EX2: Economy Measures | 50 | 0 | 0 | pending |
-| 384 | PAPER-II: EX2: Audit of Expenditure | 50 | 0 | 0 | pending |
+| 383 | PAPER-II: EX2: Economy Measures | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Mitavyayita upaay sangat |
+| 384 | PAPER-II: EX2: Audit of Expenditure | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Vyay audit sangat |
 | 385 | PAPER-II: EX2: Staff & Welfare Expenditure | 50 | 0 | 0 | pending |
 | 386 | PAPER-II: WMS: WMS Purpose & Scope | 50 | 1 | 0 | pending |
 | 387 | PAPER-II: WMS: Debits to WMS | 50 | 0 | 0 | pending |
