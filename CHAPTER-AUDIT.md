@@ -370,8 +370,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 424 | PAPER-III: TAC: Ticket Checking & Excess Fare | 80 | 0 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. Ticket jaanch/adhik kiraya sangat (Sec 137/138, luggage 70/50/40/35 kg) |
 | 425 | PAPER-III: TAC: Military & Government Traffic | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Sainya/sarkari yaatayat sangat — TAC samooh sampann (ch406-425, 1800 Q, 0 sudhaar, 1 defect #9) |
 | 426 | PAPER-III: FIN: Railway Finance Organization | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Railway vitt sangathan sangat — FIN samooh shuru |
-| 427 | PAPER-III: FIN: Finance Code | 70 | 2 | 0 | pending |
-| 428 | PAPER-III: FIN: Budget Formulation | 80 | 0 | 0 | pending |
+| 427 | PAPER-III: FIN: Finance Code | 70 | 2 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. Finance Code/canons sangat |
+| 428 | PAPER-III: FIN: Budget Formulation | 80 | 0 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. Budget rachna sangat (vilay 2017-18, labhansh samapti 2016-17) |
 | 429 | PAPER-III: FIN: Budget Presentation | 60 | 0 | 0 | pending |
 | 430 | PAPER-III: FIN: Demands for Grants | 70 | 1 | 0 | pending |
 | 431 | PAPER-III: FIN: Appropriation Accounts | 70 | 1 | 0 | pending |
