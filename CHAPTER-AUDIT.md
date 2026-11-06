@@ -446,8 +446,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 500 | PAPER-III: INS: Inspection of Digital Systems | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Digital pranaali nirikshan sangat |
 | 501 | PAPER-III: INS: Inspection Norms, Frequency & Follow-up | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Nirikshan maandand/aavritti sangat — INS samooh sampann (ch478-501, 1470 Q, 0 sudhaar) |
 | 502 | IRFC Vol 2: Abstracts A–Z Overview | 100 | 0 | 0 | done 2026-11-06: 100/100 tay, 0 sudhaar. Abstract A-O maanchitra sangat (ch106 se milaan) |
-| 503 | IRFC Vol 2: Establishment & Pay Booking | 100 | 0 | 0 | pending |
-| 504 | IRFC Vol 2: Source Codes | 100 | 0 | 0 | pending |
+| 503 | IRFC Vol 2: Establishment & Pay Booking | 100 | 0 | 0 | done 2026-11-06: 100/100 tay, 0 sudhaar. Plan Head + source code maanchitra sangat |
+| 504 | IRFC Vol 2: Source Codes | 100 | 0 | 0 | done 2026-11-06: 100/100 tay, 0 sudhaar. Source code + Primary Unit maanchitra sangat |
 | 505 | IRFC Vol 2: Primary Units | 100 | 1 | 0 | pending |
 | 506 | IRFC Vol 2: Funds, Suspense & Pension | 100 | 0 | 0 | pending |
 | 507 | IRFC Vol 2: Sub-Major Heads & Demands | 100 | 0 | 0 | pending |
