@@ -74,7 +74,7 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 67 | CTARA - General Expenditure | 329 | 329 | 0 | done 2026-11-06: 329/329 tay, 0 sudhaar. Preliminary Survey = "Close estimation" yahan bhi mila (FLS vishleshan ki pushti). Ek avalokan: GM ke lumpsum works yahan ₹2.5 cr (do jagah), IRIFM ch45 me ₹1 cr — MSOP 2018 se ₹2.5 cr sahi lagta hai, par dastavej bina ch45 nahi badla |
 | 68 | CTARA - Workshop Accounts | 348 | 348 | 5 | done 2026-11-06: 348/348 tay. **5 takraav suljhe (9 rekey)** — budget antar par prabandhan ki pratikriya = **Materiality** (TG sahi, main galat); underaged stock badlav = **Finance Concurrence**; Standing work orders = **Revenue Expenditure**; work-order numbering = **6 digit**; Batch Costing = **Rolling Stock Production**. Route Card yahan bhi shops ka adhikar-patra hai (G14 main paksh) |
 | 69 | CTARA - Traffic Accounts | 167 | 167 | 8 | done 2026-11-06: 167/167 tay. **1 sudhaar (2 copies)** — Traffic Book me apportionment ka parinaam **Part B** hai (Part A Station, Part C Traffic Account, Part D Abstract); ch69 + ch111 ki ek-ek copy Part C galat keh rahi thi. Baaki 6 takraav pehle suljhe; special-cancellation (faisla #2) aur ticket-roll continuity (4v4) yahan bhi mile — dono aapke faisle par yathavat |
-| 70 | CTARA - Stores | 578 | 578 | 0 | pending |
+| 70 | CTARA - Stores | 578 | 578 | 0 | done 2026-11-06: 578/578 tay, 0 sudhaar. AAC DyCMM ≤₹1 cr yahan bhi mila (aapke hastlikhit note ke paksh me ek aur pushti). Option clause, 5%/12.5% issue charges, Stock Adjustment P7180 shrinkhala — sab mail |
 | 71 | CTARA - Statistics | 132 | 132 | 0 | pending |
 | 72 | CTARA - Railway Accounts and Finance | 271 | 271 | 0 | pending |
 | 73 | CTARA - GST | 61 | 61 | 0 | pending |
