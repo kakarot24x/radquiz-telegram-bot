@@ -348,8 +348,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 402 | PAPER-II: SAC: Stores Budget | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Stores bajat sangat |
 | 403 | PAPER-II: SAC: Internal Check in Stores Accounts | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Stores lekha aantarik jaanch sangat |
 | 404 | PAPER-II: SAC: Audit of Stores Accounts | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Stores lekha audit sangat |
-| 405 | PAPER-II: SAC: Depot Accounts & Returns | 50 | 0 | 0 | pending |
-| 406 | PAPER-III: TAC: Traffic Accounts Organization | 80 | 0 | 0 | pending |
+| 405 | PAPER-II: SAC: Depot Accounts & Returns | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Depot lekhe/vivaran sangat — SAC samooh sampann (ch392-405, 700 Q, 0 sudhaar) |
+| 406 | PAPER-III: TAC: Traffic Accounts Organization | 80 | 0 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. Yaatayat lekha sangathan sangat — PAPER-III shuru |
 | 407 | PAPER-III: TAC: Coaching Earnings: Tickets | 150 | 1 | 0 | pending |
 | 408 | PAPER-III: TAC: Season Tickets & Concessions | 80 | 0 | 0 | pending |
 | 409 | PAPER-III: TAC: Parcels & Luggage | 80 | 0 | 0 | pending |
