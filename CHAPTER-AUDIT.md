@@ -139,8 +139,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 193 | PAPER-I: PPN: Qualifying Service | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Ahark seva siddhant maanak (nyoonatam 10 varsh) |
 | 194 | PAPER-I: PPN: Pension Calculation | 50 | 0 | 0 | done 2026-11-06: 50 tay, 1 sudhaar — pension ke liye emoluments = keval basic pay (DA gratuity me judta hai, pension me nahi); qqj5kln78u C se A. Baaki pension ganana maanak |
 | 195 | PAPER-I: PPN: Commutation of Pension | 40 | 0 | 0 | done 2026-11-06: 40/40 tay, 0 sudhaar. Commutation (40%, 15 varsh bahaali, ganit sahi) maanak |
-| 196 | PAPER-I: PPN: DCRG | 40 | 0 | 0 | pending |
-| 197 | PAPER-I: PPN: Family Pension | 50 | 0 | 0 | pending |
+| 196 | PAPER-I: PPN: DCRG | 40 | 0 | 0 | done 2026-11-06: 40/40 tay, 0 sudhaar. DCRG maanak — emoluments = pay+DA yahi sahi (gratuity), ch194 sudhaar ki pushti |
+| 197 | PAPER-I: PPN: Family Pension | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Parivar pension (30%/50%, 10 varsh/67 aayu shakhaayen) maanak |
 | 198 | PAPER-I: PPN: Extraordinary Pension | 30 | 0 | 0 | pending |
 | 199 | PAPER-I: PPN: Retirement Types | 40 | 0 | 0 | pending |
 | 200 | PAPER-I: PPN: NPS Basics & PRAN | 40 | 0 | 0 | pending |
