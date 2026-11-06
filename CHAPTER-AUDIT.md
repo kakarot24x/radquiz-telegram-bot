@@ -43,7 +43,7 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 36 | R3 - Railway Budget (Railkaksha) | 29 | 29 | 0 | done 2026-11-06: 29/29 tay, 0 sudhaar (GFR Rule 50 parivar + Demand 85 ke SMH 01-09 sab sahi). Ek hi sawal do baar darj hai (SMH-09, ek hi ID) — punaravritti matra, kunji ek |
 | 37 | R3 - S2CH4 Q203-302 (818-pg PDF) | 13 | 13 | 1 | done 2026-11-06: 13/13 tay. Iska ekmatra takraav ch24 me hi sulajh gaya tha (option clause). **1 vyakhya sudhaar** — usi sawal ki vyakhya purani galat kunji (supplier request) ka samarthan karti reh gayi thi, ab "Railway can enforce" ke saath milaa di |
 | 38 | R3 - Stores & GeM (818-pg PDF) | 146 | 146 | 4 | pending |
-| 39 | R3 - Workshop Accounts (818-pg PDF) | 187 | 187 | 9 | pending |
+| 39 | R3 - Workshop Accounts (818-pg PDF) | 187 | 187 | 9 | done 2026-11-06: 187/187 tay. **10 sudhaar** — 9 takraav (5 TG: advance deposit 20%/50L, ROAMS, Revenue Work Order x2, machine breakdown; 4 main: estimate-jaanch aur WMS review dono = All the above) + **1 antar-chapter: Wagon POH Abstract D hai** (kai copies E galat thi; kram B=way, C=loco, D=gaadiyan, E=plant). **Khule:** SR POH workshop (Perambur banam Golden Rock), oncost sangrah ka madhyam (Standing banam On Cost Work Order — vansh matbhed) |
 | 40 | IRIFM 1001 - Railway history | 11 | 11 | 0 | pending |
 | 41 | IRIFM 1001 - Indian Railways financial overview | 16 | 15 | 0 | pending |
 | 42 | IRIFM 1001 - Business policy and strategy | 42 | 42 | 1 | pending |
