@@ -272,8 +272,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 326 | PAPER-II: WKS: Materials for Workshops | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Workshop samagri sangat |
 | 327 | PAPER-II: WKS: Work Orders | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Work order tantra sangat |
 | 328 | PAPER-II: WKS: POH/IOH Overhaul Costing | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. POH/IOH lagat sangat |
-| 329 | PAPER-II: WKS: Manufacture Suspense | 60 | 0 | 0 | pending |
-| 330 | PAPER-II: WKS: Workshop General Charges & Proforma On-cost | 60 | 1 | 0 | pending |
+| 329 | PAPER-II: WKS: Manufacture Suspense | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Manufacture Suspense sangat |
+| 330 | PAPER-II: WKS: Workshop General Charges & Proforma On-cost | 60 | 1 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. General charges/proforma on-cost sangat (proforma prayog-visthar ch324 se alag ang — chhodaa gaya) |
 | 331 | PAPER-II: WKS: Outturn Statement | 50 | 0 | 0 | pending |
 | 332 | PAPER-II: WKS: Scrap & By-products | 50 | 0 | 0 | pending |
 | 333 | PAPER-II: WKS: Plant & Machinery Accounts | 50 | 1 | 0 | pending |
