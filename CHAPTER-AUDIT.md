@@ -286,8 +286,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 340 | PAPER-II: COS: COS Organization & Duties | 70 | 0 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. COS sangathan/kartavya sangat |
 | 341 | PAPER-II: COS: Purchase Powers & Delegation | 70 | 0 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. Kharid shakti/pratinidhi (SOP/PAC) sangat |
 | 342 | PAPER-II: COS: Tender Procedures | 80 | 0 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. Nivida prakriya sangat |
-| 343 | PAPER-II: COS: Rate Contracts & DGS&D | 60 | 0 | 0 | pending |
-| 344 | PAPER-II: COS: Inspection & Quality Control | 60 | 0 | 0 | pending |
+| 343 | PAPER-II: COS: Rate Contracts & DGS&D | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Rate contract/DGS&D-GeM sangat |
+| 344 | PAPER-II: COS: Inspection & Quality Control | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Nirikshan/gunvatta (RITES/RDSO) sangat |
 | 345 | PAPER-II: COS: Receipt & Acceptance | 50 | 0 | 0 | pending |
 | 346 | PAPER-II: COS: Stock & Inventory Management | 70 | 0 | 0 | pending |
 | 347 | PAPER-II: COS: Disposal of Surplus & Scrap | 60 | 0 | 0 | pending |
