@@ -110,7 +110,7 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 104 | Labour Laws & Finance | 300 | 300 | 0 | done 2026-11-06: 300/300 tay, 0 sudhaar. Shram-vidhi set maanak; do "Update" vyakhyaon wale paath (Payment of Wages bina seema — Code on Wages 21.11.2025 se; EPF seema ₹25,000 — vyakhya me Gazette S.O. 5109(E) 17.09.2026 uddhrit) yug-anusaar sthit hain, badlaav nahi |
 | 105 | GRP v1 | 350 | 347 | 0 | done 2026-11-06: 350/350 tay, 0 sudhaar. GRP sankalan aatm-sangat; Demand-84 wala paath (2020-21) ch 44 ke 83-aankde se yug-bhed ke roop me note — iske vikalpon me 83 hai hi nahi, badlaav nahi |
 | 106 | expenditurev2 | 800 | 600 | 0 | done 2026-11-06: 800/800 tay, 0 sudhaar. Ganit-paath sahi; 100 Match-List paath karyakram se satyapit (Plan Head/Demand/Abstract/Fund nakshon se) |
-| 107 | Books & Budget II | 202 | 202 | 0 | pending |
+| 107 | Books & Budget II | 202 | 202 | 0 | done 2026-11-06: 202/202 tay, 0 sudhaar. Samanya book-keeping/budget set maanak aur sangat |
 | 108 | Book Keeping v1 | 1000 | 1000 | 0 | pending |
 | 109 | PAPER-I | 5583 | 5579 | 23 | pending |
 | 110 | PAPER-II | 3701 | 3694 | 36 | pending |
