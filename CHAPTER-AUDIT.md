@@ -394,8 +394,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 448 | PAPER-III: TSC: Engine Usage Statistics | 70 | 0 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. Engine upyog sankhyiki sangat (SFC/SEC prati 1000 GTKM) |
 | 449 | PAPER-III: TSC: Operating Statistics | 80 | 0 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. Parichalan sankhyiki sangat |
 | 450 | PAPER-III: TSC: Statistical Publications | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Sankhyiki prakashan sangat |
-| 451 | PAPER-III: TSC: Unit Costs | 70 | 0 | 0 | pending |
-| 452 | PAPER-III: TSC: Coaching Services Costing | 80 | 0 | 0 | pending |
+| 451 | PAPER-III: TSC: Unit Costs | 70 | 0 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. Ikai laagat sangat |
+| 452 | PAPER-III: TSC: Coaching Services Costing | 80 | 0 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. Coaching seva laagat sangat (POH 18 maah/IOH 9 maah) |
 | 453 | PAPER-III: TSC: Goods Services Costing | 80 | 0 | 0 | pending |
 | 454 | PAPER-III: TSC: Terminal Costs | 60 | 0 | 0 | pending |
 | 455 | PAPER-III: TSC: Haulage Costs | 70 | 0 | 0 | pending |
