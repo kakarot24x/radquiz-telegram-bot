@@ -474,8 +474,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 528 | GCC Works: Time, Extension & Force Majeure | 100 | 0 | 0 | done 2026-11-06: 100/100 tay, 0 sudhaar. Samay/vistaar/force majeure/LD siddhant sangat |
 | 529 | GCC Works: Execution & Measurement | 110 | 1 | 0 | done 2026-11-06: 110/110 tay, 0 sudhaar. Nispadan/maap/on-account + antim bill siddhant sangat |
 | 530 | GCC Works: Termination & Determination | 90 | 0 | 0 | done 2026-11-06: 90/90 tay, 0 sudhaar. Cl 62 48-ghante notice, Annexure-XI (ACS-8) sangat |
-| 531 | GCC Works: Arbitration & Settlement | 80 | 0 | 0 | pending |
-| 532 | GCC Works: GST & Tax Provisions | 100 | 0 | 0 | pending |
+| 531 | GCC Works: Arbitration & Settlement | 80 | 0 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. ACS-10 (04.03.2025, SC aadesh 08.11.2024, sambhaavi prabhav) sangat |
+| 532 | GCC Works: GST & Tax Provisions | 100 | 0 | 0 | done 2026-11-06: 100/100 tay, 0 sudhaar. GST Para 6(a)(v) ACS-6 — ITC/refund/indemnity/retention sangat. GCC Works samooh sampann (ch522-532, 1210 Q) |
 | 533 | GCC Stores: Stores Tender Conditions | 120 | 0 | 0 | pending |
 | 534 | GCC Stores: Supply Contract Terms | 130 | 0 | 0 | pending |
 | 535 | GCC Stores: Stores Contract — Legal | 100 | 0 | 0 | pending |
