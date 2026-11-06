@@ -290,8 +290,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 344 | PAPER-II: COS: Inspection & Quality Control | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Nirikshan/gunvatta (RITES/RDSO) sangat |
 | 345 | PAPER-II: COS: Receipt & Acceptance | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Praapti/sweekriti sangat |
 | 346 | PAPER-II: COS: Stock & Inventory Management | 70 | 0 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. Stock/inventory (ABC/VED/FSN/EOQ) sangat |
-| 347 | PAPER-II: COS: Disposal of Surplus & Scrap | 60 | 0 | 0 | pending |
-| 348 | PAPER-II: COS: Stores Accounts & Ledgers | 60 | 0 | 0 | pending |
+| 347 | PAPER-II: COS: Disposal of Surplus & Scrap | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Adhishesh/scrap nipatan (e-auction) sangat |
+| 348 | PAPER-II: COS: Stores Accounts & Ledgers | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Stores lekha/khate (ausat-dar ganit jaanch-sahit) sangat |
 | 349 | PAPER-II: COS: Purchase Suspense & Accounting | 50 | 0 | 0 | pending |
 | 350 | PAPER-II: COS: Depot Management | 50 | 0 | 0 | pending |
 | 351 | PAPER-II: COS: E-Procurement & IREPS | 50 | 1 | 0 | pending |
