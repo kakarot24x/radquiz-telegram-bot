@@ -450,8 +450,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 504 | IRFC Vol 2: Source Codes | 100 | 0 | 0 | done 2026-11-06: 100/100 tay, 0 sudhaar. Source code + Primary Unit maanchitra sangat |
 | 505 | IRFC Vol 2: Primary Units | 100 | 1 | 0 | done 2026-11-06: 100/100 tay, 0 sudhaar. PU 41-63 + Abstract X/Y/Z sangat |
 | 506 | IRFC Vol 2: Funds, Suspense & Pension | 100 | 0 | 0 | done 2026-11-06: 100/100 tay, 0 sudhaar. Abstract A vistrit head maanchitra sangat |
-| 507 | IRFC Vol 2: Sub-Major Heads & Demands | 100 | 0 | 0 | pending |
-| 508 | IRFC Vol 2: Primary Units Advanced | 100 | 0 | 0 | pending |
+| 507 | IRFC Vol 2: Sub-Major Heads & Demands | 100 | 0 | 0 | done 2026-11-06: 100/100 tay, 0 sudhaar. Jodi-milaan (Abstract/Plan Head/source/PU) sangat |
+| 508 | IRFC Vol 2: Primary Units Advanced | 100 | 0 | 0 | done 2026-11-06: 100/100 tay, 0 sudhaar. Abstract N COVID head + Abstract X minor head sangat; "bank se pension bhugtan" A-key chapter ke apne 215-head parivar se sangat, chhua nahi |
 | 509 | IRFC Vol 2: Abstract X – Detailed Heads | 100 | 0 | 0 | pending |
 | 510 | IRFC Vol 2: Demand Structure (Old) | 100 | 0 | 0 | pending |
 | 511 | IRFC Vol 2: Abstract Z – Detailed Heads | 100 | 0 | 0 | pending |
