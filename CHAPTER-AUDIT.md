@@ -52,7 +52,7 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 45 | IRIFM 1001 - General Expenditure | 198 | 198 | 4 | done 2026-11-06: 198/198 tay. **2 sudhaar** (dono takraav: GM ka M&P adhikaar Rs.50 lakh; service-contract PG 90 din — GCC Services dhara 4.11 se satyapit: samanya 30 din, antim seema 90 din). **FLS khula samooh — saboot ab main paksh me jhuka:** isi chapter ka survey-parivar Preliminary Survey = "Close Estimation" aur Final Location Survey = "alignment feasibility" alag-alag kehta hai; TG copies ne sambhavatah Preliminary wala uttar FLS par chipkaya hai. Faisla phir bhi user ka |
 | 46 | IRIFM 1001 - Establishment finance | 55 | 54 | 0 | done 2026-11-06: 55/55 tay, 0 sudhaar. 7th CPC DA talika poori sahi (L14+ 1200, L12-13 1000, L9-11 900, L6-8 800, L5- 500); anupasthiti-DA "not correct" wala = 50% (ch35 #591 se mail); CEA 2812.50, DCRG seema 25 lakh |
 | 47 | IRIFM 1001 - Traffic Accounts | 109 | 108 | 3 | done 2026-11-06: 109/109 tay, 0 sudhaar. Traffic Book A/B/C/D, MST 15, nodal WR, BOXN 59, WIS 15% — sab purane sudhaaron se mail. Iska eklauta takraav = 31-suchi ka bhugtan-mode samooh (user ke faisle par) |
-| 48 | IRIFM 1001 - Stores Accounts | 149 | 142 | 8 | pending |
+| 48 | IRIFM 1001 - Stores Accounts | 149 | 142 | 8 | done 2026-11-06: 149/149 tay, 0 sudhaar. Purane 8 takraavon me 7 pehle hi sulajh chuke the; bacha 1 (WMS naam) ek-roop sanketan hai. Option clause, reverse auction, time book, 8-lakh shakti, production shops — sab purane sudhaaron se mail |
 | 49 | IRIFM 1001 - Workshop Accounts | 57 | 57 | 6 | pending |
 | 50 | IRIFM 1001 - Information Technology | 23 | 21 | 0 | pending |
 | 51 | IRIFM 1001 - Commercial book keeping | 162 | 162 | 3 | pending |
