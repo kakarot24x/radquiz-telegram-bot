@@ -251,7 +251,7 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 305 | PAPER-II: STR: EOQ, Re-order Level & Safety Stock | 70 | 0 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. EOQ/re-order star sangat |
 | 306 | PAPER-II: STR: Stock Verification | 80 | 0 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. Stock satyapan sangat |
 | 307 | PAPER-II: STR: Surplus & Obsolete Stores | 80 | 0 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. Adhishesh/aprachalit bhandaar sangat |
-| 308 | PAPER-II: STR: Scrap Disposal & Auction | 80 | 0 | 0 | pending |
+| 308 | PAPER-II: STR: Scrap Disposal & Auction | 80 | 0 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. Raddi nistaaran/e-nilami sangat |
 | 309 | PAPER-II: STR: Priced Stores Ledger & Accounting | 80 | 0 | 0 | pending |
 | 310 | PAPER-II: STR: Purchase Suspense | 60 | 0 | 0 | pending |
 | 311 | PAPER-II: STR: Depot Organization | 60 | 0 | 0 | pending |
