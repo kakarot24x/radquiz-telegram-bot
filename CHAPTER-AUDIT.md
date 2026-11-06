@@ -192,8 +192,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 246 | PAPER-I: BB: Budget Terminology & Process | 50 | 1 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar (token demand ₹100 yahan, token pravdhan Re 1 ch227/ch237 — sankalan-bhed, haath nahi). Budget shabdavali sangat |
 | 247 | PAPER-I: BB: Budget Estimates Preparation | 40 | 0 | 0 | done 2026-11-06: 40/40 tay, 0 sudhaar. Budget anumaan taiyari sangat |
 | 248 | PAPER-I: BB: Revised Estimates | 40 | 1 | 0 | done 2026-11-06: 40/40 tay, 0 sudhaar. Sanshodhit anumaan (August review) sangat |
-| 249 | PAPER-I: BB: Budget Documents | 40 | 0 | 0 | pending |
-| 250 | PAPER-I: BB: Railway Budget History & Presentation | 30 | 0 | 0 | pending |
+| 249 | PAPER-I: BB: Budget Documents | 40 | 0 | 0 | done 2026-11-06: 40/40 tay, 0 sudhaar. Budget dastavej sangat |
+| 250 | PAPER-I: BB: Railway Budget History & Presentation | 30 | 0 | 0 | done 2026-11-06: 30/30 tay, 0 sudhaar. Railway budget itihas sangat |
 | 251 | PAPER-I: BB: Appropriation Accounts | 40 | 0 | 0 | pending |
 | 252 | PAPER-I: EST: IREC General Rules & Service Conditions | 60 | 0 | 0 | pending |
 | 253 | PAPER-I: EST: Recruitment & Appointment | 50 | 0 | 0 | pending |
