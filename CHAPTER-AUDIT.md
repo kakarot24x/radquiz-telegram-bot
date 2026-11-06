@@ -340,8 +340,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 394 | PAPER-II: SAC: Priced Ledgers | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Mulya khate sangat. KHULA BHED: lauti stores ka dar — ch394 = vartamaan ausat dar, ch326/ch348 = mool issue dar (2v1); user ke shabd bina nahi badla |
 | 395 | PAPER-II: SAC: Monthly Compilation | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Maasik sankalan sangat |
 | 396 | PAPER-II: SAC: Reconciliation with General Books | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Samanya bahiyon se milaan sangat |
-| 397 | PAPER-II: SAC: Stock Suspense | 50 | 0 | 0 | pending |
-| 398 | PAPER-II: SAC: Purchase Suspense | 50 | 0 | 0 | pending |
+| 397 | PAPER-II: SAC: Stock Suspense | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Stock Suspense sangat |
+| 398 | PAPER-II: SAC: Purchase Suspense | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Purchase Suspense sangat |
 | 399 | PAPER-II: SAC: Stock Verification Accounting | 50 | 0 | 0 | pending |
 | 400 | PAPER-II: SAC: Losses: Accounting Treatment | 50 | 0 | 0 | pending |
 | 401 | PAPER-II: SAC: Disposal & Sale Accounting | 50 | 0 | 0 | pending |
