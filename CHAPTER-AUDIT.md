@@ -468,8 +468,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 522 | GCC Works: Tender Regulations — Part I | 120 | 0 | 0 | done 2026-11-06: 120 padhe, 0 sudhaar. SAVDHAN: precedence (Cl 1.01) wale ~50 sawalon ki yojana aadhikarik GCC April-2022 se NAHI milti — asal kram: LOA > BoQ > Special Conditions > Tech Specs > Drawings > GCC > IRUSS... (ireps.gov.in satyapit). Chapter apne andar bhi asangat (3 jodi ulta). Poora parivar user faisle ke liye rakha; paribhasha/registration/annexure bhaag tay |
 | 523 | GCC Works: Tender Forms & Submission | 130 | 1 | 0 | done 2026-11-06: 130/130 tay, 0 sudhaar. Tender form/annexure, Bid Security (7 din agreement/15 din aarambh) sangat |
 | 524 | GCC Works: Consideration of Tenders | 110 | 0 | 0 | done 2026-11-06: 110/110 tay, 0 sudhaar. Cl 7/7A-7E (do-packet, pre-bid, Make in India, land-border, spashtikaran) sangat |
-| 525 | GCC Works: Eligibility Criteria | 100 | 0 | 0 | pending |
-| 526 | GCC Works: General Obligations — Part II | 120 | 0 | 0 | pending |
+| 525 | GCC Works: Eligibility Criteria | 100 | 0 | 0 | done 2026-11-06: 100/100 tay, 0 sudhaar. ACS-1 vittiya patrata sutra min(150% V/N, V) — saari gananaaen satyapit; JV 17.15.1 sangat |
+| 526 | GCC Works: General Obligations — Part II | 120 | 0 | 0 | done 2026-11-06: 120 padhe, 0 sudhaar. Part-II samanya daayitva sangat; #18-25 precedence sawal ch522 wale rakhe-hue parivar ke hain (yahan SoR sabse neeche — ch522 se bhi ulta) — user faisle par |
 | 527 | GCC Works: Security Deposit & Performance Guarantee | 110 | 0 | 0 | pending |
 | 528 | GCC Works: Time, Extension & Force Majeure | 100 | 0 | 0 | pending |
 | 529 | GCC Works: Execution & Measurement | 110 | 1 | 0 | pending |
