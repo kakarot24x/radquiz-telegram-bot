@@ -352,8 +352,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 406 | PAPER-III: TAC: Traffic Accounts Organization | 80 | 0 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. Yaatayat lekha sangathan sangat — PAPER-III shuru |
 | 407 | PAPER-III: TAC: Coaching Earnings: Tickets | 150 | 1 | 0 | done 2026-11-06: 150/150 tay, 0 sudhaar. Ticket/coaching lekha sangat (Sec 138 ₹500, arakshan shulk SL ₹20/AC3 ₹40/AC2 ₹50 sahi) |
 | 408 | PAPER-III: TAC: Season Tickets & Concessions | 80 | 0 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. Season ticket/riyayat sangat |
-| 409 | PAPER-III: TAC: Parcels & Luggage | 80 | 0 | 0 | pending |
-| 410 | PAPER-III: TAC: Goods Earnings: Freight | 180 | 0 | 0 | pending |
+| 409 | PAPER-III: TAC: Parcels & Luggage | 80 | 0 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. Parcel/luggage sangat (P/L scale, Sec 106) |
+| 410 | PAPER-III: TAC: Goods Earnings: Freight | 180 | 0 | 0 | done 2026-11-06: 180/180 tay, 0 sudhaar. Maal bhada sangat (wharfage goods-shed aadhar sahi) |
 | 411 | PAPER-III: TAC: Demurrage & Wharfage | 80 | 0 | 0 | pending |
 | 412 | PAPER-III: TAC: Station Accounts & Balance Sheets | 140 | 0 | 0 | pending |
 | 413 | PAPER-III: TAC: Remittances & Cash Handling | 80 | 0 | 0 | pending |
