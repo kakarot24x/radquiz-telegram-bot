@@ -390,8 +390,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 444 | PAPER-III: TSC: Traffic Statistics Organization | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Yaatayat sankhyiki sangathan sangat — TSC samooh shuru |
 | 445 | PAPER-III: TSC: Coaching Statistics | 80 | 0 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. Coaching sankhyiki sangat |
 | 446 | PAPER-III: TSC: Goods Statistics | 80 | 0 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. Maal sankhyiki sangat (NTKM, wagon turnaround) |
-| 447 | PAPER-III: TSC: Wagon Usage Statistics | 70 | 0 | 0 | pending |
-| 448 | PAPER-III: TSC: Engine Usage Statistics | 70 | 0 | 0 | pending |
+| 447 | PAPER-III: TSC: Wagon Usage Statistics | 70 | 0 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. Wagon upyog sankhyiki sangat |
+| 448 | PAPER-III: TSC: Engine Usage Statistics | 70 | 0 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. Engine upyog sankhyiki sangat (SFC/SEC prati 1000 GTKM) |
 | 449 | PAPER-III: TSC: Operating Statistics | 80 | 0 | 0 | pending |
 | 450 | PAPER-III: TSC: Statistical Publications | 50 | 0 | 0 | pending |
 | 451 | PAPER-III: TSC: Unit Costs | 70 | 0 | 0 | pending |
