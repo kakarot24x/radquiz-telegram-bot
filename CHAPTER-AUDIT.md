@@ -213,8 +213,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 267 | PAPER-I: EST: Railway Quarters | 30 | 0 | 0 | done 2026-11-06: 30/30 tay, 0 sudhaar. Railway quarter aabantan sangat |
 | 268 | PAPER-II: AUD: Internal Audit & Internal Check | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Aantarik lekha-pariksha/aantarik jaanch sangat |
 | 269 | PAPER-II: AUD: CAG & Statutory Audit | 60 | 2 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. CAG/vaidhanik lekha-pariksha (Anuchhed 148-151, PAC 22) sangat |
-| 270 | PAPER-II: AUD: Audit Paras & Reports | 50 | 1 | 0 | pending |
-| 271 | PAPER-II: AUD: Propriety & Performance Audit | 50 | 1 | 0 | pending |
+| 270 | PAPER-II: AUD: Audit Paras & Reports | 50 | 1 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Audit-para/ATN (6 saptah jawaab, 4 mahine ATN) sangat |
+| 271 | PAPER-II: AUD: Propriety & Performance Audit | 50 | 1 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Auchitya/nishpadan lekha-pariksha sangat |
 | 272 | PAPER-II: AUD: Inspection Reports & Test Audit | 40 | 0 | 0 | pending |
 | 273 | PAPER-II: AUD: Audit of Receipts & Traffic Accounts | 40 | 0 | 0 | pending |
 | 274 | PAPER-I: IR: PNM Structure & Machinery | 60 | 0 | 0 | pending |
