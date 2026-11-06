@@ -482,8 +482,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 536 | GCC Stores: Stores Correction Slips | 100 | 0 | 0 | done 2026-11-06: 100/100 tay, 0 sudhaar. IRS correction slips — sambhaavi prabhav siddhant sangat. GCC Stores samooh sampann (ch533-536, 450 Q) |
 | 537 | MSOP: General Concepts | 100 | 1 | 0 | done 2026-11-06: 100/100 tay, 0 sudhaar. MSOP samanya: 26.10.2017, 7 bhaag, vitt sahamati anumaan, CHOD=PHOD sangat |
 | 538 | MSOP: Part A — Works Matters | 450 | 34 | 0 | done 2026-11-06: 450/450 tay, 0 sudhaar. Part A Item 1-26; 5(f) PHOD 10L/1.20cr, JAG suraksha 2L/10L, anya 5L/60L — gananaaen satyapit |
-| 539 | MSOP: Part B — Medical Matters | 200 | 0 | 0 | pending |
-| 540 | MSOP: Part C — Miscellaneous Matters | 350 | 0 | 0 | pending |
+| 539 | MSOP: Part B — Medical Matters | 200 | 0 | 0 | done 2026-11-06: 200/200 tay, 0 sudhaar. Part B Chikitsa: CMD/MD/CMS, rate contract, referral, Hospital Administrator=Branch Officer sangat |
+| 540 | MSOP: Part C — Miscellaneous Matters | 350 | 0 | 0 | done 2026-11-06: 350/350 tay, 0 sudhaar. Part C Vividh: IT/PR/vidhi/prashikshan/catering/kalyan sangat |
 | 541 | MSOP: Part D — Stores Matters | 220 | 0 | 0 | pending |
 | 542 | MSOP: Part E — Commercial Matters | 180 | 0 | 0 | pending |
 | 543 | MSOP: Part F — Establishment (Gazetted) | 200 | 0 | 0 | pending |
