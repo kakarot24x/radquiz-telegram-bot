@@ -360,8 +360,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 414 | PAPER-III: TAC: Refunds: Coaching & Goods | 80 | 0 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. Refund sangat (flat radd shulk AC1 ₹240/AC2 ₹200/AC3 ₹180/SL ₹120/2S ₹60 sahi) |
 | 415 | PAPER-III: TAC: Claims & Compensation | 80 | 0 | 0 | done 2026-11-06: 80/80 padhe, 0 sudhaar (1 defect). Claims sangathan sangat (RCT Act 1987, Sec 106 6 maah). DEFECT #9: q2c7b03a6n9w owner-risk dhara — sahi Section 97 hai (web-satyaapit), vikalpon me NAHI (112/45 baithe hain); vikalp badalne ki anumati chahiye |
 | 416 | PAPER-III: TAC: Traffic Book & Returns | 120 | 0 | 0 | done 2026-11-06: 120/120 tay, 0 sudhaar. Traffic Book/vivaran sangat |
-| 417 | PAPER-III: TAC: UTS/PRS Ticketing | 80 | 0 | 0 | pending |
-| 418 | PAPER-III: TAC: Catering & Other Coaching Earnings | 60 | 0 | 0 | pending |
+| 417 | PAPER-III: TAC: UTS/PRS Ticketing | 80 | 0 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. UTS/PRS sangat (ARP 60 din, senior citizen riyayat vartamaan me sthagit yahin spasht) |
+| 418 | PAPER-III: TAC: Catering & Other Coaching Earnings | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Catering/anya coaching aay sangat |
 | 419 | PAPER-III: TAC: Sidings & Private Wagons | 70 | 0 | 0 | pending |
 | 420 | PAPER-III: TAC: Inter-Railway Adjustments | 80 | 0 | 0 | pending |
 | 421 | PAPER-III: TAC: Audit of Traffic Earnings | 80 | 0 | 0 | pending |
