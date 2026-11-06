@@ -420,8 +420,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 474 | PAPER-III: STA: Claims Handling at Stations | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Station daava prabandhan sangat (Sec 106, 6 maah) |
 | 475 | PAPER-III: STA: Digital Systems (UTS/PRS/FOIS) | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Digital pranaali (UTS/PRS/FOIS) sangat |
 | 476 | PAPER-III: STA: Station Records & Returns | 70 | 0 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. Station abhilekh/vivaran sangat. Platform ticket: yahan bhi Coaching (STA me 2-2, TAC me Sundry 2) — bhed khula |
-| 477 | PAPER-III: STA: Losses & Irregularities | 60 | 0 | 0 | pending |
-| 478 | PAPER-III: INS: Inspection Organization & Duties | 60 | 0 | 0 | pending |
+| 477 | PAPER-III: STA: Losses & Irregularities | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Station haani/aniyamitata sangat — STA samooh sampann (ch462-477, 1100 Q, 0 sudhaar) |
+| 478 | PAPER-III: INS: Inspection Organization & Duties | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Nirikshan sangathan sangat (TIA/FA&CAO) — INS samooh shuru |
 | 479 | PAPER-III: INS: Inspection vs Audit | 60 | 0 | 0 | pending |
 | 480 | PAPER-III: INS: Inspection of Station Accounts | 70 | 0 | 0 | pending |
 | 481 | PAPER-III: INS: Inspection of Coaching Earnings | 60 | 0 | 0 | pending |
