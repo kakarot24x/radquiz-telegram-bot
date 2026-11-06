@@ -334,8 +334,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 388 | PAPER-II: WMS: Credits & Clearance | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. WMS credit/nikaasi sangat (vibhagiya shulk → Revenue, ch329 se sangat) |
 | 389 | PAPER-II: WMS: Closing Balances & Review | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. WMS samapan shesh/samiksha sangat |
 | 390 | PAPER-II: WMS: WMS in Production Units | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Utpadan ikaiyon me WMS sangat |
-| 391 | PAPER-II: WMS: WMS Accounting Procedure | 50 | 0 | 0 | pending |
-| 392 | PAPER-II: SAC: Stores Accounts Code Overview | 50 | 0 | 0 | pending |
+| 391 | PAPER-II: WMS: WMS Accounting Procedure | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. WMS lekha prakriya sangat — WMS samooh sampann (ch386-391, 300 Q, 0 sudhaar) |
+| 392 | PAPER-II: SAC: Stores Accounts Code Overview | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Stores Accounts Code parichay sangat |
 | 393 | PAPER-II: SAC: Numerical Ledgers | 50 | 0 | 0 | pending |
 | 394 | PAPER-II: SAC: Priced Ledgers | 50 | 0 | 0 | pending |
 | 395 | PAPER-II: SAC: Monthly Compilation | 50 | 0 | 0 | pending |
