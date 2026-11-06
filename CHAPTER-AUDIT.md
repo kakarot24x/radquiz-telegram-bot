@@ -282,8 +282,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 336 | PAPER-II: WKS: Railway Production Units | 50 | 1 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Utpadan ikaiyan sangat (CLW sabse purani) |
 | 337 | PAPER-II: WKS: Estimates for Workshop Jobs | 50 | 1 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Workshop job anumaan sangat |
 | 338 | PAPER-II: WKS: Time Booking & Job Cards | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Samay booking/job card sangat |
-| 339 | PAPER-II: WKS: Rejections & Rework | 40 | 0 | 0 | pending |
-| 340 | PAPER-II: COS: COS Organization & Duties | 70 | 0 | 0 | pending |
+| 339 | PAPER-II: WKS: Rejections & Rework | 40 | 0 | 0 | done 2026-11-06: 40/40 tay, 0 sudhaar. Asweekriti/punar-karya sangat — WKS samooh sampann (ch322-339, 1010 Q, 0 sudhaar) |
+| 340 | PAPER-II: COS: COS Organization & Duties | 70 | 0 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. COS sangathan/kartavya sangat |
 | 341 | PAPER-II: COS: Purchase Powers & Delegation | 70 | 0 | 0 | pending |
 | 342 | PAPER-II: COS: Tender Procedures | 80 | 0 | 0 | pending |
 | 343 | PAPER-II: COS: Rate Contracts & DGS&D | 60 | 0 | 0 | pending |
