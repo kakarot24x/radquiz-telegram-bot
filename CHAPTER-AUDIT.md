@@ -478,8 +478,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 532 | GCC Works: GST & Tax Provisions | 100 | 0 | 0 | done 2026-11-06: 100/100 tay, 0 sudhaar. GST Para 6(a)(v) ACS-6 — ITC/refund/indemnity/retention sangat. GCC Works samooh sampann (ch522-532, 1210 Q) |
 | 533 | GCC Stores: Stores Tender Conditions | 120 | 0 | 0 | done 2026-11-06: 120/120 tay, 0 sudhaar. IRS shartein, EMD 2%, MII Class-I 50%/Class-II 20% sangat; gananaaen satyapit |
 | 534 | GCC Stores: Supply Contract Terms | 130 | 0 | 0 | done 2026-11-06: 130/130 tay, 0 sudhaar. Stores LD 2%/mah, warranty 12/18 mah, 90/10 bhugtan, PVC gananaaen satyapit |
-| 535 | GCC Stores: Stores Contract — Legal | 100 | 0 | 0 | pending |
-| 536 | GCC Stores: Stores Correction Slips | 100 | 0 | 0 | pending |
+| 535 | GCC Stores: Stores Contract — Legal | 100 | 0 | 0 | done 2026-11-06: 100/100 tay, 0 sudhaar. Risk purchase/LD 2%-10%/banning 5 varsh — gananaaen satyapit |
+| 536 | GCC Stores: Stores Correction Slips | 100 | 0 | 0 | done 2026-11-06: 100/100 tay, 0 sudhaar. IRS correction slips — sambhaavi prabhav siddhant sangat. GCC Stores samooh sampann (ch533-536, 450 Q) |
 | 537 | MSOP: General Concepts | 100 | 1 | 0 | pending |
 | 538 | MSOP: Part A — Works Matters | 450 | 34 | 0 | pending |
 | 539 | MSOP: Part B — Medical Matters | 200 | 0 | 0 | pending |
