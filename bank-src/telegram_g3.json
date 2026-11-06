@@ -19523,7 +19523,7 @@
     "Nil Balance",
     "Can be both Debit or Credit"
    ],
-   "a": "C",
+   "a": "A",
    "d": "2026-07-24"
   },
   {
@@ -19535,7 +19535,7 @@
     "Sundry",
     "None of the above"
    ],
-   "a": "A",
+   "a": "B",
    "d": "2026-07-24"
   },
   {
@@ -23039,7 +23039,7 @@
     "Traffic receipts",
     "None of the above"
    ],
-   "a": "A",
+   "a": "B",
    "d": "2026-07-27"
   },
   {

@@ -11,7 +11,7 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 4 | Traffic Accounts (Q303-356) | 51 | 51 | 1 | done 2026-11-06: 51/51 tay; 2 sudhaar — AOB closing balance TG copies (TG_Q6418, TG3_Q2794) sirf carriage bills par thi, sahi = carriage bills + vouchers pending (Only B and C) |
 | 5 | Traffic Statistics (Q1-50) | 46 | 46 | 1 | done 2026-11-06: 46/46 tay; 1 sudhaar — Statement 6-B TG copy (TG2_Q0675) Goods galat tha, sahi = Parcel Traffic |
 | 6 | Traffic Costing (Q1-50) | 42 | 42 | 2 | done 2026-11-06: 42/42 tay; 4 sudhaar — Statements 40-43 TG copies Financial galat, sahi = Administrative (AITD costing notes + ASS contents: St 40 staff, 41 accidents); Fixed cost TG copies sirf Non-variable thi, sahi = All the Above (IRT costing module: fixed = indirect bhi kehlata hai) |
-| 7 | Chapter 2 - Traffic Accounts (Q1-100) | 87 | 87 | 4 | pending |
+| 7 | Chapter 2 - Traffic Accounts (Q1-100) | 87 | 87 | 4 | done 2026-11-06: 87 me 80 padhe/tay (tail ke 7 isi batch me shamil); 7 sudhaar TG copies me — RIB suspense = Debit balance, IR-level earnings = Originating, accounting changes = Railway Convention Committee, TTE earnings = Other Coaching. Account Current Monthly aur nodal WR wale sawal user ke purane faislo se mail khaye |
 | 8 | Chapter 3 - Station Accounts (Q1-190) | 183 | 183 | 5 | pending |
 | 9 | Chapter 6 - Coaching Accounts (Q1-80) | 78 | 78 | 3 | pending |
 | 10 | Coaching - General | 48 | 48 | 0 | pending |
