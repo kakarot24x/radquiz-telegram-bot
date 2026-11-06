@@ -237,8 +237,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 291 | PAPER-I: BK: Railway Finance Code Vol I Book-keeping | 60 | 1 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Vitt Sanhita Vol-I book-keeping sangat |
 | 292 | PAPER-I: BK: Vouchers & Day Book | 40 | 0 | 0 | done 2026-11-06: 40/40 tay, 0 sudhaar. Voucher/Day Book sangat |
 | 293 | PAPER-I: BK: Suspense Accounts | 40 | 0 | 0 | done 2026-11-06: 40/40 tay, 0 sudhaar. Suspense khate sangat |
-| 294 | PAPER-I: BK: Control Accounts & Self-balancing | 30 | 0 | 0 | pending |
-| 295 | PAPER-I: BK: Single Entry vs Double Entry | 40 | 0 | 0 | pending |
+| 294 | PAPER-I: BK: Control Accounts & Self-balancing | 30 | 0 | 0 | done 2026-11-06: 30/30 tay, 0 sudhaar. Niyantran khate sangat |
+| 295 | PAPER-I: BK: Single Entry vs Double Entry | 40 | 0 | 0 | done 2026-11-06: 40/40 tay, 0 sudhaar. Ikahari pranali (ganit jaanch-sahit) sangat |
 | 296 | PAPER-II: STR: Stores Organization & SMM | 70 | 6 | 0 | pending |
 | 297 | PAPER-II: STR: Purchase Procedures & COS | 80 | 0 | 0 | pending |
 | 298 | PAPER-II: STR: Tender System for Stores | 100 | 0 | 0 | pending |
