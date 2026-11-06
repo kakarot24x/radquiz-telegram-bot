@@ -424,8 +424,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 478 | PAPER-III: INS: Inspection Organization & Duties | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Nirikshan sangathan sangat (TIA/FA&CAO) — INS samooh shuru |
 | 479 | PAPER-III: INS: Inspection vs Audit | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Nirikshan banam audit sangat |
 | 480 | PAPER-III: INS: Inspection of Station Accounts | 70 | 0 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. Station lekha nirikshan sangat (TIA, Cash Witness) |
-| 481 | PAPER-III: INS: Inspection of Coaching Earnings | 60 | 0 | 0 | pending |
-| 482 | PAPER-III: INS: Inspection of Goods Earnings | 60 | 0 | 0 | pending |
+| 481 | PAPER-III: INS: Inspection of Coaching Earnings | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Coaching aay nirikshan sangat |
+| 482 | PAPER-III: INS: Inspection of Goods Earnings | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Maal aay nirikshan sangat |
 | 483 | PAPER-III: INS: Inspection of Parcel Offices | 60 | 0 | 0 | pending |
 | 484 | PAPER-III: INS: Inspection of City Booking Agencies | 50 | 0 | 0 | pending |
 | 485 | PAPER-III: INS: Inspection of Cash Offices | 60 | 0 | 0 | pending |
