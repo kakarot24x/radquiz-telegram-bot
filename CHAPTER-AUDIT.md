@@ -476,8 +476,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 530 | GCC Works: Termination & Determination | 90 | 0 | 0 | done 2026-11-06: 90/90 tay, 0 sudhaar. Cl 62 48-ghante notice, Annexure-XI (ACS-8) sangat |
 | 531 | GCC Works: Arbitration & Settlement | 80 | 0 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. ACS-10 (04.03.2025, SC aadesh 08.11.2024, sambhaavi prabhav) sangat |
 | 532 | GCC Works: GST & Tax Provisions | 100 | 0 | 0 | done 2026-11-06: 100/100 tay, 0 sudhaar. GST Para 6(a)(v) ACS-6 — ITC/refund/indemnity/retention sangat. GCC Works samooh sampann (ch522-532, 1210 Q) |
-| 533 | GCC Stores: Stores Tender Conditions | 120 | 0 | 0 | pending |
-| 534 | GCC Stores: Supply Contract Terms | 130 | 0 | 0 | pending |
+| 533 | GCC Stores: Stores Tender Conditions | 120 | 0 | 0 | done 2026-11-06: 120/120 tay, 0 sudhaar. IRS shartein, EMD 2%, MII Class-I 50%/Class-II 20% sangat; gananaaen satyapit |
+| 534 | GCC Stores: Supply Contract Terms | 130 | 0 | 0 | done 2026-11-06: 130/130 tay, 0 sudhaar. Stores LD 2%/mah, warranty 12/18 mah, 90/10 bhugtan, PVC gananaaen satyapit |
 | 535 | GCC Stores: Stores Contract — Legal | 100 | 0 | 0 | pending |
 | 536 | GCC Stores: Stores Correction Slips | 100 | 0 | 0 | pending |
 | 537 | MSOP: General Concepts | 100 | 1 | 0 | pending |
