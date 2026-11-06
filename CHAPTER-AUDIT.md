@@ -124,7 +124,7 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 178 | PAPER-I: GRP: Adjustments (Contra, Deduct, Write back/off) | 60 | 1 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Samayojan (Contra/Deduct/Write-back/Minus Dr-Cr) udaharan-set andar sangat |
 | 179 | PAPER-I: GRP: GFR & Financial Propriety | 60 | 2 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. GFR/PVACA + MSOP tathya sangat (ch76/ch105 se mel) |
 | 180 | PAPER-I: GRP: Works Programme & Tenders | 80 | 2 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. Works Programme/IRPSM/Two-Packet siddhant sangat (GCC parivar se mel) |
-| 181 | PAPER-I: GRP: GCC & Contract Clauses | 60 | 3 | 0 | pending |
+| 181 | PAPER-I: GRP: GCC & Contract Clauses | 60 | 3 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. GCC Works/Services antar sangat (PG 21/30 din parivar, ch45/ch61/ch67 se mel) |
 | 182 | PAPER-I: GRP: Stores | 60 | 0 | 0 | pending |
 | 183 | PAPER-I: GRP: Workshop | 60 | 2 | 0 | pending |
 | 184 | PAPER-I: GRP: Traffic Earnings & Apportionment | 60 | 1 | 0 | pending |
