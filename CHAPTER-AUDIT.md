@@ -342,8 +342,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 396 | PAPER-II: SAC: Reconciliation with General Books | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Samanya bahiyon se milaan sangat |
 | 397 | PAPER-II: SAC: Stock Suspense | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Stock Suspense sangat |
 | 398 | PAPER-II: SAC: Purchase Suspense | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Purchase Suspense sangat |
-| 399 | PAPER-II: SAC: Stock Verification Accounting | 50 | 0 | 0 | pending |
-| 400 | PAPER-II: SAC: Losses: Accounting Treatment | 50 | 0 | 0 | pending |
+| 399 | PAPER-II: SAC: Stock Verification Accounting | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Stock satyapan lekha sangat |
+| 400 | PAPER-II: SAC: Losses: Accounting Treatment | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Haani lekha upchaar sangat |
 | 401 | PAPER-II: SAC: Disposal & Sale Accounting | 50 | 0 | 0 | pending |
 | 402 | PAPER-II: SAC: Stores Budget | 50 | 0 | 0 | pending |
 | 403 | PAPER-II: SAC: Internal Check in Stores Accounts | 50 | 0 | 0 | pending |
