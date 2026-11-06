@@ -346,8 +346,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 400 | PAPER-II: SAC: Losses: Accounting Treatment | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Haani lekha upchaar sangat |
 | 401 | PAPER-II: SAC: Disposal & Sale Accounting | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Nipatan/bikri lekha sangat |
 | 402 | PAPER-II: SAC: Stores Budget | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Stores bajat sangat |
-| 403 | PAPER-II: SAC: Internal Check in Stores Accounts | 50 | 0 | 0 | pending |
-| 404 | PAPER-II: SAC: Audit of Stores Accounts | 50 | 0 | 0 | pending |
+| 403 | PAPER-II: SAC: Internal Check in Stores Accounts | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Stores lekha aantarik jaanch sangat |
+| 404 | PAPER-II: SAC: Audit of Stores Accounts | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Stores lekha audit sangat |
 | 405 | PAPER-II: SAC: Depot Accounts & Returns | 50 | 0 | 0 | pending |
 | 406 | PAPER-III: TAC: Traffic Accounts Organization | 80 | 0 | 0 | pending |
 | 407 | PAPER-III: TAC: Coaching Earnings: Tickets | 150 | 1 | 0 | pending |
