@@ -300,8 +300,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 354 | PAPER-II: COS: Stores Budget & Expenditure Control | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Stores bajat/vyay niyantran sangat |
 | 355 | PAPER-II: COS: Audit of Stores | 40 | 0 | 0 | done 2026-11-06: 40/40 tay, 0 sudhaar. Stores audit sangat |
 | 356 | PAPER-II: COS: Codification & PL Numbers | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Sanket/PL sankhya sangat |
-| 357 | PAPER-II: COS: Vendor Development & Registration | 50 | 0 | 0 | pending |
-| 358 | PAPER-II: WCF: Cost Accounting Concepts | 70 | 0 | 0 | pending |
+| 357 | PAPER-II: COS: Vendor Development & Registration | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Vendor vikas/panjikaran sangat — COS samooh sampann (ch340-357, 1000 Q, 0 sudhaar) |
+| 358 | PAPER-II: WCF: Cost Accounting Concepts | 70 | 0 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. Lagat lekha avadharna sangat |
 | 359 | PAPER-II: WCF: Elements of Cost & Cost Build-up | 70 | 0 | 0 | pending |
 | 360 | PAPER-II: WCF: Cost Centres & Cost Units | 60 | 0 | 0 | pending |
 | 361 | PAPER-II: WCF: Cost Sheets & Cost Statements | 70 | 0 | 0 | pending |
