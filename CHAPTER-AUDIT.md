@@ -37,8 +37,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 30 | R3 - Chapter 5 (818-pg PDF) | 57 | 57 | 0 | pending |
 | 31 | R3 - Chapter 9 (818-pg PDF) | 55 | 55 | 3 | pending |
 | 32 | R3 - Financial Accounting (General) | 393 | 393 | 0 | done 2026-11-06: 393/393 tay. Samanya vanijya ka generated set (hire purchase/branch/partnership/NFRA-Ind AS). **2 spasht sudhaar** — reclaim kriya = repossession, kabze ka adhikar = Right of Repossession; jodi ch111 me bhi sudhri. Kuch generated sawal aapas me uljhe (realisation laabh "gaining ratio" — sahi vikalp vikalpo me hi nahi; retirement-assets joda) — note matra |
-| 33 | R3 - HOER (Railkaksha) | 50 | 50 | 0 | pending |
-| 34 | R3 - Labour Laws & GST (818-pg PDF) | 36 | 36 | 1 | pending |
+| 33 | R3 - HOER (Railkaksha) | 50 | 50 | 0 | done 2026-11-06: 50/50 tay (HOER Rules 2005 + Railways Act ss.130-136, vyakhya niyam-uddharan sahit susangat). **1 sudhaar** — pehla sawal: s.130 me hi saari paribhashaye (continuous/EI/intensive/excluded) hain, isliye "keval B sahi" hoga; kunji "dono galat" par thi aur uski apni vyakhya usi ka khandan karti thi |
+| 34 | R3 - Labour Laws & GST (818-pg PDF) | 36 | 36 | 1 | done 2026-11-06: 36/36 tay, 0 sudhaar. GST slab wala sawal vartaman hai (5/18/40, 56th Council). **GST structures 4 (main) banam 3 (TG)** — ye 2026-11-04 audit ki 31-soochi wala ashwasth samooh hai, user faisle ke bina haath nahi |
 | 35 | R3 - NAIR 1001 Questions (Accounts) | 738 | 738 | 21 | pending |
 | 36 | R3 - Railway Budget (Railkaksha) | 29 | 29 | 0 | pending |
 | 37 | R3 - S2CH4 Q203-302 (818-pg PDF) | 13 | 13 | 1 | pending |
