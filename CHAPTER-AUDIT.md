@@ -440,8 +440,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 494 | PAPER-III: INS: Inspection of Traffic Accounts Office | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. TAO nirikshan sangat |
 | 495 | PAPER-III: INS: Inspection of Divisional Accounts | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Mandal lekha nirikshan sangat |
 | 496 | PAPER-III: INS: Inspection of Suspense Heads | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Suspense nirikshan sangat |
-| 497 | PAPER-III: INS: Inspection of Outstandings | 60 | 0 | 0 | pending |
-| 498 | PAPER-III: INS: Inspection Reports & Compliance | 70 | 0 | 0 | pending |
+| 497 | PAPER-III: INS: Inspection of Outstandings | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Bakaya nirikshan sangat |
+| 498 | PAPER-III: INS: Inspection Reports & Compliance | 70 | 0 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. Nirikshan report/anupalan sangat |
 | 499 | PAPER-III: INS: Surprise Inspections | 60 | 0 | 0 | pending |
 | 500 | PAPER-III: INS: Inspection of Digital Systems | 60 | 0 | 0 | pending |
 | 501 | PAPER-III: INS: Inspection Norms, Frequency & Follow-up | 60 | 0 | 0 | pending |
