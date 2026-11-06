@@ -197,7 +197,7 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 251 | PAPER-I: BB: Appropriation Accounts | 40 | 0 | 0 | done 2026-11-06: 40/40 tay, 0 sudhaar. Viniyog lekha siddhant sangat |
 | 252 | PAPER-I: EST: IREC General Rules & Service Conditions | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. IREC samanya seva shartein sangat |
 | 253 | PAPER-I: EST: Recruitment & Appointment | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Bharti/niyukti niyam sangat |
-| 254 | PAPER-I: EST: Pay Fixation (7th CPC) | 80 | 0 | 0 | pending |
+| 254 | PAPER-I: EST: Pay Fixation (7th CPC) | 80 | 0 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. 7th CPC vetan nirdharan sangat |
 | 255 | PAPER-I: EST: Allowances (DA/HRA/TA) | 60 | 0 | 0 | pending |
 | 256 | PAPER-I: EST: Leave Rules | 60 | 0 | 0 | pending |
 | 257 | PAPER-I: EST: Pass Rules | 50 | 0 | 0 | pending |
