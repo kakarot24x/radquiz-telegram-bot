@@ -328,8 +328,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 382 | PAPER-II: EX2: Losses & Write-offs | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Haani/write-off sangat |
 | 383 | PAPER-II: EX2: Economy Measures | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Mitavyayita upaay sangat |
 | 384 | PAPER-II: EX2: Audit of Expenditure | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Vyay audit sangat |
-| 385 | PAPER-II: EX2: Staff & Welfare Expenditure | 50 | 0 | 0 | pending |
-| 386 | PAPER-II: WMS: WMS Purpose & Scope | 50 | 1 | 0 | pending |
+| 385 | PAPER-II: EX2: Staff & Welfare Expenditure | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Karmchari/kalyan vyay sangat — EX2 samooh sampann (ch376-385, 500 Q, 0 sudhaar) |
+| 386 | PAPER-II: WMS: WMS Purpose & Scope | 50 | 1 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. WMS uddeshya/daira sangat |
 | 387 | PAPER-II: WMS: Debits to WMS | 50 | 0 | 0 | pending |
 | 388 | PAPER-II: WMS: Credits & Clearance | 50 | 0 | 0 | pending |
 | 389 | PAPER-II: WMS: Closing Balances & Review | 50 | 0 | 0 | pending |
