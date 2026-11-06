@@ -211,8 +211,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 265 | PAPER-I: EST: Casual & Work-charged Labour | 40 | 0 | 0 | done 2026-11-06: 40/40 tay, 0 sudhaar. Aakasmik shramik (120 din me asthayi darja) sangat |
 | 266 | PAPER-I: EST: Post Creation & Surrender | 40 | 0 | 0 | done 2026-11-06: 40/40 tay, 0 sudhaar. Pad srijan/samarpan sangat |
 | 267 | PAPER-I: EST: Railway Quarters | 30 | 0 | 0 | done 2026-11-06: 30/30 tay, 0 sudhaar. Railway quarter aabantan sangat |
-| 268 | PAPER-II: AUD: Internal Audit & Internal Check | 60 | 0 | 0 | pending |
-| 269 | PAPER-II: AUD: CAG & Statutory Audit | 60 | 2 | 0 | pending |
+| 268 | PAPER-II: AUD: Internal Audit & Internal Check | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Aantarik lekha-pariksha/aantarik jaanch sangat |
+| 269 | PAPER-II: AUD: CAG & Statutory Audit | 60 | 2 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. CAG/vaidhanik lekha-pariksha (Anuchhed 148-151, PAC 22) sangat |
 | 270 | PAPER-II: AUD: Audit Paras & Reports | 50 | 1 | 0 | pending |
 | 271 | PAPER-II: AUD: Propriety & Performance Audit | 50 | 1 | 0 | pending |
 | 272 | PAPER-II: AUD: Inspection Reports & Test Audit | 40 | 0 | 0 | pending |
