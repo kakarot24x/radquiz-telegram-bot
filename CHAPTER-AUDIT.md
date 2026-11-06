@@ -501,8 +501,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 555 | Rajbhasha: Gaurav Puraskar & Kirti 2024-25 | 150 | 2 | 0 | done 2026-11-06: 150/150 tay, 0 sudhaar. Kirti 2024-25 (DARPG) + Gaurav Puraskar sanshodhit yojana aankde sangat |
 | 556 | Rajbhasha: Railways & Implementation | 120 | 0 | 0 | done 2026-11-06: 120/120 tay, 0 sudhaar. Hindi Pakhwada, Premchand Puraskar, Zonal OLIC, Salahkar Samiti sangat |
 | 557 | Rajbhasha: Courts, Dept & Conferences | 60 | 4 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Art 348/349/350A/350B, Hindi Diwas tathya, sammelan sangat |
-| 558 | D&AR: Enquiry & Standard Forms | 90 | 0 | 0 | pending |
-| 559 | Forms & Reports: TA/A/S/E/COM | 117 | 0 | 0 | pending |
+| 558 | D&AR: Enquiry & Standard Forms | 90 | 0 | 0 | done 2026-11-06: 90/90 tay, 0 sudhaar. D&AR SF-1..SF-14 roop-suchi + niyam (Rule 9/11/24/25/25A) aadhikarik sangat — ch88 faisla #6 ka samarthan |
+| 559 | Forms & Reports: TA/A/S/E/COM | 117 | 0 | 0 | done 2026-11-06: 117/117 tay, 0 kunji sudhaar. TA/A/E/COM roop sangat; tippani: S-1313 (#80) vs S-1302 (#81) requisition — aantarik aspashtata, palat ka aadhar nahi |
 | 560 | Full Forms: Railway Abbreviations | 100 | 1 | 0 | pending |
 | 561 | Financial Powers: Tenders & Contracts | 330 | 1 | 0 | pending |
 | 562 | Jan Vishwas Act 2026: Railways Act Amendments | 60 | 0 | 0 | pending |
