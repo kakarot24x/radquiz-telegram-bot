@@ -151,8 +151,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 205 | PAPER-I: LLF: Minimum Wages Act 1948 | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Minimum Wages Act maanak |
 | 206 | PAPER-I: LLF: Factories Act 1948 | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Factories Act aankde maanak (ch82/ch104 se mel) |
 | 207 | PAPER-I: LLF: Industrial Disputes Act 1947 | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Industrial Disputes Act maanak |
-| 208 | PAPER-I: LLF: Employees Compensation Act 1923 | 50 | 0 | 0 | pending |
-| 209 | PAPER-I: LLF: Contract Labour (R&A) Act 1970 | 50 | 0 | 0 | pending |
+| 208 | PAPER-I: LLF: Employees Compensation Act 1923 | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Employees Compensation Act maanak |
+| 209 | PAPER-I: LLF: Contract Labour (R&A) Act 1970 | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Contract Labour Act maanak |
 | 210 | PAPER-I: LLF: Payment of Bonus Act 1965 | 40 | 0 | 0 | pending |
 | 211 | PAPER-I: LLF: Payment of Gratuity Act 1972 | 40 | 0 | 0 | pending |
 | 212 | PAPER-I: LLF: EPF & MP Act 1952 | 40 | 0 | 0 | pending |
