@@ -208,8 +208,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 262 | PAPER-I: EST: Conduct Rules | 40 | 0 | 0 | done 2026-11-06: 40/40 tay, 0 sudhaar. Acharan niyam 1966 sangat |
 | 263 | PAPER-I: EST: Superannuation & Service Matters | 40 | 0 | 0 | done 2026-11-06: 40/40 tay, 0 sudhaar. Adhivarshita/seva mamle sangat |
 | 264 | PAPER-I: EST: Training & Probation | 30 | 0 | 0 | done 2026-11-06: 30/30 tay, 0 sudhaar. Prashikshan/pariviksha (NAIR/IRICEN aadi) sangat |
-| 265 | PAPER-I: EST: Casual & Work-charged Labour | 40 | 0 | 0 | pending |
-| 266 | PAPER-I: EST: Post Creation & Surrender | 40 | 0 | 0 | pending |
+| 265 | PAPER-I: EST: Casual & Work-charged Labour | 40 | 0 | 0 | done 2026-11-06: 40/40 tay, 0 sudhaar. Aakasmik shramik (120 din me asthayi darja) sangat |
+| 266 | PAPER-I: EST: Post Creation & Surrender | 40 | 0 | 0 | done 2026-11-06: 40/40 tay, 0 sudhaar. Pad srijan/samarpan sangat |
 | 267 | PAPER-I: EST: Railway Quarters | 30 | 0 | 0 | pending |
 | 268 | PAPER-II: AUD: Internal Audit & Internal Check | 60 | 0 | 0 | pending |
 | 269 | PAPER-II: AUD: CAG & Statutory Audit | 60 | 2 | 0 | pending |
