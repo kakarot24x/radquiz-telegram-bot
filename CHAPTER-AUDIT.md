@@ -105,7 +105,7 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 99 | IRIFM PPT WORKSHOP | 490 | 489 | 0 | done 2026-11-06: 490/490 tay, 0 sudhaar. PPT-vansh ka set poori tarah aatm-sangat (WMS P.7200, on-cost ke teen prakar, POC -> Z Earnings is vansh ki sthiti) |
 | 100 | IRIFM PPT STORES | 467 | 460 | 0 | done 2026-11-06: 467/467 tay, 0 sudhaar. PPT-vansh ka set aatm-sangat (Purchase Grant = santulan aankda, Stores Budget, MSE/Make-in-India/GTE niyam) |
 | 101 | Stores v1 | 491 | 488 | 0 | done 2026-11-06: 491/491 tay, 0 sudhaar. PPT-vansh se poori sangat; ek stem me GFR ki purani LPC-seema (₹25,000–2,50,000) shabdabali hai parantu poochhi gayi vidhi (Local Purchase Committee) sahi kunjibaddh hai |
-| 102 | Workshop v1 | 500 | 498 | 0 | pending |
+| 102 | Workshop v1 | 500 | 498 | 0 | done 2026-11-06: 500/500 tay, 0 sudhaar. Workshop-vansh se poori sangat; PL vistaar yahan "Priced Ledger Number", ch 100/101 me "Price List Number" — dono prayog sahitya me chalte hain, koi badlaav nahi |
 | 103 | Rajbhasa | 500 | 500 | 0 | pending |
 | 104 | Labour Laws & Finance | 300 | 300 | 0 | pending |
 | 105 | GRP v1 | 350 | 347 | 0 | pending |
