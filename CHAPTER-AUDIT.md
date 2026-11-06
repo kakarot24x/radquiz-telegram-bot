@@ -495,8 +495,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 549 | Rajbhasha: Official Language Resolution 1968 | 70 | 3 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. Sankalp 1968 + tri-bhasha sutra (Kothari) paramparik sangat |
 | 550 | Rajbhasha: Eighth Schedule Languages | 150 | 2 | 0 | done 2026-11-06: 150/150 tay, 0 sudhaar. 8vi Anusuchi: mool 14; Sindhi 21va/1967; Konkani-Manipuri-Nepali 71va/1992; Bodo-Dogri-Maithili-Santhali 92va/2003 — sab sahi |
 | 551 | Rajbhasha: Regions A, B, C | 120 | 2 | 0 | done 2026-11-06: 120/120 tay, 0 kunji sudhaar. Kshetra A=11 sangat. KHULA BHED: Kshetra B ginti — #48/#49/#86 = 5 (2020 UT-vilay ke baad), #53 = 17 (11+6, soochi-anusaar 6); yug-bhed, user faisla pending |
-| 552 | Rajbhasha: Hindi Teaching Scheme | 100 | 0 | 0 | pending |
-| 553 | Rajbhasha: Parliamentary Committee | 50 | 0 | 0 | pending |
+| 552 | Rajbhasha: Hindi Teaching Scheme | 100 | 0 | 0 | done 2026-11-06: 100/100 tay, 0 sudhaar. Hindi Teaching Scheme puraskar talika aantarik sangat; #55-64 me purani talika ke aankde stem me (yug-bhed, kunji sahi) |
+| 553 | Rajbhasha: Parliamentary Committee | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Sansadiya Rajbhasha Samiti: 30 (20+10), Art 344, report Rashtrapati ko, 13va khand |
 | 554 | Rajbhasha: Kirti Puraskar 2025-26 | 100 | 1 | 0 | pending |
 | 555 | Rajbhasha: Gaurav Puraskar & Kirti 2024-25 | 150 | 2 | 0 | pending |
 | 556 | Rajbhasha: Railways & Implementation | 120 | 0 | 0 | pending |
