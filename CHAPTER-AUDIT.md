@@ -120,7 +120,7 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 174 | PAPER-I: GRP: Appropriation & Re-appropriation | 60 | 2 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Appropriation Accounts + punahviniyog siddhant sangat (ch35/ch44 sudhaaron se mel) |
 | 175 | PAPER-I: GRP: Parliamentary Control over Finances | 60 | 1 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Sansadiya niyantran siddhant maanak aur sangat |
 | 176 | PAPER-I: GRP: Accounting Reforms & Systems | 80 | 3 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. Lekha sudhaar (accrual/FAR/link-heads) siddhant sangat |
-| 177 | PAPER-I: GRP: Heads of Account | 60 | 3 | 0 | pending |
+| 177 | PAPER-I: GRP: Heads of Account | 60 | 3 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Major Head/SMH naksha maanak (1001, 3001-3007, 5002, 8670 par ch35/ch174 se mel) |
 | 178 | PAPER-I: GRP: Adjustments (Contra, Deduct, Write back/off) | 60 | 1 | 0 | pending |
 | 179 | PAPER-I: GRP: GFR & Financial Propriety | 60 | 2 | 0 | pending |
 | 180 | PAPER-I: GRP: Works Programme & Tenders | 80 | 2 | 0 | pending |
