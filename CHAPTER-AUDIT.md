@@ -458,8 +458,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 512 | IRFC Vol 2: Classification Rules & Powers | 100 | 0 | 0 | done 2026-11-06: 100/100 tay, 0 sudhaar. Vargikaran niyam/shakti sangat (1979/Task Force 1973/ACS-2) |
 | 513 | IRFC Vol 2: Practical Booking – Abstracts | 100 | 0 | 0 | done 2026-11-06: 100/100 tay, 0 sudhaar. Vyavaharik booking + milaan sangat (source code ab sudhre hue kram se sangat) |
 | 514 | IRFC Vol 2: Revenue PUs & Medical | 100 | 0 | 0 | done 2026-11-06: 100/100 tay, 0 sudhaar. Anuprayog (Plan Head/source/track-group) sangat |
-| 515 | IRFC Vol 2: Abstract X – More Heads | 100 | 0 | 0 | pending |
-| 516 | IRFC Vol 2: Works Primary Units | 100 | 1 | 0 | pending |
+| 515 | IRFC Vol 2: Abstract X – More Heads | 100 | 0 | 0 | done 2026-11-06: 100/100 tay, 0 sudhaar. X/Z/N vistrit head sangat |
+| 516 | IRFC Vol 2: Works Primary Units | 100 | 1 | 0 | done 2026-11-06: 100/100 tay, 0 sudhaar. Revenue PU banam Works PU do suchiyan sangat (CGST 63 aadi) |
 | 517 | IRFC Vol 2: Abstract Y – Detailed Heads | 100 | 0 | 0 | pending |
 | 518 | IRFC Vol 2: Receipts & Expenditure | 100 | 0 | 0 | pending |
 | 519 | IRFC Vol 2: True/False – Plan & Misc | 100 | 0 | 0 | pending |
