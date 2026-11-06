@@ -266,8 +266,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 320 | PAPER-II: STR: Imported Stores & Customs | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Aayatit bhandaar/seema-shulk sangat |
 | 321 | PAPER-II: STR: Warranty, Guarantee & Rejection | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Warranty/asweekriti (LD 0.5%/saptah, adhiktam 10%) sangat |
 | 322 | PAPER-II: WKS: Workshop Organization & Production | 60 | 1 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Workshop sangathan/utpadan ikaiyan sangat |
-| 323 | PAPER-II: WKS: Workshop Costing System | 80 | 0 | 0 | pending |
-| 324 | PAPER-II: WKS: Direct vs Indirect Expenditure (On-cost) | 70 | 0 | 0 | pending |
+| 323 | PAPER-II: WKS: Workshop Costing System | 80 | 0 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. Workshop lagat tantra sangat |
+| 324 | PAPER-II: WKS: Direct vs Indirect Expenditure (On-cost) | 70 | 0 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. Pratyaksh/apratyaksh (on-cost) sangat |
 | 325 | PAPER-II: WKS: Workshop Labour & Incentives | 70 | 0 | 0 | pending |
 | 326 | PAPER-II: WKS: Materials for Workshops | 60 | 0 | 0 | pending |
 | 327 | PAPER-II: WKS: Work Orders | 60 | 0 | 0 | pending |
