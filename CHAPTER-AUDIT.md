@@ -7,7 +7,7 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 0 | Goods Section (Q1-20) | 20 | 20 | 1 | done 2026-11-06: 20/20 sahi; conflict partner TG3_Q2855 (ch601) Dies-Non B->D sudhara |
 | 1 | Goods Section (Q21-100) | 72 | 72 | 0 | done 2026-11-06: 72/72 sahi; Busy Season Surcharge = POL internet se pusht (Coal&Coke/Container chhoot) |
 | 2 | Goods Section (Q101-201) | 93 | 93 | 9 | done 2026-11-06: 92/93 tay. 17 sudhaar — MST galati MAIN bank me mili (1.5x galat, sahi 15x -> jawab D/none; 4 copies + explanations), TG copies ke 15 galat jawab main bank se milakar sudhare (I-POST=passenger, luggage 35kg, admitted debit dono tareeke, forfeited deposit=Sundry, internal-check error=Error Sheet (Accounts Code 2703), TTE remittance=nominated station, RTC=MLAs). ROPD (Refund vs Returns of Previous Day) saboot kamzor — user ke faisle ke liye pending |
-| 3 | Parcel Matters (Q1-101) | 98 | 98 | 0 | pending |
+| 3 | Parcel Matters (Q1-101) | 98 | 98 | 0 | done 2026-11-06: 98/98 sahi, koi sudhaar nahi (scales R/P/S/L, leasing policy, liability Sec 99/103 figures, indemnity — sab aantarik roop se mail) |
 | 4 | Traffic Accounts (Q303-356) | 51 | 51 | 1 | pending |
 | 5 | Traffic Statistics (Q1-50) | 46 | 46 | 1 | pending |
 | 6 | Traffic Costing (Q1-50) | 42 | 42 | 2 | pending |
