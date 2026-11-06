@@ -406,8 +406,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 460 | PAPER-III: TSC: Rate Fixation Costing | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Dar nirdharan laagat sangat |
 | 461 | PAPER-III: TSC: Operating Ratio Analysis | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Parichalan anupaat vishleshan sangat — TSC samooh sampann (ch444-461, 1220 Q, 0 sudhaar) |
 | 462 | PAPER-III: STA: Station Organization & Duties | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Station sangathan/kartavya sangat — STA samooh shuru |
-| 463 | PAPER-III: STA: Station Cash & Cash Book | 70 | 0 | 0 | pending |
-| 464 | PAPER-III: STA: Coaching Earnings Account | 80 | 0 | 0 | pending |
+| 463 | PAPER-III: STA: Station Cash & Cash Book | 70 | 0 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. Station cash/cash book sangat |
+| 464 | PAPER-III: STA: Coaching Earnings Account | 80 | 0 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. NOTE khula bhed: platform ticket aay — yahan Coaching, par ch412/ch421/ch462 me Sundry; bahumat Sundry, koi badlav nahi, user faisla |
 | 465 | PAPER-III: STA: Goods Earnings Account | 80 | 0 | 0 | pending |
 | 466 | PAPER-III: STA: Parcels & Luggage Account | 60 | 0 | 0 | pending |
 | 467 | PAPER-III: STA: Station Balance Sheet | 100 | 0 | 0 | pending |
