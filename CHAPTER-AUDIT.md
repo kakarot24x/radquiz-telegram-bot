@@ -181,8 +181,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 235 | PAPER-I: EXP: Stores & Materials Expenditure | 80 | 2 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. Bhandar/samagri kharch siddhant sangat |
 | 236 | PAPER-I: EXP: Pension & Retirement Benefits Expenditure | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Pension kharch siddhant sangat |
 | 237 | PAPER-I: EXP: New Service & New Instrument of Service | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Nai seva/vastu siddhant sangat |
-| 238 | PAPER-I: EXP: Economy Measures & Expenditure Cuts | 60 | 0 | 0 | pending |
-| 239 | PAPER-I: EXP: Bills, Vouchers & Pay Orders | 80 | 0 | 0 | pending |
+| 238 | PAPER-I: EXP: Economy Measures & Expenditure Cuts | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Mitavyayita upaay sangat |
+| 239 | PAPER-I: EXP: Bills, Vouchers & Pay Orders | 80 | 0 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. Bill/voucher/pay-order siddhant sangat |
 | 240 | PAPER-I: EXP: Audit of Expenditure | 60 | 1 | 0 | pending |
 | 241 | PAPER-I: BB: Journal & Ledger | 60 | 0 | 0 | pending |
 | 242 | PAPER-I: BB: Cash Book | 50 | 0 | 0 | pending |
