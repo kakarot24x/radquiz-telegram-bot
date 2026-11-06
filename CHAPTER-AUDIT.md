@@ -480,8 +480,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 534 | GCC Stores: Supply Contract Terms | 130 | 0 | 0 | done 2026-11-06: 130/130 tay, 0 sudhaar. Stores LD 2%/mah, warranty 12/18 mah, 90/10 bhugtan, PVC gananaaen satyapit |
 | 535 | GCC Stores: Stores Contract — Legal | 100 | 0 | 0 | done 2026-11-06: 100/100 tay, 0 sudhaar. Risk purchase/LD 2%-10%/banning 5 varsh — gananaaen satyapit |
 | 536 | GCC Stores: Stores Correction Slips | 100 | 0 | 0 | done 2026-11-06: 100/100 tay, 0 sudhaar. IRS correction slips — sambhaavi prabhav siddhant sangat. GCC Stores samooh sampann (ch533-536, 450 Q) |
-| 537 | MSOP: General Concepts | 100 | 1 | 0 | pending |
-| 538 | MSOP: Part A — Works Matters | 450 | 34 | 0 | pending |
+| 537 | MSOP: General Concepts | 100 | 1 | 0 | done 2026-11-06: 100/100 tay, 0 sudhaar. MSOP samanya: 26.10.2017, 7 bhaag, vitt sahamati anumaan, CHOD=PHOD sangat |
+| 538 | MSOP: Part A — Works Matters | 450 | 34 | 0 | done 2026-11-06: 450/450 tay, 0 sudhaar. Part A Item 1-26; 5(f) PHOD 10L/1.20cr, JAG suraksha 2L/10L, anya 5L/60L — gananaaen satyapit |
 | 539 | MSOP: Part B — Medical Matters | 200 | 0 | 0 | pending |
 | 540 | MSOP: Part C — Miscellaneous Matters | 350 | 0 | 0 | pending |
 | 541 | MSOP: Part D — Stores Matters | 220 | 0 | 0 | pending |
