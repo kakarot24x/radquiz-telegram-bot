@@ -21,7 +21,7 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 14 | Coaching - Miscellaneous | 13 | 13 | 0 | done 2026-11-06: 13/13 tay, 0 sudhaar. Class B station 2 jaanch/varsh — ch10 ke Class A=3 se mail |
 | 15 | Coaching - PRS | 5 | 5 | 0 | done 2026-11-06: 5/5 tay, 0 sudhaar. ASS 40 = Number of Staff — ch6 wale Administrative sudhaar ki ek aur swatantra pushti |
 | 16 | Coaching - RMC and AOBS | 28 | 28 | 0 | done 2026-11-06: 28/28 tay, 0 sudhaar. AOB closing balance (carriage bills + VKP) ch4 ke sudhaar se mail; AOB para 2909, forms A-2907/2908 jodi sahi |
-| 17 | Coaching - Chapter 5 (AOBS) | 73 | 73 | 2 | pending |
+| 17 | Coaching - Chapter 5 (AOBS) | 73 | 73 | 2 | done 2026-11-06: 73/73 tay; **15 key sudhaar** — is baar MAIN bank ki galtiyaan zyada mili: Traffic Account closing balance = Unrealized Earnings (2 copies, TG sahi tha), Originating freight statement = 7-A (6-A galat), Traffic Book Abstract = Part D (Part C galat), Apportionment result = Part B, Abstract X = Passenger (OCH galat), Wagon Turn Around unit = Days (Hours galat) — ch17 + ch111 copies sab par stem-match se sudhara, explanations bhi; IR-level earnings TG copies (3) = Originating. ROPD tally aur majboot: yahan R = Refund wala sawal bhi mila |
 | 18 | TIA - Traffic Inspector Accounts | 369 | 369 | 13 | pending |
 | 19 | HOER - Hours of Employment Regulations | 33 | 33 | 1 | pending |
 | 20 | S1CH7 Chapter 1 - General | 40 | 40 | 0 | pending |
