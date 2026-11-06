@@ -17,10 +17,10 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 10 | Coaching - General | 48 | 48 | 0 | done 2026-11-06: 48/48 tay, 0 sudhaar. Error sheet 4 copies + 6-mahina debit limit user ke faislo/code se mail. **FAISLA BAKI #3: station outstanding ki safai ki zimmedari — ch8 kehta hai Station Master/Commercial Staff, is chapter ka q1s3x3n4a547 kehta hai TIA; dono taraf pakka saboot nahi, user ka faisla chahiye** |
 | 11 | Coaching - Statistics | 59 | 59 | 0 | done 2026-11-06: 59/59 tay, key sudhaar 0. ASS/MSS mapping official suchi se mail (26B, 27B, 40, 43, 2B, 9B). **FAISLA BAKI #4 (toota sawal): q11f20g2vadg — 6-A Part II ka aadhar; bank ki 2 copies (ch11+ch111) = Carried (sahi: Part I = Originating, Part II = Carried), lekin is copy ke options me Carried hai hi nahi aur key Originating lagi hai — option badalne (Zonal -> Carried) ki ijaazat user se chahiye** |
 | 12 | Coaching - Station Inspection | 24 | 24 | 0 | done 2026-11-06: 24/24 tay, 0 sudhaar. Soft taanka (koi badlav nahi): JTBS/PRS jaanch ki avadhi is chapter me monthly hai, ch8 me India Post PRS bi-monthly mili thi — compilations ka antar; para 3306 do sawalo ka jawab bana hai (intensive check + SM access); records-bahar le jaane wala combination (1&4) codal bhavna (3&4) se halka alag — teeno par pakka saboot nahi, haath nahi lagaya |
-| 13 | Coaching - UTS | 2 | 2 | 0 | pending |
-| 14 | Coaching - Miscellaneous | 13 | 13 | 0 | pending |
-| 15 | Coaching - PRS | 5 | 5 | 0 | pending |
-| 16 | Coaching - RMC and AOBS | 28 | 28 | 0 | pending |
+| 13 | Coaching - UTS | 2 | 2 | 0 | done 2026-11-06: 2/2 tay, 0 sudhaar |
+| 14 | Coaching - Miscellaneous | 13 | 13 | 0 | done 2026-11-06: 13/13 tay, 0 sudhaar. Class B station 2 jaanch/varsh — ch10 ke Class A=3 se mail |
+| 15 | Coaching - PRS | 5 | 5 | 0 | done 2026-11-06: 5/5 tay, 0 sudhaar. ASS 40 = Number of Staff — ch6 wale Administrative sudhaar ki ek aur swatantra pushti |
+| 16 | Coaching - RMC and AOBS | 28 | 28 | 0 | done 2026-11-06: 28/28 tay, 0 sudhaar. AOB closing balance (carriage bills + VKP) ch4 ke sudhaar se mail; AOB para 2909, forms A-2907/2908 jodi sahi |
 | 17 | Coaching - Chapter 5 (AOBS) | 73 | 73 | 2 | pending |
 | 18 | TIA - Traffic Inspector Accounts | 369 | 369 | 13 | pending |
 | 19 | HOER - Hours of Employment Regulations | 33 | 33 | 1 | pending |
