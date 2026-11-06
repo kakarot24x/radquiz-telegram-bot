@@ -259,8 +259,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 313 | PAPER-II: STR: Fuel Accounts (Coal/Diesel) | 70 | 0 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. Indhan lekha (koyla/HSD) sangat |
 | 314 | PAPER-II: STR: Tools & Plant | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Tools & Plant sangat |
 | 315 | PAPER-II: STR: Losses, Shortages & Write-off | 70 | 0 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. Haani/kami/write-off sangat |
-| 316 | PAPER-II: STR: Stores Budget & Control | 60 | 0 | 0 | pending |
-| 317 | PAPER-II: STR: Uniforms & Clothing | 40 | 0 | 0 | pending |
+| 316 | PAPER-II: STR: Stores Budget & Control | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Stores budget/niyantran sangat |
+| 317 | PAPER-II: STR: Uniforms & Clothing | 40 | 0 | 0 | done 2026-11-06: 40/40 tay, 0 sudhaar. Vardi/poshak (Parel Clothing Factory) sangat |
 | 318 | PAPER-II: STR: Stationery, Forms & Medical Stores | 50 | 0 | 0 | pending |
 | 319 | PAPER-II: STR: Demand Planning & Provisioning | 70 | 0 | 0 | pending |
 | 320 | PAPER-II: STR: Imported Stores & Customs | 50 | 0 | 0 | pending |
