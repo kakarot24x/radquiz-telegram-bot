@@ -497,8 +497,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 551 | Rajbhasha: Regions A, B, C | 120 | 2 | 0 | done 2026-11-06: 120/120 tay, 0 kunji sudhaar. Kshetra A=11 sangat. KHULA BHED: Kshetra B ginti — #48/#49/#86 = 5 (2020 UT-vilay ke baad), #53 = 17 (11+6, soochi-anusaar 6); yug-bhed, user faisla pending |
 | 552 | Rajbhasha: Hindi Teaching Scheme | 100 | 0 | 0 | done 2026-11-06: 100/100 tay, 0 sudhaar. Hindi Teaching Scheme puraskar talika aantarik sangat; #55-64 me purani talika ke aankde stem me (yug-bhed, kunji sahi) |
 | 553 | Rajbhasha: Parliamentary Committee | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Sansadiya Rajbhasha Samiti: 30 (20+10), Art 344, report Rashtrapati ko, 13va khand |
-| 554 | Rajbhasha: Kirti Puraskar 2025-26 | 100 | 1 | 0 | pending |
-| 555 | Rajbhasha: Gaurav Puraskar & Kirti 2024-25 | 150 | 2 | 0 | pending |
+| 554 | Rajbhasha: Kirti Puraskar 2025-26 | 100 | 1 | 0 | done 2026-11-06: 100/100 tay, 0 sudhaar. Kirti Puraskar 2025-26 tathya (GRSE/BoI/BHEL/BoB/Pravartan Sandesh) aantarik sangat |
+| 555 | Rajbhasha: Gaurav Puraskar & Kirti 2024-25 | 150 | 2 | 0 | done 2026-11-06: 150/150 tay, 0 sudhaar. Kirti 2024-25 (DARPG) + Gaurav Puraskar sanshodhit yojana aankde sangat |
 | 556 | Rajbhasha: Railways & Implementation | 120 | 0 | 0 | pending |
 | 557 | Rajbhasha: Courts, Dept & Conferences | 60 | 4 | 0 | pending |
 | 558 | D&AR: Enquiry & Standard Forms | 90 | 0 | 0 | pending |
