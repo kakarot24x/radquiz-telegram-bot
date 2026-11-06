@@ -362,8 +362,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 416 | PAPER-III: TAC: Traffic Book & Returns | 120 | 0 | 0 | done 2026-11-06: 120/120 tay, 0 sudhaar. Traffic Book/vivaran sangat |
 | 417 | PAPER-III: TAC: UTS/PRS Ticketing | 80 | 0 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. UTS/PRS sangat (ARP 60 din, senior citizen riyayat vartamaan me sthagit yahin spasht) |
 | 418 | PAPER-III: TAC: Catering & Other Coaching Earnings | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Catering/anya coaching aay sangat |
-| 419 | PAPER-III: TAC: Sidings & Private Wagons | 70 | 0 | 0 | pending |
-| 420 | PAPER-III: TAC: Inter-Railway Adjustments | 80 | 0 | 0 | pending |
+| 419 | PAPER-III: TAC: Sidings & Private Wagons | 70 | 0 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. Siding/niji wagon sangat |
+| 420 | PAPER-III: TAC: Inter-Railway Adjustments | 80 | 0 | 0 | done 2026-11-06: 80/80 tay, 0 sudhaar. Antar-railway samaayojan sangat (batwara doori aadhar) |
 | 421 | PAPER-III: TAC: Audit of Traffic Earnings | 80 | 0 | 0 | pending |
 | 422 | PAPER-III: TAC: Outstanding & Unrealized Earnings | 70 | 0 | 0 | pending |
 | 423 | PAPER-III: TAC: Digital Payments & E-ticketing | 70 | 0 | 0 | pending |
