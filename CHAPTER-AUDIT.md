@@ -141,8 +141,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 195 | PAPER-I: PPN: Commutation of Pension | 40 | 0 | 0 | done 2026-11-06: 40/40 tay, 0 sudhaar. Commutation (40%, 15 varsh bahaali, ganit sahi) maanak |
 | 196 | PAPER-I: PPN: DCRG | 40 | 0 | 0 | done 2026-11-06: 40/40 tay, 0 sudhaar. DCRG maanak — emoluments = pay+DA yahi sahi (gratuity), ch194 sudhaar ki pushti |
 | 197 | PAPER-I: PPN: Family Pension | 50 | 0 | 0 | done 2026-11-06: 50/50 tay, 0 sudhaar. Parivar pension (30%/50%, 10 varsh/67 aayu shakhaayen) maanak |
-| 198 | PAPER-I: PPN: Extraordinary Pension | 30 | 0 | 0 | pending |
-| 199 | PAPER-I: PPN: Retirement Types | 40 | 0 | 0 | pending |
+| 198 | PAPER-I: PPN: Extraordinary Pension | 30 | 0 | 0 | done 2026-11-06: 30/30 tay, 0 sudhaar. Asadharan pension maanak |
+| 199 | PAPER-I: PPN: Retirement Types | 40 | 0 | 0 | done 2026-11-06: 40/40 tay, 0 sudhaar. Sevanivritti prakar (VR 20 varsh + 5 varsh weightage, FR 56(j)) maanak |
 | 200 | PAPER-I: PPN: NPS Basics & PRAN | 40 | 0 | 0 | pending |
 | 201 | PAPER-I: PPN: NPS Contributions | 30 | 0 | 0 | pending |
 | 202 | PAPER-I: PPN: NPS Investment | 30 | 0 | 0 | pending |
