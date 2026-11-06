@@ -2,7 +2,7 @@
 
 - Total questions: **101905** (with ID: 101905, with explanation: 52554)
 - HARD problems (must be 0): **0** [answer-not-in-options 0, empty-option 0, drift 0]
-- Conflicting-answer groups remaining: **31** (see AUDIT-2026-11-04.md)
+- Conflicting-answer groups remaining: **30** (see AUDIT-2026-11-04.md)
 - Quarantined (bot auto-skips): **314** [too-few-options 284, duplicate-options 15, dup-after-truncation 15]
 - Leading junk prefixes: 0
 - Telegram limits: 3161 questions >300 chars (bot sends full text as a pre-message), 7607 questions with an option >100 chars (poll truncates with …)
