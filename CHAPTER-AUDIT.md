@@ -86,8 +86,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 79 | Allowances / Advances | 41 | 41 | 0 | done 2026-11-06: 41/41 tay, 0 kunji sudhaar. Ek toota sawal note kiya — PF yogdan wale sawal ke paas keval ek hi vikalp hai (7.00%), woh pehle se hi quarantine me hai |
 | 80 | Pass Rules | 46 | 46 | 0 | done 2026-11-06: 46/46 tay, 0 sudhaar |
 | 81 | Hours of Employment and Regulations | 95 | 94 | 0 | done 2026-11-06: 95/95 tay, 0 sudhaar. Ek naram bindu note — sanyukt "Intensive/Continuous" stem par 54 ghante ki kunji (Intensive ki vaidhanik seema 45 hai, ch30/ch33 se spasht); sanyukt stem hone se akele badalna uchit nahi |
-| 82 | Labour Laws | 76 | 74 | 0 | pending |
-| 83 | Leave Rules | 90 | 89 | 0 | pending |
+| 82 | Labour Laws | 76 | 74 | 0 | done 2026-11-06: 76/76 tay, 0 sudhaar |
+| 83 | Leave Rules | 90 | 89 | 0 | done 2026-11-06: 90/90 tay. **1 sudhaar** — railway school teachers ko **10 din LAP (5+5)** milta hai (Rule 525, RBE 64/2019 se sanshodhit; Nageswara Rao ki site se bhi pushti); kunji purane niyam wala 0 din keh rahi thi |
 | 84 | Promotion / Selections | 65 | 65 | 0 | pending |
 | 85 | Annual Performance Appraisal Report | 23 | 23 | 0 | pending |
 | 86 | Staff Benefit Fund | 53 | 51 | 0 | pending |
