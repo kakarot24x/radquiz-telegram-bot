@@ -412,8 +412,8 @@ Total: 101905 questions · 542 chapters · conflict groups: 138
 | 466 | PAPER-III: STA: Parcels & Luggage Account | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Parcel/saaman lekha sangat |
 | 467 | PAPER-III: STA: Station Balance Sheet | 100 | 0 | 0 | done 2026-11-06: 100/100 tay, 0 sudhaar. Station balance sheet sangat |
 | 468 | PAPER-III: STA: Remittances | 70 | 0 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. Remittance sangat |
-| 469 | PAPER-III: STA: Refunds at Stations | 60 | 0 | 0 | pending |
-| 470 | PAPER-III: STA: Ticket Stock & Control | 70 | 0 | 0 | pending |
+| 469 | PAPER-III: STA: Refunds at Stations | 60 | 0 | 0 | done 2026-11-06: 60/60 tay, 0 sudhaar. Station refund sangat. NOTE: TDR avadhi yahan 90 din, ch414 me 3 din — kulin bhed, koi badlav nahi |
+| 470 | PAPER-III: STA: Ticket Stock & Control | 70 | 0 | 0 | done 2026-11-06: 70/70 tay, 0 sudhaar. Ticket stock/niyantran sangat |
 | 471 | PAPER-III: STA: Outstandings & Unrealized Earnings | 70 | 0 | 0 | pending |
 | 472 | PAPER-III: STA: Station Inspection | 60 | 0 | 0 | pending |
 | 473 | PAPER-III: STA: Station Audit & Internal Check | 70 | 0 | 0 | pending |
