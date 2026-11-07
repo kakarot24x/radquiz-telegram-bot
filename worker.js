@@ -136,7 +136,7 @@ const QA_STOP = new Set(("hai hain ka ki ke ko me mein par se aur ya to bhi nahi
   "shall should tell me please bata batao bataiye kya kitna kitne kitni kaun kab kahan kaise " +
   "kise kis hota hoti hote milta milti milte milega milegi chahiye matlab given liye banti " +
   "banta total andar upar neeche wala wali wale hoga hogi sakta sakti aata aati jata rehta " +
-  "saal sal rate din baar dafa").split(" "));
+  "saal sal rate din baar dafa naam banata banati karta karti deta deti").split(" "));
 const QA_QWORDS = new Set(("kya kitna kitne kitni kaun kab kahan kaise kise kis what how " +
   "when where which who why").split(" "));
 function qaToks(s) {
@@ -248,7 +248,7 @@ async function loadNotesFacts() {
   const facts = await resp.json();
   const byToken = new Map();
   facts.forEach((f, n) => {
-    const text = `${f[0]} ${f[1]} ${f[2]} ${f[3]} ${f[4]}`;
+    const text = `${f[0]} ${f[1]} ${f[2]} ${f[3]} ${f[4]} ${f[5] || ""}`;
     for (const t of new Set(qaToks(text))) {
       let arr = byToken.get(t);
       if (!arr) { arr = []; byToken.set(t, arr); }
@@ -289,27 +289,63 @@ function qaNotesSearch(facts, byToken, ct, cues) {
     }
   }
   let best = null;
+  let bestList = null;
   for (const n of cand) {
     const f = facts[n];
-    const fToks = new Set(qaToks(`${f[0]} ${f[1]} ${f[2]} ${f[3]} ${f[4]}`));
+    const fToks = new Set(qaToks(`${f[0]} ${f[1]} ${f[2]} ${f[3]} ${f[4]} ${f[5] || ""}`));
     if (!ct.every((t) => qaTokenHit(t, fToks))) continue;
     const lToks = new Set(qaToks(f[0]));
     let labelScore = 0;
+    let hitCount = 0;
     for (const t of ct) {
-      labelScore = Math.max(labelScore, qaLabelScore(t, lToks, f[0]));
+      const s = qaLabelScore(t, lToks, f[0]);
+      labelScore = Math.max(labelScore, s);
+      if (s > 0) hitCount += 1;
     }
     if (!labelScore) continue;
-    let score = labelScore;
-    if (cues.qtyIntent && QA_ASPECT_QTY.test(f[1])) score += 1;
+    // A row whose own label/aspect names something the table title
+    // does not ("copies" inside the Error Sheet table) is more
+    // specific than the table's List fact — reward that.
+    let distinctive = 0;
+    if (f[1] !== "List") {
+      const laToks = new Set(qaToks(f[0] + " " + f[1]));
+      const ttToks = new Set(qaToks(f[4]));
+      for (const t of ct) {
+        if (qaTokenHit(t, laToks) && !qaTokenHit(t, ttToks)) distinctive += 1;
+      }
+    }
+    let score = labelScore * 1000 + hitCount * 100 + distinctive * 150;
+    if (f[1] === "List") score += cues.listIntent ? 70 : 20;
+    if (cues.qtyIntent && QA_ASPECT_QTY.test(f[1])) score += 10;
+    if (cues.prodIntent && /produc|manufactur/i.test(f[1])) score += 30;
+    if (cues.locIntent && /location|headquarter/i.test(f[1])) score += 30;
     if (cues.yearCue && /year|annum|annual/i.test(f[2] + " " + f[1])) score += 1;
-    if (!best || score > best.score) best = { score, list: [f] };
+    const entry = { score, list: [f], labelScore, hitCount };
+    if (!best || score > best.score) best = entry;
     else if (score === best.score) best.list.push(f);
+    if (f[1] === "List") {
+      if (!bestList || score > bestList.score) bestList = entry;
+      else if (score === bestList.score) bestList.list.push(f);
+    }
   }
-  if (!best) return null;
-  const labels = new Set(best.list.map((f) => f[0]));
-  if (labels.size === 1) return best.list[0];
-  const vals = new Set(best.list.map((f) => f[2]));
-  return vals.size === 1 ? best.list[0] : null;
+  // Short topic queries ("production unit kitne hai", "zones ke
+  // naam") are answered by the table itself when a List fact's label
+  // fully matches the topic — row facts about other tables that
+  // merely mention the topic do not outrank it.
+  const pick = (b) => {
+    if (!b) return null;
+    const labels = new Set(b.list.map((f) => f[0]));
+    if (labels.size === 1) return b.list[0];
+    const vals = new Set(b.list.map((f) => f[2]));
+    return vals.size === 1 ? b.list[0] : null;
+  };
+  if (ct.length <= 2 && bestList && bestList.labelScore >= 2 &&
+      bestList.hitCount === ct.length &&
+      !cues.prodIntent && !cues.locIntent) {
+    const hit = pick(bestList);
+    if (hit) return hit;
+  }
+  return pick(best);
 }
 
 // Day-wise index for Telegram Quizzes (bank/tgdays.json, built by
@@ -785,7 +821,7 @@ long-press the box and tap <b>Paste</b> again.</p>
 ▶ Start the Bot</button></form>`;
   }
   return `<h2>✅ RADEQuiz Bot is Running</h2>
-<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-07 v38</b></p>
+<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-07 v39</b></p>
 <p>Now open your Telegram group <b>RADEQuiz</b> and type <b>/quiz</b> —
 choose a topic, the number of questions and the timer, and the quiz starts.
 Everything is controlled from Telegram itself.</p>
@@ -1707,11 +1743,20 @@ export class QuizRoom {
       /\bhow (many|much)\b/i.test(raw0);
     const formIntent = rawToks.some((t) =>
       ["matlab", "form", "stands"].includes(t)) || /full form/i.test(raw0);
+    const listIntent = rawToks.some((t) =>
+      ["kaun", "list", "naam", "name", "names", "sab", "batao", "bata"]
+        .includes(t)) || /\bhow many\b/i.test(raw0);
+    const prodIntent = rawToks.some((t) =>
+      ["banata", "banati", "banta", "produces", "produce", "manufactures"]
+        .includes(t));
+    const locIntent = rawToks.some((t) =>
+      ["kahan", "where", "sthit", "located"].includes(t));
     // ---- Layer 1: the detailed-notes facts (the user's own book).
     // A precise fact from the notes beats any MCQ-bank inference.
     try {
       const { facts, byToken: nBy } = await loadNotesFacts();
-      const hit = qaNotesSearch(facts, nBy, ct, { qtyIntent, yearCue });
+      const hit = qaNotesSearch(facts, nBy, ct,
+        { qtyIntent, yearCue, listIntent, prodIntent, locIntent });
       if (hit) {
         const val = hit[2].length > 600
           ? hit[2].slice(0, 599) + "…" : hit[2];
