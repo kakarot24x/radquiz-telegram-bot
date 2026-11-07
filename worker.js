@@ -599,7 +599,7 @@ long-press the box and tap <b>Paste</b> again.</p>
 ▶ Start the Bot</button></form>`;
   }
   return `<h2>✅ RADEQuiz Bot is Running</h2>
-<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-07 v34</b></p>
+<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-07 v35</b></p>
 <p>Now open your Telegram group <b>RADEQuiz</b> and type <b>/quiz</b> —
 choose a topic, the number of questions and the timer, and the quiz starts.
 Everything is controlled from Telegram itself.</p>
@@ -1567,10 +1567,18 @@ export class QuizRoom {
       (!cfg?.username || (u.username || "").toLowerCase() !==
         String(cfg.username).toLowerCase()));
     if (!humans.length) return;
+    // Name rule (user order 2026-11-07): the greeting names the new
+    // member(s) — "Ek aur dalla aa gaya group me — Ravi".
+    const names = humans
+      .map((u) => (u.first_name || u.username || "")
+        .replace(/\s+/g, " ").trim().slice(0, 30))
+      .filter(Boolean);
+    const text = "Ek aur dalla aa gaya group me" +
+      (names.length ? ` — ${names.join(", ")}` : "");
     try {
       await this.call("sendMessage", {
         chat_id: msg.chat.id,
-        text: "Ek aur dalla aa gaya group me",
+        text,
         reply_parameters: { message_id: msg.message_id },
       });
     } catch (e) { /* join message may be gone; greeting is best-effort */ }
