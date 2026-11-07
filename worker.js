@@ -599,7 +599,7 @@ long-press the box and tap <b>Paste</b> again.</p>
 ▶ Start the Bot</button></form>`;
   }
   return `<h2>✅ RADEQuiz Bot is Running</h2>
-<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-07 v35</b></p>
+<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-07 v36</b></p>
 <p>Now open your Telegram group <b>RADEQuiz</b> and type <b>/quiz</b> —
 choose a topic, the number of questions and the timer, and the quiz starts.
 Everything is controlled from Telegram itself.</p>
@@ -1539,11 +1539,15 @@ export class QuizRoom {
       ];
       text = POOL[Math.floor(Math.random() * POOL.length)];
     }
-    // Name rule (user order 2026-11-07): the roast addresses the
-    // person who triggered it by name — "Sunil, bhag bhosdi ke".
-    const nm = (msg.from?.first_name || msg.sender_chat?.title ||
-      msg.from?.username || "").replace(/\s+/g, " ").trim().slice(0, 30);
-    if (nm) text = `${nm}, ${text.charAt(0).toLowerCase()}${text.slice(1)}`;
+    // Name rule (user-ruled 2026-11-07): the name is taken ONLY on a
+    // person's first-ever roast, placed at the very end of the line
+    // with no comma — "Bhag Madarchod Ja Padhai kar Sunil". Every
+    // later reply is the plain pool line, no name.
+    if (n === 1) {
+      const nm = (msg.from?.first_name || msg.sender_chat?.title ||
+        msg.from?.username || "").replace(/\s+/g, " ").trim().slice(0, 30);
+      if (nm) text = `${text} ${nm}`;
+    }
     try {
       await this.call("sendMessage", {
         chat_id: msg.chat.id,
