@@ -126,6 +126,38 @@ async function loadSearchIndex() {
   return _searchCache;
 }
 
+// ------------------------------------------- Mahesh Q&A (Akaza only)
+// Inverted token index over search.json, built once per index load, so
+// a spoken question can be matched against the whole bank cheaply.
+let _qaMap = null;
+let _qaMapAt = 0;
+const QA_STOP = new Set(("hai hain ka ki ke ko me mein par se aur ya to bhi nahi na hi tha thi " +
+  "the a an is are of for in on to at by what how many much does do did can could will would " +
+  "shall should tell me please bata batao bataiye kya kitna kitne kitni kaun kab kahan kaise " +
+  "kise kis hota hoti hote milta milti milte milega milegi chahiye matlab given liye banti " +
+  "banta total andar upar neeche wala wali wale hoga hogi sakta sakti aata aati jata rehta " +
+  "saal sal rate").split(" "));
+const QA_QWORDS = new Set(("kya kitna kitne kitni kaun kab kahan kaise kise kis what how " +
+  "when where which who why").split(" "));
+function qaToks(s) {
+  return (s || "").toLowerCase().split(/[^a-z0-9%]+/).filter(Boolean);
+}
+async function loadQaMap() {
+  const sidx = await loadSearchIndex();
+  if (_qaMap && _qaMapAt === _searchCacheAt) return { sidx, byToken: _qaMap };
+  const byToken = new Map();
+  sidx.forEach((e, n) => {
+    for (const t of new Set(qaToks(e[3]))) {
+      let arr = byToken.get(t);
+      if (!arr) { arr = []; byToken.set(t, arr); }
+      arr.push(n);
+    }
+  });
+  _qaMap = byToken;
+  _qaMapAt = _searchCacheAt;
+  return { sidx, byToken: _qaMap };
+}
+
 // Day-wise index for Telegram Quizzes (bank/tgdays.json, built by
 // make_tgdays.py): Group -> Month -> Day -> that day's question keys in
 // original order, so a group's actual day quiz replays same-to-same.
@@ -599,7 +631,7 @@ long-press the box and tap <b>Paste</b> again.</p>
 ▶ Start the Bot</button></form>`;
   }
   return `<h2>✅ RADEQuiz Bot is Running</h2>
-<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-07 v36</b></p>
+<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-07 v37</b></p>
 <p>Now open your Telegram group <b>RADEQuiz</b> and type <b>/quiz</b> —
 choose a topic, the number of questions and the timer, and the quiz starts.
 Everything is controlled from Telegram itself.</p>
@@ -1469,6 +1501,160 @@ export class QuizRoom {
     await this.state.storage.put("flow", flow);
   }
 
+  // Mahesh Q&A (Akaza only, user order 2026-11-07): when someone asks
+  // Mahesh a question — in a group by saying "mahesh" or replying to
+  // the bot, in DM by simply asking — he searches the question library
+  // and replies with the bank's keyed answer. If the library has no
+  // confident answer, he deflects with the user's exact line instead
+  // of guessing. Returns true when the message was handled here (the
+  // caller then skips the roast); non-questions return false so the
+  // roast still fires.
+  async maybeAnswer(msg) {
+    if ((await this.flavor()) !== "akaza") return false;
+    const raw0 = (msg.text || "").trim();
+    if (!raw0 || raw0.startsWith("/")) return false;
+    if (msg.from?.is_bot) return false;
+    const chatType = msg.chat?.type || "";
+    const isGroup = chatType === "group" || chatType === "supergroup";
+    if (isGroup) {
+      const rt = msg.reply_to_message?.from || null;
+      let replyToBot = false;
+      if (rt?.is_bot && rt.username) {
+        const cfg = await getConfig(this.env).catch(() => null);
+        replyToBot = !!cfg?.username &&
+          rt.username.toLowerCase() === String(cfg.username).toLowerCase();
+      }
+      if (!/\bmahesh\b/i.test(raw0) && !replyToBot) return false;
+    }
+    const rawToks = qaToks(raw0.replace(/\bmahesh\b/gi, " "));
+    const ct = rawToks.filter((t) => !QA_STOP.has(t) && t.length >= 2);
+    if (!ct.length) return false;
+    const questionLike = raw0.includes("?") || ct.length >= 2 ||
+      rawToks.some((t) => QA_QWORDS.has(t));
+    if (!questionLike) return false;
+    const FALLBACK = "Pata nai bhai, Piyush se puch le ya Google me dekh le";
+    const reply = async (text) => {
+      try {
+        await this.call("sendMessage", {
+          chat_id: msg.chat.id, text,
+          reply_parameters: { message_id: msg.message_id },
+        });
+      } catch (e) { /* best-effort */ }
+      return true;
+    };
+    let sidx, byToken;
+    try {
+      ({ sidx, byToken } = await loadQaMap());
+    } catch (e) { return reply(FALLBACK); }
+    // Candidate entries: union of postings for the content tokens
+    // (prefix expansion for tokens of length >= 4).
+    const cand = new Map(); // entry index -> matched token count
+    for (const t of new Set(ct)) {
+      const hits = new Set();
+      if (byToken.has(t)) for (const n of byToken.get(t)) hits.add(n);
+      if (t.length >= 4) {
+        for (const [k, v] of byToken) {
+          if (k.length > t.length && k.startsWith(t)) {
+            for (const n of v) hits.add(n);
+          }
+        }
+      }
+      for (const n of hits) cand.set(n, (cand.get(n) || 0) + 1);
+    }
+    // Nothing in the whole bank shares these words — it was never an
+    // exam question, so this is not Q&A territory at all: let the
+    // roast handle it. The deflection line is only for questions that
+    // reached the library but found no confident answer.
+    if (!cand.size) return false;
+    const yearCue = rawToks.some((t) =>
+      ["total", "saal", "sal", "year", "varsh", "annual", "salana"].includes(t));
+    const monthCue = rawToks.some((t) =>
+      ["month", "mahina", "mahine", "monthly"].includes(t));
+    const qtyIntent = rawToks.some((t) =>
+      ["kitna", "kitne", "kitni"].includes(t)) ||
+      /\bhow (many|much)\b/i.test(raw0);
+    let bestCov = 0;
+    const scored = [];
+    for (const [n, m] of cand) {
+      const cov = m / ct.length;
+      if (cov >= 0.6) { scored.push({ n, cov }); if (cov > bestCov) bestCov = cov; }
+    }
+    if (!scored.length || (ct.length === 1 && bestCov < 1)) {
+      return reply(FALLBACK);
+    }
+    let tier = scored.filter((s) => s.cov === bestCov).map((s) => {
+      const stemToks = new Set(qaToks(sidx[s.n][3]));
+      let bonus = 0;
+      if (yearCue && (stemToks.has("year") || stemToks.has("annum") ||
+          stemToks.has("annual"))) bonus += 1;
+      if (monthCue && (stemToks.has("month") || stemToks.has("monthly"))) {
+        bonus += 1;
+      }
+      return { ...s, bonus, stemLen: sidx[s.n][3].length };
+    });
+    const bestBonus = Math.max(...tier.map((s) => s.bonus));
+    tier = tier.filter((s) => s.bonus === bestBonus);
+    tier.sort((a, b) => a.stemLen - b.stemLen);
+    tier = tier.slice(0, 60);
+    // Fetch the keyed answers (editor edits overlay wins, as in quizzes).
+    const edits = await loadEdits(this.env).catch(() => ({}));
+    const partCache = new Map();
+    const getItem = async (e) => {
+      if (!partCache.has(e[1])) {
+        if (partCache.size > 10) partCache.clear();
+        partCache.set(e[1], await fetchPart(e[1]).catch(() => []));
+      }
+      const it = (partCache.get(e[1]) || [])[e[2]];
+      if (!it) return null;
+      const ed = edits[e[0]];
+      const src = ed || it;
+      const o = src.options || {};
+      const opts = Array.isArray(o)
+        ? o.map(String)
+        : Object.keys(o).sort().map((k) => String(o[k]));
+      const ai = "ABCD".indexOf(src.answer);
+      if (ai < 0 || !opts[ai]) return null;
+      return { stem: ed ? ed.q || it.q : it.q, answer: opts[ai] };
+    };
+    let items = [];
+    for (const s of tier) {
+      const it = await getItem(sidx[s.n]);
+      if (it) items.push(it);
+    }
+    if (!items.length) return reply(FALLBACK);
+    if (qtyIntent) {
+      const digi = items.filter((it) => /\d/.test(it.answer));
+      if (digi.length >= 3) items = digi;
+    }
+    const coreOf = (a) => a.toLowerCase().trim().replace(/\.$/, "")
+      .replace(/\b(days?|years?|months?|percent|percentage|rs\.?|rupees)\b/g, "")
+      .replace(/%/g, "").replace(/\s+/g, " ").trim();
+    const groups = new Map();
+    for (const it of items) {
+      const c = coreOf(it.answer);
+      if (!groups.has(c)) groups.set(c, []);
+      groups.get(c).push(it);
+    }
+    const ranked = [...groups.values()].sort((a, b) => b.length - a.length);
+    const top = ranked[0];
+    const runner = ranked[1] ? ranked[1].length : 0;
+    const share = top.length / items.length;
+    const confident = ranked.length === 1 ||
+      (share >= 0.6 && top.length >= 2) ||
+      (share >= 0.4 && top.length >= 5 && top.length >= 2 * runner);
+    if (!confident) return reply(FALLBACK);
+    const disp = top.reduce((a, b) =>
+      (b.answer.length > a.answer.length ? b : a)).answer;
+    const cueWord = yearCue ? /(year|annum|annual)/i
+      : monthCue ? /(month|monthly)/i : null;
+    const rep = (cueWord
+      ? top.find((it) => cueWord.test(it.stem)) : null) ||
+      top.reduce((a, b) => (b.stem.length < a.stem.length ? b : a));
+    const stem = rep.stem.length > 140
+      ? rep.stem.slice(0, 139) + "…" : rep.stem;
+    return reply(`📝 ${stem}\n✅ Jawab: ${disp}`);
+  }
+
   // Akaza-only study roast (user's exact words, 2026-11-05): a plain
   // spoken message — not a command, not input a flow is waiting for —
   // gets a reply. The first one per person in a room differs; every
@@ -1625,7 +1811,7 @@ export class QuizRoom {
                  text.split(" ")[0] === "/maheshauto") {
         await this.send(chatId, "ℹ️ Please use this command inside the group.");
       } else {
-        await this.maybeRoast(msg);
+        if (!(await this.maybeAnswer(msg))) await this.maybeRoast(msg);
       }
       return;
     }
@@ -1719,7 +1905,7 @@ export class QuizRoom {
           `Use ${autoCmd} on, ${autoCmd} off, or ${autoCmd} test.`);
       }
     }
-    await this.maybeRoast(msg);
+    if (!(await this.maybeAnswer(msg))) await this.maybeRoast(msg);
   }
 
   // ------------------------------------------------------------ flow UI
