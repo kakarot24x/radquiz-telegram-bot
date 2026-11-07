@@ -136,11 +136,85 @@ const QA_STOP = new Set(("hai hain ka ki ke ko me mein par se aur ya to bhi nahi
   "shall should tell me please bata batao bataiye kya kitna kitne kitni kaun kab kahan kaise " +
   "kise kis hota hoti hote milta milti milte milega milegi chahiye matlab given liye banti " +
   "banta total andar upar neeche wala wali wale hoga hogi sakta sakti aata aati jata rehta " +
-  "saal sal rate").split(" "));
+  "saal sal rate din baar dafa").split(" "));
 const QA_QWORDS = new Set(("kya kitna kitne kitni kaun kab kahan kaise kise kis what how " +
   "when where which who why").split(" "));
 function qaToks(s) {
-  return (s || "").toLowerCase().split(/[^a-z0-9%]+/).filter(Boolean);
+  // z -> s normalisation on every side alike, so "sterilization" and
+  // "sterilisation" (and organisation/organization) meet in the middle.
+  return (s || "").toLowerCase().split(/[^a-z0-9%]+/).filter(Boolean)
+    .map((t) => t.replace(/z/g, "s"));
+}
+// Abbreviation -> spelled-out phrases. A query token also matches a
+// stem/fact that spells the term out in full (CL -> "casual leave"),
+// which is how most of the bank and all of the book write it.
+const QA_EXP = {
+  cl: [["casual", "leave"]], lap: [["leave", "average", "pay"]],
+  lhap: [["leave", "half", "average", "pay"]],
+  scl: [["special", "casual", "leave"]], ccl: [["child", "care", "leave"]],
+  da: [["dearness", "allowance"]], hra: [["house", "rent", "allowance"]],
+  ta: [["travelling", "allowance"]],
+  nps: [["national", "pension", "system"], ["new", "pension", "scheme"]],
+  ups: [["unified", "pension", "scheme"]],
+  pf: [["provident", "fund"]], srpf: [["state", "railway", "provident", "fund"]],
+  gpf: [["general", "provident", "fund"]],
+  dcrg: [["death", "retirement", "gratuity"], ["death", "cum", "retirement", "gratuity"]],
+  macp: [["modified", "assured", "career", "progression"]],
+  macps: [["modified", "assured", "career", "progression"]],
+  eol: [["extra", "ordinary", "leave"], ["engine", "on", "load"]],
+  pto: [["privilege", "ticket", "order"]],
+  irfc: [["indian", "railway", "finance", "corporation"]],
+  cris: [["centre", "railway", "information", "systems"],
+         ["center", "railway", "information", "systems"]],
+  rpf: [["railway", "protection", "force"]], grp: [["government", "railway", "police"]],
+  cag: [["comptroller", "auditor", "general"]],
+  uts: [["unreserved", "ticketing", "system"]],
+  prs: [["passenger", "reservation", "system"]],
+  fois: [["freight", "operations", "information", "system"]],
+  tms: [["terminal", "management", "system"]], cms: [["crew", "management", "system"]],
+  atvm: [["automatic", "ticket", "vending", "machine"]],
+  wms: [["workshop", "manufacture", "suspense"], ["workshop", "manufacturing", "suspense"]],
+  gm: [["general", "manager"]], drm: [["divisional", "railway", "manager"]],
+  pfa: [["principal", "financial", "adviser"]], tte: [["travelling", "ticket", "examiner"]],
+  hoer: [["hours", "employment"]],
+  ldce: [["limited", "departmental", "competitive", "examination"]],
+  gcc: [["general", "conditions", "contract"]],
+};
+// Does query token t hit this token set? Exact, prefix (len >= 4),
+// percent-sign equivalence, or a spelled-out expansion phrase.
+function qaTokenHit(t, tokSet) {
+  if (tokSet.has(t)) return true;
+  if (t === "percent" || t === "%") {
+    for (const x of tokSet) if (x.includes("%")) return true;
+  }
+  if (t.length >= 4) {
+    for (const x of tokSet) if (x.startsWith(t)) return true;
+  }
+  const phr = QA_EXP[t];
+  if (phr) {
+    for (const p of phr) if (p.every((x) => tokSet.has(x))) return true;
+  }
+  return false;
+}
+// How strongly does t hit a label? 3 = the label carries the term as
+// its own bracketed short form ("Leave on Average Pay (LAP)") — the
+// book's canonical row for that term; 2 = the word itself is in the
+// label, 1 = only its spelled-out expansion is, 0 = no hit.
+function qaLabelScore(t, labelToks, labelStr) {
+  if (labelStr &&
+      labelStr.toLowerCase().includes("(" + t + ")")) return 3;
+  if (labelToks.has(t)) return 2;
+  if (t === "percent" || t === "%") {
+    for (const x of labelToks) if (x.includes("%")) return 2;
+  }
+  if (t.length >= 4) {
+    for (const x of labelToks) if (x.startsWith(t)) return 2;
+  }
+  const phr = QA_EXP[t];
+  if (phr) {
+    for (const p of phr) if (p.every((x) => labelToks.has(x))) return 1;
+  }
+  return 0;
 }
 async function loadQaMap() {
   const sidx = await loadSearchIndex();
@@ -156,6 +230,86 @@ async function loadQaMap() {
   _qaMap = byToken;
   _qaMapAt = _searchCacheAt;
   return { sidx, byToken: _qaMap };
+}
+
+// Detailed-notes fact index (bank/notes.json, built by
+// make_notes_index.py from the user's detailed tables book: every
+// table row is one fact per value column —
+// [label, aspect, value, chapterTitle, tableTitle]).
+let _notesCache = null;
+let _notesCacheAt = 0;
+let _notesMap = null;
+async function loadNotesFacts() {
+  if (_notesCache && Date.now() - _notesCacheAt < 30 * 60 * 1000) {
+    return { facts: _notesCache, byToken: _notesMap };
+  }
+  const resp = await fetch(`${BANK_BASE}/notes.json`);
+  if (!resp.ok) throw new Error("notes fetch " + resp.status);
+  const facts = await resp.json();
+  const byToken = new Map();
+  facts.forEach((f, n) => {
+    const text = `${f[0]} ${f[1]} ${f[2]} ${f[3]} ${f[4]}`;
+    for (const t of new Set(qaToks(text))) {
+      let arr = byToken.get(t);
+      if (!arr) { arr = []; byToken.set(t, arr); }
+      arr.push(n);
+    }
+  });
+  _notesCache = facts;
+  _notesCacheAt = Date.now();
+  _notesMap = byToken;
+  return { facts, byToken };
+}
+
+const QA_ASPECT_QTY =
+  /(credit|days|limit|max|entitle|admissible|quantum|amount|rate|percent|charges|period|life|scale|slab|powers)/i;
+// Search the notes facts for one precise answer. A fact wins only
+// when every content token hits it AND at least one content token
+// hits its label (the fact must be ABOUT the thing asked). An exact
+// label word outranks a spelled-out expansion, so LAP beats LHAP for
+// "lap". Tied facts with different values stay unanswered here —
+// unless they are the same label (aspects of one row), where the
+// book's own first fact speaks. Returns the fact or null.
+function qaNotesSearch(facts, byToken, ct, cues) {
+  const cand = new Set();
+  for (const t of new Set(ct)) {
+    if (byToken.has(t)) for (const n of byToken.get(t)) cand.add(n);
+    if (t.length >= 4) {
+      for (const [k, v] of byToken) {
+        if (k.startsWith(t)) for (const n of v) cand.add(n);
+      }
+    }
+    const phr = QA_EXP[t];
+    if (phr) {
+      for (const p of phr) {
+        for (const x of p) {
+          if (byToken.has(x)) for (const n of byToken.get(x)) cand.add(n);
+        }
+      }
+    }
+  }
+  let best = null;
+  for (const n of cand) {
+    const f = facts[n];
+    const fToks = new Set(qaToks(`${f[0]} ${f[1]} ${f[2]} ${f[3]} ${f[4]}`));
+    if (!ct.every((t) => qaTokenHit(t, fToks))) continue;
+    const lToks = new Set(qaToks(f[0]));
+    let labelScore = 0;
+    for (const t of ct) {
+      labelScore = Math.max(labelScore, qaLabelScore(t, lToks, f[0]));
+    }
+    if (!labelScore) continue;
+    let score = labelScore;
+    if (cues.qtyIntent && QA_ASPECT_QTY.test(f[1])) score += 1;
+    if (cues.yearCue && /year|annum|annual/i.test(f[2] + " " + f[1])) score += 1;
+    if (!best || score > best.score) best = { score, list: [f] };
+    else if (score === best.score) best.list.push(f);
+  }
+  if (!best) return null;
+  const labels = new Set(best.list.map((f) => f[0]));
+  if (labels.size === 1) return best.list[0];
+  const vals = new Set(best.list.map((f) => f[2]));
+  return vals.size === 1 ? best.list[0] : null;
 }
 
 // Day-wise index for Telegram Quizzes (bank/tgdays.json, built by
@@ -631,7 +785,7 @@ long-press the box and tap <b>Paste</b> again.</p>
 ▶ Start the Bot</button></form>`;
   }
   return `<h2>✅ RADEQuiz Bot is Running</h2>
-<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-07 v37</b></p>
+<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-07 v38</b></p>
 <p>Now open your Telegram group <b>RADEQuiz</b> and type <b>/quiz</b> —
 choose a topic, the number of questions and the timer, and the quiz starts.
 Everything is controlled from Telegram itself.</p>
@@ -1501,14 +1655,15 @@ export class QuizRoom {
     await this.state.storage.put("flow", flow);
   }
 
-  // Mahesh Q&A (Akaza only, user order 2026-11-07): when someone asks
+  // Mahesh Q&A (Akaza only, user orders 2026-11-07): when someone asks
   // Mahesh a question — in a group by saying "mahesh" or replying to
-  // the bot, in DM by simply asking — he searches the question library
-  // and replies with the bank's keyed answer. If the library has no
-  // confident answer, he deflects with the user's exact line instead
-  // of guessing. Returns true when the message was handled here (the
-  // caller then skips the roast); non-questions return false so the
-  // roast still fires.
+  // the bot, in DM by simply asking — he answers FIRST from the
+  // detailed-notes facts (the user's own tables book, bank/notes.json)
+  // when a fact precisely fits, else from the MCQ bank's keyed answers
+  // when they agree confidently. If neither source is confident, he
+  // deflects with the user's exact line instead of guessing. Returns
+  // true when the message was handled here (the caller then skips the
+  // roast); non-questions return false so the roast still fires.
   async maybeAnswer(msg) {
     if ((await this.flavor()) !== "akaza") return false;
     const raw0 = (msg.text || "").trim();
@@ -1542,55 +1697,80 @@ export class QuizRoom {
       } catch (e) { /* best-effort */ }
       return true;
     };
+    const yearCue = rawToks.some((t) =>
+      ["total", "saal", "sal", "varsh", "annual", "salana"].includes(t) ||
+      t.startsWith("year"));
+    const monthCue = rawToks.some((t) =>
+      ["mahina", "mahine"].includes(t) || t.startsWith("month"));
+    const qtyIntent = rawToks.some((t) =>
+      ["kitna", "kitne", "kitni"].includes(t)) ||
+      /\bhow (many|much)\b/i.test(raw0);
+    const formIntent = rawToks.some((t) =>
+      ["matlab", "form", "stands"].includes(t)) || /full form/i.test(raw0);
+    // ---- Layer 1: the detailed-notes facts (the user's own book).
+    // A precise fact from the notes beats any MCQ-bank inference.
+    try {
+      const { facts, byToken: nBy } = await loadNotesFacts();
+      const hit = qaNotesSearch(facts, nBy, ct, { qtyIntent, yearCue });
+      if (hit) {
+        const val = hit[2].length > 600
+          ? hit[2].slice(0, 599) + "…" : hit[2];
+        const head = hit[1] ? `${hit[0]} — ${hit[1]}` : hit[0];
+        return reply(`📖 ${hit[3]} · ${hit[4]}\n${head}: ${val}`);
+      }
+    } catch (e) { /* notes unavailable — the bank layer still answers */ }
+    // ---- Layer 2: the MCQ question bank.
     let sidx, byToken;
     try {
       ({ sidx, byToken } = await loadQaMap());
     } catch (e) { return reply(FALLBACK); }
-    // Candidate entries: union of postings for the content tokens
-    // (prefix expansion for tokens of length >= 4).
-    const cand = new Map(); // entry index -> matched token count
+    // Candidates: postings union over the content tokens, their
+    // prefix family, and their spelled-out expansion words.
+    const cand = new Set();
     for (const t of new Set(ct)) {
-      const hits = new Set();
-      if (byToken.has(t)) for (const n of byToken.get(t)) hits.add(n);
+      if (byToken.has(t)) for (const n of byToken.get(t)) cand.add(n);
       if (t.length >= 4) {
         for (const [k, v] of byToken) {
-          if (k.length > t.length && k.startsWith(t)) {
-            for (const n of v) hits.add(n);
+          if (k.startsWith(t)) for (const n of v) cand.add(n);
+        }
+      }
+      const phr = QA_EXP[t];
+      if (phr) {
+        for (const p of phr) {
+          for (const x of p) {
+            if (byToken.has(x)) for (const n of byToken.get(x)) cand.add(n);
           }
         }
       }
-      for (const n of hits) cand.set(n, (cand.get(n) || 0) + 1);
     }
     // Nothing in the whole bank shares these words — it was never an
     // exam question, so this is not Q&A territory at all: let the
     // roast handle it. The deflection line is only for questions that
     // reached the library but found no confident answer.
     if (!cand.size) return false;
-    const yearCue = rawToks.some((t) =>
-      ["total", "saal", "sal", "year", "varsh", "annual", "salana"].includes(t));
-    const monthCue = rawToks.some((t) =>
-      ["month", "mahina", "mahine", "monthly"].includes(t));
-    const qtyIntent = rawToks.some((t) =>
-      ["kitna", "kitne", "kitni"].includes(t)) ||
-      /\bhow (many|much)\b/i.test(raw0);
     let bestCov = 0;
     const scored = [];
-    for (const [n, m] of cand) {
+    for (const n of cand) {
+      const stemSet = new Set(qaToks(sidx[n][3]));
+      const m = ct.filter((t) => qaTokenHit(t, stemSet)).length;
       const cov = m / ct.length;
-      if (cov >= 0.6) { scored.push({ n, cov }); if (cov > bestCov) bestCov = cov; }
+      if (cov >= 0.6) {
+        scored.push({ n, cov, stemSet });
+        if (cov > bestCov) bestCov = cov;
+      }
     }
     if (!scored.length || (ct.length === 1 && bestCov < 1)) {
       return reply(FALLBACK);
     }
     let tier = scored.filter((s) => s.cov === bestCov).map((s) => {
-      const stemToks = new Set(qaToks(sidx[s.n][3]));
       let bonus = 0;
-      if (yearCue && (stemToks.has("year") || stemToks.has("annum") ||
-          stemToks.has("annual"))) bonus += 1;
-      if (monthCue && (stemToks.has("month") || stemToks.has("monthly"))) {
-        bonus += 1;
-      }
-      return { ...s, bonus, stemLen: sidx[s.n][3].length };
+      const hasCue = (words) => [...s.stemSet].some((x) =>
+        words.some((w) => x === w || x.startsWith(w)));
+      if (yearCue && hasCue(["year", "annum", "annual"])) bonus += 1;
+      if (monthCue && hasCue(["month"])) bonus += 1;
+      if (formIntent && (s.stemSet.has("form") || s.stemSet.has("stands") ||
+          s.stemSet.has("means"))) bonus += 1;
+      return { n: s.n, bonus, stemLen: sidx[s.n][3].length };
     });
     const bestBonus = Math.max(...tier.map((s) => s.bonus));
     tier = tier.filter((s) => s.bonus === bestBonus);
@@ -1622,11 +1802,15 @@ export class QuizRoom {
       if (it) items.push(it);
     }
     if (!items.length) return reply(FALLBACK);
-    if (qtyIntent) {
+    if (qtyIntent && !formIntent) {
       const digi = items.filter((it) => /\d/.test(it.answer));
       if (digi.length >= 3) items = digi;
     }
-    const coreOf = (a) => a.toLowerCase().trim().replace(/\.$/, "")
+    // Answer variants of the same fact are grouped by a stripped core:
+    // brackets, option-letter prefixes and unit words removed, so
+    // "30", "30 days" and "c) 30 days" vote together.
+    const coreOf = (a) => a.toLowerCase().replace(/\(.*?\)/g, " ")
+      .replace(/^\s*\(?\s*[a-d]\s*[).]\s*/, "").trim().replace(/\.$/, "")
       .replace(/\b(days?|years?|months?|percent|percentage|rs\.?|rupees)\b/g, "")
       .replace(/%/g, "").replace(/\s+/g, " ").trim();
     const groups = new Map();
@@ -1641,10 +1825,26 @@ export class QuizRoom {
     const share = top.length / items.length;
     const confident = ranked.length === 1 ||
       (share >= 0.6 && top.length >= 2) ||
-      (share >= 0.4 && top.length >= 5 && top.length >= 2 * runner);
+      (share >= 0.4 && top.length >= 5 && top.length >= 2 * runner) ||
+      (share >= 0.3 && top.length >= 12 && top.length >= 2.5 * runner &&
+        (yearCue || monthCue || formIntent));
     if (!confident) return reply(FALLBACK);
-    const disp = top.reduce((a, b) =>
-      (b.answer.length > a.answer.length ? b : a)).answer;
+    // Display: the group's most frequent exact wording; a bare number
+    // borrows the unit from a sibling variant when one is common.
+    const freq = new Map();
+    for (const it of top) freq.set(it.answer, (freq.get(it.answer) || 0) + 1);
+    let disp = [...freq.entries()]
+      .sort((a, b) => b[1] - a[1] || b[0].length - a[0].length)[0][0];
+    if (/^\d+(\.\d+)?$/.test(disp.trim())) {
+      const withUnit = [...freq.entries()]
+        .filter(([a]) => /^\d/.test(a) &&
+          /[a-z%]/i.test(a.replace(/^\d+(\.\d+)?/, "")))
+        .sort((a, b) => b[1] - a[1])[0];
+      if (withUnit && withUnit[1] >= freq.get(disp) / 2) disp = withUnit[0];
+    }
+    if (/\d/.test(disp)) {
+      disp = disp.replace(/^\s*\(?\s*[a-d]\s*[).]\s*/i, "");
+    }
     const cueWord = yearCue ? /(year|annum|annual)/i
       : monthCue ? /(month|monthly)/i : null;
     const rep = (cueWord
