@@ -821,7 +821,7 @@ long-press the box and tap <b>Paste</b> again.</p>
 ▶ Start the Bot</button></form>`;
   }
   return `<h2>✅ RADEQuiz Bot is Running</h2>
-<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-07 v39</b></p>
+<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-08 v40</b></p>
 <p>Now open your Telegram group <b>RADEQuiz</b> and type <b>/quiz</b> —
 choose a topic, the number of questions and the timer, and the quiz starts.
 Everything is controlled from Telegram itself.</p>
@@ -1758,10 +1758,13 @@ export class QuizRoom {
       const hit = qaNotesSearch(facts, nBy, ct,
         { qtyIntent, yearCue, listIntent, prodIntent, locIntent });
       if (hit) {
-        const val = hit[2].length > 600
-          ? hit[2].slice(0, 599) + "…" : hit[2];
-        const head = hit[1] ? `${hit[0]} — ${hit[1]}` : hit[0];
-        return reply(`📖 ${hit[3]} · ${hit[4]}\n${head}: ${val}`);
+        // The answer only (user order 2026-11-08): no chapter name,
+        // no table or label framing — just the fact's own details.
+        // List facts keep room for the full list.
+        const cap = hit[1] === "List" ? 950 : 600;
+        const val = hit[2].length > cap
+          ? hit[2].slice(0, cap - 1) + "…" : hit[2];
+        return reply(val);
       }
     } catch (e) { /* notes unavailable — the bank layer still answers */ }
     // ---- Layer 2: the MCQ question bank.
