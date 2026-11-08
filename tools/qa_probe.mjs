@@ -14,8 +14,8 @@ const block = workerSrc.slice(start, end)
   .replace(/async function loadQaMap[\s\S]*?\n}\n/, '')
   .replace(/async function loadNotesFacts[\s\S]*?\n}\n/, '');
 const api = new Function(`${block};
-  return { QA_STOP, qaToks, qaNotesSearch };`)();
-const { QA_STOP, qaToks, qaNotesSearch } = api;
+  return { QA_STOP, qaToks, qaNotesSearch, QA_ASPECT_QTY };`)();
+const { QA_STOP, qaToks, qaNotesSearch, QA_ASPECT_QTY } = api;
 
 const facts = JSON.parse(fs.readFileSync(new URL('../bank/notes.json', import.meta.url), 'utf8'));
 const byToken = new Map();
@@ -45,8 +45,34 @@ function probe(raw0) {
     locIntent: rawToks.some((t) =>
       ['kahan', 'where', 'sthit', 'located'].includes(t)),
   };
+  cues.defIntent =
+    /what is|what's|kya hai|kya hota|kya hoti|matlab|meaning|define/i
+      .test(raw0) ||
+    (ct.length <= 3 && !cues.qtyIntent && !cues.listIntent &&
+      !cues.prodIntent && !cues.locIntent);
   const hit = qaNotesSearch(facts, byToken, ct, cues);
-  return hit ? hit[2] : null;
+  if (!hit) return null;
+  // Mirror the worker's reply shaping: definition intent combines
+  // the whole row; otherwise the single value speaks.
+  if (cues.defIntent && hit[1] !== 'List') {
+    const sibs = facts.filter((f) =>
+      f[0] === hit[0] && f[4] === hit[4] && f[1] !== 'List');
+    if (sibs.length >= 2) {
+      const rank = (a) => (/^rule no/i.test(a) ? 2
+        : QA_ASPECT_QTY.test(a) ? 0 : 1);
+      const ordered = [...sibs].sort((x, y) => rank(x[1]) - rank(y[1]));
+      const lines = [];
+      for (const s of ordered) {
+        if (/^(N\/A|—|-)/.test(s[2])) continue;
+        lines.push(s[1] ? `${s[1]}: ${s[2]}` : s[2]);
+      }
+      let text = lines.join('\n');
+      if (text.length > 1400) text = text.slice(0, 1399) + '…';
+      if (text) return text;
+    }
+  }
+  const cap = hit[1] === 'List' ? 950 : 600;
+  return hit[2].length > cap ? hit[2].slice(0, cap - 1) + '…' : hit[2];
 }
 
 const queries = process.argv.slice(2);

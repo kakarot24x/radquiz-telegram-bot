@@ -288,8 +288,10 @@ function qaNotesSearch(facts, byToken, ct, cues) {
       }
     }
   }
+  const ctSet = new Set(ct);
   let best = null;
   let bestList = null;
+  let exactLabelRow = false;
   for (const n of cand) {
     const f = facts[n];
     const fToks = new Set(qaToks(`${f[0]} ${f[1]} ${f[2]} ${f[3]} ${f[4]} ${f[5] || ""}`));
@@ -303,6 +305,15 @@ function qaNotesSearch(facts, byToken, ct, cues) {
       if (s > 0) hitCount += 1;
     }
     if (!labelScore) continue;
+    // Exact-topic row: the label IS the asked topic, word for word
+    // ("Limited Tender" for "limited tender?") — such a row outranks
+    // supersets ("Special Limited Tender") and blocks the List pass.
+    const labelContent = new Set([...lToks]
+      .filter((x) => x.length >= 2 && !QA_STOP.has(x)));
+    const exactLabel = f[1] !== "List" &&
+      labelContent.size === ctSet.size &&
+      [...ctSet].every((t) => qaTokenHit(t, labelContent));
+    if (exactLabel) exactLabelRow = true;
     // A row whose own label/aspect names something the table title
     // does not ("copies" inside the Error Sheet table) is more
     // specific than the table's List fact — reward that.
@@ -314,9 +325,13 @@ function qaNotesSearch(facts, byToken, ct, cues) {
         if (qaTokenHit(t, laToks) && !qaTokenHit(t, ttToks)) distinctive += 1;
       }
     }
-    let score = labelScore * 1000 + hitCount * 100 + distinctive * 150;
+    let score = labelScore * 1000 + hitCount * 100 + distinctive * 150 +
+      (exactLabel ? 50 : 0);
     if (f[1] === "List") score += cues.listIntent ? 70 : 20;
     if (QA_ASPECT_QTY.test(f[1])) score += cues.qtyIntent ? 10 : 5;
+    if (cues.defIntent &&
+        /period|fact|definition|meaning|position|detail|key|overview/i
+          .test(f[1])) score += 15;
     if (cues.prodIntent && /produc|manufactur/i.test(f[1])) score += 30;
     if (cues.locIntent && /location|headquarter/i.test(f[1])) score += 30;
     if (cues.yearCue && /year|annum|annual/i.test(f[2] + " " + f[1])) score += 1;
@@ -345,7 +360,7 @@ function qaNotesSearch(facts, byToken, ct, cues) {
   };
   if (ct.length <= 2 && bestList && bestList.labelScore >= 2 &&
       bestList.hitCount === ct.length &&
-      !cues.prodIntent && !cues.locIntent) {
+      !cues.prodIntent && !cues.locIntent && !exactLabelRow) {
     const hit = pick(bestList);
     if (hit) return hit;
   }
@@ -825,7 +840,7 @@ long-press the box and tap <b>Paste</b> again.</p>
 ▶ Start the Bot</button></form>`;
   }
   return `<h2>✅ RADEQuiz Bot is Running</h2>
-<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-08 v41</b></p>
+<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-08 v42</b></p>
 <p>Now open your Telegram group <b>RADEQuiz</b> and type <b>/quiz</b> —
 choose a topic, the number of questions and the timer, and the quiz starts.
 Everything is controlled from Telegram itself.</p>
@@ -1755,13 +1770,40 @@ export class QuizRoom {
         .includes(t));
     const locIntent = rawToks.some((t) =>
       ["kahan", "where", "sthit", "located"].includes(t));
+    const defIntent =
+      /what is|what's|kya hai|kya hota|kya hoti|matlab|meaning|define/i
+        .test(raw0) ||
+      (ct.length <= 3 && !qtyIntent && !listIntent && !prodIntent &&
+        !locIntent);
     // ---- Layer 1: the detailed-notes facts (the user's own book).
     // A precise fact from the notes beats any MCQ-bank inference.
     try {
       const { facts, byToken: nBy } = await loadNotesFacts();
       const hit = qaNotesSearch(facts, nBy, ct,
-        { qtyIntent, yearCue, listIntent, prodIntent, locIntent });
+        { qtyIntent, yearCue, listIntent, prodIntent, locIntent, defIntent });
       if (hit) {
+        // Definition-style questions ("what is limited tender", a
+        // bare "LAP?") get the fact's WHOLE row — definition, notice
+        // period, key facts — quantity aspects first, Rule No. last.
+        // Still no chapter/table framing (user order 2026-11-08).
+        if (defIntent && hit[1] !== "List") {
+          const sibs = facts.filter((f) =>
+            f[0] === hit[0] && f[4] === hit[4] && f[1] !== "List");
+          if (sibs.length >= 2) {
+            const rank = (a) => (/^rule no/i.test(a) ? 2
+              : QA_ASPECT_QTY.test(a) ? 0 : 1);
+            const ordered = [...sibs]
+              .sort((x, y) => rank(x[1]) - rank(y[1]));
+            const lines = [];
+            for (const s of ordered) {
+              if (/^(N\/A|—|-)/.test(s[2])) continue;
+              lines.push(s[1] ? `${s[1]}: ${s[2]}` : s[2]);
+            }
+            let text = lines.join("\n");
+            if (text.length > 1400) text = text.slice(0, 1399) + "…";
+            if (text) return reply(text);
+          }
+        }
         // The answer only (user order 2026-11-08): no chapter name,
         // no table or label framing — just the fact's own details.
         // List facts keep room for the full list.
