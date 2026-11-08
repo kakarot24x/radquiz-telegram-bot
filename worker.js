@@ -316,7 +316,7 @@ function qaNotesSearch(facts, byToken, ct, cues) {
     }
     let score = labelScore * 1000 + hitCount * 100 + distinctive * 150;
     if (f[1] === "List") score += cues.listIntent ? 70 : 20;
-    if (cues.qtyIntent && QA_ASPECT_QTY.test(f[1])) score += 10;
+    if (QA_ASPECT_QTY.test(f[1])) score += cues.qtyIntent ? 10 : 5;
     if (cues.prodIntent && /produc|manufactur/i.test(f[1])) score += 30;
     if (cues.locIntent && /location|headquarter/i.test(f[1])) score += 30;
     if (cues.yearCue && /year|annum|annual/i.test(f[2] + " " + f[1])) score += 1;
@@ -335,7 +335,11 @@ function qaNotesSearch(facts, byToken, ct, cues) {
   const pick = (b) => {
     if (!b) return null;
     const labels = new Set(b.list.map((f) => f[0]));
-    if (labels.size === 1) return b.list[0];
+    if (labels.size === 1) {
+      // Aspects of one row tied — the longest value is the headline
+      // fact (e.g. LAP's Credit over its Rule No. or Max columns).
+      return b.list.reduce((a, c) => (c[2].length > a[2].length ? c : a));
+    }
     const vals = new Set(b.list.map((f) => f[2]));
     return vals.size === 1 ? b.list[0] : null;
   };
@@ -821,7 +825,7 @@ long-press the box and tap <b>Paste</b> again.</p>
 ▶ Start the Bot</button></form>`;
   }
   return `<h2>✅ RADEQuiz Bot is Running</h2>
-<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-08 v40</b></p>
+<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-08 v41</b></p>
 <p>Now open your Telegram group <b>RADEQuiz</b> and type <b>/quiz</b> —
 choose a topic, the number of questions and the timer, and the quiz starts.
 Everything is controlled from Telegram itself.</p>
