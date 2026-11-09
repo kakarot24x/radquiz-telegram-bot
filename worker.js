@@ -305,14 +305,16 @@ function qaNotesSearch(facts, byToken, ct, cues) {
       if (s > 0) hitCount += 1;
     }
     if (!labelScore) continue;
-    // Exact-topic row: the label IS the asked topic, word for word
-    // ("Limited Tender" for "limited tender?") — such a row outranks
-    // supersets ("Special Limited Tender") and blocks the List pass.
+    // Exact-topic row: every content word of the label appears in
+    // the question ("Limited Tender" for "limited tender ka notice
+    // period") — such a row outranks supersets ("Special Limited
+    // Tender") and blocks the List pass.
     const labelContent = new Set([...lToks]
       .filter((x) => x.length >= 2 && !QA_STOP.has(x)));
-    const exactLabel = f[1] !== "List" &&
-      labelContent.size === ctSet.size &&
-      [...ctSet].every((t) => qaTokenHit(t, labelContent));
+    const exactLabel = f[1] !== "List" && labelContent.size >= 1 &&
+      [...labelContent].every((x) => [...ctSet].some((t) =>
+        t === x || (t.length >= 4 && x.startsWith(t)) ||
+        (x.length >= 4 && t.startsWith(x))));
     if (exactLabel) exactLabelRow = true;
     // A row whose own label/aspect names something the table title
     // does not ("copies" inside the Error Sheet table) is more
@@ -332,6 +334,13 @@ function qaNotesSearch(facts, byToken, ct, cues) {
     if (cues.defIntent &&
         /period|fact|definition|meaning|position|detail|key|overview/i
           .test(f[1])) score += 15;
+    // A definition question wants the row's characterisation, never
+    // an officer's powers cell that happens to share the topic words.
+    if (cues.defExplicit) {
+      if (/definition|meaning|what it is|key facts|position|overview|nature/i
+          .test(f[1])) score += 200;
+      else if (/power|\blimit\b/i.test(f[1])) score -= 100;
+    }
     if (cues.prodIntent && /produc|manufactur/i.test(f[1])) score += 30;
     if (cues.locIntent && /location|headquarter/i.test(f[1])) score += 30;
     if (cues.yearCue && /year|annum|annual/i.test(f[2] + " " + f[1])) score += 1;
@@ -840,7 +849,7 @@ long-press the box and tap <b>Paste</b> again.</p>
 ▶ Start the Bot</button></form>`;
   }
   return `<h2>✅ RADEQuiz Bot is Running</h2>
-<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-08 v42</b></p>
+<p>Bot: <b>@${cfg.username || "RADEQuiz"}</b> · Build <b>2026-11-09 v43</b></p>
 <p>Now open your Telegram group <b>RADEQuiz</b> and type <b>/quiz</b> —
 choose a topic, the number of questions and the timer, and the quiz starts.
 Everything is controlled from Telegram itself.</p>
@@ -1763,16 +1772,17 @@ export class QuizRoom {
     const formIntent = rawToks.some((t) =>
       ["matlab", "form", "stands"].includes(t)) || /full form/i.test(raw0);
     const listIntent = rawToks.some((t) =>
-      ["kaun", "list", "naam", "name", "names", "sab", "batao", "bata"]
+      ["kaun", "list", "naam", "name", "names", "sab"]
         .includes(t)) || /\bhow many\b/i.test(raw0);
     const prodIntent = rawToks.some((t) =>
       ["banata", "banati", "banta", "produces", "produce", "manufactures"]
         .includes(t));
     const locIntent = rawToks.some((t) =>
       ["kahan", "where", "sthit", "located"].includes(t));
-    const defIntent =
+    const defExplicit =
       /what is|what's|kya hai|kya hota|kya hoti|matlab|meaning|define/i
-        .test(raw0) ||
+        .test(raw0);
+    const defIntent = defExplicit ||
       (ct.length <= 3 && !qtyIntent && !listIntent && !prodIntent &&
         !locIntent);
     // ---- Layer 1: the detailed-notes facts (the user's own book).
@@ -1780,12 +1790,55 @@ export class QuizRoom {
     try {
       const { facts, byToken: nBy } = await loadNotesFacts();
       const hit = qaNotesSearch(facts, nBy, ct,
-        { qtyIntent, yearCue, listIntent, prodIntent, locIntent, defIntent });
+        { qtyIntent, yearCue, listIntent, prodIntent, locIntent,
+          defIntent, defExplicit });
       if (hit) {
-        // Definition-style questions ("what is limited tender", a
-        // bare "LAP?") get the fact's WHOLE row — definition, notice
-        // period, key facts — quantity aspects first, Rule No. last.
-        // Still no chapter/table framing (user order 2026-11-08).
+        // Aspect-precise answering (user order 2026-11-09): the reply
+        // is the aspect the question actually asks about — a named
+        // aspect ("notice period") answers with that column alone, a
+        // definition question ("open tender kya hai") answers with
+        // the row's characterisation alone, and only a bare topic
+        // ("LAP?") gets the whole row. No framing anywhere.
+        if (hit[1] !== "List") {
+          const sibs = facts.filter((f) =>
+            f[0] === hit[0] && f[4] === hit[4] && f[1] !== "List");
+          const one = (s) => {
+            const val = s[2].length > 600
+              ? s[2].slice(0, 599) + "…" : s[2];
+            return reply(val);
+          };
+          if (sibs.length >= 2) {
+            const rawSet = new Set(rawToks);
+            const aspScore = (s) => qaToks(s[1])
+              .filter((t) => t.length >= 3 &&
+                !["the", "and", "for", "with", "without"].includes(t))
+              .filter((t) => rawSet.has(t) || (t.length >= 4 &&
+                [...rawSet].some((x) => x.startsWith(t) || t.startsWith(x))))
+              .length;
+            let named = null;
+            let namedScore = 0;
+            for (const s of sibs) {
+              const sc = aspScore(s);
+              if (sc > namedScore) { named = s; namedScore = sc; }
+            }
+            if (named && namedScore >= 1) {
+              const tied = sibs.filter((s) => aspScore(s) === namedScore);
+              if (tied.length === 1) return one(named);
+            }
+            if (defExplicit) {
+              const defSib =
+                sibs.find((s) => /definition|meaning|what it is/i.test(s[1])) ||
+                sibs.find((s) => /key facts/i.test(s[1])) ||
+                sibs.find((s) => /position|overview|about/i.test(s[1])) ||
+                sibs.filter((s) => !QA_ASPECT_QTY.test(s[1]) &&
+                    !/^rule no/i.test(s[1]))
+                  .sort((a, b) => b[2].length - a[2].length)[0];
+              if (defSib) return one(defSib);
+            }
+          }
+        }
+        // Bare-topic questions get the fact's WHOLE row — quantity
+        // aspects first, Rule No. last (user order 2026-11-08).
         if (defIntent && hit[1] !== "List") {
           const sibs = facts.filter((f) =>
             f[0] === hit[0] && f[4] === hit[4] && f[1] !== "List");

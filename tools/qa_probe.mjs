@@ -37,7 +37,7 @@ function probe(raw0) {
       ['total', 'saal', 'sal', 'varsh', 'annual', 'salana'].includes(t) ||
       t.startsWith('year')),
     listIntent: rawToks.some((t) =>
-      ['kaun', 'list', 'naam', 'name', 'names', 'sab', 'batao', 'bata']
+      ['kaun', 'list', 'naam', 'name', 'names', 'sab']
         .includes(t)) || /\bhow many\b/i.test(raw0),
     prodIntent: rawToks.some((t) =>
       ['banata', 'banati', 'banta', 'produces', 'produce', 'manufactures']
@@ -45,15 +45,51 @@ function probe(raw0) {
     locIntent: rawToks.some((t) =>
       ['kahan', 'where', 'sthit', 'located'].includes(t)),
   };
-  cues.defIntent =
+  cues.defExplicit =
     /what is|what's|kya hai|kya hota|kya hoti|matlab|meaning|define/i
-      .test(raw0) ||
+      .test(raw0);
+  cues.defIntent = cues.defExplicit ||
     (ct.length <= 3 && !cues.qtyIntent && !cues.listIntent &&
       !cues.prodIntent && !cues.locIntent);
   const hit = qaNotesSearch(facts, byToken, ct, cues);
   if (!hit) return null;
-  // Mirror the worker's reply shaping: definition intent combines
-  // the whole row; otherwise the single value speaks.
+  // Mirror the worker's reply shaping (v43): named aspect alone,
+  // definition question -> characterisation alone, bare topic ->
+  // whole row, otherwise the single hit value.
+  const single = (s) => (s[2].length > 600 ? s[2].slice(0, 599) + '…' : s[2]);
+  if (hit[1] !== 'List') {
+    const sibs = facts.filter((f) =>
+      f[0] === hit[0] && f[4] === hit[4] && f[1] !== 'List');
+    if (sibs.length >= 2) {
+      const rawSet = new Set(rawToks);
+      const aspScore = (s) => qaToks(s[1])
+        .filter((t) => t.length >= 3 &&
+          !['the', 'and', 'for', 'with', 'without'].includes(t))
+        .filter((t) => rawSet.has(t) || (t.length >= 4 &&
+          [...rawSet].some((x) => x.startsWith(t) || t.startsWith(x))))
+        .length;
+      let named = null;
+      let namedScore = 0;
+      for (const s of sibs) {
+        const sc = aspScore(s);
+        if (sc > namedScore) { named = s; namedScore = sc; }
+      }
+      if (named && namedScore >= 1) {
+        const tied = sibs.filter((s) => aspScore(s) === namedScore);
+        if (tied.length === 1) return single(named);
+      }
+      if (cues.defExplicit) {
+        const defSib =
+          sibs.find((s) => /definition|meaning|what it is/i.test(s[1])) ||
+          sibs.find((s) => /key facts/i.test(s[1])) ||
+          sibs.find((s) => /position|overview|about/i.test(s[1])) ||
+          sibs.filter((s) => !QA_ASPECT_QTY.test(s[1]) &&
+              !/^rule no/i.test(s[1]))
+            .sort((a, b) => b[2].length - a[2].length)[0];
+        if (defSib) return single(defSib);
+      }
+    }
+  }
   if (cues.defIntent && hit[1] !== 'List') {
     const sibs = facts.filter((f) =>
       f[0] === hit[0] && f[4] === hit[4] && f[1] !== 'List');
